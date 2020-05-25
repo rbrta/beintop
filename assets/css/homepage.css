@@ -135,6 +135,7 @@ header .wrapper .logo span {
   text-transform: uppercase;
   margin-left: 20px;
   color: #FFFFFF;
+  white-space: nowrap;
 }
 
 header .wrapper ul.menu {
@@ -152,6 +153,7 @@ header .wrapper ul.menu {
 header .wrapper ul.menu li {
   margin-left: 33px;
   color: #FFD15A;
+  white-space: nowrap;
 }
 
 header .wrapper ul.menu li:first-child {
