@@ -115,27 +115,33 @@ header {
         header .wrapper ul.menu li:hover i, header .wrapper ul.menu li:hover a {
           color: #fff; }
 
+.top {
+  background-image: url("./../images/background-top.svg"); }
+  .top .content-wrapper {
+    background-image: url(../images/likes.svg);
+    background-size: contain; }
+
 .content-wrapper {
   width: 1400px;
   max-width: 100%;
   margin: 0 auto; }
   .content-wrapper .promotion {
-    margin-left: auto;
     width: 50%;
     margin-left: auto;
-    margin-top: 263px; }
+    margin-top: 173px; }
     .content-wrapper .promotion-title {
       color: #5C4998;
       font-size: 64px;
-      font-weight: bold; }
+      font-weight: bold;
+      line-height: 78px; }
     .content-wrapper .promotion-desc {
       color: #2C2935;
       font-size: 24px;
       margin-top: 13px; }
     .content-wrapper .promotion-btn {
-      margin-top: 39px;
-      text-align: center; }
+      margin-top: 39px; }
       .content-wrapper .promotion-btn a {
+        text-align: center;
         background: linear-gradient(89.77deg, #E164BE -0.56%, #FF74D8 -0.55%, #FF985E 97.67%);
         border-radius: 50px;
         width: 292px;
@@ -143,7 +149,29 @@ header {
         color: white;
         text-decoration: none;
         font-size: 24px;
-        display: inline-block;
+        display: block;
         padding-top: 12px; }
+  .content-wrapper .advantage {
+    margin-top: 389px;
+    color: white; }
+    .content-wrapper .advantage-item {
+      display: flex; }
+      .content-wrapper .advantage-item > div {
+        width: 50%; }
+    .content-wrapper .advantage-title {
+      font-weight: 900;
+      font-size: 45px;
+      line-height: 55px;
+      text-align: center; }
+    .content-wrapper .advantage-hr {
+      height: 6px;
+      background-color: white;
+      width: 185px;
+      margin: 20px auto; }
+    .content-wrapper .advantage-desc {
+      font-size: 24px;
+      line-height: 149.7%; }
+    .content-wrapper .advantage-img {
+      text-align: center; }
 
 /*# sourceMappingURL=homepage.css.map */
