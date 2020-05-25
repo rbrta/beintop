@@ -1,0 +1,60 @@
+@import 'variables.scss';
+@import 'reset.scss';
+@import 'common.scss';
+
+
+
+header {
+    background: linear-gradient(88.94deg, #504194 -0.56%, #E064E1 97.67%);
+    min-height: 90px;
+    display: flex;
+    align-items: center;
+    
+    .wrapper {
+        width: 1400px;
+        max-width: 100%;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+
+        .logo {
+            display: flex;
+            align-items: center;
+
+            span {
+                font-weight: 900;
+                font-size: 30px;
+                line-height: 37px;
+                text-transform: uppercase;
+                margin-left: 20px;
+                color: #FFFFFF;
+            }
+        }
+
+        ul.menu {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            li {
+                margin-left: 33px;
+                color: $yellow;
+
+                &:first-child {
+                    margin-left: 0;
+                }
+
+                i {
+                    font-size: 1.32rem;
+                }
+
+                a {
+                    color: $yellow;
+                    font-size: 1.32rem;
+                }
+
+            }
+
+        }
+    }
+}
