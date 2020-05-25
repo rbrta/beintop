@@ -62,8 +62,6 @@ header {
                     margin-left: 0;
                 }
 
-                
-
                 i, a {
                     color: $yellow;
                     font-size: 1.32rem;
@@ -131,22 +129,30 @@ header {
     }
 }
 
+.top{
+    background-image: url("./../images/background-top.svg");
+
+    .content-wrapper{
+        background-image: url(../images/likes.svg);
+        background-size: contain;
+    }
+}
 
 .content-wrapper{
     width: 1400px;
     max-width: 100%;
     margin: 0 auto;
-
+    
     .promotion{
-        margin-left: auto;
         width: 50%;
         margin-left: auto;
-        margin-top: 263px;
+        margin-top: 173px;
 
         &-title{
             color: #5C4998;
             font-size: 64px;
             font-weight: bold;
+            line-height: 78px;
         }
 
         &-desc{
@@ -157,9 +163,9 @@ header {
 
         &-btn{
             margin-top: 39px;
-            text-align: center;
 
             a{
+                text-align: center;
                 background: linear-gradient(89.77deg, #E164BE -0.56%, #FF74D8 -0.55%, #FF985E 97.67%);
                 border-radius: 50px;
                 width: 292px;
@@ -167,10 +173,44 @@ header {
                 color: white;
                 text-decoration: none;
                 font-size: 24px;
-                display: inline-block;
+                display: block;
                 padding-top: 12px;
             }
         }
     }
 
+    .advantage{
+        margin-top: 389px;
+        color: white;
+
+        &-item{
+            display: flex;
+            > div{
+                width: 50%;
+            }
+        }
+
+        &-title{
+            font-weight: 900;
+            font-size: 45px;
+            line-height: 55px;
+            text-align: center;
+        }
+
+        &-hr{
+            height: 6px;
+            background-color: white;
+            width: 185px;
+            margin: 20px auto;
+        }
+
+        &-desc{
+            font-size: 24px;
+            line-height: 149.7%;
+        }
+
+        &-img{
+            text-align: center;
+        }
+    }
 }
