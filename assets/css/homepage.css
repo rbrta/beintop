@@ -158,12 +158,12 @@ header .wrapper ul.menu li:first-child {
   margin-left: 0;
 }
 
-header .wrapper ul.menu li i {
+header .wrapper ul.menu li i, header .wrapper ul.menu li a {
+  color: #FFD15A;
   font-size: 1.32rem;
 }
 
-header .wrapper ul.menu li a {
-  color: #FFD15A;
-  font-size: 1.32rem;
+header .wrapper ul.menu li:hover i, header .wrapper ul.menu li:hover a {
+  color: #fff;
 }
 /*# sourceMappingURL=homepage.css.map */

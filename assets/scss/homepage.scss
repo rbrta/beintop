@@ -44,13 +44,15 @@ header {
                     margin-left: 0;
                 }
 
-                i {
+                
+
+                i, a {
+                    color: $yellow;
                     font-size: 1.32rem;
                 }
 
-                a {
-                    color: $yellow;
-                    font-size: 1.32rem;
+                &:hover i, &:hover a {
+                    color: #fff;
                 }
 
             }
