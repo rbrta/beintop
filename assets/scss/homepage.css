@@ -75,10 +75,6 @@ img:not([alt]) {
   font-family: 'Montserrat', sans-serif;
   font-size: 100%; }
 
-.btn {
-  background: linear-gradient(89.77deg, #E164BE -0.56%, #FF74D8 -0.55%, #FF985E 97.67%);
-  border-radius: 50px; }
-
 header {
   background: linear-gradient(88.94deg, #504194 -0.56%, #E064E1 97.67%);
   min-height: 90px;
@@ -114,36 +110,5 @@ header {
           font-size: 1.32rem; }
         header .wrapper ul.menu li:hover i, header .wrapper ul.menu li:hover a {
           color: #fff; }
-
-.content-wrapper {
-  width: 1400px;
-  max-width: 100%;
-  margin: 0 auto; }
-  .content-wrapper .promotion {
-    margin-left: auto;
-    width: 50%;
-    margin-left: auto;
-    margin-top: 263px; }
-    .content-wrapper .promotion-title {
-      color: #5C4998;
-      font-size: 64px;
-      font-weight: bold; }
-    .content-wrapper .promotion-desc {
-      color: #2C2935;
-      font-size: 24px;
-      margin-top: 13px; }
-    .content-wrapper .promotion-btn {
-      margin-top: 39px;
-      text-align: center; }
-      .content-wrapper .promotion-btn a {
-        background: linear-gradient(89.77deg, #E164BE -0.56%, #FF74D8 -0.55%, #FF985E 97.67%);
-        border-radius: 50px;
-        width: 292px;
-        height: 63px;
-        color: white;
-        text-decoration: none;
-        font-size: 24px;
-        display: inline-block;
-        padding-top: 12px; }
 
 /*# sourceMappingURL=homepage.css.map */
