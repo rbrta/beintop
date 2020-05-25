@@ -27,6 +27,7 @@ header {
                 text-transform: uppercase;
                 margin-left: 20px;
                 color: #FFFFFF;
+                white-space: nowrap;
             }
         }
 
@@ -38,6 +39,7 @@ header {
             li {
                 margin-left: 33px;
                 color: $yellow;
+                white-space: nowrap;
 
                 &:first-child {
                     margin-left: 0;

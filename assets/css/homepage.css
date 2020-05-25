@@ -106,7 +106,8 @@ header {
       align-items: center; }
       header .wrapper ul.menu li {
         margin-left: 33px;
-        color: #FFD15A; }
+        color: #FFD15A;
+        white-space: nowrap; }
         header .wrapper ul.menu li:first-child {
           margin-left: 0; }
         header .wrapper ul.menu li i, header .wrapper ul.menu li a {
