@@ -75,10 +75,6 @@ img:not([alt]) {
   font-family: 'Montserrat', sans-serif;
   font-size: 100%; }
 
-.btn {
-  background: linear-gradient(89.77deg, #E164BE -0.56%, #FF74D8 -0.55%, #FF985E 97.67%);
-  border-radius: 50px; }
-
 header {
   background: linear-gradient(88.94deg, #504194 -0.56%, #E064E1 97.67%);
   min-height: 90px;
@@ -115,65 +111,4 @@ header {
         header .wrapper ul.menu li:hover i, header .wrapper ul.menu li:hover a {
           color: #fff; }
 
-.content-wrapper {
-  width: 1400px;
-  max-width: 100%;
-  margin: 0 auto;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-}
-
-header .wrapper .logo {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-header .wrapper .logo span {
-  font-weight: 900;
-  font-size: 30px;
-  line-height: 37px;
-  text-transform: uppercase;
-  margin-left: 20px;
-  color: #FFFFFF;
-  white-space: nowrap;
-}
-
-header .wrapper ul.menu {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-header .wrapper ul.menu li {
-  margin-left: 33px;
-  color: #FFD15A;
-  white-space: nowrap;
-}
-
-header .wrapper ul.menu li:first-child {
-  margin-left: 0;
-}
-
-header .wrapper ul.menu li i, header .wrapper ul.menu li a {
-  color: #FFD15A;
-  font-size: 1.32rem;
-}
-
-header .wrapper ul.menu li:hover i, header .wrapper ul.menu li:hover a {
-  color: #fff;
-}
 /*# sourceMappingURL=homepage.css.map */
