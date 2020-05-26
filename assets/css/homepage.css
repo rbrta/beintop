@@ -75,9 +75,21 @@ img:not([alt]) {
   font-family: 'Montserrat', sans-serif;
   font-size: 100%; }
 
-.btn {
-  background: linear-gradient(89.77deg, #E164BE -0.56%, #FF74D8 -0.55%, #FF985E 97.67%);
-  border-radius: 50px; }
+.tar {
+  text-align: right; }
+
+.tal {
+  text-align: left; }
+
+.wrapper-content {
+  width: 1400px;
+  max-width: 100%;
+  margin: 0 auto; }
+
+.container-top {
+  background-image: url(../images/rocket.svg), url(../images/background-top.svg), url(../images/points.svg), url(../images/likes.svg);
+  background-repeat: no-repeat, no-repeat, no-repeat;
+  background-position: -200px 0px, -170px 300px, -20px -80px, 190px 120px; }
 
 header {
   background: linear-gradient(88.94deg, #504194 -0.56%, #E064E1 97.67%);
@@ -99,7 +111,8 @@ header {
         line-height: 37px;
         text-transform: uppercase;
         margin-left: 20px;
-        color: #FFFFFF; }
+        color: #FFFFFF;
+        white-space: nowrap; }
     header .wrapper ul.menu {
       display: flex;
       justify-content: space-between;
@@ -116,63 +129,59 @@ header {
         header .wrapper ul.menu li:hover i, header .wrapper ul.menu li:hover a {
           color: #fff; }
 
-.top {
-  background-image: url("./../images/background-top.svg"); }
-  .top .content-wrapper {
-    background-image: url(../images/likes.svg);
-    background-size: contain; }
+.promotion {
+  width: 50%;
+  margin-left: auto;
+  padding-top: 173px; }
+  .promotion-title {
+    color: #5C4998;
+    font-size: 64px;
+    font-weight: bold;
+    line-height: 78px; }
+  .promotion-desc {
+    color: #2C2935;
+    font-size: 24px;
+    margin-top: 13px; }
+  .promotion-btn {
+    margin-top: 39px; }
+    .promotion-btn a {
+      text-align: center;
+      background: linear-gradient(89.77deg, #E164BE -0.56%, #FF74D8 -0.55%, #FF985E 97.67%);
+      border-radius: 50px;
+      width: 292px;
+      height: 63px;
+      color: white;
+      text-decoration: none;
+      font-size: 24px;
+      display: block;
+      padding-top: 12px; }
 
-.content-wrapper {
-  width: 1400px;
-  max-width: 100%;
-  margin: 0 auto; }
-  .content-wrapper .promotion {
-    width: 50%;
-    margin-left: auto;
-    margin-top: 173px; }
-    .content-wrapper .promotion-title {
-      color: #5C4998;
-      font-size: 64px;
-      font-weight: bold;
-      line-height: 78px; }
-    .content-wrapper .promotion-desc {
-      color: #2C2935;
-      font-size: 24px;
-      margin-top: 13px; }
-    .content-wrapper .promotion-btn {
-      margin-top: 39px; }
-      .content-wrapper .promotion-btn a {
-        text-align: center;
-        background: linear-gradient(89.77deg, #E164BE -0.56%, #FF74D8 -0.55%, #FF985E 97.67%);
-        border-radius: 50px;
-        width: 292px;
-        height: 63px;
-        color: white;
-        text-decoration: none;
-        font-size: 24px;
-        display: block;
-        padding-top: 12px; }
-  .content-wrapper .advantage {
-    margin-top: 389px;
-    color: white; }
-    .content-wrapper .advantage-item {
-      display: flex; }
-      .content-wrapper .advantage-item > div {
-        width: 50%; }
-    .content-wrapper .advantage-title {
-      font-weight: 900;
-      font-size: 45px;
-      line-height: 55px;
-      text-align: center; }
-    .content-wrapper .advantage-hr {
-      height: 6px;
-      background-color: white;
-      width: 185px;
-      margin: 20px auto; }
-    .content-wrapper .advantage-desc {
-      font-size: 24px;
-      line-height: 149.7%; }
-    .content-wrapper .advantage-img {
-      text-align: center; }
+.advantage {
+  margin-top: 497px;
+  color: white; }
+  .advantage-item {
+    display: flex; }
+    .advantage-item > div {
+      width: 50%; }
+  .advantage-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; }
+  .advantage-title {
+    font-weight: 900;
+    font-size: 45px;
+    line-height: 55px;
+    text-align: center; }
+  .advantage-hr {
+    height: 6px;
+    background-color: white;
+    width: 185px;
+    margin: 20px auto; }
+  .advantage-desc {
+    font-size: 24px;
+    line-height: 149.7%; }
+  .advantage-img {
+    display: flex;
+    justify-content: center; }
 
 /*# sourceMappingURL=homepage.css.map */
