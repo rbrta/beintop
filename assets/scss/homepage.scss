@@ -422,7 +422,7 @@ header {
 }
 
 .container-below{
-    height: 1150px;
+    height: 1220px;
     text-align: center;
     background-image: url("../images/background-below.svg");
     background-size: cover;
@@ -467,7 +467,7 @@ header {
         letter-spacing: -0.015em;
 
         .content{
-            width: 1100px;
+            width: 1500px;
             margin: 68px auto 12px;
             display: flex;
             
@@ -480,14 +480,18 @@ header {
                 &__title{
                     margin-bottom: 44px;
                     img{
-                        width: 200px;
+                        width: auto;
                     }
                 }
 
                 &__desc{
                     width: 300px;
                 }
-                
+            }
+
+            .col5 .col__desc{
+                position: relative;
+                top: -25px;
             }
 
             .arrow{
@@ -499,7 +503,7 @@ header {
 }
 
 footer{
-    margin: 145px auto 80px;
+    margin: 170px auto 100px;
     a{
         position: relative;
         border: 2px solid #994594;
