@@ -89,7 +89,8 @@ img:not([alt]) {
 .container-top {
   background-image: url(../images/rocket.svg), url(../images/background-top.svg), url(../images/points.svg), url(../images/likes.svg);
   background-repeat: no-repeat, no-repeat, no-repeat;
-  background-position: -200px 0px, -170px 300px, -20px -80px, 190px 120px; }
+  background-position: -200px 0px, -170px 300px, -20px -80px, 190px 120px;
+  padding-bottom: 600px; }
 
 header {
   background: linear-gradient(88.94deg, #504194 -0.56%, #E064E1 97.67%);
@@ -183,5 +184,131 @@ header {
   .advantage-img {
     display: flex;
     justify-content: center; }
+
+.container-middle {
+  margin-top: -500px;
+  padding-top: 180px;
+  background-image: url(../images/points.svg), url(../images/likes.svg);
+  background-repeat: no-repeat, no-repeat;
+  background-position: -20px -80px, 190px 120px; }
+
+.tariffcontainer-title {
+  font-weight: bold;
+  font-size: 64px;
+  line-height: 78px;
+  text-align: center;
+  color: #5C4998; }
+.tariffcontainer .item {
+  margin-top: 57px; }
+  .tariffcontainer .item-title {
+    display: flex;
+    justify-content: center; }
+  .tariffcontainer .item-body {
+    margin-top: 57px;
+    display: flex;
+    justify-content: space-between; }
+.tariffcontainer .tariff {
+  font-size: 18px;
+  line-height: 27px;
+  letter-spacing: -0.03em;
+  text-transform: capitalize;
+  font-feature-settings: 'case';
+  font-weight: normal;
+  display: flex;
+  justify-content: space-between; }
+  .tariffcontainer .tariff__body {
+    width: 317px;
+    height: auto;
+    color: white;
+    background: linear-gradient(180deg, #B04E98 18.23%, #873E90 90.1%, #73307B 100%);
+    border-radius: 39px;
+    padding: 0px 20px 30px 20px; }
+  .tariffcontainer .tariff .row1 {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 29px;
+    text-align: center;
+    letter-spacing: -0.03em;
+    text-transform: capitalize;
+    margin-top: 28px; }
+  .tariffcontainer .tariff .row2 {
+    font-style: normal;
+    font-weight: 900;
+    font-size: 48px;
+    line-height: 59px;
+    text-align: center;
+    letter-spacing: 0.045em;
+    text-transform: uppercase;
+    margin-top: 2px; }
+  .tariffcontainer .tariff .row3 {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 29px;
+    text-align: center;
+    letter-spacing: -0.03em;
+    text-transform: capitalize;
+    margin-top: 4px; }
+  .tariffcontainer .tariff .hr {
+    width: 250px;
+    height: 4px;
+    background-color: white;
+    margin: 0 auto;
+    margin-top: 11px; }
+  .tariffcontainer .tariff .row8 {
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 29px;
+    text-align: center;
+    letter-spacing: 0.03em;
+    text-transform: capitalize;
+    margin-top: 10px; }
+  .tariffcontainer .tariff .row9 {
+    margin-top: 10px; }
+    .tariffcontainer .tariff .row9 a {
+      width: 238px;
+      height: 53px;
+      background: #FFFFFF;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.23);
+      border-radius: 39px;
+      margin: 0 auto;
+      color: #EB5B9C;
+      text-decoration: none;
+      display: block;
+      font-size: 20px;
+      line-height: 24px;
+      text-align: center;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 20px;
+      line-height: 24px;
+      text-transform: uppercase;
+      padding-top: 13px; }
+  .tariffcontainer .tariff .row4 span, .tariffcontainer .tariff .row5 span, .tariffcontainer .tariff .row6 span, .tariffcontainer .tariff .row7 span {
+    font-weight: bold; }
+  .tariffcontainer .tariff .unlimited {
+    color: #ffd039; }
+  .tariffcontainer .tariff .row4 {
+    margin-top: 10px; }
+  .tariffcontainer .tariff .row6 {
+    margin-top: 20px; }
+    .tariffcontainer .tariff .row6 img {
+      display: inline-block;
+      margin: 0px;
+      padding: 0px; }
+  .tariffcontainer .tariff .row7 {
+    position: relative; }
+    .tariffcontainer .tariff .row7 img {
+      position: absolute;
+      left: -15px; }
+
+.container-below {
+  height: 1000px;
+  text-align: center;
+  background-image: url("../images/background-below.svg");
+  margin-top: -500px;
+  padding-top: 600px; }
 
 /*# sourceMappingURL=homepage.css.map */
