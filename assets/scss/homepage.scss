@@ -11,25 +11,25 @@
 .container-top{
     position: relative;
     background-image: 
-        url(../images/rocket222.svg),
-        url(../images/background-top.svg), 
+        url(../images/bg_waves.png), 
         url(../images/points.svg),
         url(../images/likes.svg);
     background-repeat: no-repeat, no-repeat, no-repeat;
-    background-position: 100px 0px, 0px 200px, -20px -80px, 519px 126px;
+    background-position: -540px 178px, 140px -80px, 393px 126px;
+    padding-bottom: 580px;
+    background-size: 170% auto, auto, 75%;
 
-    padding-bottom: 600px;
 
-    background-size: 1060px auto, 105% auto, auto, 67%;
+    .rocket{
+        position: absolute;
+        top: -90px;
+        left: 0;
+        width: 1200px;
+    }
 
 }
 
-.rocket{
-    position: absolute;
-    top: 0px;
-    left: 171px;
-    width: 909px;
-}
+
 
 header {
     background: linear-gradient(88.94deg, #504194 -0.56%, #E064E1 97.67%);
