@@ -244,8 +244,8 @@ header {
     background-image: 
     url(../images/points.svg),
     url(../images/likes.svg);
-background-repeat: no-repeat, no-repeat;
-background-position: 
+    background-repeat: no-repeat, no-repeat;
+    background-position: 
     -20px -80px,
     190px 120px;
 }
@@ -293,15 +293,15 @@ background-position:
             color: white;
 
             background: linear-gradient(180deg, #B04E98 18.23%, #873E90 90.1%, #73307B 100%);
-            border-radius: 39px;
+            border-radius: 33px;
             padding: 0px 10px 20px 10px;
-            margin-top: -25px;
+            margin-top: -27px;
         }
         
         .module-border-wrap{
             padding: 1rem;
             position: relative;
-            background: linear-gradient(to right, red, purple);
+            background: linear-gradient(180deg, #FD92E3 18.23%, #873E90 90.1%, #7D3786 100%);
             padding: 3px 5px;
             border-radius: 39px;
             padding-right: 6px;
@@ -309,7 +309,7 @@ background-position:
 
         .row1{
             font-style: normal;
-            font-weight: normal;
+            font-weight: bold;
             font-size: 24px;
             line-height: 29px;
             text-align: center;
