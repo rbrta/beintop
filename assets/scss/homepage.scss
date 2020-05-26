@@ -10,18 +10,21 @@
 
 .container-top{
     background-image: 
-        url(../images/rocket.svg),
+        url(../images/rocket2.svg),
         url(../images/background-top.svg), 
         url(../images/points.svg),
         url(../images/likes.svg);
     background-repeat: no-repeat, no-repeat, no-repeat;
     background-position: 
         -200px 0px,
-        -170px 300px,
+        0px 200px,
         -20px -80px,
         190px 120px;
 
     padding-bottom: 600px;
+
+    background-size: contain, 105% auto;
+
 }
 
 
@@ -156,6 +159,7 @@ header {
     }
 
     &-img{
+        margin-left: 56px;
         display: flex;
         justify-content: center;
     }
