@@ -192,8 +192,7 @@ header {
   background-image: url("../images/background-client2.svg");
   background-repeat: no-repeat;
   background-size: cover;
-  padding-bottom: 350px;
-  border: 2px solid black; }
+  padding-bottom: 350px; }
 
 .main-arrow {
   position: absolute;
