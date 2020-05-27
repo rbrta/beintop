@@ -271,9 +271,8 @@ footer{
     z-index: 500;
     width: 100%;
     background-color: white;
-    background-image: url("../images/background-mobile.svg");
-    background-repeat: no-repeat;
-    background-position: center bottom;
+    background: #fff url("../images/background-mobile.svg") no-repeat center 140px / cover;
+
 
    
     .mobile-menu{
