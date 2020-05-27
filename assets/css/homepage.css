@@ -134,33 +134,33 @@ header {
               font-size: 1rem; } }
         header .wrapper ul.menu li:hover i, header .wrapper ul.menu li:hover a {
           color: #fff; }
-    header .wrapper .mobile-menu {
+    header .wrapper .mobile-menu-btn {
       display: none;
       width: 36px;
       flex-direction: column;
       justify-content: center; }
       @media (max-width: 890px) {
-        header .wrapper .mobile-menu {
+        header .wrapper .mobile-menu-btn {
           display: flex; } }
-      header .wrapper .mobile-menu span {
+      header .wrapper .mobile-menu-btn span {
         height: 4px;
         width: 100%;
         background: #fff;
         margin-bottom: 5px;
         content: '\00a0';
         display: block; }
-        header .wrapper .mobile-menu span:last-child {
+        header .wrapper .mobile-menu-btn span:last-child {
           margin-bottom: 0; }
-    header .wrapper .mobile-menu.active span {
+    header .wrapper .mobile-menu-btn.active span {
       display: none; }
-      header .wrapper .mobile-menu.active span:first-child {
+      header .wrapper .mobile-menu-btn.active span:first-child {
         display: block;
         transform: rotate(45deg);
         margin-bottom: 0;
         position: relative;
         top: 4px;
         left: 1px; }
-      header .wrapper .mobile-menu.active span:last-child {
+      header .wrapper .mobile-menu-btn.active span:last-child {
         display: block;
         transform: rotate(135deg);
         margin-bottom: 0; }

@@ -134,33 +134,33 @@ header {
               font-size: 1rem; } }
         header .wrapper ul.menu li:hover i, header .wrapper ul.menu li:hover a {
           color: #fff; }
-    header .wrapper .mobile-menu {
+    header .wrapper .mobile-menu-btn {
       display: none;
       width: 36px;
       flex-direction: column;
       justify-content: center; }
       @media (max-width: 890px) {
-        header .wrapper .mobile-menu {
+        header .wrapper .mobile-menu-btn {
           display: flex; } }
-      header .wrapper .mobile-menu span {
+      header .wrapper .mobile-menu-btn span {
         height: 4px;
         width: 100%;
         background: #fff;
         margin-bottom: 5px;
         content: '\00a0';
         display: block; }
-        header .wrapper .mobile-menu span:last-child {
+        header .wrapper .mobile-menu-btn span:last-child {
           margin-bottom: 0; }
-    header .wrapper .mobile-menu.active span {
+    header .wrapper .mobile-menu-btn.active span {
       display: none; }
-      header .wrapper .mobile-menu.active span:first-child {
+      header .wrapper .mobile-menu-btn.active span:first-child {
         display: block;
         transform: rotate(45deg);
         margin-bottom: 0;
         position: relative;
         top: 4px;
         left: 1px; }
-      header .wrapper .mobile-menu.active span:last-child {
+      header .wrapper .mobile-menu-btn.active span:last-child {
         display: block;
         transform: rotate(135deg);
         margin-bottom: 0; }
@@ -211,9 +211,11 @@ header {
     border-bottom: 0; } }
 .wrapper-content {
   width: 1400px;
-  max-width: 100%;
-  margin: 0 auto;
-  margin-right: 120px; }
+  max-width: 98%;
+  margin: 0 auto; }
+  @media screen and (min-width: 1500px) {
+    .wrapper-content {
+      margin-right: 120px; } }
 
 .btn {
   min-width: 187.08px;
@@ -388,5 +390,37 @@ footer {
       text-decoration: none;
       padding: 15px 30px;
       background-color: white; }
+
+.wrapper-mobile.hide {
+  display: none; }
+
+.wrapper-mobile {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  padding-bottom: 240px;
+  z-index: 500;
+  width: 100%;
+  background-color: white;
+  background-image: url("../images/background-mobile.svg");
+  background-repeat: no-repeat;
+  background-position: center bottom; }
+  .wrapper-mobile .mobile-menu > div {
+    margin-top: 30px; }
+  .wrapper-mobile .mobile-menu a {
+    width: 240.79px;
+    height: 39.48px;
+    left: 38.05px;
+    background: linear-gradient(89.7deg, #E164BE -0.56%, #FF74D8 -0.55%, #FF985E 97.67%);
+    border-radius: 50px;
+    display: inline-block;
+    text-align: center;
+    color: white;
+    text-decoration: none;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 19px;
+    line-height: 2; }
 
 /*# sourceMappingURL=clientpage.css.map */
