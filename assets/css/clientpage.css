@@ -363,6 +363,12 @@ header .wrapper .mobile-menu-btn.active span:last-child {
   z-index: -400;
 }
 
+@media screen and (max-width: 1500px) {
+  .main-arrow {
+    display: none;
+  }
+}
+
 .wrapper-table {
   position: relative;
   margin-top: 120px;
