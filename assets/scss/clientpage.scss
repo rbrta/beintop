@@ -4,9 +4,8 @@
 
 .wrapper-content {
     width: 1400px;
-    max-width: 60%;
     margin: 0 auto;
-    margin-right: 20px;
+    margin-right: 120px;
 }
 
 .btn{
@@ -156,18 +155,18 @@ header {
     }
 }
 
-body{
+.main-block{
     background-image: url("../images/background-client.svg");
-    background-position: bottom;
     background-repeat: no-repeat;
     background-size: cover;
-    margin-bottom: 50px;
+    padding-bottom: 350px;
 }
+
 
 .wrapper-table{
     position: relative;
     margin-top: 120px;
-    padding: 60px 140px;
+    padding: 60px 65px;
     box-sizing: border-box;
     box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.25);
     border-radius: 50px;
@@ -203,10 +202,6 @@ body{
         color: #6B6B6B;
     }
     
-    
-    table .table-title td:last-of-type{
-        text-align: center;
-    }
    
     .table-action{
         display: flex;
@@ -221,10 +216,20 @@ body{
         text-transform: capitalize;
         text-align: left;
         color: #EA4E64 !important;
+        padding-top: 40px;
+        padding-bottom: 40px;
+    }
+
+    table tbody tr:last-of-type{
+        border-bottom: none;
     }
 
     table tbody tr td:first-of-type{
         font-weight: bold;
+    }
+
+    table tbody tr b{
+        font-weight: 1000;
     }
 
     .add-btn{
@@ -236,7 +241,7 @@ body{
         box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.25);
         border-radius: 15px;
         display: inline-block;
-        padding: 15px 130px 120px 130px;
+        padding: 15px 80px 120px 80px;
         cursor: pointer;
         font-style: normal;
         font-weight: normal;
@@ -251,10 +256,26 @@ body{
         background-color: white;
         z-index: -100;
     }
+
+    .tab:hover{
+        top: -60px;
+    }
+
+    .tab:nth-of-type(2){
+        left: 300px;
+        z-index: -200;
+    }
+
+    .tab:nth-of-type(3){
+        left: 550px;
+        z-index: -300;
+    }
 }
 
 footer{
-    margin: 170px auto 100px;
+    margin: 55px auto 85px;
+    text-align: center;
+
     a{
         position: relative;
         border: 2px solid #994594;
@@ -273,5 +294,41 @@ footer{
         position: relative;
         top: 17px;
         left: -10px;
+    }
+}
+
+.container-top{
+    color: #E73C8E;
+    font-size: 24px;
+    line-height: 29px;
+
+    .row1, .row2{
+        text-align: right;
+    }
+
+    .row1{
+        margin-top: 30px;
+        padding-right: 10px;
+    }
+
+    .row2{
+        margin-top: 15px;
+        margin-bottom: 110px;
+
+        a{
+            box-shadow: inset 0px 1px 10px rgba(0, 0, 0, 0.26);
+            border-radius: 39px;
+            font-family: Montserrat;
+            font-style: normal;
+            font-weight: normal;
+            font-size: 20px;
+            line-height: 24px;
+            text-align: center;
+            text-decoration-line: underline;
+            text-transform: capitalize;
+            color: #EB5B9C;
+            text-decoration: none;
+            padding: 15px 30px;
+        }
     }
 }
