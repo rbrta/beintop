@@ -4,6 +4,7 @@
 
 .wrapper-content {
     width: 1400px;
+    max-width: 100%;
     margin: 0 auto;
     margin-right: 120px;
 }
@@ -29,131 +30,7 @@
     text-decoration: none;
 }
 
-header {
-    background: linear-gradient(88.94deg, #504194 -0.56%, #E064E1 97.67%);
-    min-height: 90px;
-    display: flex;
-    align-items: center;
-    
-    .wrapper {
-        width: 1400px;
-        max-width: 95%;
-        margin: 0 auto;
-        display: flex;
-        justify-content: space-between;
 
-        .logo {
-            display: flex;
-            align-items: center;
-
-            span {
-                font-weight: 900;
-                font-size: 30px;
-                line-height: 37px;
-                text-transform: uppercase;
-                margin-left: 20px;
-                color: #FFFFFF;
-                white-space: nowrap;
-
-                @media(max-width: 1293px) {
-                    font-size: 20px;
-                }
-                @media(max-width: 991px) {
-                    display: none;
-                }
-            }
-
-            img {
-                @media(max-width: 1293px) {
-                    width: 80px;
-                }
-            }
-        }
-
-        ul.menu {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-
-            @media(max-width: 890px) {
-                display: none;
-            }
-
-            li {
-                margin-left: 33px;
-                color: $yellow;
-                white-space: nowrap;
-
-                &:first-child {
-                    margin-left: 0;
-                }
-
-                i, a {
-                    color: $yellow;
-                    font-size: 1.32rem;
-
-                    @media(max-width: 1293px) {
-                        font-size: 1rem;
-                    }
-                }
-
-                &:hover i, &:hover a {
-                    color: #fff;
-                }
-
-            }
-
-        }
-
-        .mobile-menu {
-            display: none;
-            width: 36px;
-            
-            flex-direction: column;
-            justify-content: center;
-
-            @media(max-width: 890px) {
-                display: flex;
-            }
-
-
-            span {
-                height: 4px;
-                width: 100%;
-                background: #fff;
-                margin-bottom: 5px;
-                content: '\00a0';
-                display: block;
-
-                &:last-child {
-                    margin-bottom: 0;
-                }
-            }
-        }
-
-        .mobile-menu.active {
-            span {
-                display: none;
-
-                &:first-child {
-                    display: block;
-                    transform: rotate(45deg);
-                    margin-bottom: 0;
-                    position: relative;
-                    top: 4px;
-                    left: 1px;
-                }
-
-                &:last-child {
-                    display: block;
-                    transform: rotate(135deg);
-                    margin-bottom: 0;
-                    
-                }
-            }
-        }
-    }
-}
 
 .main-block{
     position: relative;

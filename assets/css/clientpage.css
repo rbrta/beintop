@@ -104,31 +104,7 @@ img:not([alt]) {
   text-align: left;
 }
 
-.wrapper-content {
-  width: 1400px;
-  margin: 0 auto;
-  margin-right: 120px;
-}
-
-.btn {
-  min-width: 187.08px;
-  height: 47px;
-  left: 1411px;
-  background: linear-gradient(89.8deg, #E164BE -0.56%, #FF74D8 -0.55%, #FF985E 97.67%);
-  border-radius: 50px;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 20px;
-  line-height: 24px;
-  text-align: center;
-  letter-spacing: 0.045em;
-  padding-top: 10px;
-  margin: 5px;
-  color: #FFFFFF;
-  display: inline-block;
-  text-decoration: none;
-}
-
+/* ============ header =========== */
 header {
   background: linear-gradient(88.94deg, #504194 -0.56%, #E064E1 97.67%);
   min-height: 90px;
@@ -286,6 +262,86 @@ header .wrapper .mobile-menu.active span:last-child {
   margin-bottom: 0;
 }
 
+/** ============================== */
+/* ============ table ============ */
+.wrapper-table table {
+  border-collapse: collapse;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  table-layout: fixed;
+}
+
+@media screen and (max-width: 600px) {
+  .wrapper-table table {
+    border: 0;
+  }
+  .wrapper-table table caption {
+    font-size: 1.3em;
+  }
+  .wrapper-table table thead {
+    border: none;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+  }
+  .wrapper-table table tr {
+    border-bottom: 3px solid #ddd;
+    display: block;
+    margin-bottom: .625em;
+  }
+  .wrapper-table table td {
+    border-bottom: 1px solid #ddd;
+    display: block;
+    font-size: .8em;
+    text-align: right;
+    width: 100%;
+  }
+  .wrapper-table table td::before {
+    /*
+            * aria-label has no advantage, it won't be read inside a table
+            content: attr(aria-label);
+            */
+    content: attr(data-label);
+    float: left;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  .wrapper-table table td:last-child {
+    border-bottom: 0;
+  }
+}
+
+.wrapper-content {
+  width: 1400px;
+  max-width: 100%;
+  margin: 0 auto;
+  margin-right: 120px;
+}
+
+.btn {
+  min-width: 187.08px;
+  height: 47px;
+  left: 1411px;
+  background: linear-gradient(89.8deg, #E164BE -0.56%, #FF74D8 -0.55%, #FF985E 97.67%);
+  border-radius: 50px;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 24px;
+  text-align: center;
+  letter-spacing: 0.045em;
+  padding-top: 10px;
+  margin: 5px;
+  color: #FFFFFF;
+  display: inline-block;
+  text-decoration: none;
+}
+
 .main-block {
   position: relative;
   background-image: url("../images/background-client2.svg");
@@ -298,7 +354,8 @@ header .wrapper .mobile-menu.active span:last-child {
   position: absolute;
   left: -300px;
   top: 30px;
-  z-index: -1200px; }
+  z-index: -1200px;
+}
 
 .wrapper-table {
   position: relative;

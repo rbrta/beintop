@@ -104,6 +104,218 @@ img:not([alt]) {
   text-align: left;
 }
 
+/* ============ header =========== */
+header {
+  background: linear-gradient(88.94deg, #504194 -0.56%, #E064E1 97.67%);
+  min-height: 90px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+header .wrapper {
+  width: 1400px;
+  max-width: 95%;
+  margin: 0 auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+header .wrapper .logo {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+header .wrapper .logo span {
+  font-weight: 900;
+  font-size: 30px;
+  line-height: 37px;
+  text-transform: uppercase;
+  margin-left: 20px;
+  color: #FFFFFF;
+  white-space: nowrap;
+}
+
+@media (max-width: 1293px) {
+  header .wrapper .logo span {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 991px) {
+  header .wrapper .logo span {
+    display: none;
+  }
+}
+
+@media (max-width: 1293px) {
+  header .wrapper .logo img {
+    width: 80px;
+  }
+}
+
+header .wrapper ul.menu {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+@media (max-width: 890px) {
+  header .wrapper ul.menu {
+    display: none;
+  }
+}
+
+header .wrapper ul.menu li {
+  margin-left: 33px;
+  color: #FFD15A;
+  white-space: nowrap;
+}
+
+header .wrapper ul.menu li:first-child {
+  margin-left: 0;
+}
+
+header .wrapper ul.menu li i, header .wrapper ul.menu li a {
+  color: #FFD15A;
+  font-size: 1.32rem;
+}
+
+@media (max-width: 1293px) {
+  header .wrapper ul.menu li i, header .wrapper ul.menu li a {
+    font-size: 1rem;
+  }
+}
+
+header .wrapper ul.menu li:hover i, header .wrapper ul.menu li:hover a {
+  color: #fff;
+}
+
+header .wrapper .mobile-menu {
+  display: none;
+  width: 36px;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+@media (max-width: 890px) {
+  header .wrapper .mobile-menu {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+}
+
+header .wrapper .mobile-menu span {
+  height: 4px;
+  width: 100%;
+  background: #fff;
+  margin-bottom: 5px;
+  content: '\00a0';
+  display: block;
+}
+
+header .wrapper .mobile-menu span:last-child {
+  margin-bottom: 0;
+}
+
+header .wrapper .mobile-menu.active span {
+  display: none;
+}
+
+header .wrapper .mobile-menu.active span:first-child {
+  display: block;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+  margin-bottom: 0;
+  position: relative;
+  top: 4px;
+  left: 1px;
+}
+
+header .wrapper .mobile-menu.active span:last-child {
+  display: block;
+  -webkit-transform: rotate(135deg);
+          transform: rotate(135deg);
+  margin-bottom: 0;
+}
+
+/** ============================== */
+/* ============ table ============ */
+.wrapper-table table {
+  border-collapse: collapse;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  table-layout: fixed;
+}
+
+@media screen and (max-width: 600px) {
+  .wrapper-table table {
+    border: 0;
+  }
+  .wrapper-table table caption {
+    font-size: 1.3em;
+  }
+  .wrapper-table table thead {
+    border: none;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+  }
+  .wrapper-table table tr {
+    border-bottom: 3px solid #ddd;
+    display: block;
+    margin-bottom: .625em;
+  }
+  .wrapper-table table td {
+    border-bottom: 1px solid #ddd;
+    display: block;
+    font-size: .8em;
+    text-align: right;
+    width: 100%;
+  }
+  .wrapper-table table td::before {
+    /*
+            * aria-label has no advantage, it won't be read inside a table
+            content: attr(aria-label);
+            */
+    content: attr(data-label);
+    float: left;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  .wrapper-table table td:last-child {
+    border-bottom: 0;
+  }
+}
+
 .wrapper-content {
   width: 1400px;
   max-width: 100%;
