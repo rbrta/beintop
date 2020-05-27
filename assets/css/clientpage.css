@@ -246,7 +246,7 @@ header {
   .wrapper-table table tbody tr td:first-of-type {
     font-weight: bold; }
   .wrapper-table table tbody tr b {
-    font-weight: 1000; }
+    font-weight: bold; }
   .wrapper-table .add-btn {
     text-align: right;
     margin-top: 50px; }
