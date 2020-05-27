@@ -1,0 +1,78 @@
+.popup {
+  width: 1000px;
+  border: 3px solid black;
+  margin: 0 auto;
+  margin-top: 150px; }
+  .popup__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center; }
+  .popup .row1 {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 50px;
+    line-height: 61px;
+    text-align: center;
+    color: #5C4998;
+    margin-top: 60px; }
+  .popup .row2 {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 30px;
+    line-height: 37px;
+    text-align: center;
+    color: #5C4998;
+    margin-top: 5px; }
+  .popup .row3 {
+    display: flex;
+    flex-direction: column; }
+    .popup .row3 input {
+      width: 562px;
+      height: 117px;
+      margin-top: 25px;
+      box-sizing: border-box;
+      border-radius: 81px;
+      border: 1px solid gray;
+      font-size: 30px;
+      line-height: 37px;
+      font-style: normal;
+      font-weight: normal;
+      padding: 60px 40px; }
+  .popup .row4 {
+    margin-top: 50px;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 36px;
+    line-height: 44px;
+    text-align: center;
+    color: #5C4998; }
+  .popup .row5 {
+    margin-top: 17px;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 30px;
+    line-height: 37px;
+    text-align: center;
+    color: #5C4998;
+    width: 460px; }
+  .popup .row6 {
+    margin-bottom: 50px; }
+    .popup .row6 a {
+      width: 393.98px;
+      height: 83.71px;
+      font-family: Montserrat;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 27px;
+      line-height: 75px;
+      background: linear-gradient(89.77deg, #E164BE -0.56%, #FF74D8 -0.55%, #FF985E 97.67%);
+      display: inline-block;
+      text-align: center;
+      text-decoration: none;
+      border-radius: 50px;
+      color: white;
+      margin-top: 15px; }
+
+/*# sourceMappingURL=style.css.map */
