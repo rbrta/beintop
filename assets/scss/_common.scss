@@ -91,7 +91,7 @@ header {
 
         }
 
-        .mobile-menu {
+        .mobile-menu-btn {
             display: none;
             width: 36px;
             
@@ -117,7 +117,7 @@ header {
             }
         }
 
-        .mobile-menu.active {
+        .mobile-menu-btn.active {
             span {
                 display: none;
 
