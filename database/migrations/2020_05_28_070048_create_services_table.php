@@ -22,7 +22,7 @@ class CreateServicesTable extends Migration
             $table->integer('likes');
             $table->integer('posts');
             $table->integer('views');
-            $table->integer('bonus_comments');
+            $table->string('bonus_comments');
             $table->integer('bonus_posts');
             $table->integer('igtv_unlim')->default(1);
             $table->timestamps();
