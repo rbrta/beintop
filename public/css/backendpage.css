@@ -1,0 +1,600 @@
+/* Box sizing rules */
+*,
+*::before,
+*::after {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+/* Remove default padding */
+ul[class],
+ol[class] {
+  padding: 0;
+}
+
+/* Remove default margin */
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+ul[class],
+ol[class],
+figure,
+blockquote,
+dl,
+dd {
+  margin: 0;
+}
+
+/* Set core root defaults */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Set core body defaults */
+body {
+  min-height: 100vh;
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
+}
+
+/* Remove list styles on ul, ol elements with a class attribute */
+ul[class],
+ol[class] {
+  list-style: none;
+}
+
+/* A elements that don't have a class get default styles */
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+}
+
+/* Make images easier to work with */
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* Natural flow and rhythm in articles by default */
+article > * + * {
+  margin-top: 1em;
+}
+
+/* Inherit fonts for inputs and buttons */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/* Blur images when they have no alt attribute */
+img:not([alt]) {
+  -webkit-filter: blur(10px);
+          filter: blur(10px);
+}
+
+/* Remove all animations and transitions for people that prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    -webkit-animation-duration: 0.01ms !important;
+            animation-duration: 0.01ms !important;
+    -webkit-animation-iteration-count: 1 !important;
+            animation-iteration-count: 1 !important;
+    -webkit-transition-duration: 0.01ms !important;
+            transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+*, html, body {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 100%;
+}
+
+.tar {
+  text-align: right;
+}
+
+.tal {
+  text-align: left;
+}
+
+/* ============ header =========== */
+header {
+  background: linear-gradient(88.94deg, #504194 -0.56%, #E064E1 97.67%);
+  min-height: 90px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+header .wrapper {
+  width: 1400px;
+  max-width: 95%;
+  margin: 0 auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+header .wrapper .logo {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+header .wrapper .logo span {
+  font-weight: 900;
+  font-size: 30px;
+  line-height: 37px;
+  text-transform: uppercase;
+  margin-left: 20px;
+  color: #FFFFFF;
+  white-space: nowrap;
+}
+
+@media (max-width: 1293px) {
+  header .wrapper .logo span {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 991px) {
+  header .wrapper .logo span {
+    display: none;
+  }
+}
+
+@media (max-width: 1293px) {
+  header .wrapper .logo img {
+    width: 80px;
+  }
+}
+
+header .wrapper ul.menu {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+@media (max-width: 890px) {
+  header .wrapper ul.menu {
+    display: none;
+  }
+}
+
+header .wrapper ul.menu li {
+  margin-left: 33px;
+  color: #FFD15A;
+  white-space: nowrap;
+}
+
+header .wrapper ul.menu li:first-child {
+  margin-left: 0;
+}
+
+header .wrapper ul.menu li i, header .wrapper ul.menu li a {
+  color: #FFD15A;
+  font-size: 1.32rem;
+}
+
+@media (max-width: 1293px) {
+  header .wrapper ul.menu li i, header .wrapper ul.menu li a {
+    font-size: 1rem;
+  }
+}
+
+header .wrapper ul.menu li:hover i, header .wrapper ul.menu li:hover a {
+  color: #fff;
+}
+
+header .wrapper .mobile-menu-btn {
+  display: none;
+  width: 36px;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+@media (max-width: 890px) {
+  header .wrapper .mobile-menu-btn {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+}
+
+header .wrapper .mobile-menu-btn span {
+  height: 4px;
+  width: 100%;
+  background: #fff;
+  margin-bottom: 5px;
+  content: '\00a0';
+  display: block;
+}
+
+header .wrapper .mobile-menu-btn span:last-child {
+  margin-bottom: 0;
+}
+
+header .wrapper .mobile-menu-btn.active span {
+  display: none;
+}
+
+header .wrapper .mobile-menu-btn.active span:first-child {
+  display: block;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+  margin-bottom: 0;
+  position: relative;
+  top: 4px;
+  left: 1px;
+}
+
+header .wrapper .mobile-menu-btn.active span:last-child {
+  display: block;
+  -webkit-transform: rotate(135deg);
+          transform: rotate(135deg);
+  margin-bottom: 0;
+}
+
+/** ============================== */
+/* ============ table ============ */
+.wrapper-table table {
+  border-collapse: collapse;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  table-layout: fixed;
+}
+
+@media screen and (max-width: 800px) {
+  .wrapper-table table {
+    border: 0;
+  }
+  .wrapper-table table caption {
+    font-size: 1.3em;
+  }
+  .wrapper-table table thead {
+    border: none;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+  }
+  .wrapper-table table tr {
+    border-bottom: 3px solid #ddd;
+    display: block;
+    margin-bottom: .625em;
+  }
+  .wrapper-table table td {
+    border-bottom: 1px solid #ddd;
+    display: block;
+    font-size: .8em;
+    text-align: right;
+    width: 100%;
+  }
+  .wrapper-table table td::before {
+    /*
+            * aria-label has no advantage, it won't be read inside a table
+            content: attr(aria-label);
+            */
+    content: attr(data-label);
+    float: left;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  .wrapper-table table td:last-child {
+    border-bottom: 0;
+  }
+}
+
+.wrapper-content {
+  width: 1400px;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.btn {
+  min-width: 187.08px;
+  height: 47px;
+  left: 1411px;
+  background: linear-gradient(89.8deg, #E164BE -0.56%, #FF74D8 -0.55%, #FF985E 97.67%);
+  border-radius: 50px;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 24px;
+  text-align: center;
+  letter-spacing: 0.045em;
+  padding-top: 10px;
+  margin: 5px;
+  color: #FFFFFF;
+  display: inline-block;
+  text-decoration: none;
+}
+
+header {
+  background: linear-gradient(88.94deg, #504194 -0.56%, #E064E1 97.67%);
+  min-height: 90px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+header .wrapper {
+  width: 1400px;
+  max-width: 95%;
+  margin: 0 auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+header .wrapper .logo {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+header .wrapper .logo span {
+  font-weight: 900;
+  font-size: 30px;
+  line-height: 37px;
+  text-transform: uppercase;
+  margin-left: 20px;
+  color: #FFFFFF;
+  white-space: nowrap;
+}
+
+@media (max-width: 1293px) {
+  header .wrapper .logo span {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 991px) {
+  header .wrapper .logo span {
+    display: none;
+  }
+}
+
+@media (max-width: 1293px) {
+  header .wrapper .logo img {
+    width: 80px;
+  }
+}
+
+header .wrapper ul.menu {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+@media (max-width: 890px) {
+  header .wrapper ul.menu {
+    display: none;
+  }
+}
+
+header .wrapper ul.menu li {
+  margin-left: 33px;
+  color: #FFD15A;
+  white-space: nowrap;
+}
+
+header .wrapper ul.menu li:first-child {
+  margin-left: 0;
+}
+
+header .wrapper ul.menu li i, header .wrapper ul.menu li a {
+  color: #FFD15A;
+  font-size: 1.32rem;
+}
+
+@media (max-width: 1293px) {
+  header .wrapper ul.menu li i, header .wrapper ul.menu li a {
+    font-size: 1rem;
+  }
+}
+
+header .wrapper ul.menu li:hover i, header .wrapper ul.menu li:hover a {
+  color: #fff;
+}
+
+header .wrapper .mobile-menu {
+  display: none;
+  width: 36px;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+@media (max-width: 890px) {
+  header .wrapper .mobile-menu {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+}
+
+header .wrapper .mobile-menu span {
+  height: 4px;
+  width: 100%;
+  background: #fff;
+  margin-bottom: 5px;
+  content: '\00a0';
+  display: block;
+}
+
+header .wrapper .mobile-menu span:last-child {
+  margin-bottom: 0;
+}
+
+header .wrapper .mobile-menu.active span {
+  display: none;
+}
+
+header .wrapper .mobile-menu.active span:first-child {
+  display: block;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+  margin-bottom: 0;
+  position: relative;
+  top: 4px;
+  left: 1px;
+}
+
+header .wrapper .mobile-menu.active span:last-child {
+  display: block;
+  -webkit-transform: rotate(135deg);
+          transform: rotate(135deg);
+  margin-bottom: 0;
+}
+
+body {
+  background-image: url("../images/background-backend.svg");
+  background-position: bottom;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin-bottom: 50px;
+}
+
+.wrapper-table {
+  position: relative;
+  margin-top: 120px;
+  padding: 60px 140px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  -webkit-box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.25);
+          box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.25);
+  border-radius: 50px;
+  background: #FFFFFF;
+}
+
+.wrapper-table table {
+  padding: 140px;
+  width: 100%;
+  text-align: left;
+}
+
+.wrapper-table table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.wrapper-table table td {
+  width: 25%;
+  padding-top: 20px;
+  padding-bottom: 15px;
+}
+
+.wrapper-table table tr {
+  border-bottom: 1px solid #CFCFCF;
+}
+
+.wrapper-table table .table-title {
+  font-style: normal;
+  font-size: 20px;
+  line-height: 24px;
+  text-align: left;
+  text-transform: capitalize;
+  color: #6B6B6B;
+}
+
+.wrapper-table table .table-title td:last-of-type {
+  text-align: center;
+}
+
+.wrapper-table .table-action {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.wrapper-table table tbody td {
+  font-style: normal;
+  font-size: 24px;
+  line-height: 29px;
+  text-align: center;
+  letter-spacing: -0.03em;
+  text-transform: capitalize;
+  text-align: left;
+  color: #EA4E64 !important;
+}
+
+.wrapper-table table tbody tr td:first-of-type {
+  font-weight: bold;
+}
+
+.wrapper-table .add-btn {
+  text-align: right;
+  margin-top: 50px;
+}
+
+.wrapper-table .tab {
+  -webkit-box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.25);
+          box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.25);
+  border-radius: 15px;
+  display: inline-block;
+  padding: 15px 130px 120px 130px;
+  cursor: pointer;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 24px;
+  line-height: 29px;
+  text-align: center;
+  text-transform: capitalize;
+  color: #FD565D;
+  position: absolute;
+  top: -60px;
+  background-color: white;
+  z-index: -100;
+}
+/*# sourceMappingURL=backendpage.css.map */
