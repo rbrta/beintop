@@ -7,11 +7,12 @@
     <link rel="stylesheet" href="{{ asset('/css/backendpage.css') }}">
 </head>
 <body>
+<div id="app" >
      <!-- ------------------------------------------------------------------------------- -->    
-     <header>
+     <header >
         <div class="wrapper">
             <div class="logo">
-                <img src="/assets/images/logo.svg" alt="">
+                <img src="/images/logo.svg" alt="">
                 <span>Be-in-top</span>
             </div>
             <ul class="menu">
@@ -28,7 +29,7 @@
             </div>
         </div>
     </header>
-    <!-- ------------------------------------------------------------------------------- -->    
+    <!-- ------------------------------------------------------------------------------- --> 
     <div class="container-table">
         <div class="wrapper-content">
             <div class="wrapper-table">
@@ -44,51 +45,28 @@
                             <td>Actions</td>
                         </tr>
                     </thead>
-                    <tr>
-                        <td>Тариф Max</td>
-                        <td>30 дней</td>
-                        <td>10 000 руб</td>
-                        <td class="table-action">
-                            <a class="btn" href="#">Изменить</a>
-                            <a class="btn" href="#">Удалить</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Тариф Max2</td>
-                        <td>30 дней</td>
-                        <td>20 000 руб</td>
-                        <td class="table-action">
-                            <a class="btn" href="#">Изменить</a>
-                            <a class="btn" href="#">Удалить</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Тариф Max</td>
-                        <td>30 дней</td>
-                        <td>10 000 руб</td>
-                        <td class="table-action">
-                            <a class="btn" href="#">Изменить</a>
-                            <a class="btn" href="#">Удалить</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Тариф Max2</td>
-                        <td>30 дней</td>
-                        <td>20 000 руб</td>
-                        <td class="table-action">
-                            <a class="btn" href="#">Изменить</a>
-                            <a class="btn" href="#">Удалить</a>
-                        </td>
-                    </tr>
+                    @foreach($services as $item)
+                        <tr>
+                            <td>{{ $item->name }}</td>
+                            <td>{{ $item->periodindays }} дней</td>
+                            <td>{{ $item->price }} руб</td>
+                            <td class="table-action">
+                                <a class="btn" href="#">Изменить</a>
+                                <a class="btn" href="#">Удалить</a>
+                            </td>
+                        </tr>
+                    @endforeach
                 </table>
                 <div class="add-btn">
-                    <a class="btn" href="#">Добавить</a>
+                    <a @click.prevent="addService" class="btn" href="#">Добавить</a>
                 </div>
             </div>
         </div>
     </div>
-
-    <!-- ------------------------------------------------------------------------------- -->  
-    <script src="{{ asset('/js/main.js') }}"></script>
+</div>
+<!-- ------------------------------------------------------------------------------- -->  
+<!-- ------------------------------------------------------------------------------- -->  
+<script src="/js/main.js"></script>
+<script src="/js/app.js"></script>
 </body>
 </html>
