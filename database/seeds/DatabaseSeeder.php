@@ -11,6 +11,16 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(UserSeeder::class);
+        DB::table('users')->insertOrIgnore([
+            'name' => 'Admin',
+            'email' => 'admin@gmail.com',
+            'password' => bcrypt('999999999')
+        ]);
+
+        DB::table('categories')->insertOrIgnore([
+            'name' => 'Тарифы max',
+            'name' => 'Тарифы optimal',
+            'name' => 'Тарифы mini',
+        ]);
     }
 }

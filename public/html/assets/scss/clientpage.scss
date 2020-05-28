@@ -33,52 +33,7 @@
     text-decoration: none;
 }
 
-.wrapper-mobile.hide{
-    display: none;
-}
 
-.wrapper-mobile{
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    padding-bottom: 240px;
-    z-index: 500;
-    width: 100%;
-    background-color: white;
-    background: #fff url("../images/background-mobile.svg") no-repeat center 140px / cover;
-
-    @media screen and (min-width: 700px) {
-        background: #fff url("../images/background-mobile.svg") no-repeat center 35px / cover;
-    }
-
-    @media(min-width: 890px) {
-        display: none;
-    }
-
-    .mobile-menu{
-        > div{
-            margin-top: 30px;
-        }
-
-        a{
-            width: 240.79px;
-            height: 39.48px;
-            left: 38.05px;
-            background: linear-gradient(89.7deg, #E164BE -0.56%, #FF74D8 -0.55%, #FF985E 97.67%);
-            border-radius: 50px;
-            display: inline-block;
-            text-align: center;
-            color: white;
-            text-decoration: none;
-
-            font-style: normal;
-            font-weight: bold;
-            font-size: 19px;
-            line-height: 2;
-        }
-    }
-}
 
 .main-block{
     position: relative;
