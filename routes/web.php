@@ -23,3 +23,5 @@ Route::group(['prefix' => 'admin'], function() {
     Route::get('/get_services', 'AdminController@getServices');
     Route::delete('/delete_service', 'AdminController@deleteService');
 });
+
+Route::get('/client', 'UserController@index');

@@ -73,30 +73,35 @@
                     <img src="/images/max.svg" alt="">
                 </div>
                 <div class="item-body">
+                    @foreach ($services as $service)
                     <div class="tariff">
                         <div class="module-border-wrap">
                             <div class="tariff__body">
                                 <div class="row1">Тариф</div>
-                                <div class="row2">2000</div>
-                                <div class="row3">30 дней</div>
+                                <div class="row2">{{  $service->name }}</div>
+                                <div class="row3">{{  $service->periodindays }} дней</div>
                                 <div class="hr"></div>
-                                <div class="row4">- <span>10 000</span> лайков на <span>30</span> постов </div>
+                                <div class="row4">- <span>{{ $service->likes }}</span> лайков на <span>{{ $service->posts }}</span> постов </div>
                                 <div class="row5">+ статистика (просмотры и охват) </div>
                                 <div class="row6">
-                                    - <span>30 000 просмотров</span> <br>
-                                        <span class="ml">На видео и IGTV (<span class="unlimited">Безлимит <img
-                                                src="/images/fire.svg" alt=""></span>)</span>
+                                    - <span>{{ $service->views }} просмотров</span> <br>
+                                        <span class="ml">На видео и IGTV 
+                                            @if($service->igtv_unlim) 
+                                                (<span class="unlimited">Безлимит <img src="/images/fire.svg" alt=""></span>)
+                                            @endif
+                                        </span>
                                 </div>
                                 <div class="row7"> + <img src="/images/bonus.svg"
-                                        alt="">&nbsp;<span>Бонус</span> (<span>30-35</span> комментариев на
-                                    <span>5</span> постов в тему публикации)</div>
-                                <div class="row8">30 990 рублей </div>
+                                        alt="">&nbsp;<span>Бонус</span> (<span>{{ $service->bonus_comments }}</span> комментариев на
+                                    <span>{{ $service->bonus_posts }}</span> постов в тему публикации)</div>
+                                <div class="row8">{{ str_replace('.00','',$service->price) }} рублей </div>
                                 <div class="row9">
                                     <a href="#">активировать</a>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    @endforeach
                 </div>
             </div>
         </section>

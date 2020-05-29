@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Category;
 use Illuminate\Database\Eloquent\Model;
 
 class Service extends Model
@@ -19,4 +20,8 @@ class Service extends Model
         'igtv_unlim',
     ];
 
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
 }

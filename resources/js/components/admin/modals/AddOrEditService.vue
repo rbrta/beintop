@@ -51,10 +51,12 @@
                 </el-input>
             </el-form-item>
             <el-form-item prop="igtv_unlim">
-                <div class="btns">
-                    <el-checkbox v-model="service.igtv_unlim">IGTV</el-checkbox>
-                    <span class="submit-button"><el-button round @click="onSubmit">Сохранить</el-button></span>
+                <div class="igtv-unlimit">
+                    <el-checkbox v-model="service.igtv_unlim">IGTV unlimit</el-checkbox>
                 </div>
+            </el-form-item>
+            <el-form-item>
+                <span class="submit-button"><el-button round @click="onSubmit">Сохранить</el-button></span>
             </el-form-item>
             </el-col>
         </el-row>
@@ -179,8 +181,18 @@
         width: 100%;
     }
 
-    .btns{
+    .igtv-unlimit{
         margin-top: 40px;
     }
+</style>
+<style>
+    .el-checkbox__input.is-checked .el-checkbox__inner, 
+    .el-checkbox__input.is-indeterminate .el-checkbox__inner {
+        background-color: #644595;
+        border-color: #644595;
+    }
 
+    .el-checkbox__input.is-checked+.el-checkbox__label{
+        color: #644595;
+    }
 </style>
