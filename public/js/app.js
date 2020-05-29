@@ -115481,8 +115481,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\A\Desktop\laravel_beintop-insta\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\A\Desktop\laravel_beintop-insta\resources\assets\scss\homepage.scss */"./resources/assets/scss/homepage.scss");
+__webpack_require__(/*! /var/www/beintop/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /var/www/beintop/resources/assets/scss/homepage.scss */"./resources/assets/scss/homepage.scss");
 
 
 /***/ })
