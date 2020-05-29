@@ -86,10 +86,10 @@
 /************************************************************************/
 /******/ ({
 
-/***/ "./resources/assets/js/main.js":
-/*!*************************************!*\
-  !*** ./resources/assets/js/main.js ***!
-  \*************************************/
+/***/ "./resources/js/main.js":
+/*!******************************!*\
+  !*** ./resources/js/main.js ***!
+  \******************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -106,13 +106,13 @@ if (menuBtn !== null) {
 /***/ }),
 
 /***/ 1:
-/*!*******************************************!*\
-  !*** multi ./resources/assets/js/main.js ***!
-  \*******************************************/
+/*!************************************!*\
+  !*** multi ./resources/js/main.js ***!
+  \************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\A\Desktop\laravel_beintop-insta\resources\assets\js\main.js */"./resources/assets/js/main.js");
+module.exports = __webpack_require__(/*! /var/www/beintop/resources/js/main.js */"./resources/js/main.js");
 
 
 /***/ })
