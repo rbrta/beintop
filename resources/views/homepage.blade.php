@@ -68,12 +68,17 @@
             <div class="tariffcontainer-title">
                 Выберите Тариф
             </div>
+            @foreach ($services as $tariff => $group_services)
             <div class="tariff-item item">
                 <div class="item-title">
-                    <img src="/images/max.svg" alt="">
+                    @if($tariff=='Тарифы max')
+                        <img src="/images/max.svg" alt="">
+                    @else
+                        <img src="/images/min.svg" alt="">
+                    @endif
                 </div>
                 <div class="item-body">
-                    @foreach ($services as $service)
+                    @foreach ($group_services as $service)
                     <div class="tariff">
                         <div class="module-border-wrap">
                             <div class="tariff__body">
@@ -104,6 +109,7 @@
                     @endforeach
                 </div>
             </div>
+            @endforeach
         </section>
     </div>
 </div>

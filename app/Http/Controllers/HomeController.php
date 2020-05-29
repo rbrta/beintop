@@ -9,8 +9,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        // $services = Service::with(["category"])->get();
-        // return $services;
-        // return view('homepage', compact('services')); 
+        $services = Service::with("category")->get()->groupBy('category.name');
+        return view('homepage', compact('services')); 
     }
 }
