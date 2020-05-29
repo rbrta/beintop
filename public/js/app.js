@@ -3588,12 +3588,32 @@ __webpack_require__.r(__webpack_exports__);
   name: "ServiceTable",
   props: ['items'],
   data: function data() {
-    return {};
+    return {
+      services: this.items
+    };
   },
-  computed: {},
   methods: {
     addService: function addService() {
       this.$showModal(_admin_modals_AddOrEditService__WEBPACK_IMPORTED_MODULE_0__["default"]);
+    },
+    editService: function editService(item) {
+      var _this = this;
+
+      this.$showModal(_admin_modals_AddOrEditService__WEBPACK_IMPORTED_MODULE_0__["default"], {
+        serviceItem: item,
+        updated: function updated() {
+          _this.getServices();
+        }
+      });
+    },
+    getServices: function getServices() {
+      var _this2 = this;
+
+      axios.get('/admin/get_services', this.service).then(function (response) {
+        _this2.services = response.data.services;
+      })["catch"](function (error) {
+        console.log(error);
+      });
     }
   }
 });
@@ -3684,11 +3704,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['serviceItem', 'updated'],
   data: function data() {
     return {
       categories: [],
       service: {
-        category_id: '1',
+        category_id: '',
         name: '1000',
         periodindays: '30',
         price: '2990',
@@ -3735,7 +3756,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           message: 'Укажите количество просмотров',
           trigger: 'blur'
         }],
-        bonus_сomments: [{
+        bonus_comments: [{
           required: true,
           message: 'Укажите количество бонусных комментариев',
           trigger: 'blur'
@@ -3749,15 +3770,18 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     };
   },
   beforeMount: function beforeMount() {
-    var _this = this;
+    var _this2 = this;
 
+    this.service = Object.assign({}, this.serviceItem);
     axios.get('/admin/categories').then(function (response) {
-      _this.categories = response.data.categories;
+      _this2.categories = response.data.categories;
     });
   },
   methods: {
     onSubmit: function onSubmit() {
-      var _this2 = this;
+      var _this3 = this;
+
+      var _this = this;
 
       this.$refs.form.validate( /*#__PURE__*/function () {
         var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(valid) {
@@ -3773,17 +3797,27 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   return _context.abrupt("return");
 
                 case 2:
-                  axios.post('/admin/add_service', _this2.service).then(function (response) {
-                    _this2.$emit('close');
+                  if (typeof _this3.service.igtv_unlim == 'undefined') {
+                    _this3.service.igtv_unlim = 0;
+                  }
 
-                    _this2.$alert('Тариф успешно добавлен');
+                  axios.post('/admin/add_service', _this3.service).then(function (response) {
+                    _this3.$emit('close');
+
+                    if (_this3.serviceItem) {
+                      _this3.$alert('Тариф успешно изменен');
+                    } else {
+                      _this3.$alert('Тариф успешно добавлен');
+                    }
+
+                    _this.updated();
                   })["catch"](function (error) {
                     if (error.response.data.errors) {
-                      _this2.$alert(error.response.data.errors);
+                      _this3.$alert(error.response.data.errors);
                     }
                   });
 
-                case 3:
+                case 4:
                 case "end":
                   return _context.stop();
               }
@@ -3795,6 +3829,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           return _ref.apply(this, arguments);
         };
       }());
+    }
+  },
+  computed: {
+    title: function title() {
+      if (this.serviceItem) {
+        return 'Изменить тариф';
+      }
+
+      return 'Добавить тариф';
     }
   }
 });
@@ -101226,7 +101269,7 @@ var render = function() {
           [
             _vm._m(0),
             _vm._v(" "),
-            _vm._l(_vm.items, function(item, index) {
+            _vm._l(_vm.services, function(item, index) {
               return _c("tr", { key: index + item.name }, [
                 _c("td", [_vm._v(_vm._s(item.name))]),
                 _vm._v(" "),
@@ -101234,7 +101277,26 @@ var render = function() {
                 _vm._v(" "),
                 _c("td", [_vm._v(_vm._s(item.price) + " руб")]),
                 _vm._v(" "),
-                _vm._m(1, true)
+                _c("td", { staticClass: "table-action" }, [
+                  _c(
+                    "a",
+                    {
+                      staticClass: "btn",
+                      attrs: { href: "#" },
+                      on: {
+                        click: function($event) {
+                          $event.preventDefault()
+                          return _vm.editService(item)
+                        }
+                      }
+                    },
+                    [_vm._v("Изменить")]
+                  ),
+                  _vm._v(" "),
+                  _c("a", { staticClass: "btn", attrs: { href: "#" } }, [
+                    _vm._v("Удалить")
+                  ])
+                ])
               ])
             })
           ],
@@ -101277,18 +101339,6 @@ var staticRenderFns = [
         _c("td", [_vm._v("Actions")])
       ])
     ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("td", { staticClass: "table-action" }, [
-      _c("a", { staticClass: "btn", attrs: { href: "#" } }, [
-        _vm._v("Изменить")
-      ]),
-      _vm._v(" "),
-      _c("a", { staticClass: "btn", attrs: { href: "#" } }, [_vm._v("Удалить")])
-    ])
   }
 ]
 render._withStripped = true
@@ -101312,7 +101362,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("modal-skeleton", { attrs: { title: "Добавить тариф" } }, [
+  return _c("modal-skeleton", { attrs: { title: _vm.title } }, [
     _c(
       "div",
       [

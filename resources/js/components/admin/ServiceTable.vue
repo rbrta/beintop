@@ -14,12 +14,12 @@
 						<td>Actions</td>
 					</tr>
 				</thead>
-                <tr v-for="(item, index) in items" :key="index + item.name">
+                <tr v-for="(item, index) in services" :key="index + item.name">
                     <td>{{ item.name }}</td>
                     <td>{{ item.periodindays }} дней</td>
                     <td>{{ item.price }} руб</td>
                     <td class="table-action">
-                        <a class="btn" href="#">Изменить</a>
+                        <a @click.prevent="editService(item)" class="btn" href="#">Изменить</a>
                         <a class="btn" href="#">Удалить</a>
                     </td>
                 </tr>
@@ -39,14 +39,32 @@
         props: ['items'],
         data() {
             return {
+                services: this.items
             }
         },
-        computed: {},
         methods: {
             addService() {
                 this.$showModal(AddOrEditService);
             },
-        }
+            editService(item) {
+                let _this = this;
+                this.$showModal(AddOrEditService, {
+                    serviceItem: item,
+                    updated: () => {
+                       _this.getServices();
+                    },  
+                });
+            },
+            getServices() {
+                axios.get('/admin/get_services', 
+                    this.service
+                ).then(response => {
+                    this.services = response.data.services;
+                }).catch(error => {
+                    console.log(error);
+                });
+            }
+        },
     }
 </script>
 

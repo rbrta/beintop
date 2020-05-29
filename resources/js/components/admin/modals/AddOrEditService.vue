@@ -1,5 +1,5 @@
 <template>
-<modal-skeleton title="Добавить тариф">
+<modal-skeleton :title="title">
 
 <div>
      <el-form :model="service" :rules="rules" ref="form" @submit.prevent.native="onSubmit">
@@ -66,11 +66,12 @@
 
 <script>
     export default {
+       props: ['serviceItem', 'updated'],
        data() {
             return {
                 categories: [],
                 service: {
-                    category_id: '1',
+                    category_id: '',
                     name: '1000',
                     periodindays: '30',
                     price: '2990',
@@ -103,7 +104,7 @@
                     views: [
                         { required: true, message: 'Укажите количество просмотров', trigger: 'blur' }
                     ],
-                    bonus_сomments: [
+                    bonus_comments: [
                         { required: true, message: 'Укажите количество бонусных комментариев', trigger: 'blur' }
                     ],
                     bonus_posts: [
@@ -113,19 +114,32 @@
             }
         },
         beforeMount() {
+            this.service = Object.assign({}, this.serviceItem);
             axios.get('/admin/categories').then(response => {
                 this.categories = response.data.categories;
             });
         },
         methods: {
              onSubmit() {
+                 let _this = this;
                  this.$refs.form.validate(async (valid) => {
                     if(!valid) { return; }
+
+                    if(typeof this.service.igtv_unlim == 'undefined'){
+                        this.service.igtv_unlim = 0;
+                    }
+
                     axios.post('/admin/add_service', 
                             this.service
                         ).then(response => {
                             this.$emit('close');
-                            this.$alert('Тариф успешно добавлен');
+                            if(this.serviceItem){
+                                this.$alert('Тариф успешно изменен');
+                            }else{
+                                this.$alert('Тариф успешно добавлен');
+                            }
+                            
+                            _this.updated();
                         }).catch(error => {
                             if(error.response.data.errors){
                                 this.$alert(error.response.data.errors);
@@ -133,6 +147,14 @@
                         });
                  });
              }
+        },
+        computed: {
+            title: function () {
+                if(this.serviceItem){
+                    return 'Изменить тариф';
+                }
+                return 'Добавить тариф';
+            }
         }
     }
 </script>

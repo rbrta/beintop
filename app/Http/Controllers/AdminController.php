@@ -14,6 +14,12 @@ class AdminController extends Controller
         return view('admin', compact('services')); 
     }
 
+    public function getServices(Request $request)
+    {
+        $services = Service::all();
+        return response()->json(['success' => true, 'services' => $services]);
+    }
+
     public function serviceCategories(Request $request)
     {
         $categories = Category::all();
@@ -32,10 +38,9 @@ class AdminController extends Controller
             'views' => ['required','numeric'],
             'bonus_comments' => ['required'],
             'bonus_posts' => ['required','numeric'],
-            'igtv_unlim' => ['required'],
         ]);
 
-        Service::create([
+        Service::updateOrCreate(['id' => $request->id], [
             'category_id' => $request->category_id,
             'name' => $request->name,
             'periodindays' => $request->periodindays,
