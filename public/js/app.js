@@ -3594,6 +3594,8 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     addService: function addService() {
+      var _this = this;
+
       this.$showModal(_admin_modals_AddOrEditService__WEBPACK_IMPORTED_MODULE_0__["default"], {
         updated: function updated() {
           _this.getServices();
@@ -3616,7 +3618,22 @@ __webpack_require__.r(__webpack_exports__);
       axios.get('/admin/get_services', this.service).then(function (response) {
         _this2.services = response.data.services;
       })["catch"](function (error) {
-        console.log(error);
+        console.log('getServices error: ' + error);
+      });
+    },
+    deleteService: function deleteService(id, index) {
+      var _this3 = this;
+
+      var _this = this;
+
+      axios["delete"]('/admin/delete_service', {
+        params: {
+          id: id
+        }
+      }).then(function (response) {
+        _this.getServices();
+
+        _this3.$alert('Тариф успешно удален');
       });
     }
   }
@@ -3774,21 +3791,19 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     };
   },
   beforeMount: function beforeMount() {
-    var _this2 = this;
+    var _this = this;
 
     if (this.serviceItem) {
       this.service = Object.assign({}, this.serviceItem);
     }
 
     axios.get('/admin/categories').then(function (response) {
-      _this2.categories = response.data.categories;
+      _this.categories = response.data.categories;
     });
   },
   methods: {
     onSubmit: function onSubmit() {
-      var _this3 = this;
-
-      var _this = this;
+      var _this2 = this;
 
       this.$refs.form.validate( /*#__PURE__*/function () {
         var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(valid) {
@@ -3804,22 +3819,27 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   return _context.abrupt("return");
 
                 case 2:
-                  if (typeof _this3.service.igtv_unlim == 'undefined') {
-                    _this3.service.igtv_unlim = 0;
+                  if (typeof _this2.service.igtv_unlim == 'undefined') {
+                    _this2.service.igtv_unlim = 0;
                   }
 
-                  axios.post('/admin/add_service', _this3.service).then(function (response) {
-                    _this3.$emit('close');
+                  axios.post('/admin/add_service', _this2.service).then(function (response) {
+                    _this2.updated();
 
-                    if (_this3.serviceItem) {
-                      _this3.$alert('Тариф успешно изменен');
+                    _this2.$emit('close');
+
+                    if (_this2.serviceItem) {
+                      _this2.$alert('Тариф успешно изменен');
                     } else {
-                      _this3.$alert('Тариф успешно добавлен');
+                      _this2.$alert('Тариф успешно добавлен');
                     }
-
-                    _this.updated();
                   })["catch"](function (error) {
-                    console.log(error);
+                    if (error.response.data.errors) {
+                      var message = error.response.data.errors[Object.keys(error.response.data.errors)[0]];
+                      message = message.toString();
+
+                      _this2.$alert(message);
+                    }
                   });
 
                 case 4:
@@ -101298,9 +101318,20 @@ var render = function() {
                     [_vm._v("Изменить")]
                   ),
                   _vm._v(" "),
-                  _c("a", { staticClass: "btn", attrs: { href: "#" } }, [
-                    _vm._v("Удалить")
-                  ])
+                  _c(
+                    "a",
+                    {
+                      staticClass: "btn",
+                      attrs: { href: "#" },
+                      on: {
+                        click: function($event) {
+                          $event.preventDefault()
+                          return _vm.deleteService(item.id, index)
+                        }
+                      }
+                    },
+                    [_vm._v("Удалить")]
+                  )
                 ])
               ])
             })

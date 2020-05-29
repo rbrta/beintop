@@ -55,4 +55,10 @@ class AdminController extends Controller
 
         return response()->json(['success' => true]);
     }
+
+    public function deleteService(Request $request)
+    {
+        Service::destroy($request->id);
+        return response()->json(['success' => true]);
+    }
 }

@@ -20,7 +20,7 @@
                     <td>{{ item.price }} руб</td>
                     <td class="table-action">
                         <a @click.prevent="editService(item)" class="btn" href="#">Изменить</a>
-                        <a class="btn" href="#">Удалить</a>
+                        <a @click.prevent="deleteService(item.id, index)" class="btn" href="#">Удалить</a>
                     </td>
                 </tr>
 			</table>
@@ -44,6 +44,7 @@
         },
         methods: {
             addService() {
+                let _this = this;
                 this.$showModal(AddOrEditService, {
                     updated: () => {
                        _this.getServices();
@@ -65,7 +66,16 @@
                 ).then(response => {
                     this.services = response.data.services;
                 }).catch(error => {
-                    console.log(error);
+                    console.log('getServices error: ' + error);
+                });
+            },
+            deleteService(id, index){
+                let _this = this;
+                axios.delete('/admin/delete_service', {
+                    params: { id }
+                }).then(response => {
+                    _this.getServices();
+                    this.$alert('Тариф успешно удален');
                 });
             }
         },

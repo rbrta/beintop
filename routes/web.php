@@ -21,4 +21,5 @@ Route::group(['prefix' => 'admin'], function() {
     Route::get('/categories', 'AdminController@serviceCategories');
     Route::post('/add_service', 'AdminController@addService');
     Route::get('/get_services', 'AdminController@getServices');
+    Route::delete('/delete_service', 'AdminController@deleteService');
 });

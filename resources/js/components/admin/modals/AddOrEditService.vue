@@ -123,7 +123,6 @@
         },
         methods: {
              onSubmit() {
-                 let _this = this;
                  this.$refs.form.validate(async (valid) => {
                     if(!valid) { return; }
 
@@ -134,15 +133,21 @@
                     axios.post('/admin/add_service', 
                             this.service
                         ).then(response => {
+                            this.updated();
                             this.$emit('close');
+
                             if(this.serviceItem){
                                 this.$alert('Тариф успешно изменен');
                             }else{
                                 this.$alert('Тариф успешно добавлен');
                             }
-                            _this.updated();
+
                         }).catch(error => {
-                            console.log(error);
+                            if(error.response.data.errors){
+                                let message = error.response.data.errors[Object.keys(error.response.data.errors)[0]]
+                                message = message.toString();
+                                this.$alert(message);
+                            }
                         });
                  });
              }
