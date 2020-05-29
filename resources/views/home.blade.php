@@ -50,7 +50,7 @@
     <!-- ------------------------------------------------------------------------------- -->
     <div class="container-top">
         <div class="rocket">
-            <img src="assets/images/rocket.svg" alt="">
+            <img src="/images/rocket.svg" alt="">
         </div>
         <div class="wrapper-content">
             <section class="promotion">
@@ -70,7 +70,7 @@
             <section class="advantage">
                 <div class="advantage-item">
                     <div class="advantage-img">
-                        <img src="./assets/images/phone.svg" alt="">
+                        <img src="/images/phone.svg" alt="">
                     </div>
                     <div class="advantage-text">
                         <div class="advantage-title">
@@ -101,7 +101,7 @@
                         </div>
                     </div>
                     <div class="advantage-img">
-                        <img src="./assets/images/clock.svg" alt="">
+                        <img src="/images/clock.svg" alt="">
                     </div>
                 </div>
             </section>
@@ -117,7 +117,7 @@
                 </div>
                 <div class="tariff-item item">
                     <div class="item-title">
-                        <img src="assets/images/max.svg" alt="">
+                        <img src="/images/max.svg" alt="">
                     </div>
                     <div class="item-body">
                         <div class="tariff">
@@ -132,9 +132,9 @@
                                     <div class="row6">
                                         - <span>30 000 просмотров</span> <br>
                                             <span class="ml">На видео и IGTV (<span class="unlimited">Безлимит <img
-                                                    src="assets/images/fire.svg" alt=""></span>)</span>
+                                                    src="/images/fire.svg" alt=""></span>)</span>
                                     </div>
-                                    <div class="row7"> + <img src="assets/images/bonus.svg"
+                                    <div class="row7"> + <img src="/images/bonus.svg"
                                             alt="">&nbsp;<span>Бонус</span> (<span>30-35</span> комментариев на
                                         <span>5</span> постов в тему публикации)</div>
                                     <div class="row8">30 990 рублей </div>
@@ -157,14 +157,14 @@
         <div class="row2">
             <div class="content">
                 <div class="col col1">
-                    <div class="col__title"><img src="./assets/images/digital.svg" alt=""></div>
+                    <div class="col__title"><img src="/images/digital.svg" alt=""></div>
                     <div class="col__desc">Веберите тариф</div>
                 </div>
                 <div class="col arrow col2">
                     <!-- <img src="./assets/images/arrow.svg" alt=""> -->
                 </div>
                 <div class="col col3">
-                    <div class="col__title"><img src="./assets/images/pay-card.svg" alt=""></div>
+                    <div class="col__title"><img src="./images/pay-card.svg" alt=""></div>
                     <div class="col__desc">
                         Нажмите “Заказать” и перейдите к оплате
                     </div>
@@ -173,7 +173,7 @@
                     <!-- <img src="./assets/images/arrow.svg" alt=""> -->
                 </div>
                 <div class="col col5">
-                    <div class="col__title"><img src="./assets/images/love.svg" alt=""></div>
+                    <div class="col__title"><img src="/images/love.svg" alt=""></div>
                     <div class="col__desc">
                         Убедитесь в качестве работы и наслаждайтесь результатом
                     </div>
@@ -189,9 +189,9 @@
        
         <footer>
             <a href="#">
-                <img src="./assets/images/contacts1.svg" alt="">be_in_top@gmail.com</a>
+                <img src="/images/contacts1.svg" alt="">be_in_top@gmail.com</a>
             <a href="#">
-                <img src="./assets/images/contacts2.svg" alt="">be_in_top
+                <img src="/images/contacts2.svg" alt="">be_in_top
             </a>
         </footer>
         
