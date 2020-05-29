@@ -3594,7 +3594,11 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     addService: function addService() {
-      this.$showModal(_admin_modals_AddOrEditService__WEBPACK_IMPORTED_MODULE_0__["default"]);
+      this.$showModal(_admin_modals_AddOrEditService__WEBPACK_IMPORTED_MODULE_0__["default"], {
+        updated: function updated() {
+          _this.getServices();
+        }
+      });
     },
     editService: function editService(item) {
       var _this = this;
@@ -3710,14 +3714,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       categories: [],
       service: {
         category_id: '',
-        name: '1000',
-        periodindays: '30',
-        price: '2990',
-        likes: '1000',
-        posts: '30',
-        views: '3000',
-        bonus_comments: '10-15',
-        bonus_posts: '5',
+        name: '',
+        periodindays: '',
+        price: '',
+        likes: '',
+        posts: '',
+        views: '',
+        bonus_comments: '',
+        bonus_posts: '',
         igtv_unlim: true
       },
       rules: {
@@ -3772,7 +3776,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   beforeMount: function beforeMount() {
     var _this2 = this;
 
-    this.service = Object.assign({}, this.serviceItem);
+    if (this.serviceItem) {
+      this.service = Object.assign({}, this.serviceItem);
+    }
+
     axios.get('/admin/categories').then(function (response) {
       _this2.categories = response.data.categories;
     });
@@ -3812,9 +3819,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                     _this.updated();
                   })["catch"](function (error) {
-                    if (error.response.data.errors) {
-                      _this3.$alert(error.response.data.errors);
-                    }
+                    console.log(error);
                   });
 
                 case 4:

@@ -44,7 +44,11 @@
         },
         methods: {
             addService() {
-                this.$showModal(AddOrEditService);
+                this.$showModal(AddOrEditService, {
+                    updated: () => {
+                       _this.getServices();
+                    },  
+                });
             },
             editService(item) {
                 let _this = this;

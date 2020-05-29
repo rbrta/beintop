@@ -72,14 +72,14 @@
                 categories: [],
                 service: {
                     category_id: '',
-                    name: '1000',
-                    periodindays: '30',
-                    price: '2990',
-                    likes: '1000',
-                    posts: '30',
-                    views: '3000',
-                    bonus_comments: '10-15',
-                    bonus_posts: '5',
+                    name: '',
+                    periodindays: '',
+                    price: '',
+                    likes: '',
+                    posts: '',
+                    views: '',
+                    bonus_comments: '',
+                    bonus_posts: '',
                     igtv_unlim: true,
                 },
                 rules: {
@@ -114,7 +114,9 @@
             }
         },
         beforeMount() {
-            this.service = Object.assign({}, this.serviceItem);
+            if(this.serviceItem){
+                this.service = Object.assign({}, this.serviceItem);
+            }
             axios.get('/admin/categories').then(response => {
                 this.categories = response.data.categories;
             });
@@ -138,12 +140,9 @@
                             }else{
                                 this.$alert('Тариф успешно добавлен');
                             }
-                            
                             _this.updated();
                         }).catch(error => {
-                            if(error.response.data.errors){
-                                this.$alert(error.response.data.errors);
-                            }
+                            console.log(error);
                         });
                  });
              }
