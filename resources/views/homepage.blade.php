@@ -71,11 +71,7 @@
             @foreach ($services as $tariff => $group_services)
             <div class="tariff-item item">
                 <div class="item-title">
-                    @if($tariff=='Тарифы max')
-                        <img src="/images/max.svg" alt="">
-                    @else
-                        <img src="/images/min.svg" alt="">
-                    @endif
+                    <div>{{ $tariff }}</div>
                 </div>
                 <div class="item-body">
                     @foreach ($group_services as $service)

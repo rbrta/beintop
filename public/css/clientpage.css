@@ -265,12 +265,12 @@ header .wrapper .wrapper-mobile {
   z-index: 500;
   width: 100%;
   background-color: white;
-  background: #fff url(/images/background-mobile.svg?378425bc2276732862ddc3028a270184) no-repeat center 140px/cover;
+  background: #fff url(/images/background-mobile.svg?5faeaf8da44d7434539a5d3467270e7b) no-repeat center 140px/cover;
 }
 
 @media screen and (min-width: 700px) {
   header .wrapper .wrapper-mobile {
-    background: #fff url(/images/background-mobile.svg?378425bc2276732862ddc3028a270184) no-repeat center 35px/cover;
+    background: #fff url(/images/background-mobile.svg?5faeaf8da44d7434539a5d3467270e7b) no-repeat center 35px/cover;
   }
 }
 
@@ -395,7 +395,7 @@ header .wrapper .wrapper-mobile .mobile-menu a {
 
 .main-block {
   position: relative;
-  background-image: url(/images/background-client2.svg?c0c77771f98b9ab27c666d64cb41d64e);
+  background-image: url(/images/background-client2.svg?06b6ad4a981fdfb5eea532b9d7cac934);
   background-repeat: no-repeat;
   background-size: cover;
   padding-bottom: 350px;
