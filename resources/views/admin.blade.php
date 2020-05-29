@@ -30,42 +30,9 @@
         </div>
     </header>
     <!-- ------------------------------------------------------------------------------- --> 
-    <div class="container-table">
-        <div class="wrapper-content">
-            <div class="wrapper-table">
-                <div class="tab">
-                    Тарифы
-                </div>
-                <table>
-                    <thead>
-                        <tr class="table-title">
-                            <td>Название</td>
-                            <td>Период</td>
-                            <td>Стоимость</td>
-                            <td>Actions</td>
-                        </tr>
-                    </thead>
-                    @foreach($services as $item)
-                        <tr>
-                            <td>{{ $item->name }}</td>
-                            <td>{{ $item->periodindays }} дней</td>
-                            <td>{{ $item->price }} руб</td>
-                            <td class="table-action">
-                                <a class="btn" href="#">Изменить</a>
-                                <a class="btn" href="#">Удалить</a>
-                            </td>
-                        </tr>
-                    @endforeach
-                </table>
-                <div class="add-btn">
-                    <a @click.prevent="addService" class="btn" href="#">Добавить</a>
-                </div>
-            </div>
-        </div>
-    </div>
+    <service-table :items='@json($services)'></service-table>
+    <!-- ------------------------------------------------------------------------------- --> 
 </div>
-<!-- ------------------------------------------------------------------------------- -->  
-<!-- ------------------------------------------------------------------------------- -->  
 <script src="/js/main.js"></script>
 <script src="/js/app.js"></script>
 </body>
