@@ -15,12 +15,12 @@ const mix = require('laravel-mix');
 //     .sass('resources/sass/app.scss', 'public/css');
 
 mix
-.sass('resources/assets/scss/homepage.scss', 'public/css')
-.sass('resources/assets/scss/clientpage.scss', 'public/css')
-.sass('resources/assets/scss/backendpage.scss', 'public/css')
+.sass('resources/sass/homepage.scss', 'public/css')
+.sass('resources/sass/clientpage.scss', 'public/css')
+.sass('resources/sass/backendpage.scss', 'public/css')
 
 .js("resources/js/app.js", "public/js")
-.js("resources/assets/js/main.js", "public/js");
+.js("resources/js/main.js", "public/js");
 
-mix.copyDirectory('resources/assets/images', 'public/images');
+mix.copyDirectory('resources/images', 'public/images');
 
