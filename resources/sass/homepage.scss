@@ -28,7 +28,6 @@
         background-position: -540px 48px, 140px -80px, 393px 126px;
     }
 
-
     .rocket{
         position: absolute;
         top: -90px;
@@ -83,13 +82,19 @@
             text-align: center;
             background: linear-gradient(89.77deg, #E164BE -0.56%, #FF74D8 -0.55%, #FF985E 97.67%);
             border-radius: 50px;
-            width: 292px;
+            max-width: 292px;
             height: 63px;
             color: white;
             text-decoration: none;
             font-size: 24px;
             display: block;
             padding-top: 12px;
+
+            @media(max-width: 1168px){
+                font-size: 18px;
+                line-height: 2.3;
+                max-width: 242px;
+            }
         }
     }
 }
@@ -104,9 +109,8 @@
 
     &-item{
         display: flex;
-
-        >div{
-            width: 50%;
+        @media(max-width: 800px) {
+            flex-direction: column;
         }
     }
 
@@ -114,6 +118,21 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
+        width:50%;
+
+        @media(max-width: 1400px) {
+            width:60%;
+        }
+
+        @media(max-width: 1200px) {
+            width:70%;
+        }
+
+        @media(max-width: 1000px) {
+            width:80%;
+        }
+
+      
     }
 
     &-title{
@@ -168,6 +187,7 @@
         margin-top: 57px;
 
        &-title{
+           margin-bottom: 40px;
            display: flex;
            justify-content: center;
            font-weight: 800;
@@ -183,13 +203,16 @@
        }
 
        &-body{
-           margin-top: 57px;
            display: flex;
            justify-content: space-between;
+           flex-wrap: wrap;
        }
     }
 
     .tariff{
+        margin-right: 4px;
+        margin-left: 4px;
+        margin-top: 17px;
         font-size: 18px;
         line-height: 27px;
         letter-spacing: -0.03em;
@@ -344,9 +367,13 @@
     padding-top: 780px;
     padding-bottom: 82px;
 
-    @media(max-width: 600px){
+    @media(max-width: 700px){
         padding-bottom: 57px;
         padding-top: 600px;
+    }
+
+    @media(max-width: 550px){
+        padding-top: 520px;
     }
 
     .row1{
@@ -515,5 +542,12 @@ footer{
         span{
             padding-right: 15px;
         }
+
+        
+        @media(max-width: 430px){
+            font-size: 12px;
+            line-height: 6;
+        }
+
     }
 }
