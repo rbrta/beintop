@@ -1,7 +1,7 @@
 <header>
-        <div class="wrapper">
+        <div class="main-menu">
             <div class="logo">
-                <img src="/assets/images/logo.svg" alt="">
+                <img src="/images/logo.svg" alt="">
                 <span>Be-in-top</span>
             </div>
             <ul class="menu">
@@ -17,15 +17,17 @@
                 <span></span>
             </div>
 
-            <div id="menuMob" class="wrapper-mobile hide">
-                <div class="mobile-menu">
-                    <div><a href="#">На главную</a></div>
-                    <div><a href="#">Личный кабинет</a></div>
-                    <div><a href="#">Наши преимущества</a></div>
-                    <div><a href="#">Выбрать тариф</a></div>
-                </div>
+        </div>
+
+        <div id="menuMob" class="wrapper-mobile hide">
+            <div class="mobile-menu">
+                <div><a href="#">На главную</a></div>
+                <div><a href="#">Личный кабинет</a></div>
+                <div><a href="#">Наши преимущества</a></div>
+                <div><a href="#">Выбрать тариф</a></div>
             </div>
         </div>
+        
 
         
     </header>
