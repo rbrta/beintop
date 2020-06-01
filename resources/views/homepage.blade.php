@@ -145,4 +145,5 @@
             <a href="#">Выбрать тариф</a>
         </div>
     </div>
+</div>
 @endsection

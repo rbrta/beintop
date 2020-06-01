@@ -115574,10 +115574,10 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\A\Desktop\laravel_beintop-insta\resources\js\app.js */"./resources/js/app.js");
-__webpack_require__(/*! C:\Users\A\Desktop\laravel_beintop-insta\resources\sass\homepage.scss */"./resources/sass/homepage.scss");
-__webpack_require__(/*! C:\Users\A\Desktop\laravel_beintop-insta\resources\sass\clientpage.scss */"./resources/sass/clientpage.scss");
-module.exports = __webpack_require__(/*! C:\Users\A\Desktop\laravel_beintop-insta\resources\sass\backendpage.scss */"./resources/sass/backendpage.scss");
+__webpack_require__(/*! C:\Users\A\Desktop\beintop\resources\js\app.js */"./resources/js/app.js");
+__webpack_require__(/*! C:\Users\A\Desktop\beintop\resources\sass\homepage.scss */"./resources/sass/homepage.scss");
+__webpack_require__(/*! C:\Users\A\Desktop\beintop\resources\sass\clientpage.scss */"./resources/sass/clientpage.scss");
+module.exports = __webpack_require__(/*! C:\Users\A\Desktop\beintop\resources\sass\backendpage.scss */"./resources/sass/backendpage.scss");
 
 
 /***/ })
