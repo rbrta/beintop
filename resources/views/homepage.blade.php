@@ -2,10 +2,10 @@
 
 @section('content')
 <div class="container-top">
-    <div class="rocket">
-        <img src="/images/rocket.svg" alt="">
-    </div>
-    <div class="wrapper-content">
+    <div class="wrapper-content promotion-wrapper">
+        <div class="rocket">
+        </div>
+
         <section class="promotion">
             <div class="promotion-title">
                 Раскрутка вашего Instagram аккаунта

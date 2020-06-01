@@ -27,73 +27,114 @@
         background-size: 220% auto, auto, 75%;
         background-position: -540px 48px, 140px -80px, 393px 126px;
     }
+    @media(max-width:1270px) {
+        background-size: 260% auto, auto, 75%;
+        background-position: -540px -62px, 140px -80px, 393px 126px;
+        padding-bottom: 930px;
+    }
+    @media(max-width:1011px) {
+        background-size: 390% auto, auto, 75%;
+        background-position: -540px 12px, 140px -80px, 393px 126px;
+    }
+
+    @media(max-width:767px) {
+        background-image: 
+        url(../images/bg_waves_mobile.svg), 
+        url(../images/points.svg),
+        url(../images/likes.svg);
+        padding-bottom: 800px;
+
+        background-size: 190% auto, auto, 75%;
+        background-position: -540px 12px, 140px -80px, 393px 126px;
+    }
+
+}
+
+.wrapper-content.promotion-wrapper {
+
+    @media(max-width:1011px) {
+        display: flex;
+        flex-direction: column-reverse;
+        max-width: 100%;
+
+    }
 
     .rocket{
         position: absolute;
-        top: -90px;
+        top: 0;
         left: 0;
-        width: 1200px;
-
-        @media(max-width: 1919px){
-            width: 60%;
-        }
+        background: url('../images/rocket.svg') no-repeat left top / contain;
+        width: 55%;
+        height: 1660px;
+        
 
         @media(max-width: 1800px){
             top: 0;
+            
         }
         @media(max-width: 1440px){
             width: 40%;
         }
-    }
-}
-    
-.promotion{
-    width: 50%;
-    margin-left: auto;
-    padding-top: 173px;
 
-    @media(max-width: 1440px){
-        width: 63%;
-        padding-top: 63px;
-    }
-
-    &-title{
-        color: #5C4998;
-        font-size: 64px;
-        font-weight: bold;
-        line-height: 78px;
-
-        @media(max-width: 1168px){
-            font-size: 44px;
-            line-height: 48px;
+        @media(max-width:1011px) { 
+            position: absolute;
+            width: 60%;
+            height: 900px;
+            top: 293px;
         }
     }
+    
+    .promotion{
+        width: 50%;
+        margin-left: auto;
+        padding-top: 173px;
 
-    &-desc{
-        color: #2C2935;
-        font-size: 24px;
-        margin-top: 13px;
-    }
+        @media(max-width: 1440px){
+            width: 63%;
+            padding-top: 63px;
+        }
+        @media(max-width:1011px) {
+            width: 95%;
+        }
 
-    &-btn{
-        margin-top: 39px;
-
-        a{
-            text-align: center;
-            background: linear-gradient(89.77deg, #E164BE -0.56%, #FF74D8 -0.55%, #FF985E 97.67%);
-            border-radius: 50px;
-            max-width: 292px;
-            height: 63px;
-            color: white;
-            text-decoration: none;
-            font-size: 24px;
-            display: block;
-            padding-top: 12px;
+        &-title{
+            color: #5C4998;
+            font-size: 64px;
+            font-weight: bold;
+            line-height: 78px;
 
             @media(max-width: 1168px){
-                font-size: 18px;
-                line-height: 2.3;
-                max-width: 242px;
+                font-size: 44px;
+                line-height: 48px;
+            }
+        }
+
+        &-desc{
+            color: #2C2935;
+            font-size: 24px;
+            margin-top: 13px;
+        }
+
+        &-btn{
+            margin-top: 39px;
+
+            a{
+                text-align: center;
+                background: linear-gradient(89.77deg, #E164BE -0.56%, #FF74D8 -0.55%, #FF985E 97.67%);
+                border-radius: 50px;
+                max-width: 292px;
+                height: 63px;
+                color: white;
+                text-decoration: none;
+                font-size: 24px;
+                display: block;
+                padding-top: 12px;
+
+                @media(max-width: 1168px){
+                    font-size: 18px;
+                    line-height: 2.3;
+                    max-width: 242px;
+                }
             }
         }
     }
@@ -109,8 +150,9 @@
 
     &-item{
         display: flex;
-        @media(max-width: 800px) {
+        @media(max-width:1011px) {
             flex-direction: column;
+            align-items: center;
         }
     }
 
@@ -132,6 +174,11 @@
             width:80%;
         }
 
+        @media(max-width:1011px) {
+
+            width: 100%;
+        }
+
       
     }
 
@@ -140,6 +187,10 @@
         font-size: 45px;
         line-height: 55px;
         text-align: center;
+
+        @media(max-width:1011px) {
+            margin-top: 2rem;
+        }
     }
 
     &-hr{
@@ -157,6 +208,10 @@
     &-img{
         display: flex;
         justify-content: center;
+
+        @media(max-width: 1091px) {
+            width: 40%;
+        }
     }
 }
 
