@@ -33,22 +33,95 @@
         padding-bottom: 930px;
     }
     @media(max-width:1011px) {
-        background-size: 390% auto, auto, 75%;
+        background-size: 330% auto, auto, 75%;
         background-position: -540px 12px, 140px -80px, 393px 126px;
+    }
+    @media(max-width:990px) {
+        background-size: 350% auto, auto, 75%;
+    }
+    @media(max-width:927px) {
+        background-size: 390% auto, auto, 75%;
+    }
+    @media(max-width:875px) {
+        background-size: 410% auto, auto, 75%;
+    }
+    @media(max-width:830px) {
+        background-size: 430% auto, auto, 75%;
+    }
+    @media(max-width:790px) {
+        background-size: 460% auto, auto, 75%;
+    }
+    @media(max-width:720px) {
+        background-size: 500% auto, auto, 75%;
     }
 
     @media(max-width:767px) {
-        background-image: 
-        url(../images/bg_waves_mobile.svg), 
-        url(../images/points.svg),
-        url(../images/likes.svg);
-        padding-bottom: 800px;
+        // background-image: 
+        // url(../images/bg_waves_mobile.svg), 
+        // url(../images/points.svg),
+        // url(../images/likes.svg);
+        // padding-bottom: 800px;
 
-        background-size: 100% auto, auto, 75%;
-        background-position: 0px 232px, 140px -80px, 393px 126px;
-        min-height: 3750px;
+        // background-size: 100% auto, auto, 75%;
+        // background-position: 0px 232px, 140px -80px, 393px 126px;
+        // min-height: 3750px;
     }
 
+    @media(max-width:675px) {
+        background-size: 450% auto, auto, 75%;
+    }
+
+    @media(max-width:659px) {
+        background-size: 480% auto, auto, 75%;
+    }
+
+    @media(max-width:638px) {
+        background-size: 510% auto, auto, 75%;
+    }
+
+    @media(max-width:590px) {
+        background-size: 540% auto, auto, 75%;
+    }
+
+    @media(max-width:550px) {
+        background-size: 570% auto, auto, 75%;
+    }
+
+    @media(max-width:515px) {
+        background-size: 620% auto, auto, 75%;
+    }
+
+    @media(max-width:480px) {
+        background-size: 670% auto, auto, 75%;
+    }
+
+    @media(max-width:450px) {
+        background-size: 570% auto, auto, 75%;
+    }
+
+    @media(max-width:430px) {
+        background-size: 600% auto, auto, 75%;
+    }
+
+    @media(max-width:400px) {
+        background-size: 630% auto, auto, 75%;
+    }
+
+    @media(max-width:380px) {
+        background-size: 690% auto, auto, 75%;
+    }
+
+    @media(max-width:370px) {
+        background-size: 730% auto, auto, 75%;
+    }
+
+    @media(max-width:345px) {
+        background-size: 780% auto, auto, 75%;
+    }
+
+    @media(max-width:332px) {
+        background-size: 810% auto, auto, 75%;
+    }
 }
 
 .wrapper-content.promotion-wrapper {
@@ -232,8 +305,12 @@
             margin-top: 2rem;
         }
 
-        @media(max-width:450px) {
+        @media(max-width:675px) {
             font-size: 32px;
+        }
+        
+        @media(max-width:450px) {
+            font-size: 18px;
         }
     }
 
@@ -247,6 +324,15 @@
     &-desc{
         font-size: 24px;
         line-height: 149.7%;
+
+        
+        @media(max-width:675px) {
+            font-size: 18px;
+        }
+        
+        @media(max-width:450px) {
+            font-size: 12px;
+        }
     }
 
     &-img{
