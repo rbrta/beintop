@@ -374,6 +374,10 @@
     background-position: 
     -20px -80px,
     190px 120px;
+
+    @media(max-width: 450px){
+        padding-top: 50px;
+    }
 }
 
 .tariffcontainer{
@@ -569,11 +573,14 @@
 .container-below {
     text-align: center;
     background-image: url("../images/background-below.png");
-    background-size: cover;
+    background-position: 100% 100%;
+    background-size: 180% auto;
+    background-repeat: no-repeat;
+
     margin-top: -500px;
     padding-top: 780px;
     padding-bottom: 82px;
-
+    
     @media(max-width: 700px){
         padding-bottom: 57px;
         padding-top: 600px;
@@ -581,6 +588,30 @@
 
     @media(max-width: 550px){
         padding-top: 520px;
+    }
+    @media(max-width: 665px){
+        background-size: 200% auto;
+    }
+    @media(max-width: 600px){
+        background-size: 220% auto;
+    }    
+    @media(max-width: 540px){
+        background-size: 240% auto;
+    }
+    @media(max-width: 490px){
+        background-size: 280% auto;
+    }
+    @media(max-width: 425px){
+        background-size: 310% auto;
+    }
+    @media(max-width: 400px){
+        background-size: 330% auto;
+    }
+    @media(max-width: 385px){
+        background-size: 350% auto;
+    }
+    @media(max-width: 360px){
+        background-size: 370% auto;
     }
 
     .row1{
