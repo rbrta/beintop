@@ -55,17 +55,17 @@
         background-size: 500% auto, auto, 75%;
     }
 
-    @media(max-width:767px) {
-        // background-image: 
-        // url(../images/bg_waves_mobile.svg), 
-        // url(../images/points.svg),
-        // url(../images/likes.svg);
-        // padding-bottom: 800px;
+    // @media(max-width:767px) {
+    //     background-image: 
+    //     url(../images/bg_waves_mobile.svg), 
+    //     url(../images/points.svg),
+    //     url(../images/likes.svg);
+    //     padding-bottom: 800px;
 
-        // background-size: 100% auto, auto, 75%;
-        // background-position: 0px 232px, 140px -80px, 393px 126px;
-        // min-height: 3750px;
-    }
+    //     background-size: 100% auto, auto, 75%;
+    //     background-position: 0px 232px, 140px -80px, 393px 126px;
+    //     min-height: 3750px;
+    // }
 
     @media(max-width:675px) {
         background-size: 450% auto, auto, 75%;
@@ -158,16 +158,16 @@
         }
 
         @media(max-width:700px) { 
-            top: 353px;
+            top: 280px;
+            width: 70%;
         }
 
-        @media(max-width:700px) { 
-            top: 293px;
-            width: 80%;
+        @media(max-width:620px) { 
+            top: 335px;
         }
 
         @media(max-width:400px) { 
-            width: 100%;
+            width: 90%;
             top: 320px;
         }
     }
@@ -234,6 +234,9 @@
 
                 @media(max-width: 400px){
                     max-width: 180px;
+                    font-size: 14px;
+                    height: 39.48px;
+                    line-height: 1.3;
                 }
             }
         }
@@ -319,6 +322,10 @@
         background-color: white;
         width: 185px;
         margin: 20px auto;
+
+        @media(max-width:450px) {
+            height: 3px;
+        }
     }
 
     &-desc{
@@ -341,6 +348,14 @@
 
         @media(max-width: 1091px) {
             width: 40%;
+        }
+
+        @media(max-width: 600px) {
+            width: 50%;
+        }
+
+        @media(max-width: 700px) {
+            width: 60%;
         }
     }
 }

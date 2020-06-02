@@ -568,20 +568,20 @@ header .wrapper-mobile .mobile-menu a {
 
 @media (max-width: 700px) {
   .wrapper-content.promotion-wrapper .rocket {
-    top: 353px;
+    top: 280px;
+    width: 70%;
   }
 }
 
-@media (max-width: 700px) {
+@media (max-width: 620px) {
   .wrapper-content.promotion-wrapper .rocket {
-    top: 293px;
-    width: 80%;
+    top: 335px;
   }
 }
 
 @media (max-width: 400px) {
   .wrapper-content.promotion-wrapper .rocket {
-    width: 100%;
+    width: 90%;
     top: 320px;
   }
 }
@@ -665,6 +665,9 @@ header .wrapper-mobile .mobile-menu a {
 @media (max-width: 400px) {
   .wrapper-content.promotion-wrapper .promotion-btn a {
     max-width: 180px;
+    font-size: 14px;
+    height: 39.48px;
+    line-height: 1.3;
   }
 }
 
@@ -766,6 +769,12 @@ header .wrapper-mobile .mobile-menu a {
   margin: 20px auto;
 }
 
+@media (max-width: 450px) {
+  .advantage-hr {
+    height: 3px;
+  }
+}
+
 .advantage-desc {
   font-size: 24px;
   line-height: 149.7%;
@@ -791,6 +800,18 @@ header .wrapper-mobile .mobile-menu a {
 @media (max-width: 1091px) {
   .advantage-img {
     width: 40%;
+  }
+}
+
+@media (max-width: 600px) {
+  .advantage-img {
+    width: 50%;
+  }
+}
+
+@media (max-width: 700px) {
+  .advantage-img {
+    width: 60%;
   }
 }
 
