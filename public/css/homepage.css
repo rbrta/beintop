@@ -444,87 +444,93 @@ header .wrapper-mobile .mobile-menu a {
   }
 }
 
+@media (max-width: 700px) {
+  .container-top {
+    background-size: 530% auto, auto, 75%;
+  }
+}
+
 @media (max-width: 675px) {
   .container-top {
-    background-size: 450% auto, auto, 75%;
+    background-size: 500% auto, auto, 75%;
   }
 }
 
 @media (max-width: 659px) {
   .container-top {
-    background-size: 480% auto, auto, 75%;
+    background-size: 530% auto, auto, 75%;
   }
 }
 
 @media (max-width: 638px) {
   .container-top {
-    background-size: 510% auto, auto, 75%;
+    background-size: 560% auto, auto, 75%;
   }
 }
 
 @media (max-width: 590px) {
   .container-top {
-    background-size: 540% auto, auto, 75%;
+    background-size: 590% auto, auto, 75%;
   }
 }
 
 @media (max-width: 550px) {
   .container-top {
-    background-size: 570% auto, auto, 75%;
+    background-size: 620% auto, auto, 75%;
   }
 }
 
 @media (max-width: 515px) {
   .container-top {
-    background-size: 620% auto, auto, 75%;
+    background-size: 670% auto, auto, 75%;
   }
 }
 
 @media (max-width: 480px) {
   .container-top {
-    background-size: 670% auto, auto, 75%;
+    background-size: 720% auto, auto, 75%;
   }
 }
 
 @media (max-width: 450px) {
   .container-top {
-    background-size: 570% auto, auto, 75%;
+    background-size: 620% auto, auto, 75%;
   }
 }
 
 @media (max-width: 430px) {
   .container-top {
-    background-size: 600% auto, auto, 75%;
+    background-size: 650% auto, auto, 75%;
   }
 }
 
 @media (max-width: 400px) {
   .container-top {
-    background-size: 630% auto, auto, 75%;
+    background-size: 660% auto, auto, 75%;
   }
 }
 
 @media (max-width: 380px) {
   .container-top {
-    background-size: 690% auto, auto, 75%;
+    background-size: 740% auto, auto, 75%;
   }
 }
 
 @media (max-width: 370px) {
   .container-top {
-    background-size: 730% auto, auto, 75%;
+    background-size: 780% auto, auto, 75%;
   }
 }
 
 @media (max-width: 345px) {
   .container-top {
-    background-size: 780% auto, auto, 75%;
+    background-size: 830% auto, auto, 75%;
   }
 }
 
 @media (max-width: 332px) {
   .container-top {
-    background-size: 810% auto, auto, 75%;
+    background-size: 860% auto, auto, 75%;
   }
 }
 
