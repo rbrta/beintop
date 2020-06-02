@@ -628,6 +628,7 @@ header .wrapper-mobile .mobile-menu a {
 @media (max-width: 500px) {
   .wrapper-content.promotion-wrapper .promotion-title {
     font-size: 30px;
+    line-height: 28px;
   }
 }
 
@@ -759,6 +760,7 @@ header .wrapper-mobile .mobile-menu a {
 @media (max-width: 675px) {
   .advantage-title {
     font-size: 32px;
+    line-height: 1.2;
   }
 }
 
@@ -806,18 +808,6 @@ header .wrapper-mobile .mobile-menu a {
 @media (max-width: 1091px) {
   .advantage-img {
     width: 40%;
-  }
-}
-
-@media (max-width: 600px) {
-  .advantage-img {
-    width: 50%;
-  }
-}
-
-@media (max-width: 700px) {
-  .advantage-img {
-    width: 60%;
   }
 }
 
