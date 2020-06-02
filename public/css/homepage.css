@@ -1233,6 +1233,15 @@ header .wrapper-mobile .mobile-menu a {
   }
 }
 
+@media (max-width: 430px) {
+  .container-below .row3 a {
+    font-size: 12px;
+    width: 189px;
+    height: 44px;
+    line-height: 0.5;
+  }
+}
+
 @media (max-width: 1150px) {
   .container-below .row3 {
     padding-top: 30px;
@@ -1274,6 +1283,12 @@ footer a img {
   margin: 10px;
 }
 
+@media (max-width: 430px) {
+  footer a img {
+    height: 28px;
+  }
+}
+
 footer a span {
   padding-right: 15px;
 }
@@ -1281,7 +1296,14 @@ footer a span {
 @media (max-width: 430px) {
   footer a {
     font-size: 12px;
-    line-height: 6;
+    line-height: 4;
+  }
+}
+
+@media (max-width: 430px) {
+  footer {
+    margin-top: 30px;
+    margin-bottom: 30px;
   }
 }
 

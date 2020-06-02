@@ -737,6 +737,13 @@
             @media(max-width: 600px){
                 width: 189px;
             }
+
+            @media(max-width: 430px){
+                font-size: 12px;
+                width: 189px;
+                height: 44px;
+                line-height: 0.5;
+            }
         }
 
         @media(max-width: 1150px){
@@ -775,17 +782,24 @@ footer{
 
         img{
             margin: 10px;
+
+            @media(max-width: 430px){
+                height: 28px;
+            }
         }
 
         span{
             padding-right: 15px;
         }
-
         
         @media(max-width: 430px){
             font-size: 12px;
-            line-height: 6;
+            line-height: 4;
         }
+    }
 
+    @media(max-width: 430px){
+        margin-top: 30px;
+        margin-bottom: 30px;
     }
 }
