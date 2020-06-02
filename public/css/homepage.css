@@ -412,8 +412,9 @@ header .wrapper-mobile .mobile-menu a {
   .container-top {
     background-image: url(/images/bg_waves_mobile.svg?693f8bbdb8c0d02f62294c2668038c35), url(/images/points.svg?9c8a5716adbc08980d2fd304f371935e), url(/images/likes.svg?07787d23c23ff32969003b4ea3b88c51);
     padding-bottom: 800px;
-    background-size: 190% auto, auto, 75%;
-    background-position: -540px 12px, 140px -80px, 393px 126px;
+    background-size: 100% auto, auto, 75%;
+    background-position: 0px 232px, 140px -80px, 393px 126px;
+    min-height: 3750px;
   }
 }
 
@@ -598,6 +599,12 @@ header .wrapper-mobile .mobile-menu a {
   }
 }
 
+@media (max-width: 450px) {
+  .advantage-title {
+    font-size: 32px;
+  }
+}
+
 .advantage-hr {
   height: 6px;
   background-color: white;
@@ -635,6 +642,12 @@ header .wrapper-mobile .mobile-menu a {
   line-height: 78px;
   text-align: center;
   color: #5C4998;
+}
+
+@media (max-width: 500px) {
+  .tariffcontainer-title {
+    font-size: 48px;
+  }
 }
 
 .tariffcontainer .item {
@@ -680,7 +693,7 @@ header .wrapper-mobile .mobile-menu a {
 .tariffcontainer .tariff .tariff__body {
   text-transform: lowercase;
   font-size: 17px;
-  width: 317px;
+  max-width: 317px;
   height: auto;
   color: white;
   background: linear-gradient(180deg, #B04E98 18.23%, #873E90 90.1%, #73307B 100%);

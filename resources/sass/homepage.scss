@@ -44,8 +44,9 @@
         url(../images/likes.svg);
         padding-bottom: 800px;
 
-        background-size: 190% auto, auto, 75%;
-        background-position: -540px 12px, 140px -80px, 393px 126px;
+        background-size: 100% auto, auto, 75%;
+        background-position: 0px 232px, 140px -80px, 393px 126px;
+        min-height: 3750px;
     }
 
 }
@@ -204,6 +205,10 @@
         @media(max-width:1011px) {
             margin-top: 2rem;
         }
+
+        @media(max-width:450px) {
+            font-size: 32px;
+        }
     }
 
     &-hr{
@@ -249,6 +254,10 @@
         line-height: 78px;
         text-align: center;
         color: #5C4998;
+
+        @media(max-width: 500px){
+            font-size: 48px;
+        }
     }
 
     .item{
@@ -293,7 +302,7 @@
         .tariff__body{
             text-transform: lowercase;
             font-size: 17px;
-            width: 317px;
+            max-width: 317px;
             height: auto;
             color: white;
 
