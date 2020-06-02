@@ -62,11 +62,11 @@
 </div>
 
 <!-- ------------------------------------------------------------------------------- -->
-<div class="container-middle">
+<div id="app" class="container-middle">
     <div class="wrapper-content">
         <section class="tariffcontainer">
             <div class="tariffcontainer-title">
-                Выберите Тариф
+                Выберите Тариф! 
             </div>
             @foreach ($services as $tariff => $group_services)
             <div class="tariff-item item">
@@ -97,7 +97,7 @@
                                     <span>{{ $service->bonus_posts }}</span> постов в тему публикации)</div>
                                 <div class="row8">{{ str_replace('.00','',$service->price) }} рублей </div>
                                 <div class="row9">
-                                    <a href="#">активировать</a>
+                                    <button-activation :service="{{ $service }}"></button-activation>
                                 </div>
                             </div>
                         </div>

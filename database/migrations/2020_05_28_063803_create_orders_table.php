@@ -17,7 +17,7 @@ class CreateOrdersTable extends Migration
             $table->id();
             $table->integer('user_id');
             $table->integer('service_id');
-            $table->string('expiration_date');
+            $table->string('expiration_date')->nullable();
             $table->string('paid_status');
             $table->timestamps();
         });

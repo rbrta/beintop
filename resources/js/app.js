@@ -11,6 +11,7 @@ Vue.use(Element, { locale });
 
 Vue.component('modal-skeleton', require('./components/common/ModalSkeleton.vue').default);
 Vue.component('service-table', require('./components/admin/ServiceTable.vue').default);
+Vue.component('button-activation', require('./components/common/ButtonActivation').default);
 
 
 Vue.prototype.$showModal = function(component, props, width = 680, events) {
