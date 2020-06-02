@@ -25,3 +25,10 @@ Route::group(['prefix' => 'admin'], function() {
 });
 
 Route::get('/client', 'UserController@index');
+
+
+
+Route::get('/payment/success', 'TestController@success');
+Route::get('/payment/failure', 'TestController@failure');
+Route::get('/payment/callback', 'TestController@callback');
+Route::get('/pay', 'TestController@pay');
