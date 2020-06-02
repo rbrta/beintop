@@ -573,9 +573,13 @@
 .container-below {
     text-align: center;
     background-image: url("../images/background-below.png");
-    background-position: 100% 100%;
-    background-size: 180% auto;
     background-repeat: no-repeat;
+    background-size: cover;
+
+    @media(max-width: 1200px){
+        background-position: 100% 100%;
+        background-size: 180% auto;
+    }
 
     margin-top: -500px;
     padding-top: 780px;
