@@ -10,7 +10,7 @@
         methods: {
             activation() {
 
-                this.$modal.show(ModalActivation,{service: this.service},{width: 800, height: 'auto', adaptive: true, scrollable: true});   
+                this.$modal.show(ModalActivation,{service: this.service},{width: 849, height: 'auto', adaptive: true, scrollable: true});   
             }
         }
     }

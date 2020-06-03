@@ -84,6 +84,7 @@
 <style lang="scss" scoped>
 .popup{
     width: 849px;
+    max-width: 95%;
     margin: 0 auto;
 
     &__content{
@@ -119,8 +120,8 @@
         flex-direction: column;
 
         input{
-            width: 562px;
-            height: 79px;
+            display: block;
+            width: 100%;
             margin-top: 25px;
             box-sizing: border-box;
             border-radius: 81px;
@@ -152,11 +153,13 @@
         text-align: center;
         color: #5C4998;
         width: 460px;
+        max-width: 100%;
     }
 
     .row6{
         margin-bottom: 50px;
         a{
+            max-width: 100%;
             width: 393.98px;
             height: 79px;
             font-family: Montserrat;
@@ -176,6 +179,48 @@
 
     textarea:focus, input:focus{
         outline: none;
+    }
+
+
+    @media(max-width: 460px){
+        .row1 {
+            font-size: 30px;
+        }
+
+        .row2 {
+            font-size: 24px;
+        }
+
+        .row3 input {
+            padding: 10px 25px;
+            font-size: 18px;
+        }
+
+        .row4 {
+            margin-top: 2rem;
+            font-size: 26px;
+            line-height: 1;
+        }
+
+        .row5 {
+            font-size: 14px;
+            line-height: 1;
+        }
+
+        .row6 {
+            width: 100%;
+            
+            a {
+                font-size: 20px;
+                font-weight: bold;
+                line-height: 1;
+                display: block;
+                height: auto;
+                padding: 20px;
+            }
+        }
+
+        
     }
 }
 </style>
