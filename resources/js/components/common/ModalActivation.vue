@@ -28,6 +28,12 @@
             <input type="hidden" name="ik_am" :value="service.price"/>
             <input type="hidden" name="ik_cur" value="RUB"/>
             <input type="hidden" name="ik_desc" :value="description"/>
+
+            <input type="hidden" name="ik_ia_u" value="http://www.be-in-top.ru/payment/callback"/>
+            <input type="hidden" name="ik_suc_u" value="http://www.be-in-top.ru/payment/success"/>
+            <input type="hidden" name="ik_fal_u" value="http://www.be-in-top.ru/payment/failure"/>
+            <input type="hidden" name="ik_pnd_u" value="http://www.be-in-top.ru/payment/pending"/>
+
             <input type="submit" value="Pay">
         </form>
     </div>

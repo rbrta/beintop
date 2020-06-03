@@ -3952,6 +3952,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "ModalSkeleton",
   props: ['service'],
@@ -102131,6 +102137,38 @@ var render = function() {
             _c("input", {
               attrs: { type: "hidden", name: "ik_desc" },
               domProps: { value: _vm.description }
+            }),
+            _vm._v(" "),
+            _c("input", {
+              attrs: {
+                type: "hidden",
+                name: "ik_ia_u",
+                value: "http://www.be-in-top.ru/payment/callback"
+              }
+            }),
+            _vm._v(" "),
+            _c("input", {
+              attrs: {
+                type: "hidden",
+                name: "ik_suc_u",
+                value: "http://www.be-in-top.ru/payment/success"
+              }
+            }),
+            _vm._v(" "),
+            _c("input", {
+              attrs: {
+                type: "hidden",
+                name: "ik_fal_u",
+                value: "http://www.be-in-top.ru/payment/failure"
+              }
+            }),
+            _vm._v(" "),
+            _c("input", {
+              attrs: {
+                type: "hidden",
+                name: "ik_pnd_u",
+                value: "http://www.be-in-top.ru/payment/pending"
+              }
             }),
             _vm._v(" "),
             _c("input", { attrs: { type: "submit", value: "Pay" } })
