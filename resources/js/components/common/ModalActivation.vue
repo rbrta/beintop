@@ -4,10 +4,10 @@
         <div class="row1">Активация тарифа</div>
         <div class="row2">{{ description }}</div>
         <div class="row3">
-            <div><input v-model="form.full_name" placeholder="Полное имя" type="text"></div>
-            <div><input v-model="form.email" placeholder="Email" type="email" ></div>
-            <div><input v-model="form.password" placeholder="Пароль" type="password"></div>
-            <div><input v-model="form.account_name" placeholder="Имя профиля или ссылка" type="text"></div>
+            <div class="intput-wrapper"><input v-model="form.full_name" placeholder="Полное имя" type="text"></div>
+            <div class="intput-wrapper"><input v-model="form.email" placeholder="Email" type="email" ></div>
+            <div class="intput-wrapper"><input v-model="form.password" placeholder="Пароль" type="password"></div>
+            <div class="intput-wrapper"><input v-model="form.account_name" placeholder="Имя профиля или ссылка" type="text"></div>
         </div>
         <div class="row4">
             К оплате: {{ service.price}} Рублей
@@ -101,7 +101,7 @@
         line-height: 61px;
         text-align: center;
         color: #5C4998;
-        margin-top: 60px;
+        margin-top: 2rem;
     }
 
     .row2{
@@ -112,7 +112,7 @@
         line-height: 37px;
         text-align: center;
         color: #5C4998;
-        margin-top: 5px;
+        margin-top: 1rem;
     }
 
     .row3{
@@ -122,7 +122,7 @@
         input{
             display: block;
             width: 100%;
-            margin-top: 25px;
+            margin-top: 1rem;
             box-sizing: border-box;
             border-radius: 81px;
             border: 1px solid gray;
@@ -135,7 +135,7 @@
     }
 
     .row4{
-        margin-top: 50px;
+        margin-top: 1rem;
         font-style: normal;
         font-weight: bold;
         font-size: 36px;
@@ -145,7 +145,7 @@
     }
 
     .row5{
-        margin-top: 17px;
+        margin-top: 1rem;
         font-style: normal;
         font-weight: normal;
         font-size: 20px;
@@ -157,7 +157,9 @@
     }
 
     .row6{
-        margin-bottom: 50px;
+        margin-top: 1rem;
+        margin-bottom: 2rem;
+
         a{
             max-width: 100%;
             width: 393.98px;
@@ -173,7 +175,6 @@
             text-decoration: none;
             border-radius: 50px;
             color: white;
-            margin-top: 15px;
         }
     }
 
