@@ -23,7 +23,7 @@
     </div>
     <div v-show="false">
         <form ref="payment_form" name="payment" method="post" action="https://sci.interkassa.com/" accept-charset="UTF-8">
-            <input type="hidden" name="ik_co_id" value="51237daa8f2a2d8413000000"/>
+            <input type="hidden" name="ik_co_id" value="5ed3d7051ae1bd39008b457b"/>
             <input type="hidden" name="ik_pm_no" value="ID_4233"/>
             <input type="hidden" name="ik_am" :value="service.price"/>
             <input type="hidden" name="ik_cur" value="RUB"/>
