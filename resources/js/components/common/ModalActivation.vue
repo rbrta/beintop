@@ -24,7 +24,7 @@
     <div v-show="false">
         <form ref="payment_form" name="payment" method="post" action="https://sci.interkassa.com/" accept-charset="UTF-8">
             <input type="hidden" name="ik_co_id" value="5ed3d7051ae1bd39008b457b"/>
-            <input type="hidden" name="ik_pm_no" value="ID_4233"/>
+            <input type="hidden" name="ik_pm_no" :value="order_id"/>
             <input type="hidden" name="ik_am" :value="service.price"/>
             <input type="hidden" name="ik_cur" value="RUB"/>
             <input type="hidden" name="ik_desc" :value="description"/>
@@ -61,7 +61,7 @@
                     { ...this.form, service_id: this.service.id }
                 ).then(response => {
                     this.order_id = "ID_" + response.data.order_id;
-                    this.$refs.payment_form.submit();
+                    this.$nextTick(_ => this.$refs.payment_form.submit());
                 }).catch(error => {
                     if(error.response.data && error.response.data.errors){
                         let message = error.response.data.errors[Object.keys(error.response.data.errors)[0]]

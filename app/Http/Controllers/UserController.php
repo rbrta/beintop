@@ -13,7 +13,10 @@ class UserController extends Controller
 {
     public function index()
     {
-        return "UserController@index";
+        $user_id = auth()->user()->id;
+        $orders = Order::with(["service","user"])->where("user_id", $user_id)->get();
+        $user = auth()->user();
+        return view("client", compact("orders", "user")); 
     }
 
     public function pay_service_guest(Request $request)

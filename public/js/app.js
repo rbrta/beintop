@@ -3980,7 +3980,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       })).then(function (response) {
         _this.order_id = "ID_" + response.data.order_id;
 
-        _this.$refs.payment_form.submit();
+        _this.$nextTick(function (_) {
+          return _this.$refs.payment_form.submit();
+        });
       })["catch"](function (error) {
         if (error.response.data && error.response.data.errors) {
           var message = error.response.data.errors[Object.keys(error.response.data.errors)[0]];
@@ -102113,7 +102115,8 @@ var render = function() {
             }),
             _vm._v(" "),
             _c("input", {
-              attrs: { type: "hidden", name: "ik_pm_no", value: "ID_4233" }
+              attrs: { type: "hidden", name: "ik_pm_no" },
+              domProps: { value: _vm.order_id }
             }),
             _vm._v(" "),
             _c("input", {
