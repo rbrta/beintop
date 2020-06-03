@@ -88,8 +88,8 @@
                             </td>
                             <td>{{ $order->user->account_name }}</td>
                             <td>
-                                <b>20 мая 2020</b><br>
-                                осталось 15 дней
+                                <b>{{ $order->expiration_date->format('d F Y') }}</b><br>
+                                осталось {{ $order->days }} дней
                             </td>
                             <td class="table-action">
                                 <a class="btn" href="#">Детали</a>

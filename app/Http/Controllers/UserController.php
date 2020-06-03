@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\User;
 use App\Order;
 use App\Service;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -14,8 +15,16 @@ class UserController extends Controller
     public function index()
     {
         $user_id = auth()->user()->id;
-        $orders = Order::with(["service","user"])->where("user_id", $user_id)->get();
+        $orders = Order::with(["service","user"])->where("user_id", $user_id)->where("orders.paid_status", "active")->get();
         $user = auth()->user();
+        $now = Carbon::now();
+        
+        $orders->map(function ($item) use($now){
+            $item->expiration_date = Carbon::parse($item->expiration_date);
+            $item->days = $item->expiration_date->diffInDays($now);
+            return $item;
+        });
+
         return view("client", compact("orders", "user")); 
     }
 
