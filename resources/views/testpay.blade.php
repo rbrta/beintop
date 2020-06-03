@@ -9,7 +9,7 @@
 </head>
 <body>
 
-
+{{ $callback }}
 
 <form name="payment" method="post" action="https://sci.interkassa.com/" accept-charset="UTF-8">
   <input type="hidden" name="ik_co_id" value="5ed3d7051ae1bd39008b457b"/>

@@ -4,10 +4,10 @@
         <div class="row1">Активация тарифа</div>
         <div class="row2">{{ description }}</div>
         <div class="row3">
-            <input v-model="form.full_name" placeholder="Полное имя" type="text">
-            <input v-model="form.email" placeholder="Email" type="email" >
-            <input v-model="form.password" placeholder="Пароль" type="password">
-            <input v-model="form.account_name" placeholder="Имя профиля или ссылка" type="text">
+            <div><input v-model="form.full_name" placeholder="Полное имя" type="text"></div>
+            <div><input v-model="form.email" placeholder="Email" type="email" ></div>
+            <div><input v-model="form.password" placeholder="Пароль" type="password"></div>
+            <div><input v-model="form.account_name" placeholder="Имя профиля или ссылка" type="text"></div>
         </div>
         <div class="row4">
             К оплате: {{ service.price}} Рублей
@@ -114,7 +114,7 @@
 
         input{
             width: 562px;
-            height: 117px;
+            height: 79px;
             margin-top: 25px;
             box-sizing: border-box;
             border-radius: 81px;
@@ -123,7 +123,7 @@
             line-height: 37px;
             font-style: normal;
             font-weight: normal;
-            padding: 60px 40px;
+            padding: 20px 40px;
         }
     }
 
@@ -141,7 +141,7 @@
         margin-top: 17px;
         font-style: normal;
         font-weight: normal;
-        font-size: 30px;
+        font-size: 20px;
         line-height: 37px;
         text-align: center;
         color: #5C4998;
@@ -152,7 +152,7 @@
         margin-bottom: 50px;
         a{
             width: 393.98px;
-            height: 83.71px;
+            height: 79px;
             font-family: Montserrat;
             font-style: normal;
             font-weight: normal;
