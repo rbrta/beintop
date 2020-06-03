@@ -36,25 +36,24 @@ class TestController extends Controller
 
     public function callback()
     {   
-        //$post = $_REQUEST;
-
-        $post = array (
-            'ik_co_id' => '5ed3d7051ae1bd39008b457b',
-            'ik_co_prs_id' => '406649888130',
-            'ik_inv_id' => '220551724',
-            'ik_inv_st' => 'success',
-            'ik_inv_crt' => '2020-06-03 11:42:16',
-            'ik_inv_prc' => '2020-06-03 11:42:16',
-            'ik_trn_id' => '',
-            'ik_pm_no' => 'ID_2',
-            'ik_pw_via' => 'test_interkassa_test_xts',
-            'ik_am' => '1.44',
-            'ik_co_rfn' => '1.44',
-            'ik_ps_price' => '1.5',
-            'ik_cur' => 'RUB',
-            'ik_desc' => 'Payment Description',
-            'ik_sign' => 'e6zooRxL4w1CKmBA9KQtdA==',
-        );
+        $post = $_POST;
+        // $post = array (
+        //     'ik_co_id' => '5ed3d7051ae1bd39008b457b',
+        //     'ik_co_prs_id' => '406649888130',
+        //     'ik_inv_id' => '220551724',
+        //     'ik_inv_st' => 'success',
+        //     'ik_inv_crt' => '2020-06-03 11:42:16',
+        //     'ik_inv_prc' => '2020-06-03 11:42:16',
+        //     'ik_trn_id' => '',
+        //     'ik_pm_no' => 'ID_2',
+        //     'ik_pw_via' => 'test_interkassa_test_xts',
+        //     'ik_am' => '1.44',
+        //     'ik_co_rfn' => '1.44',
+        //     'ik_ps_price' => '1.5',
+        //     'ik_cur' => 'RUB',
+        //     'ik_desc' => 'Payment Description',
+        //     'ik_sign' => 'e6zooRxL4w1CKmBA9KQtdA==',
+        // );
 
         $key = 'UpMgttstrxSG5xzI';
         $ik_id = '5ed3d7051ae1bd39008b457b';
