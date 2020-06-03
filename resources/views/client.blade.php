@@ -83,7 +83,7 @@
                     @foreach ($orders as $order)
                         <tr>
                             <td>
-                                Тариф<br>
+                                {{ str_replace('Тарифы','Тариф',$order->service->category->name) }}<br>
                                 <b>{{ $order->service->name }}</b>
                             </td>
                             <td>{{ $order->user->account_name }}</td>

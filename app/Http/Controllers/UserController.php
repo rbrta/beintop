@@ -15,7 +15,7 @@ class UserController extends Controller
     public function index()
     {
         $user_id = auth()->user()->id;
-        $orders = Order::with(["service","user"])->where("user_id", $user_id)->where("orders.paid_status", "active")->get();
+        $orders = Order::with(["service.category", "user"])->where("user_id", $user_id)->where("orders.paid_status", "active")->get();
         $user = auth()->user();
         $now = Carbon::now();
         
