@@ -3891,9 +3891,14 @@ __webpack_require__.r(__webpack_exports__);
   props: ['service'],
   methods: {
     activation: function activation() {
-      this.$showModal(_common_ModalActivation__WEBPACK_IMPORTED_MODULE_0__["default"], {
+      this.$modal.show(_common_ModalActivation__WEBPACK_IMPORTED_MODULE_0__["default"], {
         service: this.service
-      }, 850);
+      }, {
+        width: 800,
+        height: 'auto',
+        adaptive: true,
+        scrollable: true
+      });
     }
   }
 });
@@ -10370,7 +10375,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.modal-header[data-v-3d3d1abe] {\r\n    border-bottom: 1px solid #EBEEF5;\r\n    padding: 20px 30px;\r\n    display: flex;\r\n    justify-content: space-between;\r\n    align-items: center;\n}\n.modal-header h5[data-v-3d3d1abe] {\r\n    font-weight: 600;\r\n    font-size: 21px;\r\n    margin: 0;\n}\n.modal-body[data-v-3d3d1abe] {\r\n    padding: 25px 30px 35px 30px;\n}\r\n\r\n", ""]);
+exports.push([module.i, "\n.modal-header[data-v-3d3d1abe] {\n    border-bottom: 1px solid #EBEEF5;\n    padding: 20px 30px;\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n}\n.modal-header h5[data-v-3d3d1abe] {\n    font-weight: 600;\n    font-size: 21px;\n    margin: 0;\n}\n.modal-body[data-v-3d3d1abe] {\n    padding: 25px 30px 35px 30px;\n}\n\n", ""]);
 
 // exports
 
@@ -101509,9 +101514,7 @@ var render = function() {
   return _c("div", { staticClass: "container-table" }, [
     _c("div", { staticClass: "wrapper-content" }, [
       _c("div", { staticClass: "wrapper-table" }, [
-        _c("div", { staticClass: "tab" }, [
-          _vm._v("\r\n\t\t\t\tТарифы\r\n\t\t\t")
-        ]),
+        _c("div", { staticClass: "tab" }, [_vm._v("\n\t\t\t\tТарифы\n\t\t\t")]),
         _vm._v(" "),
         _c(
           "table",
@@ -116138,10 +116141,10 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\A\Desktop\beintop\resources\js\app.js */"./resources/js/app.js");
-__webpack_require__(/*! C:\Users\A\Desktop\beintop\resources\sass\homepage.scss */"./resources/sass/homepage.scss");
-__webpack_require__(/*! C:\Users\A\Desktop\beintop\resources\sass\clientpage.scss */"./resources/sass/clientpage.scss");
-module.exports = __webpack_require__(/*! C:\Users\A\Desktop\beintop\resources\sass\backendpage.scss */"./resources/sass/backendpage.scss");
+__webpack_require__(/*! /var/www/beintop/resources/js/app.js */"./resources/js/app.js");
+__webpack_require__(/*! /var/www/beintop/resources/sass/homepage.scss */"./resources/sass/homepage.scss");
+__webpack_require__(/*! /var/www/beintop/resources/sass/clientpage.scss */"./resources/sass/clientpage.scss");
+module.exports = __webpack_require__(/*! /var/www/beintop/resources/sass/backendpage.scss */"./resources/sass/backendpage.scss");
 
 
 /***/ })

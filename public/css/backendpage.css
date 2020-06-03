@@ -267,12 +267,12 @@ header .wrapper-mobile {
   z-index: 500;
   width: 100%;
   background-color: white;
-  background: #fff url(/images/background-mobile.svg?8045323e0d1593cf549735a00dfd45bf) no-repeat center 140px/cover;
+  background: #fff url(/images/background-mobile.svg?bc1bdbb9f0314ac760e1ed21bdbe7def) no-repeat center 140px/cover;
 }
 
 @media screen and (min-width: 700px) {
   header .wrapper-mobile {
-    background: #fff url(/images/background-mobile.svg?8045323e0d1593cf549735a00dfd45bf) no-repeat center 35px/cover;
+    background: #fff url(/images/background-mobile.svg?bc1bdbb9f0314ac760e1ed21bdbe7def) no-repeat center 35px/cover;
   }
 }
 
@@ -523,7 +523,7 @@ header .wrapper .mobile-menu.active span:last-child {
 }
 
 body {
-  background-image: url(/images/background-backend.svg?8740c4d311fb2a1468297a0662250171);
+  background-image: url(/images/background-backend.svg?b0f6a2e0b8b956ce089ef2804531e98b);
   background-position: bottom;
   background-repeat: no-repeat;
   background-size: cover;
