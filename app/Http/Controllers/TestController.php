@@ -84,7 +84,6 @@ class TestController extends Controller
 
     public function pay()
     {
-        dd(env("APP_URL"));
         $url = env("PAY_URL");
         $callback = $url . '/payment/callback';
         $success = $url . '/payment/success';
