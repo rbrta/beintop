@@ -112,7 +112,7 @@ if (menuBtn !== null) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /var/www/beintop/resources/js/main.js */"./resources/js/main.js");
+module.exports = __webpack_require__(/*! C:\Users\A\Desktop\beintop\resources\js\main.js */"./resources/js/main.js");
 
 
 /***/ })

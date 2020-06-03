@@ -18,12 +18,15 @@ class UserController extends Controller
         $orders = Order::with(["service.category", "user"])->where("user_id", $user_id)->where("orders.paid_status", "active")->get();
         $user = auth()->user();
         $now = Carbon::now();
-        
-        setlocale(LC_TIME, 'ru_RU.UTF-8');
 
-        $orders->map(function ($item) use($now){
+        $months = array(1 => 'Января', 2 => 'Февраля', 3 => 'Марта', 	4 => 'Апреля', 
+        5 => 'Мая', 6 => 'Июня', 7 => 'Июля', 8 => 'Августа', 
+        9 => 'Сентября', 10 => 'Октября', 11 => 'Ноября', 12 => 'Декабря');
+
+        $orders->map(function ($item) use($now, $months){
             $item->expiration_date = Carbon::parse($item->expiration_date);
             $item->days = $item->expiration_date->diffInDays($now);
+            $item->month = $months[(int)$item->expiration_date->format('m')];
             return $item;
         });
 
