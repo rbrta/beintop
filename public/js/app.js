@@ -102143,7 +102143,7 @@ var render = function() {
               attrs: {
                 type: "hidden",
                 name: "ik_ia_u",
-                value: "http://www.be-in-top.ru/payment/callback"
+                value: "https://beintop.kwonterdevs.pp.ua/payment/callback"
               }
             }),
             _vm._v(" "),
@@ -102151,7 +102151,7 @@ var render = function() {
               attrs: {
                 type: "hidden",
                 name: "ik_suc_u",
-                value: "http://www.be-in-top.ru/payment/success"
+                value: "https://beintop.kwonterdevs.pp.ua/payment/success"
               }
             }),
             _vm._v(" "),
@@ -102159,7 +102159,7 @@ var render = function() {
               attrs: {
                 type: "hidden",
                 name: "ik_fal_u",
-                value: "http://www.be-in-top.ru/payment/failure"
+                value: "https://beintop.kwonterdevs.pp.ua/payment/failure"
               }
             }),
             _vm._v(" "),
@@ -102167,7 +102167,7 @@ var render = function() {
               attrs: {
                 type: "hidden",
                 name: "ik_pnd_u",
-                value: "http://www.be-in-top.ru/payment/pending"
+                value: "https://beintop.kwonterdevs.pp.ua/payment/pending"
               }
             }),
             _vm._v(" "),
