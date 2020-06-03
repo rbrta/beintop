@@ -19,6 +19,8 @@ class UserController extends Controller
         $user = auth()->user();
         $now = Carbon::now();
         
+        setlocale(LC_TIME, 'ru_RU.UTF-8');
+
         $orders->map(function ($item) use($now){
             $item->expiration_date = Carbon::parse($item->expiration_date);
             $item->days = $item->expiration_date->diffInDays($now);

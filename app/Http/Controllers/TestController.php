@@ -12,6 +12,8 @@ class TestController extends Controller
 {
     public function test()
     {
+        return view('success');
+        
         $first = Order::where("id", "4")->with("service")->first();
         $exp = Carbon::now()->addDays($first->service->periodindays);
         $first->update(['paid_status' => 'active','expiration_date' => $exp]);

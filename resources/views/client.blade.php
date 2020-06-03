@@ -57,7 +57,7 @@
         </div>
     </div>
     <!-- ------------------------------------------------------------------------------- -->    
-    <div class="container-table">
+    <div id="app" class="container-table">
         <div class="wrapper-content">
             <div class="wrapper-table">
                 <div class="tabs">
@@ -92,7 +92,7 @@
                                 осталось {{ $order->days }} дней
                             </td>
                             <td class="table-action">
-                                <a class="btn" href="#">Детали</a>
+                                <button-details></button-details>
                             </td>
                         </tr>
                     @endforeach
