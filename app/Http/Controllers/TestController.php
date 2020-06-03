@@ -11,18 +11,14 @@ class TestController extends Controller
 {
     public function success()
     {
-        $post = $_POST;
-        Log::debug($post);
         Log::debug('success!!!');
-        return "success";
+        return view('success');
     }
 
     public function failure()
     {
-        $post = $_POST;
-        Log::debug($post);
         Log::debug('failure!!!');
-        return "failure";
+        return view('failure');
     }
 
     public function pending()
@@ -37,8 +33,10 @@ class TestController extends Controller
     public function callback()
     {   
         $post = $_POST;
-        $key = env("PAY_KEY");
-        $ik_id = env("PAY_SHOP_ID");
+        //$key = env("PAY_KEY");
+        //$ik_id = env("PAY_SHOP_ID");
+        $key = "UpMgttstrxSG5xzI";
+        $ik_id = "5ed3d7051ae1bd39008b457b";
         $dataSet = $post;
 
         unset($dataSet['ik_sign']); // Delete string with signature from dataset
@@ -65,7 +63,8 @@ class TestController extends Controller
     public function pay()
     {
         $url = env("PAY_URL");
-        $shop_id = env("PAY_SHOP_ID");
+        //$shop_id = env("PAY_SHOP_ID");
+        $shop_id = "5ed3d7051ae1bd39008b457b";
         $callback = $url . '/payment/callback';
         $success = $url . '/payment/success';
         $failure = $url . '/payment/failure';
