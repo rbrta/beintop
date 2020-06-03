@@ -18,6 +18,11 @@ class UserController extends Controller
 
     public function pay_service_guest(Request $request)
     {
+        $customMessages = [
+            'required' => 'Нужно указать :attribute',
+            'unique' => 'Такой адрес электронной почты уже существует',
+        ];
+
         $request->validate([
             'full_name' => 'required',
             'email' => 'required|unique:users',
@@ -26,7 +31,7 @@ class UserController extends Controller
             'service_id' => 'required',
             // 'email' => 'required|email|unique:users',
             // 'password' => 'required|min:8',
-        ]);
+        ], $customMessages);
 
         $user = User::create([
             'full_name' => $request->full_name,
