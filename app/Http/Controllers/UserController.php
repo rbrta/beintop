@@ -20,6 +20,10 @@ class UserController extends Controller
         $now = Carbon::now();
         
         setlocale(LC_TIME, 'ru_RU.UTF-8');
+        
+        //Я делал так
+        // Carbon::setlocale('ru');
+        // Carbon::parse($this->created_at)->translatedFormat("d F, Y")
 
         $orders->map(function ($item) use($now){
             $item->expiration_date = Carbon::parse($item->expiration_date);
