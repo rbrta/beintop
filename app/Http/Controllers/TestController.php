@@ -4,11 +4,22 @@ namespace App\Http\Controllers;
 
 use App\Order;
 use App\Service;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
 class TestController extends Controller
 {
+    public function test()
+    {
+        $first = Order::where("id", "4")->with("service")->first();
+        $exp = Carbon::now()->addDays($first->service->periodindays);
+        $first->update(['paid_status' => 'active','expiration_date' => $exp]);
+
+        return $first;
+        return "test";
+    }
+
     public function success()
     {
         Log::debug('success!!!');
@@ -54,7 +65,9 @@ class TestController extends Controller
   
         $order_id = $dataSet['ik_pm_no'];
         str_replace('ID_', '', $order_id);
-        Order::where('id', $order_id)->update(['paid_status' => 'active']);
+        $first = Order::where("id", $order_id)->with("service")->first();
+        $exp = Carbon::now()->addDays($first->service->periodindays);
+        $first->update(['paid_status' => 'active','expiration_date' => $exp]);
         
         Log::debug('success');
         return "success";

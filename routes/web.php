@@ -33,4 +33,5 @@ Route::post('/payment/success', 'TestController@success');
 Route::post('/payment/failure', 'TestController@failure');
 Route::post('/payment/pending', 'TestController@pending');
 Route::get('/pay', 'TestController@pay');
+Route::get('/test', 'TestController@test');
 
