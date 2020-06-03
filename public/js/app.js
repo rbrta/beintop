@@ -3957,6 +3957,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "ModalSkeleton",
   props: ['service'],
@@ -3985,7 +3991,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       })).then(function (response) {
         _this.order_id = "ID_" + response.data.order_id;
 
-        _this.$refs.payment_form.submit();
+        _this.$nextTick(function (_) {
+          return _this.$refs.payment_form.submit();
+        });
       })["catch"](function (error) {
         if (error.response.data && error.response.data.errors) {
           var message = error.response.data.errors[Object.keys(error.response.data.errors)[0]];
@@ -10298,7 +10306,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".popup[data-v-12e6cfea] {\n  width: 849px;\n  margin: 0 auto;\n}\n.popup__content[data-v-12e6cfea] {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n}\n.popup .row1[data-v-12e6cfea] {\n  font-family: Montserrat;\n  font-style: normal;\n  font-weight: bold;\n  font-size: 50px;\n  line-height: 61px;\n  text-align: center;\n  color: #5C4998;\n  margin-top: 60px;\n}\n.popup .row2[data-v-12e6cfea] {\n  font-family: Montserrat;\n  font-style: normal;\n  font-weight: normal;\n  font-size: 30px;\n  line-height: 37px;\n  text-align: center;\n  color: #5C4998;\n  margin-top: 5px;\n}\n.popup .row3[data-v-12e6cfea] {\n  display: flex;\n  flex-direction: column;\n}\n.popup .row3 input[data-v-12e6cfea] {\n  width: 562px;\n  height: 117px;\n  margin-top: 25px;\n  box-sizing: border-box;\n  border-radius: 81px;\n  border: 1px solid gray;\n  font-size: 30px;\n  line-height: 37px;\n  font-style: normal;\n  font-weight: normal;\n  padding: 60px 40px;\n}\n.popup .row4[data-v-12e6cfea] {\n  margin-top: 50px;\n  font-style: normal;\n  font-weight: bold;\n  font-size: 36px;\n  line-height: 44px;\n  text-align: center;\n  color: #5C4998;\n}\n.popup .row5[data-v-12e6cfea] {\n  margin-top: 17px;\n  font-style: normal;\n  font-weight: normal;\n  font-size: 30px;\n  line-height: 37px;\n  text-align: center;\n  color: #5C4998;\n  width: 460px;\n}\n.popup .row6[data-v-12e6cfea] {\n  margin-bottom: 50px;\n}\n.popup .row6 a[data-v-12e6cfea] {\n  width: 393.98px;\n  height: 83.71px;\n  font-family: Montserrat;\n  font-style: normal;\n  font-weight: normal;\n  font-size: 27px;\n  line-height: 75px;\n  background: linear-gradient(89.77deg, #E164BE -0.56%, #FF74D8 -0.55%, #FF985E 97.67%);\n  display: inline-block;\n  text-align: center;\n  text-decoration: none;\n  border-radius: 50px;\n  color: white;\n  margin-top: 15px;\n}\n.popup textarea[data-v-12e6cfea]:focus, .popup input[data-v-12e6cfea]:focus {\n  outline: none;\n}", ""]);
+exports.push([module.i, ".popup[data-v-12e6cfea] {\n  width: 849px;\n  margin: 0 auto;\n}\n.popup__content[data-v-12e6cfea] {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n}\n.popup .row1[data-v-12e6cfea] {\n  font-family: Montserrat;\n  font-style: normal;\n  font-weight: bold;\n  font-size: 50px;\n  line-height: 61px;\n  text-align: center;\n  color: #5C4998;\n  margin-top: 60px;\n}\n.popup .row2[data-v-12e6cfea] {\n  font-family: Montserrat;\n  font-style: normal;\n  font-weight: normal;\n  font-size: 30px;\n  line-height: 37px;\n  text-align: center;\n  color: #5C4998;\n  margin-top: 5px;\n}\n.popup .row3[data-v-12e6cfea] {\n  display: flex;\n  flex-direction: column;\n}\n.popup .row3 input[data-v-12e6cfea] {\n  width: 562px;\n  height: 79px;\n  margin-top: 25px;\n  box-sizing: border-box;\n  border-radius: 81px;\n  border: 1px solid gray;\n  font-size: 30px;\n  line-height: 37px;\n  font-style: normal;\n  font-weight: normal;\n  padding: 20px 40px;\n}\n.popup .row4[data-v-12e6cfea] {\n  margin-top: 50px;\n  font-style: normal;\n  font-weight: bold;\n  font-size: 36px;\n  line-height: 44px;\n  text-align: center;\n  color: #5C4998;\n}\n.popup .row5[data-v-12e6cfea] {\n  margin-top: 17px;\n  font-style: normal;\n  font-weight: normal;\n  font-size: 20px;\n  line-height: 37px;\n  text-align: center;\n  color: #5C4998;\n  width: 460px;\n}\n.popup .row6[data-v-12e6cfea] {\n  margin-bottom: 50px;\n}\n.popup .row6 a[data-v-12e6cfea] {\n  width: 393.98px;\n  height: 79px;\n  font-family: Montserrat;\n  font-style: normal;\n  font-weight: normal;\n  font-size: 27px;\n  line-height: 75px;\n  background: linear-gradient(89.77deg, #E164BE -0.56%, #FF74D8 -0.55%, #FF985E 97.67%);\n  display: inline-block;\n  text-align: center;\n  text-decoration: none;\n  border-radius: 50px;\n  color: white;\n  margin-top: 15px;\n}\n.popup textarea[data-v-12e6cfea]:focus, .popup input[data-v-12e6cfea]:focus {\n  outline: none;\n}", ""]);
 
 // exports
 
@@ -101963,89 +101971,97 @@ var render = function() {
       _c("div", { staticClass: "row2" }, [_vm._v(_vm._s(_vm.description))]),
       _vm._v(" "),
       _c("div", { staticClass: "row3" }, [
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.form.full_name,
-              expression: "form.full_name"
-            }
-          ],
-          attrs: { placeholder: "Полное имя", type: "text" },
-          domProps: { value: _vm.form.full_name },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
+        _c("div", [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.form.full_name,
+                expression: "form.full_name"
               }
-              _vm.$set(_vm.form, "full_name", $event.target.value)
+            ],
+            attrs: { placeholder: "Полное имя", type: "text" },
+            domProps: { value: _vm.form.full_name },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.form, "full_name", $event.target.value)
+              }
             }
-          }
-        }),
+          })
+        ]),
         _vm._v(" "),
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.form.email,
-              expression: "form.email"
-            }
-          ],
-          attrs: { placeholder: "Email", type: "email" },
-          domProps: { value: _vm.form.email },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
+        _c("div", [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.form.email,
+                expression: "form.email"
               }
-              _vm.$set(_vm.form, "email", $event.target.value)
+            ],
+            attrs: { placeholder: "Email", type: "email" },
+            domProps: { value: _vm.form.email },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.form, "email", $event.target.value)
+              }
             }
-          }
-        }),
+          })
+        ]),
         _vm._v(" "),
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.form.password,
-              expression: "form.password"
-            }
-          ],
-          attrs: { placeholder: "Пароль", type: "password" },
-          domProps: { value: _vm.form.password },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
+        _c("div", [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.form.password,
+                expression: "form.password"
               }
-              _vm.$set(_vm.form, "password", $event.target.value)
+            ],
+            attrs: { placeholder: "Пароль", type: "password" },
+            domProps: { value: _vm.form.password },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.form, "password", $event.target.value)
+              }
             }
-          }
-        }),
+          })
+        ]),
         _vm._v(" "),
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.form.account_name,
-              expression: "form.account_name"
-            }
-          ],
-          attrs: { placeholder: "Имя профиля или ссылка", type: "text" },
-          domProps: { value: _vm.form.account_name },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
+        _c("div", [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.form.account_name,
+                expression: "form.account_name"
               }
-              _vm.$set(_vm.form, "account_name", $event.target.value)
+            ],
+            attrs: { placeholder: "Имя профиля или ссылка", type: "text" },
+            domProps: { value: _vm.form.account_name },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.form, "account_name", $event.target.value)
+              }
             }
-          }
-        })
+          })
+        ])
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "row4" }, [
@@ -102108,7 +102124,8 @@ var render = function() {
             }),
             _vm._v(" "),
             _c("input", {
-              attrs: { type: "hidden", name: "ik_pm_no", value: "ID_4233" }
+              attrs: { type: "hidden", name: "ik_pm_no" },
+              domProps: { value: _vm.order_id }
             }),
             _vm._v(" "),
             _c("input", {
@@ -102123,6 +102140,38 @@ var render = function() {
             _c("input", {
               attrs: { type: "hidden", name: "ik_desc" },
               domProps: { value: _vm.description }
+            }),
+            _vm._v(" "),
+            _c("input", {
+              attrs: {
+                type: "hidden",
+                name: "ik_ia_u",
+                value: "https://beintop.kwonterdevs.pp.ua/payment/callback"
+              }
+            }),
+            _vm._v(" "),
+            _c("input", {
+              attrs: {
+                type: "hidden",
+                name: "ik_suc_u",
+                value: "https://beintop.kwonterdevs.pp.ua/payment/success"
+              }
+            }),
+            _vm._v(" "),
+            _c("input", {
+              attrs: {
+                type: "hidden",
+                name: "ik_fal_u",
+                value: "https://beintop.kwonterdevs.pp.ua/payment/failure"
+              }
+            }),
+            _vm._v(" "),
+            _c("input", {
+              attrs: {
+                type: "hidden",
+                name: "ik_pnd_u",
+                value: "https://beintop.kwonterdevs.pp.ua/payment/pending"
+              }
             }),
             _vm._v(" "),
             _c("input", { attrs: { type: "submit", value: "Pay" } })

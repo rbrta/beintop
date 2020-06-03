@@ -13,11 +13,19 @@ class UserController extends Controller
 {
     public function index()
     {
-        return "UserController@index";
+        $user_id = auth()->user()->id;
+        $orders = Order::with(["service","user"])->where("user_id", $user_id)->get();
+        $user = auth()->user();
+        return view("client", compact("orders", "user")); 
     }
 
     public function pay_service_guest(Request $request)
     {
+        $customMessages = [
+            'required' => 'Нужно указать :attribute',
+            'unique' => 'Такой адрес электронной почты уже существует',
+        ];
+
         $request->validate([
             'full_name' => 'required',
             'email' => 'required|unique:users',
@@ -26,7 +34,7 @@ class UserController extends Controller
             'service_id' => 'required',
             // 'email' => 'required|email|unique:users',
             // 'password' => 'required|min:8',
-        ]);
+        ], $customMessages);
 
         $user = User::create([
             'full_name' => $request->full_name,
