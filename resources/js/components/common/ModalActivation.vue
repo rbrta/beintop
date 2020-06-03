@@ -60,7 +60,7 @@
                 axios.post('/pay_service', 
                     { ...this.form, service_id: this.service.id }
                 ).then(response => {
-                    this.order_id = response.data.order_id;
+                    this.order_id = "ID_" + response.data.order_id;
                     this.$refs.payment_form.submit();
                 }).catch(error => {
                     if(error.response.data && error.response.data.errors){

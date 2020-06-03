@@ -3978,7 +3978,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       axios.post('/pay_service', _objectSpread(_objectSpread({}, this.form), {}, {
         service_id: this.service.id
       })).then(function (response) {
-        _this.order_id = response.data.order_id;
+        _this.order_id = "ID_" + response.data.order_id;
 
         _this.$refs.payment_form.submit();
       })["catch"](function (error) {

@@ -28,8 +28,9 @@ Route::get('/client', 'UserController@index');
 Route::post('/pay_service', 'UserController@pay_service_guest');
 
 
-Route::get('/payment/success', 'TestController@success');
-Route::get('/payment/failure', 'TestController@failure');
-Route::get('/payment/callback', 'TestController@callback');
+Route::post('/payment/callback', 'TestController@callback');
+Route::post('/payment/success', 'TestController@success');
+Route::post('/payment/failure', 'TestController@failure');
+Route::post('/payment/pending', 'TestController@pending');
 Route::get('/pay', 'TestController@pay');
 
