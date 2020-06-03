@@ -267,12 +267,12 @@ header .wrapper-mobile {
   z-index: 500;
   width: 100%;
   background-color: white;
-  background: #fff url(/images/background-mobile.svg?bc1bdbb9f0314ac760e1ed21bdbe7def) no-repeat center 140px/cover;
+  background: #fff url(/images/background-mobile.svg?8045323e0d1593cf549735a00dfd45bf) no-repeat center 140px/cover;
 }
 
 @media screen and (min-width: 700px) {
   header .wrapper-mobile {
-    background: #fff url(/images/background-mobile.svg?bc1bdbb9f0314ac760e1ed21bdbe7def) no-repeat center 35px/cover;
+    background: #fff url(/images/background-mobile.svg?8045323e0d1593cf549735a00dfd45bf) no-repeat center 35px/cover;
   }
 }
 
@@ -372,7 +372,7 @@ header .wrapper-mobile .mobile-menu a {
 
 .container-top {
   position: relative;
-  background-image: url(/images/bg_waves.png?d0a5893f6d958d288c0090e7c228f47b), url(/images/points.svg?259b5d18ac386d30d3252ac0e2dae99c), url(/images/likes.svg?6967c9145eaaf6a65035a12342bb1396);
+  background-image: url(/images/bg_waves.png?d0a5893f6d958d288c0090e7c228f47b), url(/images/points.svg?9c8a5716adbc08980d2fd304f371935e), url(/images/likes.svg?07787d23c23ff32969003b4ea3b88c51);
   background-repeat: no-repeat, no-repeat, no-repeat;
   background-position: -540px 178px, 140px -80px, 393px 126px;
   padding-bottom: 580px;
@@ -446,91 +446,91 @@ header .wrapper-mobile .mobile-menu a {
 
 @media (max-width: 700px) {
   .container-top {
-    background-size: 530% auto, auto, 75%;
+    background-size: 520% auto, auto, 75%;
   }
 }
 
 @media (max-width: 675px) {
   .container-top {
-    background-size: 500% auto, auto, 75%;
+    background-size: 460% auto, auto, 75%;
   }
 }
 
 @media (max-width: 659px) {
   .container-top {
-    background-size: 530% auto, auto, 75%;
+    background-size: 500% auto, auto, 75%;
   }
 }
 
 @media (max-width: 638px) {
   .container-top {
-    background-size: 560% auto, auto, 75%;
+    background-size: 510% auto, auto, 75%;
   }
 }
 
 @media (max-width: 590px) {
   .container-top {
-    background-size: 590% auto, auto, 75%;
+    background-size: 540% auto, auto, 75%;
   }
 }
 
 @media (max-width: 550px) {
   .container-top {
-    background-size: 620% auto, auto, 75%;
+    background-size: 580% auto, auto, 75%;
   }
 }
 
 @media (max-width: 515px) {
   .container-top {
-    background-size: 670% auto, auto, 75%;
+    background-size: 580% auto, auto, 75%;
   }
 }
 
 @media (max-width: 480px) {
   .container-top {
-    background-size: 720% auto, auto, 75%;
+    background-size: 660% auto, auto, 75%;
   }
 }
 
 @media (max-width: 450px) {
   .container-top {
-    background-size: 620% auto, auto, 75%;
+    background-size: 560% auto, auto, 75%;
   }
 }
 
 @media (max-width: 430px) {
   .container-top {
-    background-size: 650% auto, auto, 75%;
+    background-size: 600% auto, auto, 75%;
   }
 }
 
 @media (max-width: 400px) {
   .container-top {
-    background-size: 660% auto, auto, 75%;
+    background-size: 620% auto, auto, 75%;
   }
 }
 
 @media (max-width: 380px) {
   .container-top {
-    background-size: 740% auto, auto, 75%;
+    background-size: 660% auto, auto, 75%;
   }
 }
 
 @media (max-width: 370px) {
   .container-top {
-    background-size: 780% auto, auto, 75%;
+    background-size: 690% auto, auto, 75%;
   }
 }
 
 @media (max-width: 345px) {
   .container-top {
-    background-size: 830% auto, auto, 75%;
+    background-size: 745% auto, auto, 75%;
   }
 }
 
 @media (max-width: 332px) {
   .container-top {
-    background-size: 860% auto, auto, 75%;
+    background-size: 780% auto, auto, 75%;
   }
 }
 
@@ -546,7 +546,7 @@ header .wrapper-mobile .mobile-menu a {
   position: absolute;
   top: 0;
   left: 0;
-  background: url(/images/rocket.svg?ad4a6fa6c5d4f20e932f4b8850e2d9e1) no-repeat left top/contain;
+  background: url(/images/rocket.svg?71a86fddce7f63601f36ab142701150d) no-repeat left top/contain;
   width: 55%;
   height: 1660px;
 }
@@ -814,9 +814,9 @@ header .wrapper-mobile .mobile-menu a {
 .container-middle {
   margin-top: -500px;
   padding-top: 180px;
-  background-image: url(/images/points.svg?259b5d18ac386d30d3252ac0e2dae99c), url(/images/likes.svg?6967c9145eaaf6a65035a12342bb1396);
+  background-image: url(/images/points.svg?9c8a5716adbc08980d2fd304f371935e), url(/images/likes.svg?07787d23c23ff32969003b4ea3b88c51);
   background-repeat: no-repeat, no-repeat;
-  background-position: -20px -80px, 190px 120px;
+  background-position: -20px -80px, 190px 120px;
 }
 
 @media (max-width: 450px) {
@@ -1153,7 +1153,7 @@ header .wrapper-mobile .mobile-menu a {
 
 .container-below .row2 .content .arrow {
   min-width: 18px;
-  background-image: url(/images/arrow.svg?4122399a51a3ce7aaa33c1b8b3126c5b);
+  background-image: url(/images/arrow.svg?00b8aa5b1d04ffbea3a22b67fb954a91);
   background-repeat: no-repeat;
   background-position-x: center;
   margin-top: 60px;
@@ -1161,7 +1161,7 @@ header .wrapper-mobile .mobile-menu a {
 
 @media (max-width: 900px) {
   .container-below .row2 .content .arrow {
-    background-image: url(/images/arrow-mobile.svg?777cfcdf614c5965a26636dc4d414419);
+    background-image: url(/images/arrow-mobile.svg?76b22e620add3502043431c0514e8602);
     margin-top: 30px;
     width: auto !important;
   }
