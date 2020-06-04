@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Carbon;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -14,7 +15,9 @@ class DatabaseSeeder extends Seeder
         DB::table('users')->insertOrIgnore([
             'full_name' => 'Admin',
             'email' => 'admin@gmail.com',
-            'password' => bcrypt('999999999')
+            'password' => bcrypt('999999999'),
+            'usertype' => 'admin',
+            'email_verified_at' => Carbon::now(),
         ]);
 
         DB::table('users')->insertOrIgnore([
