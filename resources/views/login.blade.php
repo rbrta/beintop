@@ -53,7 +53,7 @@
                 <div class="errors">{{$errors->first()}}</div>
             @endif
             <div class="lost-password">
-                <a href="#">Забыли пароль?</a>
+                <a href="/password/reset">Забыли пароль?</a>
             </div>
         </div>
     </div>

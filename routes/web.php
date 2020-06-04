@@ -24,6 +24,7 @@ Route::group(['prefix' => 'admin'], function() {
     Route::delete('/delete_service', 'AdminController@deleteService');
 });
 
+Route::get('/home', function(){ return redirect()->to('/client'); });
 Route::get('/client', 'UserController@index');
 Route::post('/pay_service', 'UserController@pay_service_guest');
 
@@ -36,8 +37,7 @@ Route::get('/pay', 'TestController@pay');
 Route::get('/test', 'TestController@test');
 
 
-Route::get('/login', 'UserController@loginUser');
-Route::post('/signup', 'UserController@signupUser');
 
 Auth::routes();
-
+Route::get('/login', 'UserController@loginUser')->name('login');
+Route::post('/signup', 'UserController@signupUser');
