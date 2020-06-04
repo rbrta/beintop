@@ -59,6 +59,9 @@
                     {{ session('status') }}
                 </div>
             @endif
+            @if($errors->any())
+                <div class="errors">{{$errors->first()}}</div>
+            @endif
             <div class="lost-password">
             </div>
 
