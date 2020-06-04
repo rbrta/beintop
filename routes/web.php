@@ -35,3 +35,7 @@ Route::post('/payment/pending', 'TestController@pending');
 Route::get('/pay', 'TestController@pay');
 Route::get('/test', 'TestController@test');
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
