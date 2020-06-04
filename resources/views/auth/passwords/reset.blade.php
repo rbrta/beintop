@@ -55,7 +55,7 @@
             </div>
 
             <div>
-                <a href="#" class="login" onclick="document.getElementById('signup-form').submit(); return false;">
+                <a href="#" class="login_btn" onclick="document.getElementById('signup-form').submit(); return false;">
                     Восстановить пароль
                 </a>
             </div>
@@ -74,22 +74,30 @@
 <style>
 .login{
     margin-top: 126px;
-    width: 779px;
+    max-width: 779px;
+    padding: 10px;
     margin: 126px auto 0px auto;
     border-radius: 35px;
     box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.25);
     background-color: white;
 }
 .login .wrapper{
-    width: 483px;
+    max-width: 483px;
     background-color: white;
     margin: 0 auto;
     text-align: center;
+    padding: 0px 5px;
 }
 .login .wrapper .title{
     color: #984493;
     font-size: 42px;
     padding-top: 60px;
+}
+@media(max-width:600px) {
+    .login .wrapper .title{
+        font-size: 32px;
+        line-height: 1;
+    }
 }
 .login .wrapper .description{
     font-size: 18px;
@@ -113,8 +121,8 @@
     font-weight: normal;
     padding: 20px 40px;
 }
-.login .wrapper a.login{
-    width: 483px;
+.login .wrapper a.login_btn{
+    width: 100%;
     height: 68px;
     background: linear-gradient(89.67deg, #E164BE -0.56%, #FF74D8 -0.55%, #FF985E 97.67%);
     border-radius: 50px;
@@ -125,6 +133,7 @@
     line-height: 2.7 !important;
     font-size: 25px;
     line-height: 30px;
+   
 }
 .login .lost-password{
     text-align: right;

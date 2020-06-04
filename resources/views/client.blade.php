@@ -43,7 +43,7 @@
                 <b>Аккаунт:</b> {{ $user->email }}
             </div>
             <div class="row2">
-                <a href="#">Сменить аккаунт</a>
+                <a href="/logout">Сменить аккаунт</a>
             </div>
         </div>
     </div>
