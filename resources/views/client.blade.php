@@ -27,6 +27,14 @@
                 <span></span>
             </div>
         </div>
+        <div id="menuMob" class="wrapper-mobile hide">
+            <div class="mobile-menu">
+                <div><a href="#">На главную</a></div>
+                <div><a href="#">Личный кабинет</a></div>
+                <div><a href="#">Наши преимущества</a></div>
+                <div><a href="#">Выбрать тариф</a></div>
+            </div>
+        </div>
     </header>
    
     
