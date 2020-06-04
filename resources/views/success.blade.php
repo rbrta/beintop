@@ -52,7 +52,7 @@
     box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.25);
     background-color: white;
     margin: 0 auto;
-    border-radius: 5px;
+    border-radius: 35px;
     text-align: center;
 }
 .payment-message .wrapper .title{

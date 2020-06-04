@@ -18,16 +18,12 @@ class UserController extends Controller
         $orders = Order::with(["service.category", "user"])->where("user_id", $user_id)->where("orders.paid_status", "active")->get();
         $user = auth()->user();
         $now = Carbon::now();
-        
-        setlocale(LC_TIME, 'ru_RU.UTF-8');
-        
-        //Я делал так
-        // Carbon::setlocale('ru');
-        // Carbon::parse($this->created_at)->translatedFormat("d F, Y")
 
+        Carbon::setlocale('ru');
         $orders->map(function ($item) use($now){
             $item->expiration_date = Carbon::parse($item->expiration_date);
             $item->days = $item->expiration_date->diffInDays($now);
+            $item->expiration_date_format = $item->expiration_date->translatedFormat("d F Y");
             return $item;
         });
 
@@ -37,7 +33,11 @@ class UserController extends Controller
     public function pay_service_guest(Request $request)
     {
         $customMessages = [
-            'required' => 'Нужно указать :attribute',
+            'full_name.required' => 'Нужно указать "Полное имя"',
+            'email.required' => 'Нужно указать "Email"',
+            'password.required' => 'Не указан "Пароль"',
+            'account_name.required' => 'Не указан "Имя профиля или ссылка"',
+            'service_id.required' => 'Не указан "Тариф"',
             'unique' => 'Такой адрес электронной почты уже существует',
         ];
 
@@ -67,4 +67,20 @@ class UserController extends Controller
 
         return response()->json(['order_id' => $order->id]);
     }
+
+    public function loginUser()
+    {
+        return view('login');
+    }
+
+    public function signupUser()
+    {
+        if(!auth()->attempt(request(['email', 'password']))){
+             return back()->withErrors([
+                 'message' => 'Неверный пароль или email'
+             ]);
+         }
+ 
+         return redirect('/client');
+     }
 }

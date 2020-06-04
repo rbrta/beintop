@@ -36,6 +36,8 @@ Route::get('/pay', 'TestController@pay');
 Route::get('/test', 'TestController@test');
 
 
+Route::get('/login', 'UserController@loginUser');
+Route::post('/signup', 'UserController@signupUser');
+
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
