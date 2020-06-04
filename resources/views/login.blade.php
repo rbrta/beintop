@@ -30,47 +30,93 @@
         </div>
     </header>
     <!-- ------------------------------------------------------------------------------- --> 
-    <div class="payment-message">
+    <div class="login">
         <div class="wrapper">
             <div class="title">
-                Оплата успешно завершена
+                Авторизация
+            </div>
+            <div class="description">
+                Для входа в личный кабинет необходимо ввести логин и пароль
+            </div>
+            <div class="inputs">
+                <div class="intput-wrapper"><input placeholder="Email" type="email" ></div>
+                <div class="intput-wrapper"><input placeholder="Пароль" ></div>
             </div>
             <div>
-                <a href="/client">Перейти в  кабинет</a>
+                <a class="login" href="/client">Авторизоваться</a>
+            </div>
+            <div class="lost-password">
+                <a href="#">Забыли пароль?</a>
             </div>
         </div>
     </div>
     <!-- ------------------------------------------------------------------------------- --> 
 </div>
 <style>
-.payment-message{
+.login{
     margin-top: 126px;
-}
-.payment-message .wrapper{
-    width: 1251px;
-    height: 342px;
+    width: 779px;
+    margin: 126px auto 0px auto;
+    border-radius: 35px;
     box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.25);
     background-color: white;
+}
+.login .wrapper{
+    width: 483px;
+    background-color: white;
     margin: 0 auto;
-    border-radius: 35px;
     text-align: center;
 }
-.payment-message .wrapper .title{
-    font-size: 42px;
+.login .wrapper .title{
     color: #984493;
-    padding-top: 79px;
+    font-size: 42px;
+    padding-top: 60px;
 }
-.payment-message .wrapper a{
-    width: 315px;
-    height: 47px;
+.login .wrapper .description{
+    font-size: 18px;
+    line-height: 22px;
+    max-width: 381px;
+    color: #984493;
+    margin: 0 auto;
+    text-align: center;
+    padding-top: 12px;
+}
+.login .inputs input{
+    display: block;
+    width: 100%;
+    height: 68px;
+    margin-top: 1rem;
+    box-sizing: border-box;
+    border-radius: 81px;
+    border: 1px solid gray;
+    font-size: 25px;
+    font-style: normal;
+    font-weight: normal;
+    padding: 20px 40px;
+}
+.login .wrapper a.login{
+    width: 483px;
+    height: 68px;
     background: linear-gradient(89.67deg, #E164BE -0.56%, #FF74D8 -0.55%, #FF985E 97.67%);
     border-radius: 50px;
-    font-size: 20px;
     display: inline-block;
-    margin-top: 63px;
+    margin-top: 26px;
     color: white;
     text-decoration: none;
-    line-height: 2.2
+    line-height: 2.7 !important;
+    font-size: 25px;
+    line-height: 30px;
+}
+.login .lost-password{
+    text-align: right;
+    color: #984493;
+    font-size: 18px;
+    margin-top: 26px;
+    padding-bottom: 63px;
+}
+.login .lost-password a{
+    color: #984493;
+    text-decoration: none;
 }
 </style>
 <script src="/js/main.js"></script>

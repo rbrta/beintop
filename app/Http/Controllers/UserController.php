@@ -19,14 +19,11 @@ class UserController extends Controller
         $user = auth()->user();
         $now = Carbon::now();
 
-        $months = array(1 => 'Января', 2 => 'Февраля', 3 => 'Марта', 	4 => 'Апреля', 
-        5 => 'Мая', 6 => 'Июня', 7 => 'Июля', 8 => 'Августа', 
-        9 => 'Сентября', 10 => 'Октября', 11 => 'Ноября', 12 => 'Декабря');
-
-        $orders->map(function ($item) use($now, $months){
+        Carbon::setlocale('ru');
+        $orders->map(function ($item) use($now){
             $item->expiration_date = Carbon::parse($item->expiration_date);
             $item->days = $item->expiration_date->diffInDays($now);
-            $item->month = $months[(int)$item->expiration_date->format('m')];
+            $item->expiration_date_format = $item->expiration_date->translatedFormat("d F Y");
             return $item;
         });
 
@@ -36,7 +33,11 @@ class UserController extends Controller
     public function pay_service_guest(Request $request)
     {
         $customMessages = [
-            'required' => 'Нужно указать :attribute',
+            'full_name.required' => 'Нужно указать "Полное имя"',
+            'email.required' => 'Нужно указать "Email"',
+            'password.required' => 'Не указан "Пароль"',
+            'account_name.required' => 'Не указан "Имя профиля или ссылка"',
+            'service_id.required' => 'Не указан "Тариф"',
             'unique' => 'Такой адрес электронной почты уже существует',
         ];
 

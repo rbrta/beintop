@@ -79,7 +79,7 @@
                             </td>
                             <td>{{ $order->user->account_name }}</td>
                             <td>
-                                <b>{{ $order->expiration_date->format('d') }} {{ $order->month }} {{ $order->expiration_date->format('Y') }}</b><br>
+                                <b>{{ $order->expiration_date_format }}</b><br>
                                 осталось {{ $order->days }} дней
                             </td>
                             <td class="table-action">
