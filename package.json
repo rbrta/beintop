@@ -29,6 +29,7 @@
     },
     "dependencies": {
         "element-ui": "^2.13.2",
-        "node-sass": "^4.14.1"
+        "node-sass": "^4.14.1",
+        "vue-sweetalert2": "^3.0.5"
     }
 }
