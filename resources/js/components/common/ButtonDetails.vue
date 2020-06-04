@@ -6,11 +6,14 @@
     import ModalDetails from "./../common/ModalDetails";
     export default {
         name: "ButtonActivation",
-        props: ['service'],
+        props: ['order'],
         methods: {
             activation() {
-                this.$modal.show(ModalDetails, {service: this.service},{width: 1110, height: 'auto', adaptive: true, scrollable: true});   
+                this.$modal.show(ModalDetails, {order: this.order},{width: 1110, height: 'auto', adaptive: true, scrollable: true});   
             }
+        },
+        mounted() {
+            this.order= JSON.parse(this.order);
         }
     }
 </script>

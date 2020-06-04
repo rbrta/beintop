@@ -1,26 +1,26 @@
 <template>
   <div class="popup">
        <div class="popup__tutle">
-            <span>Insta:</span> login
+            <span>Insta:</span> {{ order.user.account_name }}
         </div>
         <div class="popup__service">
-            <img src="tmax.svg" alt="">
+            <img src="/images/tmax.svg" alt="">
         </div>
         <div class="popup__items">
         <div class="item1">
         <div class="likes">
             <div class="likes__amount">
-            8000 Лайков
+            {{ order.service.likes }} Лайков
             </div>
             <div class="likes__posts">
-            На <span>30</span> постов
+            На <span>{{ order.service.posts }}</span> постов
             </div>
             <div class="likes__views">
-            30 000 Просмотров
+            {{ order.service.views }} Просмотров
             </div>
             <div class="likes__igtv">
             На видео и IgTv <br>
-            (<span>Безлимит <img src="fire.svg" alt=""></span>)
+            (<span>Безлимит</span>)
             </div>
             <div class="likes__change">
             <a href="#">Cменить тариф</a>
@@ -34,32 +34,31 @@
             <div class="bonus__comments">
             <div>БОНУС</div>
             <div>
-                <span>25-30</span> Комментариев
+                <span>{{ order.service.bonus_comments }}</span> Комментариев
             </div>
             <div>
-                На <span>5</span> постов в тему публикации
+                На <span>{{ order.service.bonus_posts }}</span> постов в тему публикации
             </div>
             </div>
             <div class="bonus__price">
             <div>Стоимость</div>
-            <div>25 990</div>
+            <div>{{ order.service.price }}</div>
             <div>руб/мес</div>
             <div>
                 <span>
-                <img src="check.svg"> Автопродление
+                Автопродление
                 </span>
             </div>
             </div>
         </div>
         <div class="bonus-img">
-            <img src="bonus.svg">
         </div>
         </div>
         <div class="item3">
         <div class="left">
             <div class="left__title">
             <div>Осталось</div>
-            <div>30</div>
+            <div>{{ order.days }}</div>
             <div>Дней</div>
             </div>
             <div class="left__timer">
@@ -94,12 +93,15 @@
 
 <script>
     export default {
-
+         props: ['order'],
     }
 </script>
 
 
 <style lang="scss" scoped>
+.likes{
+    padding: 5px;
+}
 .popup{
     width: 1110px;
     height: 650px;

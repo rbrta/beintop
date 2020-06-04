@@ -91,7 +91,7 @@
                                 осталось {{ $order->days }} дней
                             </td>
                             <td class="table-action">
-                                <button-details></button-details>
+                                <button-details order="{{ $order }}"></button-details>
                             </td>
                         </tr>
                     @endforeach
