@@ -41,8 +41,8 @@
                 Для входа в личный кабинет необходимо ввести логин и пароль
             </div>
             <div class="inputs">
-                <div class="intput-wrapper"><input placeholder="Email" type="email" ></div>
-                <div class="intput-wrapper"><input placeholder="Пароль" ></div>
+                <div class="intput-wrapper"><input name="email" placeholder="Email" type="email" ></div>
+                <div class="intput-wrapper"><input name="password" placeholder="Пароль" type="password"></div>
             </div>
             <div>
                 <a href="#" class="login" onclick="document.getElementById('signup-form').submit(); return false;">

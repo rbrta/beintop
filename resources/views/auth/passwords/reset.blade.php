@@ -46,10 +46,10 @@
                     <input id="email" placeholder="Email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $email ?? old('email') }}" required autocomplete="email" autofocus>
                 </div>
                 <div class="intput-wrapper">
-                    <input id="email" placeholder="Новый пароль" class="form-control @error('email') is-invalid @enderror" name="password" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                    <input id="password" type="password" placeholder="Новый пароль" class="form-control @error('email') is-invalid @enderror" name="password" value="{{ old('email') }}" required autocomplete="email" autofocus>
                 </div>
                 <div class="intput-wrapper">
-                    <input id="email" placeholder="Новый пароль еще раз" class="form-control @error('email') is-invalid @enderror" name="password_confirmation" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                    <input id="password" type="password" placeholder="Новый пароль еще раз" class="form-control @error('email') is-invalid @enderror" name="password_confirmation" value="{{ old('email') }}" required autocomplete="email" autofocus>
                 </div>
                 <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
             </div>

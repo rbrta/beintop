@@ -54,8 +54,10 @@
                     Восстановить пароль
                 </a>
             </div>
-            @if($errors->any())
-                <div class="errors">{{$errors->first()}}</div>
+            @if (session('status'))
+                <div class="alert-success" role="alert">
+                    {{ session('status') }}
+                </div>
             @endif
             <div class="lost-password">
             </div>
@@ -138,6 +140,12 @@ input:focus{
 .errors{
     margin-top: 5px;
     color: #eb4e63;
+    font-weight: bold;
+    font-size: 20px;
+}
+.alert-success{
+    color: green;
+    margin-top: 5px;
     font-weight: bold;
     font-size: 20px;
 }
