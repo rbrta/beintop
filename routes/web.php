@@ -15,6 +15,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'HomeController@index');
 
+Route::get('/logout', function(){
+    auth()->logout();
+
+    return redirect('/login');
+});
+
 // Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function() {
 Route::group(['prefix' => 'admin'], function() {
     Route::get('/', 'AdminController@index');
