@@ -30,6 +30,24 @@ class UserController extends Controller
         return view("client", compact("orders", "user")); 
     }
 
+    public function new_order()
+    {
+        $services = Service::with("category")->get();
+        $user = auth()->user();
+        return view("new_order", compact("services", "user")); 
+    }
+
+    public function add_new_order(Request $request)
+    {
+        $order = Order::create([
+            'user_id' => $request->user_id,
+            'service_id' => $request->service_id,
+            'paid_status' => 'pending'
+        ]);
+
+        return response()->json(['order_id' => $order->id]);
+    }
+
     public function pay_service_guest(Request $request)
     {
         $customMessages = [

@@ -3885,19 +3885,50 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "ButtonActivation",
-  props: ['service'],
+  props: ['service', 'user'],
+  data: function data() {
+    return {
+      order_id: ''
+    };
+  },
+  mounted: function mounted() {
+    this.service = JSON.parse(this.service);
+    this.user = JSON.parse(this.user);
+  },
   methods: {
     activation: function activation() {
-      this.$modal.show(_common_ModalActivation__WEBPACK_IMPORTED_MODULE_0__["default"], {
-        service: this.service
-      }, {
-        width: 849,
-        height: 'auto',
-        adaptive: true,
-        scrollable: true
+      var _this = this;
+
+      axios.post('add-new-order', {
+        user_id: this.user.id,
+        service_id: this.service.id
+      }).then(function (response) {
+        _this.order_id = "ID_" + response.data.order_id;
+
+        _this.$nextTick(function (_) {
+          return _this.$refs.payment_form.submit();
+        });
       });
     }
   }
@@ -102124,19 +102155,107 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "a",
-    {
-      attrs: { href: "#" },
-      on: {
-        click: function($event) {
-          $event.preventDefault()
-          return _vm.activation($event)
+  return _c("div", [
+    _c(
+      "a",
+      {
+        staticClass: "btn",
+        attrs: { href: "#" },
+        on: {
+          click: function($event) {
+            $event.preventDefault()
+            return _vm.activation($event)
+          }
         }
-      }
-    },
-    [_vm._v("Активировать")]
-  )
+      },
+      [_vm._v("Активировать")]
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        directives: [
+          { name: "show", rawName: "v-show", value: false, expression: "false" }
+        ]
+      },
+      [
+        _c(
+          "form",
+          {
+            ref: "payment_form",
+            attrs: {
+              name: "payment",
+              method: "post",
+              action: "https://sci.interkassa.com/",
+              "accept-charset": "UTF-8"
+            }
+          },
+          [
+            _c("input", {
+              attrs: {
+                type: "hidden",
+                name: "ik_co_id",
+                value: "5ed3d7051ae1bd39008b457b"
+              }
+            }),
+            _vm._v(" "),
+            _c("input", {
+              attrs: { type: "hidden", name: "ik_pm_no" },
+              domProps: { value: _vm.order_id }
+            }),
+            _vm._v(" "),
+            _c("input", {
+              attrs: { type: "hidden", name: "ik_am" },
+              domProps: { value: _vm.service.price }
+            }),
+            _vm._v(" "),
+            _c("input", {
+              attrs: { type: "hidden", name: "ik_cur", value: "RUB" }
+            }),
+            _vm._v(" "),
+            _c("input", {
+              attrs: { type: "hidden", name: "ik_desc" },
+              domProps: { value: _vm.description }
+            }),
+            _vm._v(" "),
+            _c("input", {
+              attrs: {
+                type: "hidden",
+                name: "ik_ia_u",
+                value: "https://beintop.kwonterdevs.pp.ua/payment/callback"
+              }
+            }),
+            _vm._v(" "),
+            _c("input", {
+              attrs: {
+                type: "hidden",
+                name: "ik_suc_u",
+                value: "https://beintop.kwonterdevs.pp.ua/payment/success"
+              }
+            }),
+            _vm._v(" "),
+            _c("input", {
+              attrs: {
+                type: "hidden",
+                name: "ik_fal_u",
+                value: "https://beintop.kwonterdevs.pp.ua/payment/failure"
+              }
+            }),
+            _vm._v(" "),
+            _c("input", {
+              attrs: {
+                type: "hidden",
+                name: "ik_pnd_u",
+                value: "https://beintop.kwonterdevs.pp.ua/payment/pending"
+              }
+            }),
+            _vm._v(" "),
+            _c("input", { attrs: { type: "submit", value: "Pay" } })
+          ]
+        )
+      ]
+    )
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true

@@ -32,6 +32,8 @@ Route::group(['prefix' => 'admin'], function() {
 
 Route::get('/home', function(){ return redirect()->to('/client'); });
 Route::get('/client', 'UserController@index');
+Route::get('/new-order', 'UserController@new_order');
+Route::post('/add-new-order', 'UserController@add_new_order');
 Route::post('/pay_service', 'UserController@pay_service_guest');
 
 
