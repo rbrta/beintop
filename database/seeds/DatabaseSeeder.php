@@ -55,6 +55,8 @@ class DatabaseSeeder extends Seeder
             ]
         );  
 
+        
+
         DB::table('orders')->insertOrIgnore(
             ['user_id' => 1, 'service_id' => '1' ]
         );  
