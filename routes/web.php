@@ -35,3 +35,6 @@ Route::post('/payment/pending', 'TestController@pending');
 Route::get('/pay', 'TestController@pay');
 Route::get('/test', 'TestController@test');
 
+Route::get('/login', 'UserController@loginUser');
+Route::post('/signup', 'UserController@signupUser');
+

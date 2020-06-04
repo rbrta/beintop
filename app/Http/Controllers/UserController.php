@@ -67,4 +67,20 @@ class UserController extends Controller
 
         return response()->json(['order_id' => $order->id]);
     }
+
+    public function loginUser()
+    {
+        return view('login');
+    }
+
+    public function signupUser()
+    {
+        if(!auth()->attempt(request(['email', 'password']))){
+             return back()->withErrors([
+                 'message' => 'Неверный пароль или email'
+             ]);
+         }
+ 
+         return redirect('/client');
+     }
 }

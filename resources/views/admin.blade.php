@@ -18,8 +18,8 @@
             <ul class="menu">
                 <li><i class="fas fa-star"></i> <a href="#">Наши преимущества</a></li>
                 <li><i class="fas fa-th"></i> <a href="#">Выбрать тариф</a></li>
-                <li><i class="fas fa-home"></i> <a href="#">На главную</a></li>
-                <li><i class="fas fa-user"></i> <a href="#">Личный кабинет</a></li>
+                <li><i class="fas fa-home"></i> <a href="/">На главную</a></li>
+                <li><i class="fas fa-user"></i> <a href="/client">Личный кабинет</a></li>
             </ul>
 
             <div id="menuBtn" class="mobile-menu">

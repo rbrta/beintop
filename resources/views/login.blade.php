@@ -30,6 +30,8 @@
         </div>
     </header>
     <!-- ------------------------------------------------------------------------------- --> 
+    <form action="signup" id="signup-form" method="post">
+    {{ csrf_field() }}
     <div class="login">
         <div class="wrapper">
             <div class="title">
@@ -43,13 +45,19 @@
                 <div class="intput-wrapper"><input placeholder="Пароль" ></div>
             </div>
             <div>
-                <a class="login" href="/client">Авторизоваться</a>
+                <a href="#" class="login" onclick="document.getElementById('signup-form').submit(); return false;">
+                    Авторизоваться
+                </a>
             </div>
+            @if($errors->any())
+                <div class="errors">{{$errors->first()}}</div>
+            @endif
             <div class="lost-password">
                 <a href="#">Забыли пароль?</a>
             </div>
         </div>
     </div>
+    </form>
     <!-- ------------------------------------------------------------------------------- --> 
 </div>
 <style>
@@ -117,6 +125,15 @@
 .login .lost-password a{
     color: #984493;
     text-decoration: none;
+}
+input:focus{
+    outline: none;
+}
+.errors{
+    margin-top: 5px;
+    color: #eb4e63;
+    font-weight: bold;
+    font-size: 20px;
 }
 </style>
 <script src="/js/main.js"></script>
