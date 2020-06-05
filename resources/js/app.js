@@ -40,6 +40,8 @@ Vue.prototype.$showModal = function(component, props, width = 680, events) {
     }, events);
 };
 
+
+
 const app = new Vue({
     el: '#app'
 });

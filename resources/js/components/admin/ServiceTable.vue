@@ -70,13 +70,20 @@
                 });
             },
             deleteService(id, index){
-                let _this = this;
-                axios.delete('/admin/delete_service', {
-                    params: { id }
-                }).then(response => {
-                    _this.getServices();
-                    this.$alert('Тариф успешно удален');
-                });
+                this.$confirm('Вы уверены, что хотите удалить запись?').then(()=>{
+                    
+                    
+                    axios.delete('/admin/delete_service', {
+                        params: { id }
+                    }).then(response => {
+                        this.getServices();
+                        this.$alert('Тариф успешно удален');
+                    });
+
+                }); 
+                
+
+                
             }
         },
     }

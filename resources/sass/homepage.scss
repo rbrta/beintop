@@ -58,18 +58,7 @@
         background-size: 520% auto, auto, 75%;
     }
 
-    // @media(max-width:767px) {
-    //     background-image: 
-    //     url(../images/bg_waves_mobile.svg), 
-    //     url(../images/points.svg),
-    //     url(../images/likes.svg);
-    //     padding-bottom: 800px;
-
-    //     background-size: 100% auto, auto, 75%;
-    //     background-position: 0px 232px, 140px -80px, 393px 126px;
-    //     min-height: 3750px;
-    // }
-
+    
     @media(max-width:675px) {
         background-size: 460% auto, auto, 75%;
     }
@@ -388,7 +377,7 @@
         }
     }
 
-    .item{
+    .item {
         margin-top: 57px;
 
        &-title{
@@ -400,10 +389,10 @@
            font-size: 34px;
            text-transform: uppercase;
 
-           div{
+           div {
                 border: 5px solid #fb378f; 
                 border-radius: 37.5px;
-                padding: 13px 15px;
+                padding: 13px 95px;
            }
        }
 
@@ -551,6 +540,7 @@
                 display: inline-block;
                 margin: 0px;
                 padding: 0px;
+                width: 25px;
             }
             .ml{
                 margin-left: 12px;
@@ -562,6 +552,7 @@
             text-transform: none;
             img{
                 display: inline-block;
+                width: 25px;
             }
         }
     }
