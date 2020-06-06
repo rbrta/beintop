@@ -97,7 +97,7 @@
                                     <span>{{ $service->bonus_posts }}</span> постов в тему публикации)</div>
                                 <div class="row8">{{ str_replace('.00','',$service->price) }} рублей </div>
                                 <div class="row9">
-                                    <button-activation :service="{{ $service }}"></button-activation>
+                                    <button-activation :service="{{ $service }}" app_url="{{env('APP_URL')}}" shop_id="{{env('PAY_SHOP_ID')}}"></button-activation>
                                 </div>
                             </div>
                         </div>

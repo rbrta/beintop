@@ -29,10 +29,10 @@
             <input type="hidden" name="ik_cur" value="RUB"/>
             <input type="hidden" name="ik_desc" :value="description"/>
 
-            <input type="hidden" name="ik_ia_u" value="https://beintop.kwonterdevs.pp.ua/payment/callback"/>
-            <input type="hidden" name="ik_suc_u" value="https://beintop.kwonterdevs.pp.ua/payment/success"/>
-            <input type="hidden" name="ik_fal_u" value="https://beintop.kwonterdevs.pp.ua/payment/failure"/>
-            <input type="hidden" name="ik_pnd_u" value="https://beintop.kwonterdevs.pp.ua/payment/pending"/>
+            <input type="hidden" name="ik_ia_u" :value="app_url + '/payment/callback'"/>
+            <input type="hidden" name="ik_suc_u" :value="app_url + '/payment/success'"/>
+            <input type="hidden" name="ik_fal_u" :value="app_url + '/payment/failure'"/>
+            <input type="hidden" name="ik_pnd_u" :value="app_url + '/payment/pending'"/>
 
             <input type="submit" value="Pay">
         </form>
@@ -44,7 +44,7 @@
 <script>
     export default {
         name: "ModalSkeleton",
-        props: ['service'],
+        props: ['service', 'app_url'],
         data() {
             return {
                 order_id: '',

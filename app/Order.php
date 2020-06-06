@@ -13,6 +13,7 @@ class Order extends Model
         'service_id',
         'expiration_date',
         'paid_status',
+        'account_name',
     ];
 
     public function user()

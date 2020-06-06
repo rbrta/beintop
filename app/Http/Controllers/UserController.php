@@ -20,21 +20,21 @@ class UserController extends Controller
         $now = Carbon::now();
 
         Carbon::setlocale('ru');
-        $orders->map(function ($item) use($now){
+        $orders->map(function ($item) use ($now) {
             $item->expiration_date = Carbon::parse($item->expiration_date);
             $item->days = $item->expiration_date->diffInDays($now);
             $item->expiration_date_format = $item->expiration_date->translatedFormat("d F Y");
             return $item;
         });
 
-        return view("client", compact("orders", "user")); 
+        return view("client", compact("orders", "user"));
     }
 
     public function new_order()
     {
         $services = Service::with("category")->get();
         $user = auth()->user();
-        return view("new_order", compact("services", "user")); 
+        return view("new_order", compact("services", "user"));
     }
 
     public function add_new_order(Request $request)
@@ -51,10 +51,10 @@ class UserController extends Controller
     public function pay_service_guest(Request $request)
     {
         $customMessages = [
-            'full_name.required' => 'Нужно указать "Полное имя"',
-            'email.required' => 'Нужно указать "Email"',
+            'full_name.required' => 'Необходимо заполнить поле "Полное имя"',
+            'email.required' => 'Необходимо заполнить поле "Email"',
             'password.required' => 'Не указан "Пароль"',
-            'account_name.required' => 'Не указан "Имя профиля или ссылка"',
+            'account_name.required' => 'Не указано "Имя профиля Instagram"',
             'service_id.required' => 'Не указан "Тариф"',
             'unique' => 'Такой адрес электронной почты уже существует',
         ];
@@ -65,22 +65,25 @@ class UserController extends Controller
             'password' => 'required',
             'account_name' => 'required',
             'service_id' => 'required',
-            // 'email' => 'required|email|unique:users',
-            // 'password' => 'required|min:8',
+
         ], $customMessages);
 
         $user = User::create([
-            'full_name' => $request->full_name,
+            'name' => $request->full_name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'account_name' => $request->account_name,
         ]);
+
         Auth::login($user, true);
+
+        $service = Service::find($request->service_id);
 
         $order = Order::create([
             'user_id' => $user->id,
             'service_id' => $request->service_id,
-            'paid_status' => 'pending'
+            'account_name' => $request->account_name,
+            'paid_status' => 'pending',
+            'expiration_date' => Carbon::now()->addDays($service->periodindays)->format('Y-m-d')
         ]);
 
         return response()->json(['order_id' => $order->id]);
@@ -93,12 +96,12 @@ class UserController extends Controller
 
     public function signupUser()
     {
-        if(!auth()->attempt(request(['email', 'password']))){
-             return back()->withErrors([
-                 'message' => 'Неверный пароль или email'
-             ]);
-         }
- 
-         return redirect('/client');
-     }
+        if (!auth()->attempt(request(['email', 'password']))) {
+            return back()->withErrors([
+                'message' => 'Неверный пароль или email'
+            ]);
+        }
+
+        return redirect('/client');
+    }
 }

@@ -30,22 +30,29 @@ Route::group(['prefix' => 'admin'], function() {
     Route::delete('/delete_service', 'AdminController@deleteService');
 });
 
+Route::group(['prefix' => 'userpanel', 'middleware' => ['auth']], function(){
+    Route::get('/', 'UserController@index');
+});
+
+
+
 Route::get('/home', function(){ return redirect()->to('/client'); });
-Route::get('/client', 'UserController@index');
+
 Route::get('/new-order', 'UserController@new_order');
 Route::post('/add-new-order', 'UserController@add_new_order');
 Route::post('/pay_service', 'UserController@pay_service_guest');
 
 
-Route::post('/payment/callback', 'TestController@callback');
-Route::post('/payment/success', 'TestController@success');
-Route::post('/payment/failure', 'TestController@failure');
-Route::post('/payment/pending', 'TestController@pending');
-Route::get('/pay', 'TestController@pay');
-Route::get('/test', 'TestController@test');
+Route::post('/payment/callback', 'PaymentController@callback');
+Route::post('/payment/success', 'PaymentController@success');
+Route::post('/payment/failure', 'PaymentController@failure');
+Route::post('/payment/pending', 'PaymentController@pending');
+Route::get('/pay', 'PaymentController@pay');
+Route::get('/test', 'PaymentController@test');
 
 
 
 Auth::routes();
+
 Route::get('/login', 'UserController@loginUser')->name('login');
 Route::post('/signup', 'UserController@signupUser');
