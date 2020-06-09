@@ -91,6 +91,10 @@ class UserController extends Controller
 
     public function loginUser()
     {
+        if(auth()->check()){
+            return redirect('/userpanel');
+        }
+        
         return view('login');
     }
 
@@ -98,10 +102,10 @@ class UserController extends Controller
     {
         if (!auth()->attempt(request(['email', 'password']))) {
             return back()->withErrors([
-                'message' => 'Неверный пароль или email'
+                'message' => 'Пользователь с такими данными не найден'
             ]);
         }
 
-        return redirect('/client');
+        return redirect('/userpanel');
     }
 }
