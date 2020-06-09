@@ -116,6 +116,10 @@ body {
   text-align: left;
 }
 
+.hide {
+  display: none;
+}
+
 /* ============ header =========== */
 
 header {
@@ -306,7 +310,7 @@ header .wrapper-mobile .mobile-menu a {
 
 /* ============ table ============ */
 
-.wrapper-table table {
+.table-wrapper table {
   border-collapse: collapse;
   margin: 0;
   padding: 0;
@@ -315,15 +319,15 @@ header .wrapper-mobile .mobile-menu a {
 }
 
 @media screen and (max-width: 800px) {
-  .wrapper-table table {
+  .table-wrapper table {
     border: 0;
   }
 
-  .wrapper-table table caption {
+  .table-wrapper table caption {
     font-size: 1.3em;
   }
 
-  .wrapper-table table thead {
+  .table-wrapper table thead {
     border: none;
     clip: rect(0 0 0 0);
     height: 1px;
@@ -334,13 +338,13 @@ header .wrapper-mobile .mobile-menu a {
     width: 1px;
   }
 
-  .wrapper-table table tr {
-    border-bottom: 3px solid #ddd;
+  .table-wrapper table tr {
     display: block;
-    margin-bottom: .625em;
+    margin-bottom: 3rem;
+    background: #f9f9f9f0;
   }
 
-  .wrapper-table table td {
+  .table-wrapper table td {
     border-bottom: 1px solid #ddd;
     display: block;
     font-size: .8em;
@@ -348,7 +352,7 @@ header .wrapper-mobile .mobile-menu a {
     width: 100%;
   }
 
-  .wrapper-table table td::before {
+  .table-wrapper table td::before {
     /*
             * aria-label has no advantage, it won't be read inside a table
             content: attr(aria-label);
@@ -359,7 +363,7 @@ header .wrapper-mobile .mobile-menu a {
     text-transform: uppercase;
   }
 
-  .wrapper-table table td:last-child {
+  .table-wrapper table td:last-child {
     border-bottom: 0;
   }
 }

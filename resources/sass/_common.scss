@@ -13,6 +13,10 @@
     text-align: left;
 }
 
+.hide {
+    display: none;
+}
+
 
 /* ============ header =========== */
 header {
@@ -197,7 +201,7 @@ header {
 
 
 /* ============ table ============ */
-.wrapper-table {
+.table-wrapper {
     table {
         border-collapse: collapse;
         margin: 0;
@@ -209,7 +213,7 @@ header {
 
 
 @media screen and (max-width: 800px) {
-    .wrapper-table {
+    .table-wrapper {
         table {
             border: 0;
         }
@@ -230,9 +234,9 @@ header {
         }
 
         table tr {
-            border-bottom: 3px solid #ddd;
             display: block;
-            margin-bottom: .625em;
+            margin-bottom: 3rem;
+            background: #f9f9f9f0;
         }
 
         table td {

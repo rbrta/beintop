@@ -15,12 +15,12 @@
 </head>
 
 <body>
-    @include('parts.header')
-   
+    <section id="app">
+        @include('parts.header', ['type' => 'userpanel'])
 
-    @yield('content')
+        @yield('content')
     
-    
+    </section>
 
     <script src="{{ asset('/js/main.js') }}"></script>
     <script src="{{ asset('/js/app.js') }}"></script>
