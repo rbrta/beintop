@@ -15,7 +15,7 @@
             <div class="inputs">
                 <input type="hidden" name="action" value="updateProfile">
                 <div class="intput-wrapper"><input name="email" placeholder="Email" type="email" value="{{$user->email}}"></div>
-                <div class="intput-wrapper"><input name="name" placeholder="Полное Имя" type="text" value="{{$user->name}}"></div>
+                <div class="intput-wrapper"><input name="full_name" placeholder="Полное Имя" type="text" value="{{$user->full_name}}"></div>
             </div>
             <div>
                 <a href="#" class="login_btn" onclick="document.getElementById('signup-form').submit(); return false;">

@@ -7,7 +7,7 @@
         <div class="container-top">
             <div class="wrapper-content">
                 <div class="row1">
-                    <b>Аккаунт:</b> {{ $user->name }}
+                    <b>Аккаунт:</b> {{ $user->full_name }}
                 </div>
                 <div class="row2 hide">
                     <a href="/logout">Сменить аккаунт</a>

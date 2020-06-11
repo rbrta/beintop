@@ -108401,7 +108401,7 @@ var render = function() {
   return _c("div", { staticClass: "details-panel" }, [
     _c("div", { staticClass: "account-name" }, [
       _c("b", [_vm._v("Insta:")]),
-      _vm._v(" " + _vm._s(_vm.user.name))
+      _vm._v(" " + _vm._s(_vm.user.full_name))
     ]),
     _vm._v(" "),
     _c("h1", { staticClass: "tariff_name" }, [
