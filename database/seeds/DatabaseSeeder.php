@@ -13,7 +13,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         DB::table('users')->insertOrIgnore([
-            'name' => 'Admin',
+            'full_name' => 'Admin',
             'email' => 'admin@gmail.com',
             'password' => bcrypt('999999999'),
             'usertype' => 'admin',
@@ -21,7 +21,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         DB::table('users')->insertOrIgnore([
-            'name' => 'User',
+            'full_name' => 'User',
             'email' => 'user@gmail.com',
             'password' => bcrypt('123456789')
         ]);
