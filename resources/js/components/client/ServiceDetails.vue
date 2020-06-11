@@ -1,7 +1,7 @@
 <template>
     <div class="details-panel">
         <div class="account-name" v-if="accountName"><b>Insta:</b> {{ accountName }}</div>
-        <h1 class="tariff_name">Тариф Max</h1>
+        <h1 class="tariff_name">{{ service.category.name }}</h1>
 
         <div class="flex">
             <div class="left">
@@ -60,9 +60,8 @@
 
 <script>
     export default {
-        name: "ClientOrderDetails",
+        name: "ServiceDetails",
         props: ['accountName', 'service', 'expirationDate'],
-
 
         computed: {
             countdownTo() {

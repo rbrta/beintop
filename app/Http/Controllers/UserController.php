@@ -16,7 +16,7 @@ class UserController extends Controller
     {
         $user_id = auth()->user()->id;
         $orders = Order::with(["service.category", "user"])->where("user_id", $user_id)->where("orders.paid_status", "active")->get();
-        $services = Service::all();
+        $services = Service::with('category')->get();
         $user = auth()->user();
         $now = Carbon::now();
 

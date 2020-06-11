@@ -219,6 +219,11 @@
     .details-panel {
         padding: 2.375rem 3.1rem;
 
+        @media (max-width: 768px) {
+            padding-left: 2rem;
+            padding-right: 2rem;
+        }
+
         .account-name {
             color:  #E73C8E;
             font-size: 24px;
@@ -232,6 +237,10 @@
             -webkit-text-fill-color: transparent;
             line-height: 1;
             text-transform: uppercase;
+
+            @media (max-width: 768px) {
+                font-size: 46px;
+            }
         }
 
         .flex {
@@ -283,6 +292,10 @@
                 .views_label {
                     font-weight: 900;
                     font-size: 30px;
+
+                    @media (max-width: 768px) {
+                        font-size: 25px;
+                    }
                 }
 
                 .igtv_label {
@@ -308,6 +321,10 @@
 
             .center {
                 text-align: center;
+
+                @media (max-width: 768px) {
+                    margin: 3rem 0 2rem;
+                }
 
                 .bonus {
                     border: solid 6px #ec5885;
@@ -396,7 +413,7 @@
                         display: flex;
                         justify-content: space-between;
                         align-items: center;
-
+                        margin-top: 1rem;
 
                         .value {
                             border: 3px solid #5C4998;

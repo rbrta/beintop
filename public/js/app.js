@@ -4474,7 +4474,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: "ClientOrderDetails",
+  name: "ServiceDetails",
   props: ['accountName', 'service', 'expirationDate'],
   computed: {
     countdownTo: function countdownTo() {
@@ -106168,7 +106168,7 @@ var render = function() {
                   return _c("tr", { key: key }, [
                     _c("td", { attrs: { "data-label": "Услуга" } }, [
                       _c("div", { staticClass: "text-big" }, [
-                        _vm._v("Тариф Max")
+                        _vm._v(_vm._s(order.service.category.name))
                       ]),
                       _c("div", { staticClass: "text-large" }, [
                         _vm._v(_vm._s(order.service.name))
@@ -106244,7 +106244,9 @@ var render = function() {
         ])
       : _vm._e(),
     _vm._v(" "),
-    _c("h1", { staticClass: "tariff_name" }, [_vm._v("Тариф Max")]),
+    _c("h1", { staticClass: "tariff_name" }, [
+      _vm._v(_vm._s(_vm.service.category.name))
+    ]),
     _vm._v(" "),
     _c("div", { staticClass: "flex" }, [
       _c("div", { staticClass: "left" }, [
@@ -106433,7 +106435,7 @@ var render = function() {
                   return _c("tr", { key: key }, [
                     _c("td", { attrs: { "data-label": "Услуга" } }, [
                       _c("div", { staticClass: "text-big" }, [
-                        _vm._v("Тариф Max")
+                        _vm._v(_vm._s(service.category.name))
                       ]),
                       _c("div", { staticClass: "text-large" }, [
                         _vm._v(_vm._s(service.name))

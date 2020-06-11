@@ -12,7 +12,7 @@
                 </thead>
                 <tbody>
                 <tr :key="key" v-for="(service, key) in services">
-                    <td data-label="Услуга"><div class="text-big">Тариф Max</div><div class="text-large">{{ service.name }}</div></td>
+                    <td data-label="Услуга"><div class="text-big">{{ service.category.name }}</div><div class="text-large">{{ service.name }}</div></td>
                     <td data-label="Цена"><div class="text-big price">{{ service.price }} рублей</div></td>
                     <td data-label="Действия"><span class="btn" @click="details = service">Детали</span></td>
                 </tr>
