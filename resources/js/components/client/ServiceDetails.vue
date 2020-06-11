@@ -1,37 +1,37 @@
 <template>
     <div class="details-panel">
-        <div class="account-name"><b>Insta:</b> {{ data.account_name }}</div>
+        <div class="account-name" v-if="accountName"><b>Insta:</b> {{ accountName }}</div>
         <h1 class="tariff_name">Тариф Max</h1>
 
         <div class="flex">
             <div class="left">
-                <div class="likes">{{ data.service.likes }}</div>
+                <div class="likes">{{ service.likes }}</div>
                 <div class="lakes_label">Лайков</div>
-                <div class="likes_posts">На <b>{{ data.service.posts }}</b> постов</div>
+                <div class="likes_posts">На <b>{{ service.posts }}</b> постов</div>
 
-                <div class="views">{{ data.service.views }}</div>
+                <div class="views">{{ service.views }}</div>
                 <div class="views_label">Просмотров</div>
 
-                <div class="igtv_label" v-if="data.service.igtv_unlim">На видео и IGTV</div>
-                <div class="igtv_label_unlim" v-if="data.service.igtv_unlim">(<span>Безлимит</span><div class="fire"></div>)</div>
+                <div class="igtv_label" v-if="service.igtv_unlim">На видео и IGTV</div>
+                <div class="igtv_label_unlim" v-if="service.igtv_unlim">(<span>Безлимит</span><div class="fire"></div>)</div>
             </div>
 
             <div class="center">
                 <div class="bonus">
                     <div class="bonus__img"></div>
                     <div class="bonus__title">Бонус</div>
-                    <div class="bonus__comments"><b>{{ data.service.bonus_comments }}</b> комментариев</div>
+                    <div class="bonus__comments"><b>{{ service.bonus_comments }}</b> комментариев</div>
 
-                    <div class="bonus__posts">На <b>{{ data.service.bonus_posts }}</b> постов <br> в тему публикации</div>
+                    <div class="bonus__posts">На <b>{{ service.bonus_posts }}</b> постов <br> в тему публикации</div>
                 </div>
 
                 <div class="price__label">Стоимость</div>
-                <div class="price">{{ data.service.price }}</div>
+                <div class="price">{{ service.price }}</div>
                 <div class="price__currency">руб.мес</div>
             </div>
 
             <div class="right">
-                <countdown :time="countdownTo" :interval="1000">
+                <countdown :time="countdownTo" :interval="1000" v-if="expirationDate">
                     <template slot-scope="props">
                         <div class="expires">
                             <div class="expires__label">Осталось</div>
@@ -48,6 +48,11 @@
                         </div>
                     </template>
                 </countdown>
+                <div v-else class="expires">
+                    <div class="expires__label">Период</div>
+                    <div class="expires__days_count">30</div>
+                    <div class="expires__days">Дней</div>
+                </div>
             </div>
         </div>
     </div>
@@ -56,11 +61,12 @@
 <script>
     export default {
         name: "ClientOrderDetails",
-        props: ['data'],
+        props: ['accountName', 'service', 'expirationDate'],
+
 
         computed: {
             countdownTo() {
-                let expDate = new Date(this.data.expiration_date).getTime();
+                let expDate = new Date(this.expirationDate).getTime();
                 let nowDate = new Date().getTime();
 
                 return Math.abs(nowDate - expDate)

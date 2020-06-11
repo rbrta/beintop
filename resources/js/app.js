@@ -34,7 +34,7 @@ Vue.component('button-details', require('./components/common/ButtonDetails').def
 /**
  * Client components
  */
-Vue.component('client-orders', require('./components/client/Orders').default);
+Vue.component('client-area', require('./components/client/ClientArea').default);
 
 Vue.prototype.$showModal = function(component, props, width = 680, events) {
     this.$modal.show(component, props, {

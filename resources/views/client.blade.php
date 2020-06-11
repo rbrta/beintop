@@ -17,7 +17,7 @@
         <!-- ------------------------------------------------------------------------------- -->
 
         <div class="wrapper-content">
-            <client-orders :orders='@json($orders)' :services='@json($services)'></client-orders>
+            <client-area :orders='@json($orders)' :services='@json($services)'></client-area>
         </div>
 </div>
 
