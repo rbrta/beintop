@@ -2,30 +2,31 @@
 
 @section('content')
 <!-- ------------------------------------------------------------------------------- -->
-<form action="signup" id="signup-form" method="post">
+<form action="/userpanel/profile" id="signup-form" method="post">
     {{ csrf_field() }}
     <div class="login">
         <div class="wrapper">
             <div class="title">
-                Авторизация
+                Ваши данные
             </div>
             <div class="description">
-                Для входа в личный кабинет необходимо ввести логин и пароль
+                Здесь вы можете изменить свои персональные данные
             </div>
             <div class="inputs">
-                <div class="intput-wrapper"><input name="email" placeholder="Email" type="email"></div>
-                <div class="intput-wrapper"><input name="password" placeholder="Пароль" type="password"></div>
+                <input type="hidden" name="action" value="updateProfile">
+                <div class="intput-wrapper"><input name="email" placeholder="Email" type="email" value="{{$user->email}}"></div>
+                <div class="intput-wrapper"><input name="name" placeholder="Полное Имя" type="text" value="{{$user->name}}"></div>
             </div>
             <div>
                 <a href="#" class="login_btn" onclick="document.getElementById('signup-form').submit(); return false;">
-                    Авторизоваться
+                    Сохранить
                 </a>
             </div>
             @if($errors->any())
             <div class="errors">{{$errors->first()}}</div>
             @endif
             <div class="lost-password">
-                <a href="/password/reset">Забыли пароль?</a>
+                <a href="#">Изменить пароль?</a>
             </div>
         </div>
     </div>

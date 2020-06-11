@@ -1,6 +1,6 @@
 <template>
     <div>
-        <service-details v-if="details" :account-name="details.account_name" :service="details.service" :expirationDate="details.expiration_date"></service-details>
+        <service-details v-if="details" :user="user" :service="details.service" :expirationDate="details.expiration_date" mode="details"></service-details>
         <div v-else class="table-wrapper">
             <table>
                 <thead>
@@ -27,7 +27,7 @@
 <script>
     export default {
         name: "Orders",
-        props: ['orders'],
+        props: ['orders', 'user'],
 
         created() {
             this.$root.$on('clean-nav', () => {

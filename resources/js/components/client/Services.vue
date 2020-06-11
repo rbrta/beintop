@@ -1,6 +1,6 @@
 <template>
     <div>
-        <service-details v-if="details" :service="details"></service-details>
+        <service-details v-if="details" :service="details" :user="user" mode="newOrder"></service-details>
         <div v-else class="table-wrapper">
             <table>
                 <thead>
@@ -25,7 +25,7 @@
 <script>
     export default {
         name: "Services",
-        props: ['services'],
+        props: ['services', 'user'],
 
         created() {
             this.$root.$on('clean-nav', () => {

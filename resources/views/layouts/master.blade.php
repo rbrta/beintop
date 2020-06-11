@@ -23,6 +23,13 @@
     
     @include('parts.footer')
 
+    <script>
+        window._laravel = {
+            'app_url': "{{env('APP_URL')}}",
+            'shop_id': "{{env('PAY_SHOP_ID')}}",
+        }
+    </script>
+
     <script src="{{ asset('/js/main.js') }}"></script>
     <script src="{{ asset('/js/app.js') }}"></script>
     @yield('scripts')

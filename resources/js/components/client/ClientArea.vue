@@ -1,20 +1,20 @@
 <template>
     <div class="content-table">
         <ul class="tabs">
-            <li @click="setTab('active')">Активные</li>
-            <li>Архивные</li>
-            <li @click="setTab('add')">Добавить</li>
+            <li :class="[tab === 'active' ? 'active' : '']" @click="setTab('active')">Активные</li>
+            <li :class="[tab === 'archive' ? 'active' : '']">Архивные</li>
+            <li :class="[tab === 'add' ? 'active' : '']" @click="setTab('add')">Добавить</li>
         </ul>
 
-        <orders v-if="tab === 'active'" :orders="orders"></orders>
-        <services v-else-if="tab === 'add'" :services="services"></services>
+        <orders v-if="tab === 'active'" :orders="orders" :user="user"></orders>
+        <services v-else-if="tab === 'add'" :services="services" :user="user" ></services>
     </div>
 </template>
 
 <script>
     export default {
         name: "ClientArea",
-        props: ['orders', 'services'],
+        props: ['orders', 'services', 'user'],
 
         data() {
             return {

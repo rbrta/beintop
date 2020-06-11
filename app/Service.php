@@ -20,13 +20,15 @@ class Service extends Model
         'igtv_unlim',
     ];
 
+    protected $appends = ['price_formatted'];
+
     public function category()
     {
         return $this->belongsTo(Category::class);
     }
 
-    public function getPriceAttribute($value)
+    public function getPriceFormattedAttribute()
     {
-        return number_format($value, 0, ',', ' ');
+        return number_format($this->price, 0, ',', ' ');
     }
 }

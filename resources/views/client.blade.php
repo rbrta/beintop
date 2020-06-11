@@ -7,7 +7,7 @@
         <div class="container-top">
             <div class="wrapper-content">
                 <div class="row1">
-                    <b>Аккаунт:</b> {{ $user->email }}
+                    <b>Аккаунт:</b> {{ $user->name }}
                 </div>
                 <div class="row2 hide">
                     <a href="/logout">Сменить аккаунт</a>
@@ -17,7 +17,7 @@
         <!-- ------------------------------------------------------------------------------- -->
 
         <div class="wrapper-content">
-            <client-area :orders='@json($orders)' :services='@json($services)'></client-area>
+            <client-area :orders='@json($orders)' :services='@json($services)' :user='@json($user)'></client-area>
         </div>
 </div>
 

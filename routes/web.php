@@ -32,6 +32,8 @@ Route::group(['prefix' => 'admin'], function() {
 
 Route::group(['prefix' => 'userpanel', 'middleware' => ['auth']], function(){
     Route::get('/', 'UserController@index');
+    Route::post('/add-new-order', 'UserController@add_new_order');
+    Route::any('/profile', 'UserController@profile');
 });
 
 
@@ -39,7 +41,7 @@ Route::group(['prefix' => 'userpanel', 'middleware' => ['auth']], function(){
 Route::get('/home', function(){ return redirect()->to('/client'); });
 
 Route::get('/new-order', 'UserController@new_order');
-Route::post('/add-new-order', 'UserController@add_new_order');
+
 Route::post('/pay_service', 'UserController@pay_service_guest');
 
 

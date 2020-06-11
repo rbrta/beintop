@@ -9,7 +9,7 @@
     import ModalActivation from "./../common/ModalActivation";
     export default {
         name: "ButtonActivation",
-        props: ['service', 'user', 'app_url', 'shop_id'],
+        props: ['service', 'user', 'app_url', 'shop_id', 'mode'],
         data() {
             return {
                 order_id: '',
@@ -25,6 +25,7 @@
                     service: this.service,
                     app_url: this.app_url,
                     shop_id: this.shop_id,
+                    mode: this.mode,
                 });
             },
             activation() {

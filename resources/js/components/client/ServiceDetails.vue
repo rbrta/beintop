@@ -1,6 +1,6 @@
 <template>
     <div class="details-panel">
-        <div class="account-name" v-if="accountName"><b>Insta:</b> {{ accountName }}</div>
+        <div class="account-name" ><b>Insta:</b> {{ user.name }}</div>
         <h1 class="tariff_name">{{ service.category.name }}</h1>
 
         <div class="flex">
@@ -26,7 +26,7 @@
                 </div>
 
                 <div class="price__label">Стоимость</div>
-                <div class="price">{{ service.price }}</div>
+                <div class="price">{{ service.price_formatted }}</div>
                 <div class="price__currency">руб.мес</div>
             </div>
 
@@ -36,32 +36,37 @@
                         <div class="expires">
                             <div class="expires__label">Осталось</div>
                             <div class="expires__days_count">{{ props.days }}</div>
-                            <div class="expires__days">Дней</div>
+                            <div class="expires__days">{{ $tc('days', props.days)}}</div>
 
                             <div class="expires__timer">
-                                <div class="value">{{ props.hours }} <span>Часа</span></div>
+                                <div class="value">{{ props.hours }} <span>{{ $tc('hours',props.hours) }} </span></div>
                                 <div class="delimeter">:</div>
-                                <div class="value">{{ props.minutes }} <span>Минут</span></div>
+                                <div class="value">{{ props.minutes }} <span>{{ $tc('minutes',props.minutes) }}</span></div>
                                 <div class="delimeter">:</div>
-                                <div class="value">{{ props.seconds }} <span>Секунд</span></div>
+                                <div class="value">{{ props.seconds }} <span>{{ $tc('seconds',props.seconds) }}</span></div>
                             </div>
                         </div>
                     </template>
                 </countdown>
                 <div v-else class="expires">
                     <div class="expires__label">Период</div>
-                    <div class="expires__days_count">30</div>
+                    <div class="expires__days_count">{{service.periodindays}}</div>
                     <div class="expires__days">Дней</div>
                 </div>
+
+                <button-activation v-if="mode === 'newOrder'" :user="user" :service="service" mode="fromUserpanel"></button-activation>
             </div>
         </div>
     </div>
 </template>
 
 <script>
+    import buttonActivation from '../common/ButtonActivation';
+
     export default {
         name: "ServiceDetails",
-        props: ['accountName', 'service', 'expirationDate'],
+        props: ['service', 'expirationDate', 'user', 'mode'],
+        components: {'button-activation': buttonActivation},
 
         computed: {
             countdownTo() {

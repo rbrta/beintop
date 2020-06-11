@@ -271,12 +271,12 @@ header .wrapper-mobile {
   z-index: 500;
   width: 100%;
   background-color: white;
-  background: #fff url(/images/background-mobile.svg?8045323e0d1593cf549735a00dfd45bf) no-repeat center 140px/cover;
+  background: #fff url(/images/background-mobile.svg?bc1bdbb9f0314ac760e1ed21bdbe7def) no-repeat center 140px/cover;
 }
 
 @media screen and (min-width: 700px) {
   header .wrapper-mobile {
-    background: #fff url(/images/background-mobile.svg?8045323e0d1593cf549735a00dfd45bf) no-repeat center 35px/cover;
+    background: #fff url(/images/background-mobile.svg?bc1bdbb9f0314ac760e1ed21bdbe7def) no-repeat center 35px/cover;
   }
 }
 
@@ -377,7 +377,7 @@ header .wrapper-mobile .mobile-menu a {
 
 #app .main-block {
   position: relative;
-  background-image: url(/images/background-client2.svg?06b6ad4a981fdfb5eea532b9d7cac934);
+  background-image: url(/images/background-client2.svg?c0c77771f98b9ab27c666d64cb41d64e);
   background-repeat: no-repeat;
   background-size: cover;
   z-index: 100;
@@ -508,7 +508,7 @@ header .wrapper-mobile .mobile-menu a {
 }
 
 .content-table .tabs li.active {
-  background: #e0c7e3;
+  background: #fde2fa;
 }
 
 .content-table .table-wrapper,
@@ -836,5 +836,9 @@ header .wrapper-mobile .mobile-menu a {
   font-weight: bold;
   font-size: 36px;
   margin-top: 10px;
+}
+
+.content-table .details-panel .flex .right .btn {
+  margin-top: 3rem;
 }
 

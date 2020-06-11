@@ -1,16 +1,18 @@
 <template>
-  <div class="popup">
+<div class="popup">
     <div class="popup__content">
         <div class="row1">Активация тарифа</div>
         <div class="row2">{{ description }}</div>
         <div class="row3">
-            <div class="intput-wrapper"><input v-model="form.full_name" placeholder="Полное имя" type="text"></div>
-            <div class="intput-wrapper"><input v-model="form.email" placeholder="Email" type="email" ></div>
-            <div class="intput-wrapper"><input v-model="form.password" placeholder="Пароль" type="password"></div>
+            <div v-if="mode !== 'fromUserpanel'">
+                <div class="intput-wrapper"><input v-model="form.full_name" placeholder="Полное имя" type="text"></div>
+                <div class="intput-wrapper"><input v-model="form.email" placeholder="Email" type="email"></div>
+                <div class="intput-wrapper"><input v-model="form.password" placeholder="Пароль" type="password"></div>
+            </div>
             <div class="intput-wrapper"><input v-model="form.account_name" placeholder="Имя профиля или ссылка" type="text"></div>
         </div>
         <div class="row4">
-            К оплате: {{ service.price}} Рублей
+            К оплате: {{ service.price_formatted}} Рублей
         </div>
         <div class="row5">
             Мы начнём выполнение заказа сразу после оплаты
@@ -23,77 +25,86 @@
     </div>
     <div v-show="false">
         <form ref="payment_form" name="payment" method="post" action="https://sci.interkassa.com/" accept-charset="UTF-8">
-            <input type="hidden" name="ik_co_id" value="5ed3d7051ae1bd39008b457b"/>
-            <input type="hidden" name="ik_pm_no" :value="order_id"/>
-            <input type="hidden" name="ik_am" :value="service.price"/>
-            <input type="hidden" name="ik_cur" value="RUB"/>
-            <input type="hidden" name="ik_desc" :value="description"/>
+            <input type="hidden" name="ik_co_id" :value="shop_id" />
+            <input type="hidden" name="ik_pm_no" :value="order_id" />
+            <input type="hidden" name="ik_am" :value="service.price" />
+            <input type="hidden" name="ik_cur" value="RUB" />
+            <input type="hidden" name="ik_desc" :value="description" />
 
-            <input type="hidden" name="ik_ia_u" :value="app_url + '/payment/callback'"/>
-            <input type="hidden" name="ik_suc_u" :value="app_url + '/payment/success'"/>
-            <input type="hidden" name="ik_fal_u" :value="app_url + '/payment/failure'"/>
-            <input type="hidden" name="ik_pnd_u" :value="app_url + '/payment/pending'"/>
+            <input type="hidden" name="ik_ia_u" :value="app_url + '/payment/callback'" />
+            <input type="hidden" name="ik_suc_u" :value="app_url + '/payment/success'" />
+            <input type="hidden" name="ik_fal_u" :value="app_url + '/payment/failure'" />
+            <input type="hidden" name="ik_pnd_u" :value="app_url + '/payment/pending'" />
 
             <input type="submit" value="Pay">
         </form>
     </div>
-  </div>
+</div>
 </template>
 
-
 <script>
-    export default {
-        name: "ModalSkeleton",
-        props: ['service', 'app_url'],
-        data() {
-            return {
-                order_id: '',
-                form: {
-                    full_name: '',
-                    email: '',
-                    password: '',
-                    account_name: ''
-                }
-            }
-        },
-        computed: {
-            description(){
-                return this.service.category.name.replace('Тарифы','Тариф')+' '+this.service.name;
-            },
-        },
-        methods: {
-            pay() {
-                axios.post('/pay_service', 
-                    { ...this.form, service_id: this.service.id }
-                ).then(response => {
-                    this.order_id = "ID_" + response.data.order_id;
-                    this.$nextTick(_ => this.$refs.payment_form.submit());
-                }).catch(error => {
-                    if(error.response.data && error.response.data.errors){
-                        let message = error.response.data.errors[Object.keys(error.response.data.errors)[0]]
-                        message = message.toString();
-                        this.$alert(message);
-                    }
-                });
+export default {
+    name: "ModalSkeleton",
+    props: ['service', 'mode'],
+    data() {
+        return {
+            app_url: '',
+            shop_id: '',
+
+            order_id: '',
+            form: {
+                full_name: '',
+                email: '',
+                password: '',
+                account_name: ''
             }
         }
+    },
+    computed: {
+        description() {
+            return this.service.category.name.replace('Тарифы', 'Тариф') + ' ' + this.service.name;
+        },
+    },
+    created(){
+        this.app_url = window._laravel.app_url;
+        this.shop_id = window._laravel.shop_id;
+    },
+
+    methods: {
+        pay() {
+            let url = this.mode == 'fromUserpanel' ? '/userpanel/add-new-order' : '/pay_service';
+
+            axios.post(url, {
+                ...this.form,
+                service_id: this.service.id
+            }).then(response => {
+                this.order_id = "ID_" + response.data.order_id;
+                this.$nextTick(_ => this.$refs.payment_form.submit());
+            }).catch(error => {
+                if (error.response.data && error.response.data.errors) {
+                    let message = error.response.data.errors[Object.keys(error.response.data.errors)[0]]
+                    message = message.toString();
+                    this.$alert(message);
+                }
+            });
+        }
     }
+}
 </script>
 
-
 <style lang="scss" scoped>
-.popup{
+.popup {
     width: 849px;
     max-width: 95%;
     margin: 0 auto;
 
-    &__content{
+    &__content {
         display: flex;
         flex-direction: column;
         align-items: center;
     }
 
-    .row1{
+    .row1 {
         font-family: Montserrat;
         font-style: normal;
         font-weight: bold;
@@ -104,7 +115,7 @@
         margin-top: 2rem;
     }
 
-    .row2{
+    .row2 {
         font-family: Montserrat;
         font-style: normal;
         font-weight: normal;
@@ -115,11 +126,11 @@
         margin-top: 1rem;
     }
 
-    .row3{
+    .row3 {
         display: flex;
         flex-direction: column;
 
-        input{
+        input {
             display: block;
             width: 100%;
             margin-top: 1rem;
@@ -134,7 +145,7 @@
         }
     }
 
-    .row4{
+    .row4 {
         margin-top: 1rem;
         font-style: normal;
         font-weight: bold;
@@ -144,7 +155,7 @@
         color: #5C4998;
     }
 
-    .row5{
+    .row5 {
         margin-top: 1rem;
         font-style: normal;
         font-weight: normal;
@@ -156,11 +167,11 @@
         max-width: 100%;
     }
 
-    .row6{
+    .row6 {
         margin-top: 1rem;
         margin-bottom: 2rem;
 
-        a{
+        a {
             max-width: 100%;
             width: 393.98px;
             height: 79px;
@@ -178,12 +189,12 @@
         }
     }
 
-    textarea:focus, input:focus{
+    textarea:focus,
+    input:focus {
         outline: none;
     }
 
-
-    @media(max-width: 460px){
+    @media(max-width: 460px) {
         .row1 {
             font-size: 30px;
         }
@@ -210,7 +221,7 @@
 
         .row6 {
             width: 100%;
-            
+
             a {
                 font-size: 20px;
                 font-weight: bold;
@@ -221,7 +232,6 @@
             }
         }
 
-        
     }
 }
 </style>

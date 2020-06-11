@@ -30,24 +30,15 @@ class UserController extends Controller
         return view("client", compact("orders", "user", "services"));
     }
 
-    public function new_order()
-    {
-        $services = Service::with("category")->get();
-        $user = auth()->user();
-        return view("new_order", compact("services", "user"));
-    }
 
-    public function add_new_order(Request $request)
-    {
-        $order = Order::create([
-            'user_id' => $request->user_id,
-            'service_id' => $request->service_id,
-            'paid_status' => 'pending'
-        ]);
 
-        return response()->json(['order_id' => $order->id]);
-    }
 
+    /**
+     * pay from main page as new user
+     *
+     * @param Request $request
+     * @return void
+     */
     public function pay_service_guest(Request $request)
     {
         $customMessages = [
@@ -90,6 +81,39 @@ class UserController extends Controller
         return response()->json(['order_id' => $order->id]);
     }
 
+    /**
+     * pay from user panel as exists user
+     *
+     * @param Request $request
+     * @return void
+     */
+    public function add_new_order(Request $request)
+    {
+        $customMessages = [
+            'account_name.required' => 'Не указано "Имя профиля Instagram"',
+        ];
+
+        $request->validate([
+            'account_name' => 'required',
+            'service_id' => 'required',
+
+        ], $customMessages);
+
+        $service = Service::find($request->service_id);
+
+        $order = Order::create([
+            'user_id' => auth()->user()->id,
+            'service_id' => $request->service_id,
+            'account_name' => $request->account_name,
+            'paid_status' => 'pending',
+            'expiration_date' => Carbon::now()->addDays($service->periodindays)->format('Y-m-d')
+        ]);
+
+        return response()->json(['order_id' => $order->id]);
+    }
+
+
+
     public function loginUser()
     {
         if(auth()->check()){
@@ -108,5 +132,18 @@ class UserController extends Controller
         }
 
         return redirect('/userpanel');
+    }
+
+
+    public function profile(Request $request)
+    {
+        if($request->isMethod('post') && $request->filled('action') && $request->action == 'updateProfile') {
+            $request->validate(['email' => 'required', 'name' => 'required']);
+            User::where('id', Auth::id())->update(['email' => $request->email, 'name' => $request->name]);
+            return redirect('/userpanel/profile');
+        }
+
+        
+        return view('profile', ['user' => auth()->user()]);
     }
 }
