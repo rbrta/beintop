@@ -138,7 +138,7 @@ class UserController extends Controller
     {
         if($request->isMethod('post') && $request->filled('action') && $request->action == 'updateProfile') {
             $request->validate(['email' => 'required', 'full_name' => 'required']);
-            User::where('id', Auth::id())->update(['email' => $request->email, 'full_name' => $request->name]);
+            User::where('id', Auth::id())->update(['email' => $request->email, 'full_name' => $request->full_name]);
             return redirect('/userpanel/profile');
         }
 
