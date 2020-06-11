@@ -86,35 +86,35 @@ class DatabaseSeeder extends Seeder
             ]
         ); 
 
-        DB::table('services')->insertOrIgnore(
-            [
-                'category_id' => 1,
-                'name' => '10000',
-                'periodindays' => 30,
-                'price' => 30990,
-                'likes' => 10000,
-                'posts' => 30,
-                'views' => 30000,
-                'bonus_comments' => "30-35",
-                'bonus_posts' => 5
-            ]
-        ); 
+        // DB::table('services')->insertOrIgnore(
+        //     [
+        //         'category_id' => 1,
+        //         'name' => '10000',
+        //         'periodindays' => 30,
+        //         'price' => 30990,
+        //         'likes' => 10000,
+        //         'posts' => 30,
+        //         'views' => 30000,
+        //         'bonus_comments' => "30-35",
+        //         'bonus_posts' => 5
+        //     ]
+        // ); 
 
         //=========================================
 
-        DB::table('services')->insertOrIgnore(
-            [
-                'category_id' => 1,
-                'name' => '1000',
-                'periodindays' => 60,
-                'price' => 5590,
-                'likes' => 1000,
-                'posts' => 30,
-                'views' => 3000,
-                'bonus_comments' => "10-15",
-                'bonus_posts' => 5
-            ]
-        ); 
+        // DB::table('services')->insertOrIgnore(
+        //     [
+        //         'category_id' => 1,
+        //         'name' => '1000',
+        //         'periodindays' => 60,
+        //         'price' => 5590,
+        //         'likes' => 1000,
+        //         'posts' => 30,
+        //         'views' => 3000,
+        //         'bonus_comments' => "10-15",
+        //         'bonus_posts' => 5
+        //     ]
+        // ); 
 
         //=========================================
 
