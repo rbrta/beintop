@@ -16,10 +16,10 @@ class UserController extends Controller
     {
         $user_id = auth()->user()->id;
         $orders = Order::with(["service.category", "user"])->where("user_id", $user_id)->where("orders.paid_status", "active")->get();
+        $services = Service::all();
         $user = auth()->user();
         $now = Carbon::now();
 
-        Carbon::setlocale('ru');
         $orders->map(function ($item) use ($now) {
             $item->expiration_date = Carbon::parse($item->expiration_date);
             $item->days = $item->expiration_date->diffInDays($now);
@@ -27,7 +27,7 @@ class UserController extends Controller
             return $item;
         });
 
-        return view("client", compact("orders", "user"));
+        return view("client", compact("orders", "user", "services"));
     }
 
     public function new_order()
@@ -69,7 +69,8 @@ class UserController extends Controller
         ], $customMessages);
 
         $user = User::create([
-            'name' => $request->full_name,
+            'full_name' => $request->full_name,
+            'account_name' => $request->account_name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
@@ -94,7 +95,7 @@ class UserController extends Controller
         if(auth()->check()){
             return redirect('/userpanel');
         }
-        
+
         return view('login');
     }
 

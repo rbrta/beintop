@@ -32,6 +32,8 @@ Route::group(['prefix' => 'admin'], function() {
 
 Route::group(['prefix' => 'userpanel', 'middleware' => ['auth']], function(){
     Route::get('/', 'UserController@index');
+    Route::get('/orders', 'UserController@orders');
+
 });
 
 
