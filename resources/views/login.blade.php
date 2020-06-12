@@ -2,7 +2,7 @@
 
 @section('content')
 <!-- ------------------------------------------------------------------------------- -->
-<form action="signup" id="signup-form" method="post">
+<form action="{{ route('login') }}" id="signup-form" method="post">
     {{ csrf_field() }}
     <div class="login">
         <div class="wrapper">

@@ -27,14 +27,16 @@ class LoginController extends Controller
      *
      * @var string
      */
-
     protected function authenticated(\Illuminate\Http\Request $request, $user)
     {
+        if($request->filled('redirect_to')) {
+            return redirect($request->input('redirect_to'));
+        }
+
         if($user->usertype == 'admin'){
             return redirect('/admin');
         }
 
-        dd($user);
 
         return redirect('/userpanel');
     }

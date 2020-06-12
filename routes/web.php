@@ -57,4 +57,3 @@ Route::get('/test', 'PaymentController@test');
 Auth::routes();
 
 Route::get('/login', 'UserController@loginUser')->name('login');
-Route::post('/signup', 'UserController@signupUser');
