@@ -115,10 +115,6 @@ class UserController extends Controller
 
     public function loginUser()
     {
-        if(auth()->check()){
-            return redirect('/userpanel');
-        }
-
         return view('login');
     }
 
