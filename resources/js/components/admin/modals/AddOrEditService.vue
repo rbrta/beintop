@@ -3,6 +3,15 @@
 
 <div>
      <el-form :model="service" :rules="rules" ref="form" @submit.prevent.native="onSubmit">
+
+        <el-row>
+            <el-col :span="24">
+                <el-form-item label="Ссылка на продукт">
+                    <el-input :disabled="true" :value="app_url + '/buy_service_' + service.id"/>
+                </el-form-item>
+            </el-col>
+        </el-row>
+
          <el-row :gutter="30">
             <el-col :span="12">
             <el-form-item label="Выберите категорию" prop="category_id">
@@ -60,6 +69,7 @@
             </el-form-item>
             </el-col>
         </el-row>
+        
      </el-form>
 </div>
 
@@ -71,6 +81,7 @@
        props: ['serviceItem', 'updated'],
        data() {
             return {
+                app_url: '',
                 categories: [],
                 service: {
                     category_id: '',
@@ -122,6 +133,8 @@
             axios.get('/admin/categories').then(response => {
                 this.categories = response.data.categories;
             });
+
+            this.app_url = window._laravel.app_url;
         },
         methods: {
              onSubmit() {

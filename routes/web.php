@@ -13,7 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'HomeController@index');
+//  buy_service_
+
+
+Route::get('/service_details/{idservice}', 'HomeController@getService');
 
 Route::get('/logout', function(){
     auth()->logout();
@@ -56,3 +59,6 @@ Route::get('/test', 'PaymentController@test');
 Auth::routes();
 
 Route::get('/login', 'UserController@loginUser')->name('login');
+
+
+Route::get('/{idservice?}', 'HomeController@index');

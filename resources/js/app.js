@@ -31,6 +31,8 @@ Vue.component('service-table', require('./components/admin/ServiceTable.vue').de
 Vue.component('button-activation', require('./components/common/ButtonActivation').default);
 Vue.component('button-details', require('./components/common/ButtonDetails').default);
 
+Vue.component('popuploader', require('./components/common/BuyPopupLoader.vue').default);
+
 /**
  * Client components
  */

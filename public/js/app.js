@@ -4154,10 +4154,21 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['serviceItem', 'updated'],
   data: function data() {
     return {
+      app_url: '',
       categories: [],
       service: {
         category_id: '',
@@ -4230,6 +4241,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     axios.get('/admin/categories').then(function (response) {
       _this.categories = response.data.categories;
     });
+    this.app_url = window._laravel.app_url;
   },
   methods: {
     onSubmit: function onSubmit() {
@@ -4632,6 +4644,50 @@ __webpack_require__.r(__webpack_exports__);
   },
   mounted: function mounted() {
     this.order = JSON.parse(this.order);
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/common/BuyPopupLoader.vue?vue&type=script&lang=js&":
+/*!********************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/common/BuyPopupLoader.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _ModalActivation_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ModalActivation.vue */ "./resources/js/components/common/ModalActivation.vue");
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "BuyModalLoader",
+  props: ['idservice'],
+  data: function data() {
+    return {
+      service: ''
+    };
+  },
+  mounted: function mounted() {
+    var _this = this;
+
+    if (this.idservice !== "") {
+      axios.get("/service_details/".concat(this.idservice)).then(function (response) {
+        _this.service = response.data;
+
+        _this.showModal();
+      });
+    }
+  },
+  methods: {
+    showModal: function showModal() {
+      this.$showModal(_ModalActivation_vue__WEBPACK_IMPORTED_MODULE_0__["default"], {
+        service: this.service
+      });
+    }
   }
 });
 
@@ -105866,6 +105922,34 @@ var render = function() {
           [
             _c(
               "el-row",
+              [
+                _c(
+                  "el-col",
+                  { attrs: { span: 24 } },
+                  [
+                    _c(
+                      "el-form-item",
+                      { attrs: { label: "Ссылка на продукт" } },
+                      [
+                        _c("el-input", {
+                          attrs: {
+                            disabled: true,
+                            value:
+                              _vm.app_url + "/buy_service_" + _vm.service.id
+                          }
+                        })
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                )
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "el-row",
               { attrs: { gutter: 30 } },
               [
                 _c(
@@ -106661,6 +106745,30 @@ var render = function() {
     },
     [_vm._v("Детали")]
   )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/common/BuyPopupLoader.vue?vue&type=template&id=457a02fc&scoped=true&":
+/*!************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/common/BuyPopupLoader.vue?vue&type=template&id=457a02fc&scoped=true& ***!
+  \************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("span")
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -119381,6 +119489,7 @@ vue__WEBPACK_IMPORTED_MODULE_4___default.a.component('modal-skeleton', __webpack
 vue__WEBPACK_IMPORTED_MODULE_4___default.a.component('service-table', __webpack_require__(/*! ./components/admin/ServiceTable.vue */ "./resources/js/components/admin/ServiceTable.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_4___default.a.component('button-activation', __webpack_require__(/*! ./components/common/ButtonActivation */ "./resources/js/components/common/ButtonActivation.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_4___default.a.component('button-details', __webpack_require__(/*! ./components/common/ButtonDetails */ "./resources/js/components/common/ButtonDetails.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_4___default.a.component('popuploader', __webpack_require__(/*! ./components/common/BuyPopupLoader.vue */ "./resources/js/components/common/BuyPopupLoader.vue")["default"]);
 /**
  * Client components
  */
@@ -120081,6 +120190,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ButtonDetails_vue_vue_type_template_id_8e05b792_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ButtonDetails_vue_vue_type_template_id_8e05b792_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/common/BuyPopupLoader.vue":
+/*!***********************************************************!*\
+  !*** ./resources/js/components/common/BuyPopupLoader.vue ***!
+  \***********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _BuyPopupLoader_vue_vue_type_template_id_457a02fc_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./BuyPopupLoader.vue?vue&type=template&id=457a02fc&scoped=true& */ "./resources/js/components/common/BuyPopupLoader.vue?vue&type=template&id=457a02fc&scoped=true&");
+/* harmony import */ var _BuyPopupLoader_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./BuyPopupLoader.vue?vue&type=script&lang=js& */ "./resources/js/components/common/BuyPopupLoader.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _BuyPopupLoader_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _BuyPopupLoader_vue_vue_type_template_id_457a02fc_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _BuyPopupLoader_vue_vue_type_template_id_457a02fc_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  "457a02fc",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/common/BuyPopupLoader.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/common/BuyPopupLoader.vue?vue&type=script&lang=js&":
+/*!************************************************************************************!*\
+  !*** ./resources/js/components/common/BuyPopupLoader.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_BuyPopupLoader_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./BuyPopupLoader.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/common/BuyPopupLoader.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_BuyPopupLoader_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/common/BuyPopupLoader.vue?vue&type=template&id=457a02fc&scoped=true&":
+/*!******************************************************************************************************!*\
+  !*** ./resources/js/components/common/BuyPopupLoader.vue?vue&type=template&id=457a02fc&scoped=true& ***!
+  \******************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_BuyPopupLoader_vue_vue_type_template_id_457a02fc_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./BuyPopupLoader.vue?vue&type=template&id=457a02fc&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/common/BuyPopupLoader.vue?vue&type=template&id=457a02fc&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_BuyPopupLoader_vue_vue_type_template_id_457a02fc_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_BuyPopupLoader_vue_vue_type_template_id_457a02fc_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

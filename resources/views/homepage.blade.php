@@ -103,6 +103,7 @@
             @endforeach
         </section>
     </div>
+    <popuploader idservice="{{$idService}}"></popuploader>
 </div>
 <!-- ------------------------------------------------------------------------------- -->
 <div class="container-below">
@@ -141,4 +142,6 @@
         </div>
     </div>
 </div>
+
+
 @endsection
