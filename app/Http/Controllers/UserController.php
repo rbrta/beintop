@@ -105,7 +105,7 @@ class UserController extends Controller
             'service_id' => $request->service_id,
             'account_name' => $request->account_name,
             'paid_status' => 'pending',
-            'expiration_date' => Carbon::now()->addDays($service->periodindays)->format('Y-m-d')
+            'expiration_date' => Carbon::now()->addDays($service->periodindays + 1)->format('Y-m-d')
         ]);
 
         return response()->json(['order_id' => $order->id]);

@@ -106487,16 +106487,13 @@ var render = function() {
                             ]),
                             _vm._v(" "),
                             _c("div", { staticClass: "expires__days_count" }, [
-                              _vm._v(_vm._s(props.days + 1))
+                              _vm._v(_vm._s(props.days))
                             ]),
                             _vm._v(" "),
                             _c("div", { staticClass: "expires__days" }, [
                               _vm._v(
                                 _vm._s(
-                                  _vm.$plur(
-                                    props.days + 1,
-                                    _vm.$plurString.days
-                                  )
+                                  _vm.$plur(props.days, _vm.$plurString.days)
                                 )
                               )
                             ]),
@@ -106559,7 +106556,7 @@ var render = function() {
                   ],
                   null,
                   false,
-                  3313730938
+                  4034326586
                 )
               })
             : _c("div", { staticClass: "expires" }, [

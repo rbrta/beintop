@@ -35,8 +35,8 @@
                     <template slot-scope="props">
                         <div class="expires">
                             <div class="expires__label">Осталось</div>
-                            <div class="expires__days_count">{{ props.days + 1 }}</div>
-                            <div class="expires__days">{{ $plur(props.days + 1, $plurString.days)}}</div>
+                            <div class="expires__days_count">{{ props.days }}</div>
+                            <div class="expires__days">{{ $plur(props.days, $plurString.days)}}</div>
 
                             <div class="expires__timer">
                                 <div class="value">{{ props.hours }} <span>{{ $plur(props.hours, $plurString.hours) }} </span></div>
