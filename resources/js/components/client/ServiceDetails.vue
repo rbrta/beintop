@@ -36,14 +36,14 @@
                         <div class="expires">
                             <div class="expires__label">Осталось</div>
                             <div class="expires__days_count">{{ props.days }}</div>
-                            <div class="expires__days">{{ $tc('days', props.days)}}</div>
+                            <div class="expires__days">{{ $plur(props.days, $plurString.days)}}</div>
 
                             <div class="expires__timer">
-                                <div class="value">{{ props.hours }} <span>{{ $tc('hours',props.hours) }} </span></div>
+                                <div class="value">{{ props.hours }} <span>{{ $plur(props.hours, $plurString.hours) }} </span></div>
                                 <div class="delimeter">:</div>
-                                <div class="value">{{ props.minutes }} <span>{{ $tc('minutes',props.minutes) }}</span></div>
+                                <div class="value">{{ props.minutes }} <span>{{ $plur(props.minutes, $plurString.minutes) }}</span></div>
                                 <div class="delimeter">:</div>
-                                <div class="value">{{ props.seconds }} <span>{{ $tc('seconds',props.seconds) }}</span></div>
+                                <div class="value">{{ props.seconds }} <span>{{ $plur(props.seconds, $plurString.seconds) }}</span></div>
                             </div>
                         </div>
                     </template>
@@ -67,6 +67,7 @@
         name: "ServiceDetails",
         props: ['service', 'expirationDate', 'user', 'mode'],
         components: {'button-activation': buttonActivation},
+
 
         computed: {
             countdownTo() {

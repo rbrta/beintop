@@ -6,10 +6,6 @@ import Element from 'element-ui'
 import locale from 'element-ui/lib/locale/lang/ru-RU'
 import 'element-ui/lib/theme-chalk/index.css'
 
-import VueI18n from 'vue-i18n'
-
-Vue.use(VueI18n);
-
 
 import Vue from 'vue';
 import VueSweetalert2 from 'vue-sweetalert2';
@@ -54,49 +50,18 @@ Vue.prototype.$showModal = function (component, props, width = 680, events) {
 
 // pluralization ==========
 
-const defaultImpl = VueI18n.prototype.getChoiceIndex
+Vue.prototype.$plur = function (n, titles) {
+    return titles[(n % 10 === 1 && n % 100 !== 11) ? 0 : n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 10 || n % 100 >= 20) ? 1 : 2]
+};
 
-VueI18n.prototype.getChoiceIndex = function (choice, choicesLength) {
-    if (this.locale !== 'ru') {
-        return defaultImpl.apply(this, arguments)
-    }
-
-    if (choice === 0) {
-        return 0;
-    }
-
-    const teen = choice > 10 && choice < 20;
-    const endsWithOne = choice % 10 === 1;
-
-    if (!teen && endsWithOne) {
-        return 1;
-    }
-
-    if (!teen && choice % 10 >= 2 && choice % 10 <= 4) {
-        return 2;
-    }
-
-    return (choicesLength < 4) ? 2 : 3;
+Vue.prototype.$plurString = {
+    days: ['день', 'дня', 'дней'],
+    hours: ['час', 'часа', 'часов'],
+    minutes: ['минута', 'минуты' , 'минут'],
+    seconds: ['секунда', 'секунды', 'секунд']
 }
-
-
-const messages = {
-    ru: {
-        days: 'дней | день | дня | дней',
-        hours: 'часов | час | часа | часов',
-        minutes: 'минут | минута | минуты | минут',
-        seconds: 'секунд | секунда | секунды | секунд'
-    }
-}
-
-const i18n = new VueI18n({
-    locale: 'ru',
-    messages
-});
-
 
 
 const app = new Vue({
     el: '#app',
-    i18n
 });
