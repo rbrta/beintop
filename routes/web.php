@@ -21,8 +21,7 @@ Route::get('/logout', function(){
     return redirect('/login');
 });
 
-// Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function() {
-Route::group(['prefix' => 'admin'], function() {
+Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function() {
     Route::get('/', 'AdminController@index');
     Route::get('/categories', 'AdminController@serviceCategories');
     Route::post('/add_service', 'AdminController@addService');
