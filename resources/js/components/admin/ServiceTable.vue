@@ -1,34 +1,30 @@
 <template>
-<div class="container-table">
-	<div class="wrapper-content">
-		<div class="wrapper-table">
-			<div class="tab">
-				Тарифы
-			</div>
-			<table>
-				<thead>
-					<tr class="table-title">
-						<td>Название</td>
-						<td>Период</td>
-						<td>Стоимость</td>
-						<td>Actions</td>
-					</tr>
-				</thead>
-                <tr v-for="(item, index) in services" :key="index + item.name">
-                    <td>{{ item.name }}</td>
-                    <td>{{ item.periodindays }} дней</td>
-                    <td>{{ item.price }} руб</td>
-                    <td class="table-action">
-                        <a @click.prevent="editService(item)" class="btn" href="#">Изменить</a>
-                        <a @click.prevent="deleteService(item.id, index)" class="btn" href="#">Удалить</a>
-                    </td>
-                </tr>
-			</table>
-			<div class="add-btn">
-				<a @click.prevent="addService" class="btn" href="#">Добавить</a>
-			</div>
-		</div>
-	</div>
+<div class="table-wrapper">
+	<table>
+        <caption>Тарифы</caption>
+        <thead>
+            <tr class="table-title">
+                <th>Название</th>
+                <th>Период</th>
+                <th>Стоимость</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr v-for="(item, index) in services" :key="index + item.name">
+                <td data-label="Название">{{ item.name }}</td>
+                <td data-label="Период">{{ item.periodindays }} дней</td>
+                <td data-label="Стоимость">{{ item.price }} руб</td>
+                <td data-label="Actions" class="table-action">
+                    <a @click.prevent="editService(item)" class="btn" href="#">Изменить</a>
+                    <a @click.prevent="deleteService(item.id, index)" class="btn" href="#">Удалить</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="add-btn">
+        <a @click.prevent="addService" class="btn" href="#">Добавить</a>
+    </div>
 </div>
 </template>
 
@@ -89,5 +85,10 @@
     }
 </script>
 
-<style scoped>
+<style lang="scss">
+
+    a.add-btn {
+        margin: 1rem auto;
+        display: block;
+    }
 </style>

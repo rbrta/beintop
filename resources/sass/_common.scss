@@ -208,6 +208,11 @@ header {
         padding: 0;
         width: 100%;
         table-layout: fixed;
+
+        caption {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+        }
     }
 }
 

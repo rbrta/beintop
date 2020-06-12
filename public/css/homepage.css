@@ -318,6 +318,11 @@ header .wrapper-mobile .mobile-menu a {
   table-layout: fixed;
 }
 
+.table-wrapper table caption {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+
 @media screen and (max-width: 800px) {
   .table-wrapper table {
     border: 0;
