@@ -440,6 +440,7 @@
             padding: 3px 5px;
             border-radius: 39px;
             padding-right: 6px;
+            margin: 0 auto;
         }
 
         .row1{
@@ -798,5 +799,22 @@ footer{
     @media(max-width: 430px){
         margin-top: 30px;
         margin-bottom: 30px;
+    }
+}
+
+
+.glide {
+    .glide__arrows {
+        width: 100%;
+        margin: 1rem auto;
+        text-align: center;
+
+        .glide__arrow {
+            position: relative;
+            background: linear-gradient(180deg, #B04E98 18.23%, #873E90 90.1%, #73307B 100%);
+            font-size: 2rem;
+            line-height: 1;
+            padding: 0.2rem 1.5rem;
+        }
     }
 }

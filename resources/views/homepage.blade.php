@@ -69,35 +69,52 @@
                     <div>{{ $tariff }}</div>
                 </div>
                 <div class="item-body">
-                    @foreach ($group_services as $service)
-                    <div class="tariff">
-                        <div class="module-border-wrap">
-                            <div class="tariff__body">
-                                <div class="row1">Тариф</div>
-                                <div class="row2">{{  $service->name }}</div>
-                                <div class="row3">{{  $service->periodindays }} дней</div>
-                                <div class="hr"></div>
-                                <div class="row4">- <span>{{ $service->likes }}</span> лайков на <span>{{ $service->posts }}</span> постов </div>
-                                <div class="row5">+ статистика (просмотры и охват) </div>
-                                <div class="row6">
-                                    - <span>{{ $service->views }} просмотров</span> <br>
-                                        <span class="ml">На видео и IGTV 
-                                            @if($service->igtv_unlim) 
-                                                (<span class="unlimited">Безлимит <img src="/images/fire.svg" alt=""></span>)
-                                            @endif
-                                        </span>
+
+                <div class="glide">
+                    <div class="glide__track" data-glide-el="track">
+                        <ul class="glide__slides">
+                            @foreach ($group_services as $service)
+                                <li class="glide__slide">
+                                <!-- slide element -->
+                                <div class="tariff">
+                                    <div class="module-border-wrap">
+                                        <div class="tariff__body">
+                                            <div class="row1">Тариф</div>
+                                            <div class="row2">{{  $service->name }}</div>
+                                            <div class="row3">{{  $service->periodindays }} дней</div>
+                                            <div class="hr"></div>
+                                            <div class="row4">- <span>{{ $service->likes }}</span> лайков на <span>{{ $service->posts }}</span> постов </div>
+                                            <div class="row5">+ статистика (просмотры и охват) </div>
+                                            <div class="row6">
+                                                - <span>{{ $service->views }} просмотров</span> <br>
+                                                    <span class="ml">На видео и IGTV 
+                                                        @if($service->igtv_unlim) 
+                                                            (<span class="unlimited">Безлимит <img src="/images/fire.svg" alt=""></span>)
+                                                        @endif
+                                                    </span>
+                                            </div>
+                                            <div class="row7"> + <img src="/images/bonus.svg"
+                                                    alt="">&nbsp;<span>Бонус</span> (<span>{{ $service->bonus_comments }}</span> комментариев на
+                                                <span>{{ $service->bonus_posts }}</span> постов в тему публикации)</div>
+                                            <div class="row8">{{ str_replace('.00','',$service->price) }} рублей </div>
+                                            <div class="row9">
+                                                <button-activation :service="{{ $service }}" app_url="{{env('APP_URL')}}" shop_id="{{env('PAY_SHOP_ID')}}"></button-activation>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="row7"> + <img src="/images/bonus.svg"
-                                        alt="">&nbsp;<span>Бонус</span> (<span>{{ $service->bonus_comments }}</span> комментариев на
-                                    <span>{{ $service->bonus_posts }}</span> постов в тему публикации)</div>
-                                <div class="row8">{{ str_replace('.00','',$service->price) }} рублей </div>
-                                <div class="row9">
-                                    <button-activation :service="{{ $service }}" app_url="{{env('APP_URL')}}" shop_id="{{env('PAY_SHOP_ID')}}"></button-activation>
-                                </div>
-                            </div>
-                        </div>
+                                <!-- ### slide element ### -->
+                                </li>
+                            @endforeach
+                        </ul>
+
                     </div>
-                    @endforeach
+
+                    <div class="glide__arrows" data-glide-el="controls">
+                            <button class="glide__arrow glide__arrow--left" data-glide-dir="<"><i class="fas fa-long-arrow-alt-left"></i></button>
+                            <button class="glide__arrow glide__arrow--right" data-glide-dir=">"><i class="fas fa-long-arrow-alt-right"></i></button>
+                        </div>
+                </div>
                 </div>
             </div>
             @endforeach
@@ -105,6 +122,7 @@
     </div>
     <popuploader idservice="{{$idService}}"></popuploader>
 </div>
+
 <!-- ------------------------------------------------------------------------------- -->
 <div class="container-below">
     <div class="row1">
@@ -142,6 +160,35 @@
         </div>
     </div>
 </div>
+
+
+@endsection
+
+@section('scripts')
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glidejs@2.1.0/dist/css/glide.core.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glidejs@2.1.0/dist/css/glide.theme.min.css">
+<script src="https://cdn.jsdelivr.net/npm/@glidejs/glide"></script>
+
+<script>
+new Glide('.glide', {
+    type: 'carousel',
+    startAt: 0,
+    perView: 4,
+    rewind: false,
+    breakpoints: {
+    1213: {
+      perView: 3
+    },
+    995: {
+      perView: 2
+    },
+    620: {
+        perView: 1
+    }
+  }
+}).mount();
+</script>
 
 
 @endsection
