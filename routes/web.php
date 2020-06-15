@@ -35,7 +35,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function(
 Route::group(['prefix' => 'userpanel', 'middleware' => ['auth']], function(){
     Route::get('/', 'UserController@index');
     Route::post('/add-new-order', 'UserController@add_new_order');
-    Route::any('/profile', 'UserController@profile');
+    Route::any('/profile/{type?}', 'UserController@profile');
 });
 
 

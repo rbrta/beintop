@@ -9,6 +9,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 
 class UserController extends Controller
 {
@@ -130,15 +131,24 @@ class UserController extends Controller
     }
 
 
-    public function profile(Request $request)
+    public function profile(Request $request, $type = null)
     {
         if($request->isMethod('post') && $request->filled('action') && $request->action == 'updateProfile') {
             $request->validate(['email' => 'required', 'full_name' => 'required']);
             User::where('id', Auth::id())->update(['email' => $request->email, 'full_name' => $request->full_name]);
+
+            Session::flash('saved', true);
             return redirect('/userpanel/profile');
         }
 
-        
-        return view('profile', ['user' => auth()->user()]);
+        if($request->isMethod('post') && $request->filled('action') && $request->action == 'password') {
+            $request->validate(['password' => 'required|confirmed|min:6']);
+            User::where('id', Auth::id())->update(['password' => Hash::make($request->password)]);
+
+            Session::flash('saved', true);
+            return redirect('/userpanel/profile/password');
+        }
+
+        return view('profile', ['user' => auth()->user(), 'type' => $type]);
     }
 }
