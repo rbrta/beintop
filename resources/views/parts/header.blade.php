@@ -16,8 +16,8 @@
                 <li><i class="fas fa-list"></i> <a href="/admin">Редактор услуг</a></li>
                 <li><i class="fas fa-sign-out-alt"></i> <a href="/logout">Выход</a></li>
             @else
-                <li><i class="fas fa-star"></i> <a href="#">Наши преимущества</a></li>
-                <li><i class="fas fa-th"></i> <a href="#">Выбрать тариф</a></li>
+                <li><i class="fas fa-star"></i> <a class="scrollTo" data-scroll="#advantage" href="#">Наши преимущества</a></li>
+                <li><i class="fas fa-th"></i> <a class="scrollTo" data-scroll="#tariffs" href="#">Выбрать тариф</a></li>
                 <li><i class="fas fa-user"></i> <a href="/userpanel">Личный кабинет</a></li>
             @endif
 
@@ -33,10 +33,23 @@
 
     <div id="menuMob" class="wrapper-mobile hide">
         <div class="mobile-menu">
-            <div><a href="#">На главную</a></div>
-            <div><a href="#">Личный кабинет</a></div>
-            <div><a href="#">Наши преимущества</a></div>
-            <div><a href="#">Выбрать тариф</a></div>
+            
+
+            @if(isset($type) && $type == 'userpanel')
+                <div><a href="/">На главную</a></div>
+                <div><a href="/userpanel">Услуги</a></div>
+                <div><a href="/userpanel/profile">Профиль</a></div>
+                <div><a href="/logout">Выход</a></div>
+
+            @elseif(isset($type) && $type == 'adminpanel')
+                <div><a href="/">На главную</a></div>
+                <div><a href="/admin">Редактор услуг</a></div>
+                <div><a href="/logout">Выход</a></div>
+            @else
+                <div><a href="#" class="scrollTo" data-scroll="#tariffs">Наши преимущества</a></div>
+                <div><a href="#" class="scrollTo" data-scroll="#tariffs">Выбрать тариф</a></div>
+                <div><a href="/userpanel">Личный кабинет</a></div>
+            @endif
         </div>
     </div>
 

@@ -51,7 +51,7 @@
     font-weight: normal;
     padding: 20px 40px;
 }
-.login .wrapper a.login_btn{
+.login .wrapper .login_btn{
     width: 100%;
     height: 68px;
     background: linear-gradient(89.67deg, #E164BE -0.56%, #FF74D8 -0.55%, #FF985E 97.67%);
@@ -63,6 +63,7 @@
     line-height: 2.7 !important;
     font-size: 25px;
     line-height: 30px;
+    border: none;
    
 }
 .login .lost-password{

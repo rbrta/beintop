@@ -17,9 +17,9 @@
                 <div class="intput-wrapper"><input name="password" placeholder="Пароль" type="password"></div>
             </div>
             <div>
-                <a href="#" class="login_btn" onclick="document.getElementById('signup-form').submit(); return false;">
+                <button class="login_btn" type="submit">
                     Авторизоваться
-                </a>
+                </button>
             </div>
             @if($errors->any())
             <div class="errors">{{$errors->first()}}</div>

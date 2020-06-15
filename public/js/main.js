@@ -103,7 +103,24 @@ document.addEventListener("DOMContentLoaded", function () {
       menuMob.classList.toggle('hide');
     });
   }
+
+  document.querySelectorAll('.scrollTo').forEach(function (element) {
+    element.addEventListener('click', function (elm) {
+      var scrollTo = elm.target.getAttribute('data-scroll');
+      registerCustomEvent('scrollToEvent', {
+        el: scrollTo
+      });
+    });
+  });
 });
+
+function registerCustomEvent(eventName, data) {
+  data = typeof data !== "undefined" ? data : null;
+  var event = new CustomEvent(eventName, {
+    'detail': data
+  });
+  window.dispatchEvent(event);
+}
 
 /***/ }),
 

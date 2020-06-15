@@ -32,6 +32,7 @@ Vue.component('button-activation', require('./components/common/ButtonActivation
 Vue.component('button-details', require('./components/common/ButtonDetails').default);
 
 Vue.component('popuploader', require('./components/common/BuyPopupLoader.vue').default);
+Vue.component('scrollto', require('./components/common/ScrollToComponent.vue').default);
 
 /**
  * Client components

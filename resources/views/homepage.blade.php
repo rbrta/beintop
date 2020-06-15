@@ -14,14 +14,14 @@
                 Сервис по доходу комплексной и автоматической активности
             </div>
             <div class="promotion-btn">
-                <a href="#">Выбрать тариф</a>
+                <a class="scrollTo" data-scroll="#tariffs">Выбрать тариф</a>
             </div>
         </section>
     </div>
     <!-- ------------------------------------------------------------------------------- -->
     <div class="wrapper-content">
         <section class="advantage">
-            <div class="advantage-item">
+            <div class="advantage-item" id="advantage">
                 <div class="advantage-img">
                     <img src="/images/phone.svg" alt="">
                 </div>
@@ -59,8 +59,8 @@
 <!-- ------------------------------------------------------------------------------- -->
 <div id="app" class="container-middle">
     <div class="wrapper-content">
-        <section class="tariffcontainer">
-            <div class="tariffcontainer-title">
+        <section class="tariffcontainer" >
+            <div class="tariffcontainer-title" id="tariffs">
                 Выберите Тариф
             </div>
             @foreach ($services as $tariff => $group_services)
@@ -121,6 +121,7 @@
         </section>
     </div>
     <popuploader idservice="{{$idService}}"></popuploader>
+    <scrollto></scrollto>
 </div>
 
 <!-- ------------------------------------------------------------------------------- -->
@@ -155,8 +156,8 @@
             <div>
             </div>
         </div>
-        <div class="row3">
-            <a href="#">Выбрать тариф</a>
+        <div class="row3" id="choosetariff">
+            <a class="scrollTo" data-scroll="#tariffs">Выбрать тариф</a>
         </div>
     </div>
 </div>
@@ -170,24 +171,37 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glidejs@2.1.0/dist/css/glide.theme.min.css">
 <script src="https://cdn.jsdelivr.net/npm/@glidejs/glide"></script>
 
+
 <script>
-new Glide('.glide', {
-    type: 'carousel',
-    startAt: 0,
-    perView: 4,
-    rewind: false,
-    breakpoints: {
-    1213: {
-      perView: 3
-    },
-    995: {
-      perView: 2
-    },
-    620: {
-        perView: 1
+    new Glide('.glide', {
+        type: 'carousel',
+        startAt: 0,
+        perView: 4,
+        rewind: false,
+        breakpoints: {
+        1213: {
+        perView: 3
+        },
+        995: {
+        perView: 2
+        },
+        620: {
+            perView: 1
+        }
     }
-  }
-}).mount();
+    }).mount();
+
+    function scrollTo(element){
+        alert('scroll');
+        //let element = document.querySelector(selector)
+        element.scrollIntoView();
+    }
+
+    document.querySelector('.scrollTo').addEventListener('click', function(element){
+        document.getElementById('advantage').scrollIntoView({
+            behavior: 'smooth'
+        });
+    })
 </script>
 
 

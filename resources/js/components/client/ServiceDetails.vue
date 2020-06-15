@@ -1,7 +1,7 @@
 <template>
     <div class="details-panel">
-        <div class="account-name" ><b>Insta:</b> {{ user.full_name }}</div>
-        <h1 class="tariff_name">{{ service.category.name }}</h1>
+        <div class="account-name" v-if="mode != 'newOrder'" ><b>Insta:</b> {{ user.full_name }}</div>
+        <h1 class="tariff_name">Тариф {{ service.category.name }}</h1>
 
         <div class="flex">
             <div class="left">

@@ -12,7 +12,7 @@
         </thead>
         <tbody>
             <tr v-for="(item, index) in services" :key="index + item.name">
-                <td data-label="Название">{{ item.name }}</td>
+                <td data-label="Название">{{item.category.name}} {{ item.name }}</td>
                 <td data-label="Период">{{ item.periodindays }} дней</td>
                 <td data-label="Стоимость">{{ item.price }} руб</td>
                 <td data-label="Actions" class="table-action">

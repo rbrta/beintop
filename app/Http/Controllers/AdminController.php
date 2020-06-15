@@ -10,7 +10,7 @@ class AdminController extends Controller
 {
     public function index()
     {
-        $services = Service::all();
+        $services = Service::with('category')->get();
         return view('admin', compact('services')); 
     }
 
