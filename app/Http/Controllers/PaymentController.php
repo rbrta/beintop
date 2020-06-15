@@ -17,11 +17,13 @@ class PaymentController extends Controller
         Log::debug($request->all());
 
         //TODO remove this after deploy
-        $order_id = str_replace('ID_', '', $request->ik_pm_no);
+        if(env('APP_ENV') == 'local') {
+            $order_id = str_replace('ID_', '', $request->ik_pm_no);
 
-        $order = Order::where("id", $order_id)->first();
-        $order->update(['paid_status' => 'active']);
+            $order = Order::where("id", $order_id)->first();
+            $order->update(['paid_status' => 'active']);
 
+        }
         // ===========================
 
         return view('success');

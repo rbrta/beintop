@@ -16,7 +16,7 @@
 
 <body>
     <section id="app">
-        @include('parts.header', ['type' => 'userpanel'])
+        @include('parts.header', ['type' => 'auth'])
 
         @yield('content')
     

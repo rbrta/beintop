@@ -11,6 +11,10 @@
                 <li><i class="fas fa-user"></i> <a href="/userpanel/profile">Профиль</a></li>
                 <li><i class="fas fa-sign-out-alt"></i> <a href="/logout">Выход</a></li>
 
+            @elseif(isset($type) && $type == 'auth')
+                <li><i class="fas fa-home"></i> <a href="/">На главную</a></li>
+                <li><i class="fas fa-user"></i> <a href="/userpanel">Личный кабинет</a></li>
+
             @elseif(isset($type) && $type == 'adminpanel')
                 <li><i class="fas fa-home"></i> <a href="/">На главную</a></li>
                 <li><i class="fas fa-list"></i> <a href="/admin">Редактор услуг</a></li>
@@ -40,6 +44,10 @@
                 <div><a href="/userpanel">Услуги</a></div>
                 <div><a href="/userpanel/profile">Профиль</a></div>
                 <div><a href="/logout">Выход</a></div>
+
+            @elseif(isset($type) && $type == 'auth')
+                <div><a href="/userpanel">Личный кабинет</a></div>
+                <div><a href="/">На главную</a></div>
 
             @elseif(isset($type) && $type == 'adminpanel')
                 <div><a href="/">На главную</a></div>
