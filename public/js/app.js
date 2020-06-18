@@ -4164,6 +4164,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['serviceItem', 'updated'],
   data: function data() {
@@ -4178,8 +4180,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         likes: '',
         posts: '',
         views: '',
-        bonus_comments: '',
-        bonus_posts: '',
+        bonus: '',
         igtv_unlim: true
       },
       rules: {
@@ -4216,16 +4217,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         views: [{
           required: true,
           message: 'Укажите количество просмотров',
-          trigger: 'blur'
-        }],
-        bonus_comments: [{
-          required: true,
-          message: 'Укажите количество бонусных комментариев',
-          trigger: 'blur'
-        }],
-        bonus_posts: [{
-          required: true,
-          message: 'Укажите количество бонусных постов',
           trigger: 'blur'
         }]
       }
@@ -4422,8 +4413,6 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _common_ButtonActivation__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../common/ButtonActivation */ "./resources/js/components/common/ButtonActivation.vue");
-//
-//
 //
 //
 //
@@ -11341,7 +11330,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "\n.submit-button[data-v-0b5afa16]{\n    float: right;\n    margin-right: 20px;\n}\n.submit-button .el-button[data-v-0b5afa16]{\n    background: linear-gradient(89.8deg, #E164BE -0.56%, #FF74D8 -0.55%, #FF985E 97.67%);\n    color: white;\n    border: none;\n}\n.width100[data-v-0b5afa16]{\n    width: 100%;\n}\n.igtv-unlimit[data-v-0b5afa16]{\n    margin-top: 40px;\n}\n", ""]);
+exports.push([module.i, "\n.submit-button-wrapper[data-v-0b5afa16]{\n    display: flex;\n    justify-content: flex-end;\n}\n.submit-button .el-button[data-v-0b5afa16]{\n    background: linear-gradient(89.8deg, #E164BE -0.56%, #FF74D8 -0.55%, #FF985E 97.67%);\n    color: white;\n    border: none;\n}\n.width100[data-v-0b5afa16]{\n    width: 100%;\n}\n.igtv-unlimit[data-v-0b5afa16]{\n    margin-top: 40px;\n}\n", ""]);
 
 // exports
 
@@ -106088,8 +106077,15 @@ var render = function() {
                         })
                       ],
                       1
-                    ),
-                    _vm._v(" "),
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "el-col",
+                  { attrs: { span: 12 } },
+                  [
                     _c(
                       "el-form-item",
                       { attrs: { label: "Лайки", prop: "likes" } },
@@ -106106,15 +106102,8 @@ var render = function() {
                         })
                       ],
                       1
-                    )
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "el-col",
-                  { attrs: { span: 12 } },
-                  [
+                    ),
+                    _vm._v(" "),
                     _c(
                       "el-form-item",
                       { attrs: { label: "Посты", prop: "posts" } },
@@ -106151,49 +106140,6 @@ var render = function() {
                       1
                     ),
                     _vm._v(" "),
-                    _c(
-                      "el-form-item",
-                      {
-                        attrs: {
-                          label: "Бонусные комментарии",
-                          prop: "bonus_comments"
-                        }
-                      },
-                      [
-                        _c("el-input", {
-                          attrs: { placeholder: "Бонусные комментарии" },
-                          model: {
-                            value: _vm.service.bonus_comments,
-                            callback: function($$v) {
-                              _vm.$set(_vm.service, "bonus_comments", $$v)
-                            },
-                            expression: "service.bonus_comments"
-                          }
-                        })
-                      ],
-                      1
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "el-form-item",
-                      {
-                        attrs: { label: "Бонусные посты", prop: "bonus_posts" }
-                      },
-                      [
-                        _c("el-input", {
-                          attrs: { placeholder: "Бонусные посты" },
-                          model: {
-                            value: _vm.service.bonus_posts,
-                            callback: function($$v) {
-                              _vm.$set(_vm.service, "bonus_posts", $$v)
-                            },
-                            expression: "service.bonus_posts"
-                          }
-                        })
-                      ],
-                      1
-                    ),
-                    _vm._v(" "),
                     _c("el-form-item", { attrs: { prop: "igtv_unlim" } }, [
                       _c(
                         "div",
@@ -106215,25 +106161,60 @@ var render = function() {
                         ],
                         1
                       )
-                    ]),
-                    _vm._v(" "),
-                    _c("el-form-item", [
-                      _c(
-                        "span",
-                        { staticClass: "submit-button" },
-                        [
-                          _c(
-                            "el-button",
-                            {
-                              attrs: { round: "" },
-                              on: { click: _vm.onSubmit }
-                            },
-                            [_vm._v("Сохранить")]
-                          )
-                        ],
-                        1
-                      )
                     ])
+                  ],
+                  1
+                )
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "el-row",
+              [
+                _c(
+                  "el-col",
+                  { attrs: { span: 24 } },
+                  [
+                    _c(
+                      "el-form-item",
+                      { attrs: { label: "Бонус", prop: "bonus" } },
+                      [
+                        _c("el-input", {
+                          attrs: { placeholder: "Бонус" },
+                          model: {
+                            value: _vm.service.bonus,
+                            callback: function($$v) {
+                              _vm.$set(_vm.service, "bonus", $$v)
+                            },
+                            expression: "service.bonus"
+                          }
+                        })
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "el-form-item",
+                      { staticClass: "submit-button-wrapper" },
+                      [
+                        _c(
+                          "span",
+                          { staticClass: "submit-button" },
+                          [
+                            _c(
+                              "el-button",
+                              {
+                                attrs: { round: "" },
+                                on: { click: _vm.onSubmit }
+                              },
+                              [_vm._v("Сохранить")]
+                            )
+                          ],
+                          1
+                        )
+                      ]
+                    )
                   ],
                   1
                 )
@@ -106486,24 +106467,17 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "center" }, [
-        _c("div", { staticClass: "bonus" }, [
-          _c("div", { staticClass: "bonus__img" }),
-          _vm._v(" "),
-          _c("div", { staticClass: "bonus__title" }, [_vm._v("Бонус")]),
-          _vm._v(" "),
-          _c("div", { staticClass: "bonus__comments" }, [
-            _c("b", [_vm._v(_vm._s(_vm.service.bonus_comments))]),
-            _vm._v(" комментариев")
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "bonus__posts" }, [
-            _vm._v("На "),
-            _c("b", [_vm._v(_vm._s(_vm.service.bonus_posts))]),
-            _vm._v(" постов "),
-            _c("br"),
-            _vm._v(" в тему публикации")
-          ])
-        ]),
+        _vm.service.bonus !== null
+          ? _c("div", { staticClass: "bonus" }, [
+              _c("div", { staticClass: "bonus__img" }),
+              _vm._v(" "),
+              _c("div", { staticClass: "bonus__title" }, [_vm._v("Бонус")]),
+              _vm._v(" "),
+              _c("div", { staticClass: "bonus__comments" }, [
+                _vm._v(_vm._s(_vm.service.bonus))
+              ])
+            ])
+          : _vm._e(),
         _vm._v(" "),
         _c("div", { staticClass: "price__label" }, [_vm._v("Стоимость")]),
         _vm._v(" "),

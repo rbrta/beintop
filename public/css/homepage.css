@@ -850,6 +850,7 @@ header .wrapper-mobile .mobile-menu a {
 
 .tariffcontainer .item {
   margin-top: 57px;
+  margin-bottom: 10rem;
 }
 
 .tariffcontainer .item-title {
@@ -1019,7 +1020,6 @@ header .wrapper-mobile .mobile-menu a {
 }
 
 .tariffcontainer .tariff .row6 .ml {
-  margin-left: 12px;
   font-weight: normal;
 }
 

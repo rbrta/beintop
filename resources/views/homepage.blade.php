@@ -66,11 +66,11 @@
             @foreach ($services as $tariff => $group_services)
             <div class="tariff-item item">
                 <div class="item-title">
-                    <div>{{ $tariff }}</div>
+                    <div>Тарифы {{ $tariff }}</div>
                 </div>
                 <div class="item-body">
 
-                <div class="glide">
+                <div class="glide {{$tariff}}">
                     <div class="glide__track" data-glide-el="track">
                         <ul class="glide__slides">
                             @foreach ($group_services as $service)
@@ -87,15 +87,19 @@
                                             <div class="row5">+ статистика (просмотры и охват) </div>
                                             <div class="row6">
                                                 - <span>{{ $service->views }} просмотров</span> <br>
-                                                    <span class="ml">На видео и IGTV 
-                                                        @if($service->igtv_unlim) 
-                                                            (<span class="unlimited">Безлимит <img src="/images/fire.svg" alt=""></span>)
-                                                        @endif
-                                                    </span>
+                                                @if($service->igtv_unlim) 
+                                                - <span class="ml">Видео и IGTV 
+                                                    (<span class="unlimited">Безлимит <img src="/images/fire.svg" alt=""></span>)
+                                                </span>
+                                                @endif
                                             </div>
-                                            <div class="row7"> + <img src="/images/bonus.svg"
-                                                    alt="">&nbsp;<span>Бонус</span> (<span>{{ $service->bonus_comments }}</span> комментариев на
-                                                <span>{{ $service->bonus_posts }}</span> постов в тему публикации)</div>
+
+                                            @if(!is_null($service->bonus))
+                                                <div class="row7"> + <img src="/images/bonus.svg" alt="">&nbsp;<span>Бонус</span> ({{ $service->bonus }})</div>
+                                            @else
+                                                <br><br>
+                                            @endif
+
                                             <div class="row8">{{ str_replace('.00','',$service->price) }} рублей </div>
                                             <div class="row9">
                                                 <button-activation :service="{{ $service }}" app_url="{{env('APP_URL')}}" shop_id="{{env('PAY_SHOP_ID')}}"></button-activation>
@@ -173,35 +177,34 @@
 
 
 <script>
-    new Glide('.glide', {
+    var sliderOptions = {
         type: 'carousel',
         startAt: 0,
         perView: 4,
         rewind: false,
         breakpoints: {
-        1213: {
-        perView: 3
-        },
-        995: {
-        perView: 2
-        },
-        620: {
-            perView: 1
+            1213: {
+            perView: 3
+            },
+            995: {
+            perView: 2
+            },
+            620: {
+                perView: 1
+            }
         }
-    }
-    }).mount();
+    };
 
-    function scrollTo(element){
-        alert('scroll');
-        //let element = document.querySelector(selector)
-        element.scrollIntoView();
+    var sliders = document.querySelectorAll('.glide');
+
+    for (var i = 0; i < sliders.length; i++) {
+        var glide = new Glide(sliders[i], sliderOptions);
+        
+        glide.mount();
     }
 
-    document.querySelector('.scrollTo').addEventListener('click', function(element){
-        document.getElementById('advantage').scrollIntoView({
-            behavior: 'smooth'
-        });
-    })
+   
+
 </script>
 
 

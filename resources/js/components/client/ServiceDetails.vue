@@ -17,12 +17,10 @@
             </div>
 
             <div class="center">
-                <div class="bonus">
+                <div class="bonus" v-if="service.bonus !== null">
                     <div class="bonus__img"></div>
                     <div class="bonus__title">Бонус</div>
-                    <div class="bonus__comments"><b>{{ service.bonus_comments }}</b> комментариев</div>
-
-                    <div class="bonus__posts">На <b>{{ service.bonus_posts }}</b> постов <br> в тему публикации</div>
+                    <div class="bonus__comments">{{ service.bonus }}</div>
                 </div>
 
                 <div class="price__label">Стоимость</div>

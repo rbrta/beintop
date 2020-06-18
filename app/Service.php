@@ -15,8 +15,7 @@ class Service extends Model
         'likes',
         'posts',
         'views',
-        'bonus_comments',
-        'bonus_posts',
+        'bonus',
         'igtv_unlim',
     ];
 

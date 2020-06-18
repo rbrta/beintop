@@ -36,8 +36,6 @@ class AdminController extends Controller
             'likes' => ['required','numeric'],
             'posts' => ['required'],
             'views' => ['required','numeric'],
-            'bonus_comments' => ['required'],
-            'bonus_posts' => ['required','numeric'],
         ]);
 
         Service::updateOrCreate(['id' => $request->id], [
@@ -48,8 +46,7 @@ class AdminController extends Controller
             'likes' => $request->likes,
             'posts' => $request->posts,
             'views' => $request->views,
-            'bonus_comments' => $request->bonus_comments,
-            'bonus_posts' => $request->bonus_posts,
+            'bonus' => $request->bonus,
             'igtv_unlim' => $request->igtv_unlim,
         ]);
 

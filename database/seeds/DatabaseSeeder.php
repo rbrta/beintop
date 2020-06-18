@@ -25,8 +25,74 @@ class DatabaseSeeder extends Seeder
         // DB::table('categories')->insertOrIgnore(['name' => 'optimal']);
         // DB::table('categories')->insertOrIgnore(['name' => 'mini']);
 
+    // ================ mini 30 ======================
+        DB::table('services')->insertOrIgnore(
+            [
+                'category_id' => 3,
+                'name' => '1000',
+                'periodindays' => 30,
+                'price' => 1990,
+                'likes' => 1000,
+                'posts' => 15,
+                'views' => 3000,
+                'bonus' => '10-15 комментариев на 5 постов в тему публикации',
+            ]
+        );   
 
-        // ================max30======================
+        DB::table('services')->insertOrIgnore(
+            [
+                'category_id' => 3,
+                'name' => '2000',
+                'periodindays' => 30,
+                'price' => 5990,
+                'likes' => 2000,
+                'posts' => 15,
+                'views' => 6000,
+                'bonus' => '15-20 комментариев на 5 постов в тему публикации',
+            ]
+        );
+
+        DB::table('services')->insertOrIgnore(
+            [
+                'category_id' => 3,
+                'name' => '4000',
+                'periodindays' => 30,
+                'price' => 11490,
+                'likes' => 4000,
+                'posts' => 15,
+                'views' => 10000,
+                'bonus' => '20-25 комментариев на 5 постов в тему публикации'
+            ]
+        );
+
+        DB::table('services')->insertOrIgnore(
+            [
+                'category_id' => 3,
+                'name' => '8000',
+                'periodindays' => 30,
+                'price' => 21990,
+                'likes' => 8000,
+                'posts' => 15,
+                'views' => 30000,
+                'bonus' => '25-30 комментариев на 5 постов в тему публикации'
+            ]
+        ); 
+
+        DB::table('services')->insertOrIgnore(
+            [
+                'category_id' => 3,
+                'name' => '10000',
+                'periodindays' => 30,
+                'price' => 24990,
+                'likes' => 10000,
+                'posts' => 15,
+                'views' => 30000,
+                'bonus' => '30-35 комментариев на 5 постов в тему публикации'
+            ]
+        ); 
+
+
+    // ================ max 30 ======================
         DB::table('services')->insertOrIgnore(
             [
                 'category_id' => 1,
@@ -36,8 +102,7 @@ class DatabaseSeeder extends Seeder
                 'likes' => 1000,
                 'posts' => 30,
                 'views' => 3000,
-                'bonus_comments' => "10-15",
-                'bonus_posts' => 5
+                'bonus' => '10-15 комментариев на 5 постов в тему публикации',
             ]
         );   
 
@@ -50,8 +115,7 @@ class DatabaseSeeder extends Seeder
                 'likes' => 2000,
                 'posts' => 30,
                 'views' => 6000,
-                'bonus_comments' => "15-20",
-                'bonus_posts' => 5
+                'bonus' => '15-20 комментариев на 5 постов в тему публикации',
             ]
         );  
 
@@ -64,8 +128,7 @@ class DatabaseSeeder extends Seeder
                 'likes' => 4000,
                 'posts' => 30,
                 'views' => 10000,
-                'bonus_comments' => "15-20",
-                'bonus_posts' => 5
+                'bonus' => '20-25 комментариев на 5 постов в тему публикации'
             ]
         );  
 
@@ -78,8 +141,7 @@ class DatabaseSeeder extends Seeder
                 'likes' => 8000,
                 'posts' => 30,
                 'views' => 30000,
-                'bonus_comments' => "25-30",
-                'bonus_posts' => 5
+                'bonus' => '25-30 комментариев на 5 постов в тему публикации'
             ]
         ); 
 
@@ -92,12 +154,11 @@ class DatabaseSeeder extends Seeder
                 'likes' => 10000,
                 'posts' => 30,
                 'views' => 30000,
-                'bonus_comments' => "30-35",
-                'bonus_posts' => 5
+                'bonus' => '30-35 комментариев на 5 постов в тему публикации'
             ]
         ); 
 
-        //================max60=========================
+    //================max60=========================
 
         DB::table('services')->insertOrIgnore(
             [
@@ -108,8 +169,7 @@ class DatabaseSeeder extends Seeder
                 'likes' => 1000,
                 'posts' => 30,
                 'views' => 3000,
-                'bonus_comments' => "10-15",
-                'bonus_posts' => 5
+                'bonus' => "10-15 комментариев на 10 постов в тему публикации",
             ]
         );
 
@@ -122,8 +182,7 @@ class DatabaseSeeder extends Seeder
                 'likes' => 2000,
                 'posts' => 60,
                 'views' => 6000,
-                'bonus_comments' => "15-20",
-                'bonus_posts' => 10
+                'bonus' => "15-20 комментариев на 10 постов в тему публикации",
             ]
         );  
 
@@ -136,8 +195,7 @@ class DatabaseSeeder extends Seeder
                 'likes' => 4000,
                 'posts' => 60,
                 'views' => 10000,
-                'bonus_comments' => "20-25",
-                'bonus_posts' => 10
+                'bonus' => "20-25 комментариев на 10 постов в тему публикации",
             ]
         );  
 
@@ -150,8 +208,7 @@ class DatabaseSeeder extends Seeder
                 'likes' => 8000,
                 'posts' => 60,
                 'views' => 30000,
-                'bonus_comments' => "30-35",
-                'bonus_posts' => 10
+                'bonus' => "25-30 комментариев на 10 постов в тему публикации",
             ]
         ); 
 
@@ -164,8 +221,7 @@ class DatabaseSeeder extends Seeder
                 'likes' => 10000,
                 'posts' => 60,
                 'views' => 30000,
-                'bonus_comments' => "30-35",
-                'bonus_posts' => 10
+                'bonus' => "30-35 комментариев на 10 постов в тему публикации",
             ]
         );
 

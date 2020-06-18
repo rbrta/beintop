@@ -14,59 +14,61 @@
 
          <el-row :gutter="30">
             <el-col :span="12">
-            <el-form-item label="Выберите категорию" prop="category_id">
-                <el-select v-model="service.category_id" placeholder="Выберите категорию" class="width100">
-                    <el-option
-                        v-for="item in categories"
-                        :key="item.name"
-                        :label="item.name"
-                        :value="item.id">
-                    </el-option>
-                </el-select>
-            </el-form-item>
-            <el-form-item label="Название тарифа" prop="name">
-                <el-input placeholder="Название тарифа" v-model="service.name">
-                </el-input>
-            </el-form-item>
-            <el-form-item label="Период (дней)"  prop="periodindays">
-                <el-input placeholder="Период (дней)" v-model="service.periodindays">
-                </el-input>
-            </el-form-item>
-            <el-form-item label="Стоимость"  prop="price">
-                <el-input placeholder="Стоимость" v-model="service.price">
-                </el-input>
-            </el-form-item>
-            <el-form-item label="Лайки"  prop="likes">
-                <el-input placeholder="Лайки" v-model="service.likes">
-                </el-input>
-            </el-form-item>
+                <el-form-item label="Выберите категорию" prop="category_id">
+                    <el-select v-model="service.category_id" placeholder="Выберите категорию" class="width100">
+                        <el-option
+                            v-for="item in categories"
+                            :key="item.name"
+                            :label="item.name"
+                            :value="item.id">
+                        </el-option>
+                    </el-select>
+                </el-form-item>
+                <el-form-item label="Название тарифа" prop="name">
+                    <el-input placeholder="Название тарифа" v-model="service.name">
+                    </el-input>
+                </el-form-item>
+                <el-form-item label="Период (дней)"  prop="periodindays">
+                    <el-input placeholder="Период (дней)" v-model="service.periodindays">
+                    </el-input>
+                </el-form-item>
+                <el-form-item label="Стоимость"  prop="price">
+                    <el-input placeholder="Стоимость" v-model="service.price">
+                    </el-input>
+                </el-form-item>
             </el-col>
 
             <el-col :span="12">
-            <el-form-item label="Посты"  prop="posts">
-                <el-input placeholder="Посты" v-model="service.posts">
-                </el-input>
-            </el-form-item>
-            <el-form-item label="Просмотры"  prop="views">
-                <el-input placeholder="Просмотры" v-model="service.views">
-                </el-input>
-            </el-form-item>
-            <el-form-item label="Бонусные комментарии"  prop="bonus_comments">
-                <el-input placeholder="Бонусные комментарии" v-model="service.bonus_comments">
-                </el-input>
-            </el-form-item>
-            <el-form-item label="Бонусные посты" prop="bonus_posts">
-                <el-input placeholder="Бонусные посты" v-model="service.bonus_posts">
-                </el-input>
-            </el-form-item>
-            <el-form-item prop="igtv_unlim">
-                <div class="igtv-unlimit">
-                    <el-checkbox v-model="service.igtv_unlim">IGTV unlimit</el-checkbox>
-                </div>
-            </el-form-item>
-            <el-form-item>
-                <span class="submit-button"><el-button round @click="onSubmit">Сохранить</el-button></span>
-            </el-form-item>
+                <el-form-item label="Лайки"  prop="likes">
+                    <el-input placeholder="Лайки" v-model="service.likes">
+                    </el-input>
+                </el-form-item>
+                <el-form-item label="Посты"  prop="posts">
+                    <el-input placeholder="Посты" v-model="service.posts">
+                    </el-input>
+                </el-form-item>
+                <el-form-item label="Просмотры"  prop="views">
+                    <el-input placeholder="Просмотры" v-model="service.views">
+                    </el-input>
+                </el-form-item>
+                <el-form-item prop="igtv_unlim">
+                    <div class="igtv-unlimit">
+                        <el-checkbox v-model="service.igtv_unlim">IGTV unlimit</el-checkbox>
+                    </div>
+                </el-form-item>
+            </el-col>
+        </el-row>
+
+        <el-row>
+            <el-col :span=24>
+                <el-form-item label="Бонус"  prop="bonus">
+                    <el-input placeholder="Бонус" v-model="service.bonus">
+                    </el-input>
+                </el-form-item>
+                
+                <el-form-item class="submit-button-wrapper">
+                    <span class="submit-button"><el-button round @click="onSubmit">Сохранить</el-button></span>
+                </el-form-item>
             </el-col>
         </el-row>
         
@@ -91,8 +93,7 @@
                     likes: '',
                     posts: '',
                     views: '',
-                    bonus_comments: '',
-                    bonus_posts: '',
+                    bonus: '',
                     igtv_unlim: true,
                 },
                 rules: {
@@ -117,12 +118,7 @@
                     views: [
                         { required: true, message: 'Укажите количество просмотров', trigger: 'blur' }
                     ],
-                    bonus_comments: [
-                        { required: true, message: 'Укажите количество бонусных комментариев', trigger: 'blur' }
-                    ],
-                    bonus_posts: [
-                        { required: true, message: 'Укажите количество бонусных постов', trigger: 'blur' }
-                    ],
+                    
                 }
             }
         },
@@ -179,9 +175,9 @@
 </script>
 
 <style scoped>
-    .submit-button{
-        float: right;
-        margin-right: 20px;
+    .submit-button-wrapper{
+        display: flex;
+        justify-content: flex-end;
     }
 
     .submit-button .el-button{
