@@ -7,7 +7,7 @@
     <div class="wrapper-content admin">
 
         <div class="content-table">
-            <service-table :items='@json($services)'></service-table>
+            <admin-service-table :items='@json($services)'></admin-service-table>
         </div>
     </div>
 

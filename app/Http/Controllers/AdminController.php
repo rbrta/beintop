@@ -2,16 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use App\Service;
 use App\Category;
+use App\Mail\InviteManager;
 use Illuminate\Http\Request;
+use App\Mail\InviteManagerEmail;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
 class AdminController extends Controller
 {
     public function index()
     {
         $services = Service::with('category')->get();
-        return view('admin', compact('services')); 
+        return view('admin.services', compact('services')); 
     }
 
     public function getServices(Request $request)
@@ -57,5 +62,39 @@ class AdminController extends Controller
     {
         Service::destroy($request->id);
         return response()->json(['success' => true]);
+    }
+
+
+
+
+    public function managers(Request $request)
+    {
+        if($request->filled('action')) {
+
+            $user = User::create([
+                'email' => $request->email,
+                'full_name' => 'Invited Manager',
+                'password' => Hash::make('some string'),
+                'usertype' => User::USERTYPE_MANAGER,
+            ]);
+
+            Mail::to($request->email)->send( new InviteManager($user->id, $request->email) );
+
+            return $user;
+
+        }
+
+        $managers = User::where('usertype', USER::USERTYPE_MANAGER)->get();
+
+        return view('admin.managers', ['items' => $managers]);
+    }
+
+    public function deleteManager(Request $request)
+    {
+        if($request->filled('id')) {
+            User::find($request->id)->delete();
+
+            return response(['success' => true]);
+        }
     }
 }

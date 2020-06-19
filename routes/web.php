@@ -13,8 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//  buy_service_
 
+Route::get('/manager/confirmation/{userid?}/{token?}', 'ManagerController@confirmation')->name('manager_confirmation');
+Route::any('/manager/signup', 'ManagerController@signup')->name('manager.signup');
 
 Route::get('/service_details/{idservice}', 'HomeController@getService');
 
@@ -30,12 +31,21 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function(
     Route::post('/add_service', 'AdminController@addService');
     Route::get('/get_services', 'AdminController@getServices');
     Route::delete('/delete_service', 'AdminController@deleteService');
+
+    Route::delete('/manager', 'AdminController@deleteManager');
+
+    Route::any('/managers', 'AdminController@managers');
 });
 
 Route::group(['prefix' => 'userpanel', 'middleware' => ['auth']], function(){
     Route::get('/', 'UserController@index');
     Route::post('/add-new-order', 'UserController@add_new_order');
     Route::any('/profile/{type?}', 'UserController@profile');
+});
+
+
+Route::group(['prefix' => 'manager', 'middleware' => ['auth']], function(){
+    Route::get('/', 'ManagerController@index');
 });
 
 

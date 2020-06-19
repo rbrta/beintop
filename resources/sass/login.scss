@@ -3,13 +3,13 @@
 @import 'common.scss';
 
 .login{
-    margin-top: 126px;
     max-width: 779px;
     padding: 10px;
     margin: 126px auto 0px auto;
     border-radius: 35px;
     box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.25);
     background-color: white;
+    padding-bottom: 4rem;
 }
 .login .wrapper{
     max-width: 483px;
@@ -31,13 +31,14 @@
     }
 }
 .login .wrapper .description{
-    font-size: 18px;
+    font-size: 15px;
     line-height: 22px;
     max-width: 381px;
     color: #984493;
     margin: 0 auto;
     text-align: center;
-    padding-top: 12px;
+    padding-top: 1rem;
+    padding-bottom: 0.5rem;
 }
 .login .inputs input{
     display: block;

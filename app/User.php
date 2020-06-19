@@ -11,6 +11,14 @@ class User extends Authenticatable
 {
     use Notifiable;
 
+
+    /**
+     * user type manager
+     */
+    const USERTYPE_MANAGER = 'manager';
+    const USERTYPE_ADMIN = 'admin';
+    const USERTYPE_USER = 'user';
+
     /**
      * The attributes that are mass assignable.
      *

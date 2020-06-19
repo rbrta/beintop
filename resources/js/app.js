@@ -27,7 +27,9 @@ import VueCountdown from '@chenfengyuan/vue-countdown';
 
 Vue.component(VueCountdown.name, VueCountdown);
 Vue.component('modal-skeleton', require('./components/common/ModalSkeleton.vue').default);
-Vue.component('service-table', require('./components/admin/ServiceTable.vue').default);
+Vue.component('admin-service-table', require('./components/admin/ServiceTable.vue').default);
+Vue.component('admin-managers-table', require('./components/admin/AdminManagersTable.vue').default);
+
 Vue.component('button-activation', require('./components/common/ButtonActivation').default);
 Vue.component('button-details', require('./components/common/ButtonDetails').default);
 
