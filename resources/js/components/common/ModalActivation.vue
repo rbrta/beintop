@@ -78,8 +78,12 @@ export default {
                 ...this.form,
                 service_id: this.service.id
             }).then(response => {
-                this.order_id = "ID_" + response.data.order_id;
-                this.$nextTick(_ => this.$refs.payment_form.submit());
+                if(response.data.order_id){
+                    this.order_id = "ID_" + response.data.order_id;
+                    this.$nextTick(_ => this.$refs.payment_form.submit());
+                }else {
+                    this.$alert('something went wrong');
+                }
             }).catch(error => {
                 if (error.response.data && error.response.data.errors) {
                     let message = error.response.data.errors[Object.keys(error.response.data.errors)[0]]

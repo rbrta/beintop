@@ -7,13 +7,14 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    public function index($idservice = null)
+    public function index($idservice = null, $idmanager = null)
     {
-
-        $idService = $idservice == null ? $idservice : str_replace('buy_service_', '', $idservice);
+        if($idmanager !== null) {
+            session(['idmanager' => $idmanager]);
+        }
 
         $services = Service::with("category")->get()->groupBy('category.name');
-        return view('homepage', ['services' => $services, 'idService' => $idService]); 
+        return view('homepage', ['services' => $services, 'idService' => $idservice]); 
     }
 
     public function getService($id = null)

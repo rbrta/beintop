@@ -37,12 +37,10 @@ export default {
     methods: {
         onSubmit() {
 
-            axios.post('#',
-                {
+            axios.post('#', {
                     action: 'invite',
                     email: this.email
-                }
-            ).then(response => {
+            }).then(response => {
                 this.updated(this.email);
                 this.$emit('close');
 

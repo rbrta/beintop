@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\Service;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -12,7 +13,9 @@ class ManagerController extends Controller
 
     public function index()
     {
-        dd('hello, manager');
+        $services = Service::with('category')->get();
+        $userid = auth()->user()->id;
+        return view('manager.index', ['services' => $services, 'userid' => $userid]);
     }
 
 
@@ -47,5 +50,13 @@ class ManagerController extends Controller
 
             return redirect('/manager/');
         }
+    }
+
+
+
+    public function clients(Request $request)
+    {
+        $clients = auth()->user()->getClients();
+        return view('manager.clients', ['clients' => $clients]);
     }
 }

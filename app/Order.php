@@ -16,6 +16,11 @@ class Order extends Model
         'account_name',
     ];
 
+    protected $casts = [
+        'created_at' => 'date:Y-m-d',
+        'expiration_date' => 'date:Y-m-d',
+    ];
+
     public function user()
     {
         return $this->hasOne(User::class, 'id', 'user_id');

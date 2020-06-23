@@ -25,7 +25,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'full_name', 'email', 'password', 'usertype'
+        'full_name', 'email', 'password', 'usertype', 'manager'
     ];
 
     /**
@@ -44,6 +44,7 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'created_at' => 'date:Y-m-d'
     ];
 
 
@@ -51,5 +52,31 @@ class User extends Authenticatable
     public function sendPasswordResetNotification($token)
     {
         $this->notify(new ResetPasswordNotification($token));
+    }
+
+
+    public static function randManager()
+    {
+        return self::where('usertype', 'manager')->inRandomOrder()->first();
+    }
+
+    public function getClients()
+    {
+        return $this->where('manager', $this->id)->with(['orders.service.category'])->get();
+    }
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
+
+    public function clients()
+    {
+        return $this->hasMany('App\User', 'manager');
+    }
+
+    public function manager()
+    {
+        return $this->belongsTo('App\User', 'manager');
     }
 }

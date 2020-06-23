@@ -37,6 +37,10 @@ class LoginController extends Controller
             return redirect('/admin');
         }
 
+        if($user->usertype == 'manager'){
+            return redirect('/manager');
+        }
+
 
         return redirect('/userpanel');
     }

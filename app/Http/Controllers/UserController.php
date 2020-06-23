@@ -60,10 +60,19 @@ class UserController extends Controller
 
         ], $customMessages);
 
+
+        if(! session('idmanager', false) ) {
+            $manager = User::randManager();
+        } else {
+            $manager = session('idmanager');
+        }
+        
+
         $user = User::create([
             'full_name' => $request->full_name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'manager' => $manager,
         ]);
 
         Auth::login($user, true);

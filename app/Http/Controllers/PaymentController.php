@@ -72,8 +72,7 @@ class PaymentController extends Controller
         $signString = implode(':', $dataSet); // Concatenation calues using symbol ":"
         $sign = base64_encode(md5($signString, true)); // Get MD5 hash as binare view using generate string and code it in BASE64
 
-        $order_price = '1.44';
-        if($dataSet['ik_co_id'] != $ik_id || $dataSet['ik_inv_st'] != 'success' || $dataSet['ik_am'] != $order_price || $sign != $dataSet['ik_sign']){
+        if($dataSet['ik_co_id'] != $ik_id || $dataSet['ik_inv_st'] != 'success' || $sign != $dataSet['ik_sign']){
             Log::debug('validation payment error');
             return false;
         }

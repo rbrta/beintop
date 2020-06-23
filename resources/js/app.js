@@ -13,12 +13,18 @@ import VueSweetalert2 from 'vue-sweetalert2';
 // If you don't need the styles, do not connect
 import 'sweetalert2/dist/sweetalert2.min.css';
 
+
+
+
 const options = {
     confirmButtonColor: '#e164be',
     cancelButtonColor: '#FF985E ',
 };
 
 Vue.use(VueSweetalert2, options);
+
+import VueClipboard from 'vue-clipboard2'
+Vue.use(VueClipboard)
 
 Vue.use(VModal, { dynamic: true, injectModalsContainer: true });
 Vue.use(Element, { locale });
@@ -27,14 +33,22 @@ import VueCountdown from '@chenfengyuan/vue-countdown';
 
 Vue.component(VueCountdown.name, VueCountdown);
 Vue.component('modal-skeleton', require('./components/common/ModalSkeleton.vue').default);
+Vue.component('button-activation', require('./components/common/ButtonActivation').default);
+Vue.component('button-details', require('./components/common/ButtonDetails').default);
+Vue.component('popuploader', require('./components/common/BuyPopupLoader.vue').default);
+Vue.component('scrollto', require('./components/common/ScrollToComponent.vue').default);
+
+/**
+* Admin components
+*/
 Vue.component('admin-service-table', require('./components/admin/ServiceTable.vue').default);
 Vue.component('admin-managers-table', require('./components/admin/AdminManagersTable.vue').default);
 
-Vue.component('button-activation', require('./components/common/ButtonActivation').default);
-Vue.component('button-details', require('./components/common/ButtonDetails').default);
-
-Vue.component('popuploader', require('./components/common/BuyPopupLoader.vue').default);
-Vue.component('scrollto', require('./components/common/ScrollToComponent.vue').default);
+/**
+ * Manager components
+ */
+ Vue.component('manager-service-table', require('./components/manager/ServiceTable.vue').default);
+ Vue.component('manager-clients-table', require('./components/manager/ClientsTable.vue').default);
 
 /**
  * Client components

@@ -323,6 +323,54 @@ header .wrapper-mobile .mobile-menu a {
   margin-bottom: 2rem;
 }
 
+.table-wrapper table thead {
+  border-bottom: solid 1px  #e9e9e9;
+}
+
+.table-wrapper table thead th {
+  color: #616161;
+  font-weight: 400;
+}
+
+.table-wrapper table tbody tr {
+  border-bottom: solid 1px #e9e9e9;
+}
+
+.table-wrapper table tbody tr:last-child {
+  border-bottom: none;
+}
+
+.table-wrapper table tbody td {
+  color: #EA4E64;
+  text-align: center;
+  padding: 1rem 0;
+}
+
+@media screen and (max-width: 800px) {
+  .table-wrapper table tbody td {
+    text-align: right;
+  }
+}
+
+.table-wrapper table tbody td .btn {
+  padding: 4px 12px;
+  font-size: 14px;
+  min-width: 100px;
+  height: auto;
+}
+
+.table-wrapper table tbody td .text-big {
+  font-weight: bold;
+  font-size: 24px;
+  text-transform: capitalize;
+}
+
+.table-wrapper table tbody td .text-large {
+  font-weight: 900;
+  font-size: 36px;
+  line-height: 1;
+}
+
 @media screen and (max-width: 800px) {
   .table-wrapper table {
     border: 0;

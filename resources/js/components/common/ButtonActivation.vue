@@ -30,8 +30,13 @@
             },
             activation() {
                   axios.post('add-new-order', { user_id: this.user.id, service_id: this.service.id }).then(response => {
+                      if(response.data.order_id){
                         this.order_id = "ID_" + response.data.order_id;
                         this.$nextTick(_ => this.$refs.payment_form.submit());
+                      } else {
+                          this.$alert('Ошибка');
+                      }
+                        
                   });
             }
         }

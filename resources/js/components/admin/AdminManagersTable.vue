@@ -13,10 +13,11 @@
         <tbody v-if="managers.length > 0">
             <tr v-for="(item, index) in managers" :key="index + item.name">
                 <td data-label="Имя">{{ item.full_name }}</td>
-                <td data-label="Клиенты">0</td>
+                <td data-label="Клиенты">{{item.clients_count}}</td>
                 <td data-label="Статус">{{ item.full_name == 'Invited Manager' ? 'ожидает подтверждения' : 'активный' }} </td>
                 <td data-label="Actions" class="table-action">
-                    <a @click.prevent="deleteItem(item.id, index)" class="btn" href="#">Удалить</a>
+                    <a @click.prevent="showClients(item.id)" class="btn" href="#"><i class="fas fa-users"></i></a>
+                    <a @click.prevent="deleteItem(item.id, index)" class="btn" href="#"><i class="fas fa-trash-alt"></i></a>
                 </td>
             </tr>
         </tbody>
@@ -27,13 +28,14 @@
         </tbody>
     </table>
     <div class="add-btn">
-        <a @click.prevent="inviteManagerModal" class="btn" href="#">Добавить</a>
+        <a @click.prevent="inviteManagerModal" class="btn btn-small" href="#">Добавить</a>
     </div>
 </div>
 </template>
 
 <script>
     import InviteManager from "./../admin/modals/InviteManager";
+    import ManagerClientsModal from "./../admin/modals/ManagerClientsModal";
     
     export default {
         name: "AdminManagersTable",
@@ -59,18 +61,22 @@
             deleteItem(id, index){
                 this.$confirm('Вы уверены, что хотите удалить запись?').then(()=>{
                     
-                    
-                    axios.delete('/admin/manager', {
-                        params: { id }
+                    axios.post('/admin/managers', {
+                        actioin: 'delete',
+                        id: id,
                     }).then(response => {
                         this.managers.splice(index, 1);
                         this.$alert('Запись удалена');
                     });
 
                 }); 
-                
+            }, 
 
-                
+            showClients(id) {
+                this.$showModal(ManagerClientsModal, {
+                    idmanager: id
+                }, 900);
+
             }
         },
     }
