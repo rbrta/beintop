@@ -4255,14 +4255,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['serviceItem', 'updated'],
   data: function data() {
@@ -106868,36 +106860,6 @@ var render = function() {
             }
           },
           [
-            typeof _vm.service.id !== "undefined"
-              ? _c(
-                  "el-row",
-                  [
-                    _c(
-                      "el-col",
-                      { attrs: { span: 24 } },
-                      [
-                        _c(
-                          "el-form-item",
-                          { attrs: { label: "Ссылка на продукт" } },
-                          [
-                            _c("el-input", {
-                              attrs: {
-                                disabled: true,
-                                value:
-                                  _vm.app_url + "/buy_service_" + _vm.service.id
-                              }
-                            })
-                          ],
-                          1
-                        )
-                      ],
-                      1
-                    )
-                  ],
-                  1
-                )
-              : _vm._e(),
-            _vm._v(" "),
             _c(
               "el-row",
               { attrs: { gutter: 30 } },

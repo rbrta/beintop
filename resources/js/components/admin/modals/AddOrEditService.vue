@@ -4,14 +4,6 @@
 <div>
      <el-form :model="service" :rules="rules" ref="form" @submit.prevent.native="onSubmit">
 
-        <el-row v-if="typeof service.id !== 'undefined'">
-            <el-col :span="24">
-                <el-form-item label="Ссылка на продукт">
-                    <el-input :disabled="true" :value="app_url + '/buy_service_' + service.id"/>
-                </el-form-item>
-            </el-col>
-        </el-row>
-
          <el-row :gutter="30">
             <el-col :span="12">
                 <el-form-item label="Выберите категорию" prop="category_id">
