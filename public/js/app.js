@@ -3982,6 +3982,7 @@ function mergeFn (a, b) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _admin_modals_InviteManager__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../admin/modals/InviteManager */ "./resources/js/components/admin/modals/InviteManager.vue");
 /* harmony import */ var _admin_modals_ManagerClientsModal__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../admin/modals/ManagerClientsModal */ "./resources/js/components/admin/modals/ManagerClientsModal.vue");
+/* harmony import */ var _modals_DeleteManager__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modals/DeleteManager */ "./resources/js/components/admin/modals/DeleteManager.vue");
 //
 //
 //
@@ -4017,6 +4018,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -4047,16 +4049,18 @@ __webpack_require__.r(__webpack_exports__);
     deleteItem: function deleteItem(id, index) {
       var _this2 = this;
 
-      this.$confirm('Вы уверены, что хотите удалить запись?').then(function () {
-        axios.post('/admin/managers', {
-          actioin: 'delete',
-          id: id
-        }).then(function (response) {
+      this.$showModal(_modals_DeleteManager__WEBPACK_IMPORTED_MODULE_2__["default"], {
+        idmanager: id,
+        updated: function updated(status) {
           _this2.managers.splice(index, 1);
 
           _this2.$alert('Запись удалена');
-        });
-      });
+
+          setTimeout(function () {
+            window.location.reload();
+          }, 2000);
+        }
+      }, 600);
     },
     showClients: function showClients(id) {
       this.$showModal(_admin_modals_ManagerClientsModal__WEBPACK_IMPORTED_MODULE_1__["default"], {
@@ -4385,6 +4389,91 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }
 
       return 'Добавить тариф';
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/modals/DeleteManager.vue?vue&type=script&lang=js&":
+/*!*************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/admin/modals/DeleteManager.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: 'DeleteManager',
+  props: ['idmanager', 'updated'],
+  data: function data() {
+    return {
+      managers: '',
+      newManagerId: null
+    };
+  },
+  created: function created() {
+    var _this = this;
+
+    axios.get('#', {
+      params: {
+        action: 'getManagers',
+        exclude: this.idmanager
+      }
+    }).then(function (response) {
+      _this.managers = response.data.managers;
+    });
+  },
+  methods: {
+    onSubmit: function onSubmit() {
+      var _this2 = this;
+
+      axios.post('#', {
+        action: 'removeManager',
+        id: this.idmanager,
+        newmanagerid: this.newManagerId
+      }).then(function (response) {
+        _this2.updated(true);
+
+        _this2.$emit('close');
+
+        _this2.$alert('Запись Удалена.');
+      })["catch"](function (error) {
+        if (error.response.data.errors) {
+          var message = error.response.data.errors[Object.keys(error.response.data.errors)[0]];
+          message = message.toString();
+
+          _this2.$alert(message);
+        }
+      });
     }
   }
 });
@@ -11838,6 +11927,25 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 // module
 exports.push([module.i, "\n.el-checkbox__input.is-checked .el-checkbox__inner, \n.el-checkbox__input.is-indeterminate .el-checkbox__inner {\n    background-color: #644595;\n    border-color: #644595;\n}\n.el-checkbox__input.is-checked+.el-checkbox__label{\n    color: #644595;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/modals/DeleteManager.vue?vue&type=style&index=0&id=4ca9fd44&scoped=true&lang=css&":
+/*!********************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader??ref--9-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--9-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/admin/modals/DeleteManager.vue?vue&type=style&index=0&id=4ca9fd44&scoped=true&lang=css& ***!
+  \********************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.buttons-wrapper[data-v-4ca9fd44] {\n    margin-top: 2rem;\n}\n.buttons-wrapper .el-button.success[data-v-4ca9fd44] {\n    background: linear-gradient(89.8deg, #E164BE -0.56%, #FF74D8 -0.55%, #FF985E 97.67%);\n    color: white;\n    border: none;\n}\n.el-select[data-v-4ca9fd44] {\n    width: 100%;\n}\n\n\n", ""]);
 
 // exports
 
@@ -102418,6 +102526,36 @@ if(false) {}
 
 /***/ }),
 
+/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/modals/DeleteManager.vue?vue&type=style&index=0&id=4ca9fd44&scoped=true&lang=css&":
+/*!************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader!./node_modules/css-loader??ref--9-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--9-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/admin/modals/DeleteManager.vue?vue&type=style&index=0&id=4ca9fd44&scoped=true&lang=css& ***!
+  \************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../../../node_modules/css-loader??ref--9-1!../../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../../node_modules/postcss-loader/src??ref--9-2!../../../../../node_modules/vue-loader/lib??vue-loader-options!./DeleteManager.vue?vue&type=style&index=0&id=4ca9fd44&scoped=true&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/modals/DeleteManager.vue?vue&type=style&index=0&id=4ca9fd44&scoped=true&lang=css&");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
 /***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/modals/InviteManager.vue?vue&type=style&index=0&id=4fb525b4&scoped=true&lang=css&":
 /*!************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/style-loader!./node_modules/css-loader??ref--9-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--9-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/admin/modals/InviteManager.vue?vue&type=style&index=0&id=4fb525b4&scoped=true&lang=css& ***!
@@ -106591,7 +106729,7 @@ var render = function() {
         ? _c(
             "tbody",
             _vm._l(_vm.managers, function(item, index) {
-              return _c("tr", { key: index + item.name }, [
+              return _c("tr", { key: index + item.full_name }, [
                 _c("td", { attrs: { "data-label": "Имя" } }, [
                   _vm._v(_vm._s(item.full_name))
                 ]),
@@ -107107,6 +107245,139 @@ var render = function() {
       1
     )
   ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/modals/DeleteManager.vue?vue&type=template&id=4ca9fd44&scoped=true&":
+/*!*****************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/admin/modals/DeleteManager.vue?vue&type=template&id=4ca9fd44&scoped=true& ***!
+  \*****************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "modal-skeleton",
+    { attrs: { title: "Подтвердите удаление менеджера" } },
+    [
+      _c(
+        "div",
+        [
+          _c(
+            "el-form",
+            {
+              ref: "form",
+              nativeOn: {
+                submit: function($event) {
+                  $event.preventDefault()
+                  return _vm.onSubmit($event)
+                }
+              }
+            },
+            [
+              _c(
+                "el-row",
+                { attrs: { gutter: 30 } },
+                [
+                  _c(
+                    "el-col",
+                    { attrs: { span: 24 } },
+                    [
+                      _c(
+                        "el-form-item",
+                        {
+                          attrs: {
+                            label: "Перенести пользователей менеджеру",
+                            prop: "posts"
+                          }
+                        },
+                        [
+                          _c(
+                            "el-select",
+                            {
+                              attrs: { filterable: "", placeholder: "Select" },
+                              model: {
+                                value: _vm.newManagerId,
+                                callback: function($$v) {
+                                  _vm.newManagerId = $$v
+                                },
+                                expression: "newManagerId"
+                              }
+                            },
+                            _vm._l(_vm.managers, function(item) {
+                              return _c("el-option", {
+                                key: item.id,
+                                attrs: {
+                                  label:
+                                    item.full_name +
+                                    " (" +
+                                    item.clients_count +
+                                    ")",
+                                  value: item.id
+                                }
+                              })
+                            }),
+                            1
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "el-form-item",
+                        { staticClass: "buttons-wrapper" },
+                        [
+                          _c(
+                            "el-button",
+                            {
+                              staticClass: "success",
+                              attrs: { round: "" },
+                              on: { click: _vm.onSubmit }
+                            },
+                            [_vm._v("Подтвердить")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "el-button",
+                            {
+                              attrs: { round: "" },
+                              on: {
+                                click: function($event) {
+                                  return _vm.$emit("close")
+                                }
+                              }
+                            },
+                            [_vm._v("Отмена")]
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ],
+        1
+      )
+    ]
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -121829,6 +122100,93 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AddOrEditService_vue_vue_type_template_id_0b5afa16_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AddOrEditService_vue_vue_type_template_id_0b5afa16_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/admin/modals/DeleteManager.vue":
+/*!****************************************************************!*\
+  !*** ./resources/js/components/admin/modals/DeleteManager.vue ***!
+  \****************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _DeleteManager_vue_vue_type_template_id_4ca9fd44_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./DeleteManager.vue?vue&type=template&id=4ca9fd44&scoped=true& */ "./resources/js/components/admin/modals/DeleteManager.vue?vue&type=template&id=4ca9fd44&scoped=true&");
+/* harmony import */ var _DeleteManager_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./DeleteManager.vue?vue&type=script&lang=js& */ "./resources/js/components/admin/modals/DeleteManager.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _DeleteManager_vue_vue_type_style_index_0_id_4ca9fd44_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./DeleteManager.vue?vue&type=style&index=0&id=4ca9fd44&scoped=true&lang=css& */ "./resources/js/components/admin/modals/DeleteManager.vue?vue&type=style&index=0&id=4ca9fd44&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
+  _DeleteManager_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _DeleteManager_vue_vue_type_template_id_4ca9fd44_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _DeleteManager_vue_vue_type_template_id_4ca9fd44_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  "4ca9fd44",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/admin/modals/DeleteManager.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/admin/modals/DeleteManager.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************************!*\
+  !*** ./resources/js/components/admin/modals/DeleteManager.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_DeleteManager_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./DeleteManager.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/modals/DeleteManager.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_DeleteManager_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/admin/modals/DeleteManager.vue?vue&type=style&index=0&id=4ca9fd44&scoped=true&lang=css&":
+/*!*************************************************************************************************************************!*\
+  !*** ./resources/js/components/admin/modals/DeleteManager.vue?vue&type=style&index=0&id=4ca9fd44&scoped=true&lang=css& ***!
+  \*************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_9_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_9_2_node_modules_vue_loader_lib_index_js_vue_loader_options_DeleteManager_vue_vue_type_style_index_0_id_4ca9fd44_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/style-loader!../../../../../node_modules/css-loader??ref--9-1!../../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../../node_modules/postcss-loader/src??ref--9-2!../../../../../node_modules/vue-loader/lib??vue-loader-options!./DeleteManager.vue?vue&type=style&index=0&id=4ca9fd44&scoped=true&lang=css& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/modals/DeleteManager.vue?vue&type=style&index=0&id=4ca9fd44&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_9_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_9_2_node_modules_vue_loader_lib_index_js_vue_loader_options_DeleteManager_vue_vue_type_style_index_0_id_4ca9fd44_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_9_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_9_2_node_modules_vue_loader_lib_index_js_vue_loader_options_DeleteManager_vue_vue_type_style_index_0_id_4ca9fd44_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_9_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_9_2_node_modules_vue_loader_lib_index_js_vue_loader_options_DeleteManager_vue_vue_type_style_index_0_id_4ca9fd44_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_9_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_9_2_node_modules_vue_loader_lib_index_js_vue_loader_options_DeleteManager_vue_vue_type_style_index_0_id_4ca9fd44_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_9_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_9_2_node_modules_vue_loader_lib_index_js_vue_loader_options_DeleteManager_vue_vue_type_style_index_0_id_4ca9fd44_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
+
+/***/ }),
+
+/***/ "./resources/js/components/admin/modals/DeleteManager.vue?vue&type=template&id=4ca9fd44&scoped=true&":
+/*!***********************************************************************************************************!*\
+  !*** ./resources/js/components/admin/modals/DeleteManager.vue?vue&type=template&id=4ca9fd44&scoped=true& ***!
+  \***********************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_DeleteManager_vue_vue_type_template_id_4ca9fd44_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./DeleteManager.vue?vue&type=template&id=4ca9fd44&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/modals/DeleteManager.vue?vue&type=template&id=4ca9fd44&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_DeleteManager_vue_vue_type_template_id_4ca9fd44_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_DeleteManager_vue_vue_type_template_id_4ca9fd44_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

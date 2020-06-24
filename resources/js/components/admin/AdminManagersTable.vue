@@ -11,7 +11,7 @@
             </tr>
         </thead>
         <tbody v-if="managers.length > 0">
-            <tr v-for="(item, index) in managers" :key="index + item.name">
+            <tr v-for="(item, index) in managers" :key="index + item.full_name">
                 <td data-label="Имя">{{ item.full_name }}</td>
                 <td data-label="Клиенты">{{item.clients_count}}</td>
                 <td data-label="Статус">{{ item.full_name == 'Invited Manager' ? 'ожидает подтверждения' : 'активный' }} </td>
@@ -36,6 +36,7 @@
 <script>
     import InviteManager from "./../admin/modals/InviteManager";
     import ManagerClientsModal from "./../admin/modals/ManagerClientsModal";
+    import DeleteManager from "./modals/DeleteManager";
     
     export default {
         name: "AdminManagersTable",
@@ -59,17 +60,19 @@
             },
            
             deleteItem(id, index){
-                this.$confirm('Вы уверены, что хотите удалить запись?').then(()=>{
-                    
-                    axios.post('/admin/managers', {
-                        actioin: 'delete',
-                        id: id,
-                    }).then(response => {
-                        this.managers.splice(index, 1);
-                        this.$alert('Запись удалена');
-                    });
 
-                }); 
+                this.$showModal(DeleteManager, {
+                    idmanager: id,
+                    updated: (status) => {
+                         this.managers.splice(index, 1);
+                         this.$alert('Запись удалена');
+                        setTimeout(()=>{
+                            window.location.reload();
+                        }, 2000);
+                    }
+                }, 600);
+
+                
             }, 
 
             showClients(id) {

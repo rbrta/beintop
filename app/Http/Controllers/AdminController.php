@@ -75,10 +75,20 @@ class AdminController extends Controller
             /**
              * Delete manager
              */
-            if($request->filled('action') && $request->action == 'delete') {
+            if($request->filled('action') && $request->action == 'removeManager') {
+
+                $request->validate([
+                    'id' => 'required',
+                    'newmanagerid' => 'required'
+                ], ['newmanagerid.required' => 'Укажите менеджера, которому нужно привязать клиентов']);
+
+                #move all users to new manager
+                User::where('manager', $request->id)->update(['manager' => $request->newmanagerid]);
+
+                #remove manager
                 User::find($request->id)->delete();
     
-                return response(['success' => true]);
+                return response()->json(['success' => true]);
             }
 
 
@@ -107,6 +117,16 @@ class AdminController extends Controller
                 $clients = User::where('manager', $request->idmanager)->withCount('orders')->get();
     
                 return response()->json(['success' => true, 'clients' => $clients]);
+            }
+
+
+            /**
+             * Get managers
+             */
+            if($request->filled('action') && $request->action == 'getManagers') {
+                $managers = User::where('usertype', 'manager')->where('id', '!=', $request->exclude)->withCount('clients')->get();
+    
+                return response()->json(['success' => true, 'managers' => $managers]);
             }
         }
 
