@@ -79,30 +79,35 @@
                                 <div class="tariff">
                                     <div class="module-border-wrap">
                                         <div class="tariff__body">
-                                            <div class="row1">Тариф</div>
-                                            <div class="row2">{{  $service->name }}</div>
-                                            <div class="row3">{{  $service->periodindays }} дней</div>
-                                            <div class="hr"></div>
-                                            <div class="row4">- <span>{{ $service->likes }}</span> лайков на <span>{{ $service->posts }}</span> постов </div>
-                                            <div class="row5">+ статистика (просмотры, охват и сохранения) </div>
-                                            <div class="row6">
-                                                - <span>{{ $service->views }} просмотров</span> <br>
-                                                @if($service->igtv_unlim) 
-                                                - <span class="ml">Видео и IGTV 
-                                                    (<span class="unlimited">Безлимит <img src="/images/fire.svg" alt=""></span>)
-                                                </span>
-                                                @endif
-                                            </div>
+                                            <div class="flex-container">
+                                                <div class="top">
+                                                    <div class="row1">Тариф</div>
+                                                    <div class="row2">{{  $service->name }}</div>
+                                                    <div class="row3">{{  $service->periodindays }} дней</div>
+                                                    <div class="hr"></div>
+                                                    <div class="row4">- <span>{{ $service->likes }}</span> лайков на <span>{{ $service->posts }}</span> постов </div>
+                                                    <div class="row5">+ статистика (просмотры, охват и сохранения) </div>
+                                                    <div class="row6">
+                                                        - <span>{{ $service->views }} просмотров</span> <br>
+                                                        @if($service->igtv_unlim) 
+                                                        - <span class="ml">Видео и IGTV 
+                                                            (<span class="unlimited">Безлимит <img src="/images/fire.svg" alt=""></span>)
+                                                        </span>
+                                                        @endif
+                                                    </div>
 
-                                            @if(!is_null($service->bonus))
-                                                <div class="row7"> + <img src="/images/bonus.svg" alt="">&nbsp;<span>Бонус</span> ({{ $service->bonus }})</div>
-                                            @else
-                                                <br><br>
-                                            @endif
-
-                                            <div class="row8">{{ str_replace('.00','',$service->price) }} рублей </div>
-                                            <div class="row9">
-                                                <button-activation :service="{{ $service }}" app_url="{{env('APP_URL')}}" shop_id="{{env('PAY_SHOP_ID')}}"></button-activation>
+                                                    @if(!is_null($service->bonus))
+                                                        <div class="row7"> + <img src="/images/bonus.svg" alt="">&nbsp;<span>Бонус</span> ({{ $service->bonus }})</div>
+                                                    @else
+                                                        <br><br>
+                                                    @endif
+                                                </div>
+                                                <div class="bottom">
+                                                    <div class="row8">{{ str_replace('.00','',$service->price) }} рублей </div>
+                                                    <div class="row9">
+                                                        <button-activation :service="{{ $service }}" app_url="{{env('APP_URL')}}" shop_id="{{env('PAY_SHOP_ID')}}"></button-activation>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -202,6 +207,15 @@
         
         glide.mount();
     }
+
+    var maxH = 0;
+    $(".tariff__body").each(function(a,b){
+        if( $(b).height() > maxH ) {
+            maxH = $(b).height();
+        }
+    });
+
+    $(".tariff__body").height(maxH);
 
    
 

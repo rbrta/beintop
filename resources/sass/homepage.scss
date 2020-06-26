@@ -431,14 +431,20 @@
             background: linear-gradient(180deg, #B04E98 18.23%, #873E90 90.1%, #73307B 100%);
             border-radius: 33px;
             padding: 0px 10px 20px 10px;
-            margin-top: -27px;
+
+            .flex-container {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                height: 100%;
+            }
         }
         
         .module-border-wrap{
             padding: 1rem;
             position: relative;
             background: linear-gradient(180deg, #FD92E3 18.23%, #873E90 90.1%, #7D3786 100%);
-            padding: 3px 5px;
+            padding: 6px 5px;
             border-radius: 39px;
             padding-right: 6px;
             margin: 0 auto;
