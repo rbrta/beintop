@@ -12,18 +12,18 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // DB::table('users')->insertOrIgnore([
-        //     'full_name' => 'Admin',
-        //     'email' => 'admin@gmail.com',
-        //     'password' => bcrypt('999999999'),
-        //     'usertype' => 'admin',
-        //     'email_verified_at' => Carbon::now(),
-        // ]);
+        DB::table('users')->insertOrIgnore([
+            'full_name' => 'Admin',
+            'email' => 'admin@gmail.com',
+            'password' => bcrypt('999999999'),
+            'usertype' => 'admin',
+            'email_verified_at' => Carbon::now(),
+        ]);
 
 
-        // DB::table('categories')->insertOrIgnore(['name' => 'max']);
-        // DB::table('categories')->insertOrIgnore(['name' => 'optimal']);
-        // DB::table('categories')->insertOrIgnore(['name' => 'mini']);
+        DB::table('categories')->insertOrIgnore(['name' => 'max']);
+        DB::table('categories')->insertOrIgnore(['name' => 'optimal']);
+        DB::table('categories')->insertOrIgnore(['name' => 'mini']);
 
     // ================ mini 30 ======================
         DB::table('services')->insertOrIgnore(
