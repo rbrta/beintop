@@ -84,7 +84,7 @@
                                             <div class="row3">{{  $service->periodindays }} дней</div>
                                             <div class="hr"></div>
                                             <div class="row4">- <span>{{ $service->likes }}</span> лайков на <span>{{ $service->posts }}</span> постов </div>
-                                            <div class="row5">+ статистика (просмотры и охват) </div>
+                                            <div class="row5">+ статистика (просмотры, охват и сохранения) </div>
                                             <div class="row6">
                                                 - <span>{{ $service->views }} просмотров</span> <br>
                                                 @if($service->igtv_unlim) 
@@ -137,7 +137,7 @@
         <div class="content">
             <div class="col col1">
                 <div class="col__title"><img src="/images/digital.svg" alt=""></div>
-                <div class="col__desc">Веберите тариф</div>
+                <div class="col__desc">Выберите тариф</div>
             </div>
             <div class="col arrow col2">
                 <!-- <img src="./assets/images/arrow.svg" alt=""> -->

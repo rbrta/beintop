@@ -21,7 +21,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
 
-        DB::table('categories')->insertOrIgnore(['name' => 'max']);
+        DB::table('categories')->insertOrIgnore(['name' => 'maxi']);
         DB::table('categories')->insertOrIgnore(['name' => 'optimal']);
         DB::table('categories')->insertOrIgnore(['name' => 'mini']);
 
