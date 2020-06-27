@@ -8,11 +8,11 @@
         <span>be_in_top@gmail.com</span>
     </a>
 
-    <a href="#">
+    <a href="/doc/privacy.pdf" target="_blank">
         <i class="fas fa-file-alt"></i>
         <span>Политика конфиденциальности</span>
     </a>
-    <a href="#">
+    <a href="/doc/public_offer.pdf" target="_blank">
         <i class="fas fa-file-alt"></i>
         <span>Публичная оферта</span>
     </a>
