@@ -764,13 +764,11 @@ footer{
     margin-bottom: 70px;
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
     
     @media(max-width: 750px){
         flex-direction: column;
         align-items: center;
-        a:last-of-type{
-            margin-top: 30px;
-        }
     }
 
     a{
@@ -782,14 +780,19 @@ footer{
         box-sizing: border-box;
         border-radius: 35.5px;
         font-size: 23px;
-        line-height: 3;
+        line-height: 1;
+        align-items: center;
+        padding: 12px;
+        margin-bottom: 1rem;
 
-        img{
-            margin: 10px;
+        img {
+            margin-right: 0.5rem;
+        }
 
-            @media(max-width: 430px){
-                height: 28px;
-            }
+        svg.svg-inline--fa.fa-w-12 {
+            width: 1.5rem;
+            height: auto;
+            margin: 0.5rem;
         }
 
         span{
@@ -798,7 +801,6 @@ footer{
         
         @media(max-width: 430px){
             font-size: 12px;
-            line-height: 4;
         }
     }
 
