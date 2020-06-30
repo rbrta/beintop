@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/test', 'HomeController@test');
+
 Route::get('/', 'HomeController@index');
 
 Route::get('/manager/confirmation/{userid?}/{token?}', 'ManagerController@confirmation')->name('manager_confirmation');

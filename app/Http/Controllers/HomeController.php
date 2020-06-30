@@ -25,4 +25,6 @@ class HomeController extends Controller
 
         return Service::with('category')->where('id', $id)->first();
     }
+
+    
 }
