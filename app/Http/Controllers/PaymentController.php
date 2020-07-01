@@ -31,21 +31,23 @@ class PaymentController extends Controller
 
     public function failure(Request $request)
     {
-        Log::info('payment =============== failure');
-        Log::debug($request->all());
+        Log::channel('payments')->info('payment =============== failure');
+        Log::channel('payments')->debug($request->all());
         return view('failure');
     }
 
     public function pending(Request $request)
     {
-        Log::info('payment =============== pending');
-        Log::debug($request->all());
+        Log::channel('payments')->info('payment =============== pending');
+        Log::channel('payments')->debug($request->all());
         return "pending";
     }
 
 
     public function callback(Request $request)
     {   
+        Log::channel('payments')->info('payment ============== callback');
+        Log::channel('payments')->debug($request->all());
         $dataSet = $request->all();
         if($this->validatePayment($dataSet)) {
             return false;
@@ -63,8 +65,9 @@ class PaymentController extends Controller
 
     private function validatePayment($dataSet)
     {
-        Log::channel('payments')->info(json_encode(['point' => 'validatePayment', 'data' => $dataSet]));
-        
+        Log::channel('payments')->info('payment ============== validatePayment');
+        Log::channel('payments')->debug($dataSet);
+
         $key = env('PAY_KEY');
         $ik_id = env('PAY_SHOP_ID');
 
