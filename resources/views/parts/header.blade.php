@@ -88,3 +88,7 @@
     </div>
 
 </header>
+
+@if(env('APP_ENV') !== 'production')
+<h1 style="text-align: center; font-size: 1.5rem; padding: 1rem; background: yellow;">Внимание! Это тестовый сервер!</h1>
+@endif
