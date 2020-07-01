@@ -41,6 +41,12 @@ return [
             'ignore_exceptions' => false,
         ],
 
+        'payments' => [
+            'driver' => 'single',
+            'path' => storage_path('logs/payments.log'),
+            'level' => 'debug',
+        ],
+
         'single' => [
             'driver' => 'single',
             'path' => storage_path('logs/laravel.log'),

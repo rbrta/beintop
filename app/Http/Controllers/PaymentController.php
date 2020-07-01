@@ -63,6 +63,8 @@ class PaymentController extends Controller
 
     private function validatePayment($dataSet)
     {
+        Log::channel('payments')->info(json_encode(['point' => 'validatePayment', 'data' => $dataSet]));
+        
         $key = env('PAY_KEY');
         $ik_id = env('PAY_SHOP_ID');
 
