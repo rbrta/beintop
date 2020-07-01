@@ -83,8 +83,8 @@ class AdminController extends Controller
                 ], ['newmanagerid.required' => 'Укажите менеджера, которому нужно привязать клиентов']);
 
                 #move all users to new manager
-                User::where('manager', $request->id)->update(['manager' => $request->newmanagerid]);
-
+                $users = User::where('manager', $request->id)->get();//update(['manager' => $request->newmanagerid]);
+dd($users);
                 #remove manager
                 User::find($request->id)->delete();
     
