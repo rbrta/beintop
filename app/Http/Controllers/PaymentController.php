@@ -49,10 +49,10 @@ class PaymentController extends Controller
         Log::channel('payments')->info('payment ============== callback');
         Log::channel('payments')->debug($request->all());
         $dataSet = $request->all();
-        if($this->validatePayment($dataSet)) {
-            return false;
 
+        if(!$this->validatePayment($dataSet)) {
             Log::channel('payments')->info(' ######## PAYMENT NOT VERIFIED ##########');
+            return false;
         }
 
         $order_id = $dataSet['ik_pm_no'];
