@@ -7,6 +7,7 @@ use App\Service;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class ManagerController extends Controller
 {
@@ -42,7 +43,7 @@ class ManagerController extends Controller
         if($request->filled('action') && $request->action == 'signup') {
             $userSrc = User::where('email', $request->email);
 
-            $request->merge(['email_verified' => Carbon::now()->format('Y-m-d H:i:s')]);
+            $request->merge(['email_verified' => Carbon::now()->format('Y-m-d H:i:s'), 'password' => Hash::make($request->password)]);
             $userSrc->update($request->except(['action', 'email', '_token', 'password_confirmation', 'email_verified']));
            
             $user = $userSrc->first();
