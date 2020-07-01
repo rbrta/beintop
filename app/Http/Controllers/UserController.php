@@ -62,7 +62,8 @@ class UserController extends Controller
 
 
         if(! session('idmanager', false) ) {
-            $manager = User::randManager();
+            $managerUser = User::randManager();
+            $manager = $managerUser->id;
         } else {
             $manager = session('idmanager');
         }
