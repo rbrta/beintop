@@ -51,6 +51,8 @@ class PaymentController extends Controller
         $dataSet = $request->all();
         if($this->validatePayment($dataSet)) {
             return false;
+
+            Log::channel('payments')->info(' ######## PAYMENT NOT VERIFIED ##########');
         }
 
         $order_id = $dataSet['ik_pm_no'];
@@ -68,8 +70,10 @@ class PaymentController extends Controller
         Log::channel('payments')->info('payment ============== validatePayment');
         Log::channel('payments')->debug($dataSet);
 
-        $key = env('PAY_KEY');
+        $key = env('TEST_PAY_KEY');
         $ik_id = env('PAY_SHOP_ID');
+
+        $ik_sign = $dataSet['ik_sign'];
 
         unset($dataSet['ik_sign']); // Delete string with signature from dataset
         ksort($dataSet, SORT_STRING); // Sort elements in array by var names in alphabet queue
@@ -77,8 +81,9 @@ class PaymentController extends Controller
         $signString = implode(':', $dataSet); // Concatenation calues using symbol ":"
         $sign = base64_encode(md5($signString, true)); // Get MD5 hash as binare view using generate string and code it in BASE64
 
-        if($dataSet['ik_co_id'] != $ik_id || $dataSet['ik_inv_st'] != 'success' || $sign != $dataSet['ik_sign']){
-            Log::debug('validation payment error');
+        Log::channel('payments')->info('PAYMENT SIGN:' . $sign);
+
+        if($dataSet['ik_co_id'] != $ik_id || $dataSet['ik_inv_st'] != 'success' || $sign != $ik_sign){
             return false;
         }
 
@@ -96,5 +101,29 @@ class PaymentController extends Controller
         $pending = $url . '/payment/pending';
 
         return view('testpay', compact('success', 'failure', 'callback', 'pending', 'shop_id'));
+    }
+
+    public function test()
+    {
+        $data = [
+            'ik_co_id' => '5ed3d7051ae1bd39008b457b',
+            'ik_co_prs_id' => '406649888130',
+            'ik_inv_id' => '226606417',
+            'ik_inv_st' => 'success',
+            'ik_inv_crt' => '2020-07-01 15:39:28',
+            'ik_inv_prc' => '2020-07-01 15:39:28',
+            'ik_trn_id' => NULL,
+            'ik_pm_no' => 'ID_14',
+            'ik_pw_via' => 'test_interkassa_test_xts',
+            'ik_am' => '29',
+            'ik_co_rfn' => '27.84',
+            'ik_ps_price' => '29',
+            'ik_cur' => 'RUB',
+            'ik_desc' => 'maxi тариф 100',
+            'ik_sign' => '4K1K+r4CR53z0AwrmO7fXw==',
+        ];
+
+        dd($this->validatePayment($data));
+
     }
 }
