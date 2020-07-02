@@ -53,6 +53,8 @@ class PaymentController extends Controller
         if(!$this->validatePayment($dataSet)) {
             Log::channel('payments')->info(' ######## PAYMENT NOT VERIFIED ##########');
             return false;
+        } else {
+            Log::channel('payments')->info(' ######## PAYMENT SUCESSFULLY VERIFIED ##########');
         }
 
         $order_id = $dataSet['ik_pm_no'];
@@ -68,9 +70,8 @@ class PaymentController extends Controller
     private function validatePayment($dataSet)
     {
         Log::channel('payments')->info('payment ============== validatePayment');
-        Log::channel('payments')->debug($dataSet);
 
-        $key = env('TEST_PAY_KEY');
+        $key = env('PAY_KEY');
         $ik_id = env('PAY_SHOP_ID');
 
         $ik_sign = $dataSet['ik_sign'];
@@ -105,23 +106,24 @@ class PaymentController extends Controller
 
     public function test()
     {
-        $data = [
+        $data = array (
             'ik_co_id' => '5ed3d7051ae1bd39008b457b',
             'ik_co_prs_id' => '406649888130',
-            'ik_inv_id' => '226606417',
+            'ik_inv_id' => '226814287',
             'ik_inv_st' => 'success',
-            'ik_inv_crt' => '2020-07-01 15:39:28',
-            'ik_inv_prc' => '2020-07-01 15:39:28',
-            'ik_trn_id' => NULL,
-            'ik_pm_no' => 'ID_14',
-            'ik_pw_via' => 'test_interkassa_test_xts',
-            'ik_am' => '29',
-            'ik_co_rfn' => '27.84',
-            'ik_ps_price' => '29',
+            'ik_inv_crt' => '2020-07-02 14:00:22',
+            'ik_inv_prc' => '2020-07-02 14:01:02',
+            'ik_trn_id' => '123674424',
+            'ik_pm_no' => 'ID_18',
+            'ik_pw_via' => 'visa_cpaytrz_merchant_rub',
+            'ik_am' => '3.00',
+            'ik_co_rfn' => '2.8200',
+            'ik_ps_price' => '3.00',
             'ik_cur' => 'RUB',
-            'ik_desc' => 'maxi тариф 100',
-            'ik_sign' => '4K1K+r4CR53z0AwrmO7fXw==',
-        ];
+            'ik_desc' => 'maxi 100',
+            'ik_sign' => 'ZFpSJZ3xqZ2fp6PIjROLzg==',
+        );
+          
 
         dd($this->validatePayment($data));
 
