@@ -18,7 +18,7 @@ class Order extends Model
 
     protected $casts = [
         'created_at' => 'date:Y-m-d',
-        'expiration_date' => 'date:Y-m-d',
+        //'expiration_date' => 'date:Y-m-d',
     ];
 
     public function user()

@@ -27,12 +27,16 @@
 <script>
     export default {
         name: "Orders",
-        props: ['orders', 'user'],
+        props: ['orders', 'user', 'showDetails'],
 
         created() {
             this.$root.$on('clean-nav', () => {
                 this.details = null;
             });
+
+            if(typeof this.showDetails !== 'undefined') {
+                this.details = this.showDetails;
+            }
         },
 
         data() {

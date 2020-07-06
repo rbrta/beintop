@@ -40,6 +40,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function(
 });
 
 Route::group(['prefix' => 'userpanel', 'middleware' => ['auth']], function(){
+    Route::get('/show_{idservice}', 'UserController@index');
     Route::get('/', 'UserController@index');
     Route::post('/add-new-order', 'UserController@add_new_order');
     Route::any('/profile/{type?}', 'UserController@profile');
@@ -68,4 +69,4 @@ Route::get('/buy_{idservice?}_{idmanager?}', 'HomeController@index');
 
 
 Auth::routes();
-Route::get('/login', 'UserController@loginUser')->name('login');
+//Route::get('/login', 'UserController@loginUser')->name('login');

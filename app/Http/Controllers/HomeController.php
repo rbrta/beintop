@@ -7,10 +7,14 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    public function index($idservice = null, $idmanager = null)
+    public function index(Request $request, $idservice = null, $idmanager = null)
     {
         if($idmanager !== null) {
-            session(['idmanager' => $idmanager]);
+            session(['idmanager' => $idmanager, 'idservice' => $idservice]);
+
+            if($request->cookie('isuser', false)) {
+                return redirect('/userpanel/show_'.$idservice);
+            }
         }
 
         $services = Service::with("category")->get()->groupBy('category.name');

@@ -13,12 +13,12 @@ use Illuminate\Support\Facades\Session;
 
 class UserController extends Controller
 {
-    public function index()
+    public function index($showDetails = false)
     {
-        $user_id = auth()->user()->id;
-        $orders = Order::with(["service.category", "user"])->where("user_id", $user_id)->where("orders.paid_status", "active")->get();
-        $services = Service::with('category')->get();
+
         $user = auth()->user();
+        $orders = Order::with(["service.category", "user"])->where("user_id", $user->id)->where("orders.paid_status", "active")->get();
+        $services = Service::with('category')->get();
         $now = Carbon::now();
 
         $orders->map(function ($item) use ($now) {
@@ -28,7 +28,10 @@ class UserController extends Controller
             return $item;
         });
 
-        return view("client", compact("orders", "user", "services"));
+
+        $showService = $showDetails ? session::get('idservice') : 'false';
+
+        return view("client", compact("orders", "user", "services", "showService"));
     }
 
 
@@ -85,7 +88,7 @@ class UserController extends Controller
             'service_id' => $request->service_id,
             'account_name' => $request->account_name,
             'paid_status' => 'pending',
-            'expiration_date' => Carbon::now()->addDays($service->periodindays)->format('Y-m-d')
+            'expiration_date' => Carbon::now()->addDays($service->periodindays)->format('Y-m-d H:i:s')
         ]);
 
         return response()->json(['order_id' => $order->id]);
@@ -116,7 +119,7 @@ class UserController extends Controller
             'service_id' => $request->service_id,
             'account_name' => $request->account_name,
             'paid_status' => 'pending',
-            'expiration_date' => Carbon::now()->addDays($service->periodindays + 1)->format('Y-m-d')
+            'expiration_date' => Carbon::now()->addDays($service->periodindays)->format('Y-m-d H:i:s')
         ]);
 
         return response()->json(['order_id' => $order->id]);
@@ -124,7 +127,7 @@ class UserController extends Controller
 
 
 
-    public function loginUser()
+    public function loginUser(Request $request)
     {
         return view('login');
     }

@@ -4638,16 +4638,57 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "ClientArea",
-  props: ['orders', 'services', 'user'],
+  props: {
+    orders: Array,
+    services: Array,
+    user: Object,
+    showservice: {
+      "default": false
+    }
+  },
   data: function data() {
     return {
-      tab: 'active'
+      tab: 'active',
+      showDetails: null
     };
+  },
+  created: function created() {
+    var _this = this;
+
+    this.showDetailsByID();
+    this.$root.$on('clean-nav', function () {
+      _this.showDetails = null;
+    });
   },
   methods: {
     setTab: function setTab(tab) {
       this.tab = tab;
       this.$root.$emit('clean-nav');
+    },
+    showDetailsByID: function showDetailsByID() {
+      var _this2 = this;
+
+      if (this.showservice == false || this.showservice == "") {
+        return;
+      } // 1. look for exists service by id
+
+
+      var order = this.orders.find(function (o) {
+        return o.service_id == _this2.showservice;
+      });
+
+      if (typeof order !== 'undefined') {
+        //show exists service details
+        this.showDetails = order;
+        return;
+      } // 2. if service doesn't exist, show service for buy
+
+
+      var service = this.services.find(function (s) {
+        return s.id == _this2.showservice;
+      });
+      this.tab = 'add';
+      this.showDetails = service;
     }
   },
   components: {
@@ -4695,13 +4736,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Orders",
-  props: ['orders', 'user'],
+  props: ['orders', 'user', 'showDetails'],
   created: function created() {
     var _this = this;
 
     this.$root.$on('clean-nav', function () {
       _this.details = null;
     });
+
+    if (typeof this.showDetails !== 'undefined') {
+      this.details = this.showDetails;
+    }
   },
   data: function data() {
     return {
@@ -4838,14 +4883,19 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Services",
-  props: ['services', 'user'],
-  created: function created() {
+  props: ['services', 'user', 'showDetails'],
+  mounted: function mounted() {
     var _this = this;
 
     this.$root.$on('clean-nav', function () {
       _this.details = null;
     });
+
+    if (typeof this.showDetails !== 'undefined') {
+      this.details = this.showDetails;
+    }
   },
+  methods: {},
   data: function data() {
     return {
       details: null
@@ -107623,9 +107673,21 @@ var render = function() {
       ]),
       _vm._v(" "),
       _vm.tab === "active"
-        ? _c("orders", { attrs: { orders: _vm.orders, user: _vm.user } })
+        ? _c("orders", {
+            attrs: {
+              showDetails: _vm.showDetails,
+              orders: _vm.orders,
+              user: _vm.user
+            }
+          })
         : _vm.tab === "add"
-        ? _c("services", { attrs: { services: _vm.services, user: _vm.user } })
+        ? _c("services", {
+            attrs: {
+              showDetails: _vm.showDetails,
+              services: _vm.services,
+              user: _vm.user
+            }
+          })
         : _vm._e()
     ],
     1

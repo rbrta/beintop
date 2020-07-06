@@ -25,12 +25,21 @@
 <script>
     export default {
         name: "Services",
-        props: ['services', 'user'],
+        props: ['services', 'user', 'showDetails'],
 
-        created() {
+        mounted() {
             this.$root.$on('clean-nav', () => {
                 this.details = null;
             });
+            
+            if(typeof this.showDetails !== 'undefined') {
+                this.details = this.showDetails;
+            }
+            
+        },
+
+        methods: {
+            
         },
 
         data() {

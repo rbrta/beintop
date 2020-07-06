@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Cookie;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
@@ -29,20 +30,20 @@ class LoginController extends Controller
      */
     protected function authenticated(\Illuminate\Http\Request $request, $user)
     {
-        if($request->filled('redirect_to')) {
-            return redirect($request->input('redirect_to'));
-        }
+        Cookie::queue('isuser', true, 525600);
+        
 
         if($user->usertype == 'admin'){
-            return redirect('/admin');
+            $default = '/admin';
         }
 
         if($user->usertype == 'manager'){
-            return redirect('/manager');
+            $default = '/manager';
         }
 
+        $default = '/userpanel';
 
-        return redirect('/userpanel');
+        return redirect()->intended($default);
     }
 
     /**
