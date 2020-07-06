@@ -9,6 +9,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Session;
 
 class UserController extends Controller
@@ -80,6 +81,8 @@ class UserController extends Controller
         ]);
 
         Auth::login($user, true);
+
+        Cookie::queue('isuser', true, 525600);
 
         $service = Service::find($request->service_id);
 
