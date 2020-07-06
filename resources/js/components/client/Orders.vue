@@ -2,7 +2,7 @@
     <div>
         <service-details v-if="details" :user="user" :service="details.service" :expirationDate="details.expiration_date" mode="details"></service-details>
         <div v-else class="table-wrapper">
-            <table>
+            <table v-if="!isarchive">
                 <thead>
                 <tr>
                     <th>Услуга</th>
@@ -20,6 +20,7 @@
                 </tr>
                 </tbody>
             </table>
+            <p style="text-align: center" v-else>Нет записей</p>
         </div>
     </div>
 </template>
@@ -27,7 +28,7 @@
 <script>
     export default {
         name: "Orders",
-        props: ['orders', 'user', 'showDetails'],
+        props: ['orders', 'user', 'showDetails', 'isarchive'],
 
         created() {
             this.$root.$on('clean-nav', () => {

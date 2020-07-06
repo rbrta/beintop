@@ -2,11 +2,13 @@
     <div class="content-table">
         <ul class="tabs">
             <li :class="[tab === 'active' ? 'active' : '']" @click="setTab('active')">Активные</li>
-            <li :class="[tab === 'archive' ? 'active' : '']">Архивные</li>
+            <li :class="[tab === 'archive' ? 'active' : '']" @click="setTab('archive')">Архивные</li>
             <li :class="[tab === 'add' ? 'active' : '']" @click="setTab('add')">Добавить</li>
         </ul>
 
         <orders v-if="tab === 'active'" :showDetails="showDetails" :orders="orders" :user="user"></orders>
+        <orders v-if="tab === 'archive'" :showDetails="showDetails" :isarchive="true" :orders="orders" :user="user"></orders>
+
         <services v-else-if="tab === 'add'" :showDetails="showDetails" :services="services" :user="user" ></services>
     </div>
 </template>

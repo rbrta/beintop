@@ -4636,6 +4636,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "ClientArea",
   props: {
@@ -4734,9 +4736,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Orders",
-  props: ['orders', 'user', 'showDetails'],
+  props: ['orders', 'user', 'showDetails', 'isarchive'],
   created: function created() {
     var _this = this;
 
@@ -107654,9 +107657,18 @@ var render = function() {
           [_vm._v("Активные")]
         ),
         _vm._v(" "),
-        _c("li", { class: [_vm.tab === "archive" ? "active" : ""] }, [
-          _vm._v("Архивные")
-        ]),
+        _c(
+          "li",
+          {
+            class: [_vm.tab === "archive" ? "active" : ""],
+            on: {
+              click: function($event) {
+                return _vm.setTab("archive")
+              }
+            }
+          },
+          [_vm._v("Архивные")]
+        ),
         _vm._v(" "),
         _c(
           "li",
@@ -107676,6 +107688,17 @@ var render = function() {
         ? _c("orders", {
             attrs: {
               showDetails: _vm.showDetails,
+              orders: _vm.orders,
+              user: _vm.user
+            }
+          })
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.tab === "archive"
+        ? _c("orders", {
+            attrs: {
+              showDetails: _vm.showDetails,
+              isarchive: true,
               orders: _vm.orders,
               user: _vm.user
             }
@@ -107728,66 +107751,74 @@ var render = function() {
             }
           })
         : _c("div", { staticClass: "table-wrapper" }, [
-            _c("table", [
-              _c("thead", [
-                _c("tr", [
-                  _c("th", [_vm._v("Услуга")]),
-                  _vm._v(" "),
-                  _c("th", [_vm._v("Аккаунт")]),
-                  _vm._v(" "),
-                  _c("th", [_vm._v("Дата окончания")]),
-                  _vm._v(" "),
-                  _c("th", [_vm._v("Действия")])
-                ])
-              ]),
-              _vm._v(" "),
-              _c(
-                "tbody",
-                _vm._l(_vm.orders, function(order, key) {
-                  return _c("tr", { key: key }, [
-                    _c("td", { attrs: { "data-label": "Услуга" } }, [
-                      _c("div", { staticClass: "text-big" }, [
-                        _vm._v(_vm._s(order.service.category.name))
-                      ]),
-                      _c("div", { staticClass: "text-large" }, [
-                        _vm._v(_vm._s(order.service.name))
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("td", { attrs: { "data-label": "Аккаунт" } }, [
-                      _c("div", { staticClass: "text-default" }, [
-                        _vm._v(_vm._s(order.account_name))
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("td", { attrs: { "data-label": "Дата окончания" } }, [
-                      _c("div", { staticClass: "text-big" }, [
-                        _vm._v(_vm._s(order.expiration_date_format))
-                      ]),
-                      _c("div", { staticClass: "text-small" }, [
-                        _vm._v("осталось " + _vm._s(order.days) + " дней")
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("td", { attrs: { "data-label": "Действия" } }, [
-                      _c(
-                        "span",
-                        {
-                          staticClass: "btn",
-                          on: {
-                            click: function($event) {
-                              _vm.details = order
-                            }
-                          }
-                        },
-                        [_vm._v("Детали")]
-                      )
+            !_vm.isarchive
+              ? _c("table", [
+                  _c("thead", [
+                    _c("tr", [
+                      _c("th", [_vm._v("Услуга")]),
+                      _vm._v(" "),
+                      _c("th", [_vm._v("Аккаунт")]),
+                      _vm._v(" "),
+                      _c("th", [_vm._v("Дата окончания")]),
+                      _vm._v(" "),
+                      _c("th", [_vm._v("Действия")])
                     ])
-                  ])
-                }),
-                0
-              )
-            ])
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "tbody",
+                    _vm._l(_vm.orders, function(order, key) {
+                      return _c("tr", { key: key }, [
+                        _c("td", { attrs: { "data-label": "Услуга" } }, [
+                          _c("div", { staticClass: "text-big" }, [
+                            _vm._v(_vm._s(order.service.category.name))
+                          ]),
+                          _c("div", { staticClass: "text-large" }, [
+                            _vm._v(_vm._s(order.service.name))
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("td", { attrs: { "data-label": "Аккаунт" } }, [
+                          _c("div", { staticClass: "text-default" }, [
+                            _vm._v(_vm._s(order.account_name))
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "td",
+                          { attrs: { "data-label": "Дата окончания" } },
+                          [
+                            _c("div", { staticClass: "text-big" }, [
+                              _vm._v(_vm._s(order.expiration_date_format))
+                            ]),
+                            _c("div", { staticClass: "text-small" }, [
+                              _vm._v("осталось " + _vm._s(order.days) + " дней")
+                            ])
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c("td", { attrs: { "data-label": "Действия" } }, [
+                          _c(
+                            "span",
+                            {
+                              staticClass: "btn",
+                              on: {
+                                click: function($event) {
+                                  _vm.details = order
+                                }
+                              }
+                            },
+                            [_vm._v("Детали")]
+                          )
+                        ])
+                      ])
+                    }),
+                    0
+                  )
+                ])
+              : _c("p", { staticStyle: { "text-align": "center" } }, [
+                  _vm._v("Нет записей")
+                ])
           ])
     ],
     1
