@@ -4585,6 +4585,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "AdminManagerClientsModal",
   props: ['idmanager'],
@@ -107577,7 +107580,15 @@ var render = function() {
                 ]),
                 _vm._v(" "),
                 _c("td", { attrs: { "data-label": "Услуги" } }, [
-                  _vm._v(_vm._s(item.orders_count))
+                  item.orders_count > 0
+                    ? _c("span", [
+                        _vm._v(
+                          _vm._s(item.active_orders_count) +
+                            " из " +
+                            _vm._s(item.orders_count)
+                        )
+                      ])
+                    : _c("span", [_vm._v("0")])
                 ])
               ])
             }),

@@ -69,6 +69,11 @@ class User extends Authenticatable
         return $this->hasMany(Order::class);
     }
 
+    public function activeOrders()
+    {
+        return $this->orders()->where('paid_status', 'active');
+    }
+
     public function clients()
     {
         return $this->hasMany('App\User', 'manager');

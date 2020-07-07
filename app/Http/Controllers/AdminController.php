@@ -118,7 +118,7 @@ class AdminController extends Controller
              * Get manager clients
              */
             if($request->filled('action') && $request->action == 'getmanagerclients') {
-                $clients = User::where('manager', $request->idmanager)->withCount('orders')->get();
+                $clients = User::where('manager', $request->idmanager)->withCount('orders')->withCount('activeOrders')->get();
     
                 return response()->json(['success' => true, 'clients' => $clients]);
             }

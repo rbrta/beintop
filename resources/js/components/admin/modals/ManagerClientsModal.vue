@@ -15,7 +15,10 @@
                     <td data-label="Имя">{{item.full_name}}</td>
                     <td data-label="Email">{{item.email}}</td>
                     <td data-label="Дата регистрации">{{ item.created_at }}</td>
-                    <td data-label="Услуги">{{ item.orders_count }}</td>
+                    <td data-label="Услуги">
+                        <span v-if="item.orders_count > 0">{{ item.active_orders_count }} из {{ item.orders_count }}</span>
+                        <span v-else>0</span>
+                    </td>
                 </tr>
             </tbody>
         </table>
