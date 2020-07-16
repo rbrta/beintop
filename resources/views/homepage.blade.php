@@ -83,7 +83,7 @@
                                                     <div class="row3">{{  $service->periodindays }} дней</div>
                                                     <div class="hr"></div>
                                                     <div class="row4">- <span>{{ $service->likes }}</span> лайков на <span>{{ $service->posts }}</span> постов </div>
-                                                    <div class="row5">+ статистика (просмотры, охват и сохранения) </div>
+                                                    <div class="row5">+ статистика (охват и сохранения) </div>
                                                     <div class="row6">
                                                         - <span>{{ $service->views }} просмотров</span> <br>
                                                         @if($service->igtv_unlim) 
