@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ef5801f1fc42b5247db82c163950762b",
+    "content-hash": "2d9269cd2266e42c800e43a491a28ca2",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -950,6 +950,49 @@
                 "url"
             ],
             "time": "2019-07-01T23:21:34+00:00"
+        },
+        {
+            "name": "kenvel/laravel-tinkoff",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kenvel/laravel-tinkoff.git",
+                "reference": "74091bf874654d247b1b0f1f48d739187d411b31"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kenvel/laravel-tinkoff/zipball/74091bf874654d247b1b0f1f48d739187d411b31",
+                "reference": "74091bf874654d247b1b0f1f48d739187d411b31",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.1"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Kenvel\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Dmitry Kenvel",
+                    "email": "dimult@yahoo.com",
+                    "homepage": "https://github.com/kenvel/",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Simple Tinkoff bank acquiring library.",
+            "homepage": "https://github.com/kenvel/laravel-tinkoff",
+            "keywords": [
+                "acquiring",
+                "tinkoff"
+            ],
+            "time": "2019-04-09T06:42:33+00:00"
         },
         {
             "name": "laravel/framework",
@@ -5733,7 +5776,9 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "kenvel/laravel-tinkoff": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {

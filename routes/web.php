@@ -67,3 +67,9 @@ Route::get('/buy_{idservice?}_{idmanager?}', 'HomeController@index');
 
 Auth::routes();
 Route::get('/login', 'UserController@loginUser')->name('login');
+
+/**
+ *
+ */
+Route::match(['get', 'post'], '/tinkoff/test', 'PaymentController@tinkoffTest')->name('tinkoff-test');
+Route::get('/tinkoff/{status}', 'PaymentController@tinkoffPaymentStatus')->name('tinkoff-status');

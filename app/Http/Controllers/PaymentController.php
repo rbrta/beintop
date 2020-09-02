@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Order;
+use App\Payment\Tinkoff;
 use App\Service;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Str;
 
 class PaymentController extends Controller
 {
@@ -91,5 +93,57 @@ class PaymentController extends Controller
         $pending = $url . '/payment/pending';
 
         return view('testpay', compact('success', 'failure', 'callback', 'pending', 'shop_id'));
+    }
+
+    public function tinkoffTest(Request $request)
+    {
+        $tinkoff = Tinkoff::init();
+
+        if($request->isMethod('post')) {
+
+            $payment = [
+                'OrderId'       => Str::random(),        //Ваш идентификатор платежа
+                'Amount'        => '100',           //сумма всего платежа в рублях
+                'Language'      => 'ru',            //язык - используется для локализации страницы оплаты
+                'Description'   => 'Some buying',   //описание платежа
+                'Email'         => 'user@email.com',//email покупателя
+                'Phone'         => '89099998877',   //телефон покупателя
+                'Name'          => 'Customer name', //Имя покупателя
+                'Taxation'      => 'usn_income',     //Налогооблажение
+                'SuccessURL'    => route('tinkoff-status', ['status' => 'success']),
+                'FailURL'       => route('tinkoff-status', ['status' => 'fail']),
+            ];
+
+            $items[] = [
+                'Name'  => 'Название товара',
+                'Price' => '100',    //цена товара в рублях
+                'NDS'   => 'vat20',  //НДС
+            ];
+
+            $paymentURL = $tinkoff->paymentURL($payment, $items);
+
+            if(!$paymentURL) {
+                return redirect()->back()->withErrors(['payment' => $tinkoff->error]);
+            }
+
+            return redirect($tinkoff->payment_url);
+        }
+
+        if($request->has('cancel')) {
+            $status = $tinkoff->cencelPayment($request->get('cancel'));
+
+            if(!$status){
+                return redirect()->back()->withErrors(['status' => $tinkoff->error]);
+            }
+
+            return view('tinkoff-test')->with('message', 'Оплата отменена');
+        }
+
+        return view('tinkoff-test');
+    }
+
+    public function tinkoffPaymentStatus($status, Request $request)
+    {
+        return view('tinkoff-test');
     }
 }

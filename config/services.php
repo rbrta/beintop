@@ -30,4 +30,10 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'tinkoff' => [
+        'endpoint' => 'https://securepay.tinkoff.ru/v2/',
+        'terminal' => env('TINKOFF_TERMINAL', '152619634343'),
+        'secret_key' => env('TINKOFF_SECRET', 'terminal_secret_password'),
+    ]
+
 ];
