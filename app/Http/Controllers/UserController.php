@@ -2,15 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Payment\Tinkoff;
 use App\User;
 use App\Order;
 use App\Service;
 use Carbon\Carbon;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Validation\ValidationException;
 
 class UserController extends Controller
 {
@@ -36,15 +39,13 @@ class UserController extends Controller
     }
 
 
-
-
     /**
      * pay from main page as new user
      *
      * @param Request $request
-     * @return void
+     * @return JsonResponse
      */
-    public function pay_service_guest(Request $request)
+    public function pay_service_guest(Request $request): JsonResponse
     {
         $customMessages = [
             'full_name.required' => 'Необходимо заполнить поле "Полное имя"',
@@ -65,9 +66,9 @@ class UserController extends Controller
         ], $customMessages);
 
 
-        if(! session('idmanager', false) ) {
+        if(!session('idmanager', false) ) {
             $managerUser = User::randManager();
-            $manager = $managerUser->id;
+            $manager = $managerUser ? $managerUser->id : null;
         } else {
             $manager = session('idmanager');
         }
@@ -94,16 +95,19 @@ class UserController extends Controller
             'expiration_date' => Carbon::now()->addDays($service->periodindays)->format('Y-m-d H:i:s')
         ]);
 
-        return response()->json(['order_id' => $order->id]);
+        $payment = $order->pay();
+
+        return response()->json(['redirect_url' => $payment]);
     }
 
     /**
      * pay from user panel as exists user
      *
      * @param Request $request
-     * @return void
+     * @return JsonResponse
+     * @throws ValidationException
      */
-    public function add_new_order(Request $request)
+    public function add_new_order(Request $request): JsonResponse
     {
         $customMessages = [
             'account_name.required' => 'Не указано "Имя профиля Instagram"',
@@ -117,6 +121,9 @@ class UserController extends Controller
 
         $service = Service::find($request->service_id);
 
+        /**
+         * @var $order Order
+         */
         $order = Order::create([
             'user_id' => auth()->user()->id,
             'service_id' => $request->service_id,
@@ -125,7 +132,9 @@ class UserController extends Controller
             'expiration_date' => Carbon::now()->addDays($service->periodindays)->format('Y-m-d H:i:s')
         ]);
 
-        return response()->json(['order_id' => $order->id]);
+        $payment = $order->pay();
+
+        return response()->json(['redirect_url' => $payment]);
     }
 
 

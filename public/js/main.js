@@ -131,7 +131,7 @@ function registerCustomEvent(eventName, data) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /var/www/beintop/resources/js/main.js */"./resources/js/main.js");
+module.exports = __webpack_require__(/*! G:\Projects\OSPanel\domains\beintop-dev.com\resources\js\main.js */"./resources/js/main.js");
 
 
 /***/ })

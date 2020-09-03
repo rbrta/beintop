@@ -5097,29 +5097,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "ModalSkeleton",
   props: ['service', 'mode'],
   data: function data() {
     return {
-      app_url: '',
-      shop_id: '',
       order_id: '',
       form: {
         full_name: '',
@@ -5134,26 +5116,19 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       return this.service.category.name.replace('Тарифы', 'Тариф') + ' ' + this.service.name;
     }
   },
-  created: function created() {
-    this.app_url = window._laravel.app_url;
-    this.shop_id = window._laravel.shop_id;
-  },
+  created: function created() {},
   methods: {
     pay: function pay() {
       var _this = this;
 
-      var url = this.mode == 'fromUserpanel' ? '/userpanel/add-new-order' : '/pay_service';
+      var url = this.mode === 'fromUserpanel' ? '/userpanel/add-new-order' : '/pay_service';
       axios.post(url, _objectSpread(_objectSpread({}, this.form), {}, {
         service_id: this.service.id
       })).then(function (response) {
-        if (response.data.order_id) {
-          _this.order_id = "ID_" + response.data.order_id;
-
-          _this.$nextTick(function (_) {
-            return _this.$refs.payment_form.submit();
-          });
+        if (response.data.redirect_url) {
+          window.location.href = response.data.redirect_url;
         } else {
-          _this.$alert('something went wrong');
+          _this.$alert('Something went wrong');
         }
       })["catch"](function (error) {
         if (error.response.data && error.response.data.errors) {
@@ -12020,7 +11995,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "\n.submit-button-wrapper[data-v-4fb525b4] {\n    display: flex;\n    justify-content: flex-end;\n}\n.submit-button .el-button[data-v-4fb525b4] {\n    background: linear-gradient(89.8deg, #E164BE -0.56%, #FF74D8 -0.55%, #FF985E 97.67%);\n    color: white;\n    border: none;\n}\n.width100[data-v-4fb525b4] {\n    width: 100%;\n}\n.igtv-unlimit[data-v-4fb525b4] {\n    margin-top: 40px;\n}\n", ""]);
+exports.push([module.i, "\n.submit-button-wrapper[data-v-4fb525b4] {\r\n    display: flex;\r\n    justify-content: flex-end;\n}\n.submit-button .el-button[data-v-4fb525b4] {\r\n    background: linear-gradient(89.8deg, #E164BE -0.56%, #FF74D8 -0.55%, #FF985E 97.67%);\r\n    color: white;\r\n    border: none;\n}\n.width100[data-v-4fb525b4] {\r\n    width: 100%;\n}\n.igtv-unlimit[data-v-4fb525b4] {\r\n    margin-top: 40px;\n}\r\n", ""]);
 
 // exports
 
@@ -12039,7 +12014,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "\n.el-checkbox__input.is-checked .el-checkbox__inner,\n.el-checkbox__input.is-indeterminate .el-checkbox__inner {\n    background-color: #644595;\n    border-color: #644595;\n}\n.el-checkbox__input.is-checked+.el-checkbox__label {\n    color: #644595;\n}\n", ""]);
+exports.push([module.i, "\n.el-checkbox__input.is-checked .el-checkbox__inner,\r\n.el-checkbox__input.is-indeterminate .el-checkbox__inner {\r\n    background-color: #644595;\r\n    border-color: #644595;\n}\n.el-checkbox__input.is-checked+.el-checkbox__label {\r\n    color: #644595;\n}\r\n", ""]);
 
 // exports
 
@@ -12077,7 +12052,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.modal-header[data-v-3d3d1abe] {\n    border-bottom: 1px solid #EBEEF5;\n    padding: 20px 30px;\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n}\n.modal-header h5[data-v-3d3d1abe] {\n    font-weight: 600;\n    font-size: 21px;\n    margin: 0;\n}\n.modal-body[data-v-3d3d1abe] {\n    padding: 25px 30px 35px 30px;\n}\n\n", ""]);
+exports.push([module.i, "\n.modal-header[data-v-3d3d1abe] {\r\n    border-bottom: 1px solid #EBEEF5;\r\n    padding: 20px 30px;\r\n    display: flex;\r\n    justify-content: space-between;\r\n    align-items: center;\n}\n.modal-header h5[data-v-3d3d1abe] {\r\n    font-weight: 600;\r\n    font-size: 21px;\r\n    margin: 0;\n}\n.modal-body[data-v-3d3d1abe] {\r\n    padding: 25px 30px 35px 30px;\n}\r\n\r\n", ""]);
 
 // exports
 
@@ -108370,16 +108345,14 @@ var render = function() {
       _vm._v(" "),
       _c("div", { staticClass: "row4" }, [
         _vm._v(
-          "\n            К оплате: " +
+          "\n      К оплате: " +
             _vm._s(_vm.service.price_formatted) +
-            " Рублей\n        "
+            " Рублей\n    "
         )
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "row5" }, [
-        _vm._v(
-          "\n            Мы начнём выполнение заказа сразу после оплаты\n        "
-        )
+        _vm._v("\n      Мы начнём выполнение заказа сразу после оплаты\n    ")
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "row6" }, [
@@ -108394,80 +108367,10 @@ var render = function() {
               }
             }
           },
-          [_vm._v("\n                Перейти к оплате\n            ")]
+          [_vm._v("\n        Перейти к оплате\n      ")]
         )
       ])
-    ]),
-    _vm._v(" "),
-    _c(
-      "div",
-      {
-        directives: [
-          { name: "show", rawName: "v-show", value: false, expression: "false" }
-        ]
-      },
-      [
-        _c(
-          "form",
-          {
-            ref: "payment_form",
-            attrs: {
-              name: "payment",
-              method: "post",
-              action: "https://sci.interkassa.com/",
-              "accept-charset": "UTF-8"
-            }
-          },
-          [
-            _c("input", {
-              attrs: { type: "hidden", name: "ik_co_id" },
-              domProps: { value: _vm.shop_id }
-            }),
-            _vm._v(" "),
-            _c("input", {
-              attrs: { type: "hidden", name: "ik_pm_no" },
-              domProps: { value: _vm.order_id }
-            }),
-            _vm._v(" "),
-            _c("input", {
-              attrs: { type: "hidden", name: "ik_am" },
-              domProps: { value: _vm.service.price }
-            }),
-            _vm._v(" "),
-            _c("input", {
-              attrs: { type: "hidden", name: "ik_cur", value: "RUB" }
-            }),
-            _vm._v(" "),
-            _c("input", {
-              attrs: { type: "hidden", name: "ik_desc" },
-              domProps: { value: _vm.description }
-            }),
-            _vm._v(" "),
-            _c("input", {
-              attrs: { type: "hidden", name: "ik_ia_u" },
-              domProps: { value: _vm.app_url + "/payment/callback" }
-            }),
-            _vm._v(" "),
-            _c("input", {
-              attrs: { type: "hidden", name: "ik_suc_u" },
-              domProps: { value: _vm.app_url + "/payment/success" }
-            }),
-            _vm._v(" "),
-            _c("input", {
-              attrs: { type: "hidden", name: "ik_fal_u" },
-              domProps: { value: _vm.app_url + "/payment/failure" }
-            }),
-            _vm._v(" "),
-            _c("input", {
-              attrs: { type: "hidden", name: "ik_pnd_u" },
-              domProps: { value: _vm.app_url + "/payment/pending" }
-            }),
-            _vm._v(" "),
-            _c("input", { attrs: { type: "submit", value: "Pay" } })
-          ]
-        )
-      ]
-    )
+    ])
   ])
 }
 var staticRenderFns = []
@@ -108495,7 +108398,7 @@ var render = function() {
   return _c("div", { staticClass: "popup" }, [
     _c("div", { staticClass: "popup__tutle" }, [
       _c("span", [_vm._v("Insta:")]),
-      _vm._v("\n        " + _vm._s(_vm.order.user.account_name) + "\n    ")
+      _vm._v("\r\n        " + _vm._s(_vm.order.user.account_name) + "\r\n    ")
     ]),
     _vm._v(" "),
     _vm._m(0),
@@ -108510,9 +108413,9 @@ var render = function() {
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "likes__posts" }, [
-            _vm._v("\n                    На\n                    "),
+            _vm._v("\r\n                    На\r\n                    "),
             _c("span", [_vm._v(_vm._s(_vm.order.service.posts))]),
-            _vm._v(" постов\n                ")
+            _vm._v(" постов\r\n                ")
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "likes__views" }, [
@@ -108536,13 +108439,15 @@ var render = function() {
             _vm._v(" "),
             _c("div", [
               _c("span", [_vm._v(_vm._s(_vm.order.service.bonus_comments))]),
-              _vm._v(" Комментариев\n                    ")
+              _vm._v(" Комментариев\r\n                    ")
             ]),
             _vm._v(" "),
             _c("div", [
-              _vm._v("\n                        На\n                        "),
+              _vm._v(
+                "\r\n                        На\r\n                        "
+              ),
               _c("span", [_vm._v(_vm._s(_vm.order.service.bonus_posts))]),
-              _vm._v(" постов в тему публикации\n                    ")
+              _vm._v(" постов в тему публикации\r\n                    ")
             ])
           ]),
           _vm._v(" "),
@@ -108590,11 +108495,11 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "likes__igtv" }, [
-      _vm._v("\n                    На видео и IgTv\n                    "),
+      _vm._v("\r\n                    На видео и IgTv\r\n                    "),
       _c("br"),
-      _vm._v("(\n                    "),
+      _vm._v("(\r\n                    "),
       _c("span", [_vm._v("Безлимит")]),
-      _vm._v(")\n                ")
+      _vm._v(")\r\n                ")
     ])
   },
   function() {
@@ -108604,21 +108509,21 @@ var staticRenderFns = [
     return _c("div", { staticClass: "left__timer" }, [
       _c("div", [
         _c("div", [_vm._v("23")]),
-        _vm._v("Часа\n                    ")
+        _vm._v("Часа\r\n                    ")
       ]),
       _vm._v(" "),
       _c("div", [_c("div", [_vm._v(":")])]),
       _vm._v(" "),
       _c("div", [
         _c("div", [_vm._v("12")]),
-        _vm._v("Минут\n                    ")
+        _vm._v("Минут\r\n                    ")
       ]),
       _vm._v(" "),
       _c("div", [_c("div", [_vm._v(":")])]),
       _vm._v(" "),
       _c("div", [
         _c("div", [_vm._v("35")]),
-        _vm._v("Секунд\n                    ")
+        _vm._v("Секунд\r\n                    ")
       ])
     ])
   },
@@ -124823,11 +124728,11 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /var/www/beintop/resources/js/app.js */"./resources/js/app.js");
-__webpack_require__(/*! /var/www/beintop/resources/sass/app.scss */"./resources/sass/app.scss");
-__webpack_require__(/*! /var/www/beintop/resources/sass/homepage.scss */"./resources/sass/homepage.scss");
-__webpack_require__(/*! /var/www/beintop/resources/sass/login.scss */"./resources/sass/login.scss");
-module.exports = __webpack_require__(/*! /var/www/beintop/resources/sass/clientpage.scss */"./resources/sass/clientpage.scss");
+__webpack_require__(/*! G:\Projects\OSPanel\domains\beintop-dev.com\resources\js\app.js */"./resources/js/app.js");
+__webpack_require__(/*! G:\Projects\OSPanel\domains\beintop-dev.com\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! G:\Projects\OSPanel\domains\beintop-dev.com\resources\sass\homepage.scss */"./resources/sass/homepage.scss");
+__webpack_require__(/*! G:\Projects\OSPanel\domains\beintop-dev.com\resources\sass\login.scss */"./resources/sass/login.scss");
+module.exports = __webpack_require__(/*! G:\Projects\OSPanel\domains\beintop-dev.com\resources\sass\clientpage.scss */"./resources/sass/clientpage.scss");
 
 
 /***/ })

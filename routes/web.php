@@ -54,22 +54,11 @@ Route::group(['prefix' => 'manager', 'middleware' => ['auth']], function(){
 
 
 Route::post('/pay_service', 'UserController@pay_service_guest');
-
-
-Route::post('/payment/callback', 'PaymentController@callback');
-Route::post('/payment/success', 'PaymentController@success');
-Route::post('/payment/failure', 'PaymentController@failure');
-Route::post('/payment/pending', 'PaymentController@pending');
-Route::get('/pay', 'PaymentController@pay');
-
-
-
-
 Route::get('/buy_{idservice?}_{idmanager?}', 'HomeController@index');
 
 
 Auth::routes();
 //Route::get('/login', 'UserController@loginUser')->name('login');
 
-Route::match(['get', 'post'], '/tinkoff/test', 'PaymentController@tinkoffTest')->name('tinkoff-test');
-Route::get('/tinkoff/{status}', 'PaymentController@tinkoffPaymentStatus')->name('tinkoff-status');
+Route::get('/tinkoff/callback', 'PaymentController@callback')->name('tinkoff-callback');
+Route::get('/tinkoff/{status}', 'PaymentController@paymentStatus')->name('tinkoff-status');

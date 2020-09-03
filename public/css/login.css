@@ -271,12 +271,12 @@ header .wrapper-mobile {
   z-index: 500;
   width: 100%;
   background-color: white;
-  background: #fff url(/images/background-mobile.svg?bc1bdbb9f0314ac760e1ed21bdbe7def) no-repeat center 140px/cover;
+  background: #fff url(/images/background-mobile.svg?8045323e0d1593cf549735a00dfd45bf) no-repeat center 140px/cover;
 }
 
 @media screen and (min-width: 700px) {
   header .wrapper-mobile {
-    background: #fff url(/images/background-mobile.svg?bc1bdbb9f0314ac760e1ed21bdbe7def) no-repeat center 35px/cover;
+    background: #fff url(/images/background-mobile.svg?8045323e0d1593cf549735a00dfd45bf) no-repeat center 35px/cover;
   }
 }
 

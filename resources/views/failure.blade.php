@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Оплата не завершена</title>
     <link rel="stylesheet" href="{{ asset('/css/backendpage.css') }}">
 </head>
 <body>
@@ -16,6 +16,9 @@
             <div class="title">
                 Оплата не завершена
             </div>
+            @if(request('Message'))
+                <div>{{ request('Message') }} </div>
+            @endif
             <div>
                 <a href="/userpanel">Перейти в  кабинет</a>
             </div>
