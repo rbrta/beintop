@@ -71,7 +71,7 @@ class PaymentController extends Controller
         $order = Order::where('payment_id', $request->get('PaymentId'))->first();
         $order->update(['paid_status' => 'active']);
         
-        return response('success', 200);
+        return response('OK', 200);
     }
 
     /**
