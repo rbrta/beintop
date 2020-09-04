@@ -25,7 +25,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'full_name', 'email', 'password', 'usertype', 'manager'
+        'full_name', 'email', 'password', 'usertype', 'manager', 'insta_account', 'phone', 'login_code'
     ];
 
     /**
@@ -82,5 +82,10 @@ class User extends Authenticatable
     public function manager()
     {
         return $this->belongsTo('App\User', 'manager');
+    }
+
+    public static function generateLoginCode()
+    {
+        return mb_strimwidth(mt_rand(), 0, 5) . '-' . mb_strimwidth(mt_rand(), 0, 5);
     }
 }

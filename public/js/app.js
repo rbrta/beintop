@@ -5095,8 +5095,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "ModalSkeleton",
   props: ['service', 'mode'],
@@ -5107,7 +5105,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         full_name: '',
         email: '',
         password: '',
-        account_name: ''
+        account_name: '',
+        phone: ''
       }
     };
   },
@@ -108254,18 +108253,21 @@ var render = function() {
                     {
                       name: "model",
                       rawName: "v-model",
-                      value: _vm.form.full_name,
-                      expression: "form.full_name"
+                      value: _vm.form.account_name,
+                      expression: "form.account_name"
                     }
                   ],
-                  attrs: { placeholder: "Полное имя", type: "text" },
-                  domProps: { value: _vm.form.full_name },
+                  attrs: {
+                    placeholder: "Имя профиля или ссылка",
+                    type: "text"
+                  },
+                  domProps: { value: _vm.form.account_name },
                   on: {
                     input: function($event) {
                       if ($event.target.composing) {
                         return
                       }
-                      _vm.$set(_vm.form, "full_name", $event.target.value)
+                      _vm.$set(_vm.form, "account_name", $event.target.value)
                     }
                   }
                 })
@@ -108277,70 +108279,24 @@ var render = function() {
                     {
                       name: "model",
                       rawName: "v-model",
-                      value: _vm.form.email,
-                      expression: "form.email"
+                      value: _vm.form.phone,
+                      expression: "form.phone"
                     }
                   ],
-                  attrs: { placeholder: "Email", type: "email" },
-                  domProps: { value: _vm.form.email },
+                  attrs: { placeholder: "Номер телефона", type: "text" },
+                  domProps: { value: _vm.form.phone },
                   on: {
                     input: function($event) {
                       if ($event.target.composing) {
                         return
                       }
-                      _vm.$set(_vm.form, "email", $event.target.value)
-                    }
-                  }
-                })
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "intput-wrapper" }, [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.form.password,
-                      expression: "form.password"
-                    }
-                  ],
-                  attrs: { placeholder: "Пароль", type: "password" },
-                  domProps: { value: _vm.form.password },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.$set(_vm.form, "password", $event.target.value)
+                      _vm.$set(_vm.form, "phone", $event.target.value)
                     }
                   }
                 })
               ])
             ])
-          : _vm._e(),
-        _vm._v(" "),
-        _c("div", { staticClass: "intput-wrapper" }, [
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.form.account_name,
-                expression: "form.account_name"
-              }
-            ],
-            attrs: { placeholder: "Имя профиля или ссылка", type: "text" },
-            domProps: { value: _vm.form.account_name },
-            on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
-                }
-                _vm.$set(_vm.form, "account_name", $event.target.value)
-              }
-            }
-          })
-        ])
+          : _vm._e()
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "row4" }, [

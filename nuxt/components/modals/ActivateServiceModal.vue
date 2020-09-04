@@ -1,22 +1,32 @@
 <template>
   <div class="popup">
     <div class="popup__content">
-      <div class="row1">Активация тарифа</div>
-      <div class="row2">{{ description }}</div>
+      <div class="row1">
+        Активация тарифа
+      </div>
+      <div class="row2">
+        {{ description }}
+      </div>
       <div class="row3">
-        <div v-if="mode !== 'fromUserpanel'">
-          <div class="intput-wrapper"><input v-model="form.account_name" placeholder="Имя профиля или ссылка" type="text"></div>
-          <div class="intput-wrapper"><input v-model="form.phone" placeholder="Номер телефона" type="text"></div>
+        <div class="intput-wrapper">
+          <label>
+            <input v-model="form.account_name" placeholder="Имя профиля или ссылка" type="text">
+          </label>
+        </div>
+        <div class="intput-wrapper">
+          <label>
+            <input v-model="form.phone" placeholder="Номер телефона" type="text">
+          </label>
         </div>
       </div>
       <div class="row4">
-        К оплате: {{ service.price_formatted}} Рублей
+        К оплате: {{ service.price_formatted }} Рублей
       </div>
       <div class="row5">
         Мы начнём выполнение заказа сразу после оплаты
       </div>
       <div class="row6">
-        <a @click.prevent="pay" href="#">
+        <a href="#" @click.prevent="pay">
           Перейти к оплате
         </a>
       </div>
@@ -26,50 +36,33 @@
 
 <script>
 export default {
-  name: "ModalSkeleton",
-  props: ['service', 'mode'],
-  data() {
+  name: 'ActivateServiceModal',
+  props: {
+    service: {
+      type: Object,
+      default: null
+    }
+  },
+
+  data () {
     return {
-      order_id: '',
       form: {
-        full_name: '',
-        email: '',
-        password: '',
-        account_name: '',
-        phone: '',
+        account: null,
+        phone: null
+        //
       }
     }
   },
+
   computed: {
-    description() {
-      return this.service.category.name.replace('Тарифы', 'Тариф') + ' ' + this.service.name;
-    },
-  },
-
-  created(){
-
+    description () {
+      return this.service.category.name.replace('Тарифы', 'Тариф') + ' ' + this.service.name
+    }
   },
 
   methods: {
-    pay() {
-      let url = this.mode === 'fromUserpanel' ? '/userpanel/add-new-order' : '/pay_service';
-
-      axios.post(url, {
-        ...this.form,
-        service_id: this.service.id
-      }).then(response => {
-        if(response.data.redirect_url) {
-          window.location.href = response.data.redirect_url;
-        } else {
-          this.$alert('Something went wrong');
-        }
-      }).catch(error => {
-        if (error.response.data && error.response.data.errors) {
-          let message = error.response.data.errors[Object.keys(error.response.data.errors)[0]]
-          message = message.toString();
-          this.$alert(message);
-        }
-      });
+    pay () {
+      //
     }
   }
 }

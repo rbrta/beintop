@@ -48,20 +48,15 @@ class UserController extends Controller
     public function pay_service_guest(Request $request): JsonResponse
     {
         $customMessages = [
-            'full_name.required' => 'Необходимо заполнить поле "Полное имя"',
-            'email.required' => 'Необходимо заполнить поле "Email"',
-            'password.required' => 'Не указан "Пароль"',
             'account_name.required' => 'Не указано "Имя профиля Instagram"',
             'service_id.required' => 'Не указан "Тариф"',
-            'unique' => 'Такой адрес электронной почты уже существует',
+            'phone.required' => 'Не указан номер телефона',
         ];
 
         $request->validate([
-            'full_name' => 'required',
-            'email' => 'required|unique:users',
-            'password' => 'required',
             'account_name' => 'required',
             'service_id' => 'required',
+            'phone' => 'required',
 
         ], $customMessages);
 
@@ -75,10 +70,10 @@ class UserController extends Controller
         
 
         $user = User::create([
-            'full_name' => $request->full_name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
+            'insta_account' => $request->account_name,
+            'phone' => $request->phone,
             'manager' => $manager,
+            'login_code' => User::generateLoginCode(),
         ]);
 
         Auth::login($user, true);
