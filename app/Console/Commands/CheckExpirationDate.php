@@ -40,7 +40,7 @@ class CheckExpirationDate extends Command
     public function handle()
     {
         $now = Carbon::now();
-        Order::where("expiration_date", "<", $now)->delete();
+        Order::where("expiration_date", "<=", $now)->update(['paid_status' => 'terminated']);
         $this->info("Check expiration date");
     }
 }
