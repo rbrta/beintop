@@ -29,8 +29,8 @@ export default {
   },
 
   env: {
-    baseUrl: process.env.BASE_URL || 'http://localhost:3000',
-    apiUrl: process.env.API_URL || 'http://localhost:3000/api',
+    baseUrl: process.env.BASE_URL || 'http://localhost:8001',
+    apiUrl: process.env.API_URL || 'http://localhost:8001/api',
   },
 
   /*
@@ -43,7 +43,8 @@ export default {
   ** https://nuxtjs.org/guide/plugins
   */
   plugins: [
-    '~plugins/vue-js-modal.js'
+    '~plugins/vue-js-modal.js',
+    '~plugins/axios'
   ],
   /*
   ** Auto import components
