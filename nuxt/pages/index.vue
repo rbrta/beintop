@@ -55,61 +55,50 @@
     <div id="app" class="container-middle">
         <div class="wrapper-content">
             <section class="tariffcontainer">
-                <div class="tariffcontainer-title" id="tariffs">
+                <div class="tariffcontainer-title">
                     Выберите Тариф
                 </div>
-                <div class="tariff-item item" v-for="(tariffs, tariffsCategory) in services">
-                    <div class="item-title">
-                        <div>Тарифы {{ tariffsCategory }}</div>
+                <div class="tariff-category">
+                    <div class="tarif-category-title" >
+                        <div :class="showCategory == tariffsCategory ? 'active' : ''" @click="showCategory=tariffsCategory" v-for="(tariffs, tariffsCategory) in services">Тарифы {{ tariffsCategory }}</div>
                     </div>
-                    <div class="item-body">
-                        <vue-glide :per-view="4" :rewind="false" type="carousel" :breakpoints="glide.breakpoints">
-                            <vue-glide-slide v-for="service in tariffs" :key="service.id">
-                                <div class="tariff">
-                                    <div class="module-border-wrap">
-                                        <div class="tariff__body">
-                                            <div class="flex-container">
-                                                <div class="top">
-                                                    <div class="row1">Тариф</div>
-                                                    <div class="row2">{{ service.name }}</div>
-                                                    <div class="row3">{{ service.periodindays }} дней</div>
-                                                    <div class="hr"></div>
-                                                    <div class="row4">- <span>{{ service.likes }}</span> лайков на <span>{{ service.posts }}</span> постов </div>
-                                                    <div class="row5">+ статистика (охват и сохранения) </div>
-                                                    <div class="row6">
-                                                        - <span>{{ service.views }} просмотров</span>
-                                                        <template v-if="service.igtv_unlim"><br>
-                                                            - <span class="ml">Видео и IGTV (<span class="unlimited">Безлимит <img src="/images/fire.svg" alt=""></span>) </span>
-                                                        </template>
-                                                    </div>
+                    <div class="tarif-category-body" v-if="showCategory == tariffsCategory" v-for="(tariffs, tariffsCategory) in services">
 
-                                                    <div class="row7" v-if="service.bonus"> + <img src="/images/bonus.svg" alt="">&nbsp;<span>Бонус</span> ({{ service.bonus }})</div>
-                                                    <div v-else><br><br></div>
-                                                </div>
-                                                <div class="bottom">
-                                                    <div class="row8">{{ service.price_formatted }} рублей </div>
-                                                    <div class="row9">
-                                                        <a class="btn" href="#" @click.prevent="activateService(service)">Активировать</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                        <div class="tariff" v-for="service in tariffs" :key="service.id">
+                            <div class="module-border-wrap">
+                                <div class="tariff__body">
+                                    <div class="likes">
+                                        {{ service.likes }} <font-awesome-icon icon="heart"/>
+                                    </div>
+
+                                    <div class="description">
+                                        на {{ service.posts }} постов + статистика (охват и сохранения) <br>
+                                        
+                                        <div><b>{{ service.views }}</b> <font-awesome-icon icon="eye"/></div>
+                                            
+
+                                        <template v-if="service.igtv_unlim">
+                                            <div> <span class="unlimited">Безлимит </span> на Видео и IGTV </div>
+                                        </template>
+
+                                        <template v-if="service.bonus">
+                                            + Бонус: {{ service.bonus }}
+                                        </template>
+                                    </div>
+
+                                    <div class="price">
+                                        <b class="period">{{ service.periodindays }} дней</b>
+                                        <div class="value">{{ service.price_formatted }} руб.</div>
                                     </div>
                                 </div>
-                            </vue-glide-slide>
-                            <template slot="control">
-                                <button data-glide-dir="<" class="glide__arrow glide__arrow--left">
-                                    <font-awesome-icon icon="long-arrow-alt-left" /></button>
-                                <button data-glide-dir=">" class="glide__arrow glide__arrow--right">
-                                    <font-awesome-icon icon="long-arrow-alt-right" /></button>
-                            </template>
-                        </vue-glide>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </section>
         </div>
-        <!--<popuploader idservice="{{$idService}}"></popuploader>
-      <scrollto></scrollto>-->
+        
     </div>
 
     <div class="container-below">
@@ -161,6 +150,7 @@ import ActivateServiceModal from '~/components/modals/ActivateServiceModal'
 
 export default {
     layout: 'homepage',
+    name: 'HomePage',
 
     async asyncData({
         env,
@@ -169,19 +159,7 @@ export default {
         const data = await $axios.$get('/services');
         return {
             services: data,
-            glide: {
-                breakpoints: {
-                    1213: {
-                        perView: 3
-                    },
-                    995: {
-                        perView: 2
-                    },
-                    620: {
-                        perView: 1
-                    }
-                }
-            }
+            showCategory: 'maxi'
         };
     },
 

@@ -349,7 +349,7 @@
 .container-middle{
     margin-top: -500px;
     padding-top: 180px;
-
+    position: relative;
     background-image:
     url('/images/points.svg'),
     url('/images/likes.svg');
@@ -377,67 +377,144 @@
         }
     }
 
-    .item {
+    .tarif-category {
         margin-top: 57px;
         margin-bottom: 10rem;
 
-       &-title{
+       &-title {
+           margin-top: 2rem;
            margin-bottom: 40px;
            display: flex;
            justify-content: center;
            font-weight: 800;
            color: #fb378f;
-           font-size: 34px;
+           font-size: 1.4rem;
            text-transform: uppercase;
+           line-height: 1;
 
-           div {
-                border: 5px solid #fb378f;
-                border-radius: 37.5px;
+           
+
+            div {
+                border: 5px solid #bb56a1;
                 padding: 13px 95px;
+                cursor: pointer;
+                background: #fff;
+
+                @media(max-width: 700px){
+                    padding: 15px;
+                    text-align: center;
+                }
+
+                &.active {
+                    background: linear-gradient(180deg, #B04E98 18.23%, #873E90 90.1%, #73307B 100%);
+                    color: #fff;
+                }
+
+                &:first-child {
+                    border-radius: 37px 0 0 37px;
+                    border-right-width: 2px;
+                }
+                &:last-child {
+                    border-radius: 0 37px 37px 0;
+                    border-left-width: 2px;
+                }
            }
        }
 
-       &-body{
-           display: flex;
-           justify-content: space-between;
-           flex-wrap: wrap;
-
-           @media(max-width: 700px){
-                justify-content: center;
-           }
-       }
+       
     }
 
-    .tariff{
-        margin-right: 4px;
-        margin-left: 4px;
+    .tariff {
+        margin-right: auto;
+        margin-left: auto;
         margin-top: 17px;
         font-size: 18px;
         line-height: 27px;
         letter-spacing: -0.03em;
-        text-transform: capitalize;
-        font-feature-settings: 'case';
         font-weight: normal;
-        display: flex;
-        justify-content: space-between;
+        width: 1200px;
+        max-width: 100%;
+
+        &:hover {
+            transform: scale(1.01);
+            transition: transform 0.5s;
+        }
 
         .tariff__body{
-            text-transform: lowercase;
             font-size: 17px;
-            max-width: 317px;
+            width: 100%;
             height: auto;
             color: white;
-
             background: linear-gradient(180deg, #B04E98 18.23%, #873E90 90.1%, #73307B 100%);
             border-radius: 33px;
-            padding: 0px 10px 20px 10px;
+            padding: 1rem;
+            text-transform: none;
+            display: flex;
+            justify-content: space-between;
+            cursor: pointer;
 
-            .flex-container {
-                display: flex;
-                flex-direction: column;
-                justify-content: space-between;
-                height: 100%;
+            @media(max-width: 560px) {
+                flex-wrap: wrap;
+                justify-content: center;
+                padding: 2rem 1rem;
             }
+
+            
+            .flex {
+                display: flex;
+                justify-content: space-between;
+            }
+
+            .likes {
+                font-size: 2rem;
+                font-weight: bold;
+                padding: 0 1rem;
+                white-space: nowrap;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+
+                @media(max-width: 560px) {
+                    margin-bottom: 1rem;
+                }
+
+
+                svg {
+                    margin-left: 0.5rem;
+                }
+            }
+
+            
+
+            .description {
+                width: 100%;
+
+                @media(max-width: 560px) {
+                    margin-bottom: 1rem;
+                }
+
+                .unlimited {
+                    text-transform: none;
+                }
+            }
+
+            .price {
+                align-self: center;
+                font-weight: bold;
+                padding: 0 1rem;
+                width: 400px;
+                text-align: center;
+
+                .value {
+                    font-size: 2rem;
+                }
+                .period {
+                    font-size: 1.2rem;
+                }
+                
+            }
+
+           
         }
 
         .module-border-wrap{
@@ -690,14 +767,15 @@
                     }
 
                     @media(max-width: 900px){
+                        margin-bottom: 2px;
+
                         img{
                             width: 60px;
                         }
                     }
 
-                    @media(max-width: 900px){
-                        margin-bottom: 2px;
-                    }
+
+                    
                 }
 
                 @media(max-width: 1100px){
