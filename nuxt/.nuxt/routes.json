@@ -1,0 +1,9 @@
+[
+  {
+    "name": "index",
+    "path": "/",
+    "component": "/var/www/beintop/nuxt/pages/index.vue",
+    "chunkName": "pages/index",
+    "_name": "_72053dce"
+  }
+]
