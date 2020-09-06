@@ -50,11 +50,12 @@
                 </div>
             </section>
         </div>
+        <div class="mobile-bottom-waves"></div>
     </div>
 
     <div id="app" class="container-middle">
         <div class="wrapper-content">
-            <section class="tariffcontainer">
+            <section id="tariffs" class="tariffcontainer">
                 <div class="tariffcontainer-title">
                     Выберите Тариф
                 </div>
@@ -133,7 +134,7 @@
                 </div>
             </div>
             <div class="row3" id="choosetariff">
-                <a class="scrollTo" data-scroll="#tariffs">Выбрать тариф</a>
+                <a class="scrollTo" href="#tariffs">Выбрать тариф</a>
             </div>
         </div>
     </div>

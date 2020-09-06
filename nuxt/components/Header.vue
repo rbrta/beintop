@@ -9,10 +9,9 @@
       <ul class="menu">
         <li><font-awesome-icon icon="star"/> <a href="#advantage">Наши преимущества</a></li>
         <li><font-awesome-icon icon="th"/> <a href="#tariffs">Выбрать тариф</a></li>
-        <li><font-awesome-icon icon="user"/> <a href="/userpanel">Личный кабинет</a></li>
       </ul>
 
-      <div class="mobile-menu-btn" id="menuBtn">
+      <div @click="showMobileMenu = !showMobileMenu" class="mobile-menu-btn" id="menuBtn">
         <span></span>
         <span></span>
         <span></span>
@@ -20,11 +19,10 @@
 
     </div>
 
-    <div class="wrapper-mobile hide" id="menuMob">
+    <div v-if="showMobileMenu" class="wrapper-mobile" id="menuMob">
       <div class="mobile-menu">
-        <div><a class="scrollTo" data-scroll="#tariffs" href="#">Наши преимущества</a></div>
-        <div><a class="scrollTo" data-scroll="#tariffs" href="#">Выбрать тариф</a></div>
-        <div><a href="/userpanel">Личный кабинет</a></div>
+        <div><a @click="showMobileMenu=false" class="scrollTo" href="#tariffs">Наши преимущества</a></div>
+        <div><a @click="showMobileMenu=false" class="scrollTo" href="#tariffs">Выбрать тариф</a></div>
       </div>
     </div>
 
@@ -33,6 +31,12 @@
 
 <script>
 export default {
-  name: 'Header'
+  name: 'Header',
+
+  data() {
+    return {
+      showMobileMenu: false,
+    }
+  }
 }
 </script>
