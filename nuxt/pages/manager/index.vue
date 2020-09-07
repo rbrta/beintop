@@ -1,6 +1,6 @@
 <template>
     <div class="table-wrapper">
-        
+
         <div class="flex j-end">
             <div @click="addClient" class="btn">Добавить клиента</div>
         </div>
@@ -37,7 +37,7 @@ import AddClientModal from '~/components/modals/manager/AddClientModal'
 export default {
     layout: 'panel',
     name: 'ManagerClients',
-    // middleware: 'manager',
+    middleware: 'manager',
 
     async asyncData({
         env,
@@ -57,7 +57,7 @@ export default {
     },
 
     components: {
-        
+
     }
 }
 </script>
