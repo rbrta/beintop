@@ -24,6 +24,6 @@ Route::prefix('auth')->group(static function() {
 });
 
 Route::prefix('manager')->middleware('auth:api')->group(static function() {
-    Route::get('manager/clients', 'Api\ManagerController@clients');
-    Route::post('manager/addclient', 'Api\ManagerController@addClient');
+    Route::get('clients', 'Api\ManagerController@clients');
+    Route::post('addclient', 'Api\ManagerController@addClient');
 });
