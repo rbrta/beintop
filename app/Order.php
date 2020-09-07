@@ -4,6 +4,7 @@ namespace App;
 
 use App\Payment\Tinkoff;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Validation\ValidationException;
 
 class Order extends Model
@@ -13,7 +14,7 @@ class Order extends Model
         'service_id',
         'expiration_date',
         'paid_status',
-        'account_name',
+        'account_id',
     ];
 
     protected $casts = [
@@ -29,6 +30,14 @@ class Order extends Model
     public function service()
     {
         return $this->hasOne(Service::class, 'id', 'service_id');
+    }
+
+    /**
+     * @return HasOne
+     */
+    public function account(): HasOne
+    {
+        return $this->hasOne(Account::class, 'id', 'account_id');
     }
 
     /**

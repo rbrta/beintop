@@ -17,7 +17,7 @@ export default {
   */
   head: {
     title: process.env.npm_package_name || '',
-    titleTemplate: '%s | BeInTop',
+    titleTemplate: '%s | Be-in-top',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -45,7 +45,9 @@ export default {
   */
   plugins: [
     '~plugins/vue-js-modal.js',
-    '~plugins/axios'
+    '~plugins/axios',
+    { src: '~plugins/vue-countdown', mode: 'client' },
+    '~plugins/plur-strings'
   ],
   /*
   ** Auto import components
@@ -79,6 +81,9 @@ export default {
   ** See https://nuxtjs.org/api/configuration-build/
   */
   build: {
+    splitChunks: {
+      layouts: true
+    }
   },
 
   auth: {
@@ -99,7 +104,7 @@ export default {
     redirect: {
       login: '/login',
       logout: '/',
-      callback: '/userpanel',
+      callback: '/login',
       home: '/'
     }
   },
@@ -110,7 +115,19 @@ export default {
 
   fontawesome: {
     icons: {
-      solid: ['faCog', 'faStar', 'faTh', 'faUser', 'faLongArrowAltLeft', 'faLongArrowAltRight', 'faHeart', 'faEye', 'faHome'],
+      solid: [
+        'faCog',
+        'faStar',
+        'faTh',
+        'faUser',
+        'faLongArrowAltLeft',
+        'faLongArrowAltRight',
+        'faHeart',
+        'faEye',
+        'faHome',
+        'faList',
+        'faSignOutAlt'
+      ],
     }
   }
 }

@@ -23,6 +23,11 @@ Route::prefix('auth')->group(static function() {
     Route::get('user', 'Api\AuthController@user')->middleware('auth:api');
 });
 
+Route::prefix('user')->middleware('auth:api')->group(static function() {
+    Route::get('orders', 'Api\OrdersController@show');
+    Route::post('orders', 'Api\OrdersController@create');
+});
+
 Route::prefix('manager')->middleware('auth:api')->group(static function() {
     Route::get('clients', 'Api\ManagerController@clients');
     Route::post('addclient', 'Api\ManagerController@addClient');

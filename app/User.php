@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Notifications\ResetPasswordNotification;
@@ -70,9 +71,20 @@ class User extends Authenticatable
         return $this->hasMany(Order::class);
     }
 
-    public function activeOrders()
+    /**
+     * @return HasMany
+     */
+    public function activeOrders(): HasMany
     {
         return $this->orders()->where('paid_status', 'active');
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function archivedOrders(): HasMany
+    {
+        return $this->orders()->where('paid_status', '!=', 'active');
     }
 
     public function clients()
@@ -85,7 +97,10 @@ class User extends Authenticatable
         return $this->belongsTo('App\User', 'manager');
     }
 
-    public function accounts()
+    /**
+     * @return HasMany
+     */
+    public function accounts(): HasMany
     {
         return $this->hasMany('App\Account', 'user_id', 'id');
     }
@@ -95,5 +110,5 @@ class User extends Authenticatable
         return mb_strimwidth(mt_rand(), 0, 5) . '-' . mb_strimwidth(mt_rand(), 0, 5);
     }
 
-    
+
 }

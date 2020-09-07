@@ -6,6 +6,13 @@
 </template>
 
 <style lang="scss">
+body {
+  background-image: url(/images/background-backend.svg);
+  background-position: bottom;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin-bottom: 50px;
+}
 @import "~/assets/sass/login.scss";
 </style>
 

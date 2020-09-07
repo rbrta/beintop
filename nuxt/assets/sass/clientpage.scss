@@ -2,7 +2,7 @@
 @import 'reset.scss';
 @import 'common.scss';
 
-#app {
+#page {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -147,7 +147,7 @@
             }
         }
 
-        li.active {
+        li.nuxt-link-exact-active {
             background: #fde2fa;
 
         }
@@ -165,7 +165,7 @@
             border-radius: 0 0 12px 12px;
         }
 
-        
+
     }
 
 

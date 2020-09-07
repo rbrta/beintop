@@ -2,6 +2,12 @@
   <div id="page">
     <Header :menu-items="menuItems" />
     <div class="main-block">
+      <div class="container-top">
+        <div class="wrapper-content">
+          <div class="row1"><b>Аккаунт:</b> {{ $store.state.auth.user.full_name }}
+          </div>
+        </div>
+      </div>
       <Nuxt />
     </div>
   </div>
@@ -36,11 +42,5 @@ export default {
       ]
     }
   },
-
-  head() {
-    return {
-      title: 'Личный кабинет'
-    }
-  }
 }
 </script>

@@ -55,49 +55,7 @@
 
     <div id="app" class="container-middle">
       <div class="wrapper-content">
-        <section id="tariffs" class="tariffcontainer">
-          <div class="tariffcontainer-title">
-            Выберите Тариф
-          </div>
-          <div class="tariff-category">
-            <div class="tarif-category-title" >
-              <div :class="showCategory == tariffsCategory ? 'active' : ''" @click="showCategory=tariffsCategory" v-for="(tariffs, tariffsCategory) in services">Тарифы {{ tariffsCategory }}</div>
-            </div>
-            <div class="tarif-category-body" v-if="showCategory == tariffsCategory" v-for="(tariffs, tariffsCategory) in services">
-
-              <div class="tariff" v-for="service in tariffs" :key="service.id">
-                <div class="module-border-wrap">
-                  <div class="tariff__body">
-                    <div class="likes">
-                      {{ service.likes }} <font-awesome-icon icon="heart"/>
-                    </div>
-
-                    <div class="description">
-                      на {{ service.posts }} постов + статистика (охват и сохранения) <br>
-
-                      <div><b>{{ service.views }}</b> <font-awesome-icon icon="eye"/></div>
-
-
-                      <template v-if="service.igtv_unlim">
-                        <div> <span class="unlimited">Безлимит </span> на Видео и IGTV </div>
-                      </template>
-
-                      <template v-if="service.bonus">
-                        + Бонус: {{ service.bonus }}
-                      </template>
-                    </div>
-
-                    <div class="price">
-                      <b class="period">{{ service.periodindays }} дней</b>
-                      <div class="value">{{ service.price_formatted }} руб.</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-            </div>
-          </div>
-        </section>
+        <TariffsList :services="services"></TariffsList>
       </div>
 
     </div>
@@ -142,12 +100,16 @@
 </template>
 
 <script>
-import ActivateServiceModal from '~/components/modals/ActivateServiceModal'
+import TariffsList from '@/components/TariffsList'
 
 export default {
   layout: 'homepage',
   name: 'HomePage',
   auth: false,
+
+  components: {
+    TariffsList
+  },
 
   async asyncData({
     env,
@@ -156,17 +118,7 @@ export default {
     const data = await $axios.$get('/services');
     return {
       services: data,
-      showCategory: 'maxi'
     };
-  },
-
-
-  methods: {
-    activateService(service) {
-      this.$modal.show(ActivateServiceModal, {
-        service
-      })
-    }
   },
 
   head() {

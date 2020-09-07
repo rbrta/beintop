@@ -74,6 +74,8 @@ class AuthController extends Controller
     {
         $request->user()->token()->revoke();
 
-        return response()->json();
+        return response()->json([
+            'success' => true
+        ]);
     }
 }

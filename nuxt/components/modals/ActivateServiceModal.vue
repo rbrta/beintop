@@ -7,20 +7,8 @@
         <div class="row2">
             {{ description }}
         </div>
-        <div class="row3">
-            <div class="intput-wrapper">
-                <label>
-                    <input v-model="form.account_name" placeholder="Instagram login или ссылка на профиль" type="text">
-                </label>
-            </div>
-            <div class="intput-wrapper">
-                <label>
-                    <input v-model="form.phone" placeholder="Номер телефона" type="text">
-                </label>
-            </div>
-        </div>
         <div class="row4">
-            К оплате: {{ service.price_formatted }} Рублей
+            К оплате: {{ service.price_formatted }} руб.
         </div>
         <div class="row5">
             Мы начнём выполнение заказа сразу после оплаты
@@ -61,8 +49,17 @@ export default {
     },
 
     methods: {
-        pay() {
-            //
+        async pay() {
+            try {
+              const date = await this.$axios.$post('/user/orders', {
+                service_id: this.service.id
+              })
+
+              this.$emit('close');
+              window.location.href = date.redirect_url;
+            } catch (err) {
+              console.error(err)
+            }
         }
     }
 }
