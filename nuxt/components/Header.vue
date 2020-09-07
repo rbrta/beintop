@@ -7,8 +7,7 @@
       </div>
 
       <ul class="menu">
-        <li><font-awesome-icon icon="star"/> <a href="#advantage">Наши преимущества</a></li>
-        <li><font-awesome-icon icon="th"/> <a href="#tariffs">Выбрать тариф</a></li>
+        <li v-for="item in menuItems"><font-awesome-icon v-if="item.icon" :icon="item.icon"/> <a :href="item.link">{{ item.title }}</a></li>
       </ul>
 
       <div @click="showMobileMenu = !showMobileMenu" class="mobile-menu-btn" id="menuBtn">
@@ -32,6 +31,25 @@
 <script>
 export default {
   name: 'Header',
+  props: {
+    menuItems: {
+      type: Array,
+      default: () => {
+        return [
+          {
+            title: 'Наши преимущества',
+            link: '#advantage',
+            icon: 'star'
+          },
+          {
+            title: 'Выбрать тариф',
+            link: '#tariffs',
+            icon: 'th'
+          }
+        ]
+      }
+    }
+  },
 
   data() {
     return {

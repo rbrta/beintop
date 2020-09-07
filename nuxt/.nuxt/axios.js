@@ -143,8 +143,8 @@ export default (ctx, inject) => {
   const runtimeConfig = ctx.$config && ctx.$config.axios || {}
   // baseURL
   const baseURL = process.browser
-    ? (runtimeConfig.browserBaseURL || runtimeConfig.baseURL || 'https://beintop.local/api')
-      : (runtimeConfig.baseURL || process.env._AXIOS_BASE_URL_ || 'https://beintop.local/api')
+    ? (runtimeConfig.browserBaseURL || runtimeConfig.baseURL || 'http://beintop-dev.com/api')
+      : (runtimeConfig.baseURL || process.env._AXIOS_BASE_URL_ || 'http://beintop-dev.com/api')
 
   // Create fresh objects for all default header scopes
   // Axios creates only one which is shared across SSR requests!

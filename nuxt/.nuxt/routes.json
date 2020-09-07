@@ -1,9 +1,23 @@
 [
   {
+    "name": "login",
+    "path": "/login",
+    "component": "G:\\\\Projects\\\\OSPanel\\\\domains\\\\beintop-dev.com\\\\nuxt\\\\pages\\\\login\\\\index.vue",
+    "chunkName": "pages/login/index",
+    "_name": "_301c9d0c"
+  },
+  {
+    "name": "login-code",
+    "path": "/login/:code",
+    "component": "G:\\\\Projects\\\\OSPanel\\\\domains\\\\beintop-dev.com\\\\nuxt\\\\pages\\\\login\\\\_code.vue",
+    "chunkName": "pages/login/_code",
+    "_name": "_31e74e06"
+  },
+  {
     "name": "index",
     "path": "/",
-    "component": "/var/www/beintop/nuxt/pages/index.vue",
+    "component": "G:\\\\Projects\\\\OSPanel\\\\domains\\\\beintop-dev.com\\\\nuxt\\\\pages\\\\index.vue",
     "chunkName": "pages/index",
-    "_name": "_72053dce"
+    "_name": "_65ee3b9f"
   }
 ]

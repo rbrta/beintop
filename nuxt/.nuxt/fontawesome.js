@@ -14,7 +14,8 @@ import {
   faLongArrowAltLeft as freeFasFaLongArrowAltLeft,
   faLongArrowAltRight as freeFasFaLongArrowAltRight,
   faHeart as freeFasFaHeart,
-  faEye as freeFasFaEye
+  faEye as freeFasFaEye,
+  faHome as freeFasFaHome
 } from '@fortawesome/free-solid-svg-icons'
 
 library.add(
@@ -25,7 +26,8 @@ library.add(
   freeFasFaLongArrowAltLeft,
   freeFasFaLongArrowAltRight,
   freeFasFaHeart,
-  freeFasFaEye
+  freeFasFaEye,
+  freeFasFaHome
 )
 
 config.autoAddCss = false

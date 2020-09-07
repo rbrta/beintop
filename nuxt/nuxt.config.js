@@ -17,6 +17,7 @@ export default {
   */
   head: {
     title: process.env.npm_package_name || '',
+    titleTemplate: '%s | BeInTop',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -63,7 +64,8 @@ export default {
   */
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
+    '@nuxtjs/auth'
   ],
   /*
   ** Axios module configuration
@@ -79,9 +81,30 @@ export default {
   build: {
   },
 
+  auth: {
+    strategies: {
+      local: {
+        endpoints: {
+          login: { url: '/auth/login', method: 'post', propertyName: 'token' },
+          logout: { url: '/auth/logout', method: 'post' },
+          user: { url: '/auth/user', method: 'get', propertyName: 'user' }
+        },
+        redirect_uri: '/userpanel'
+        // tokenRequired: true,
+        // tokenType: 'bearer',
+        // globalToken: true,
+        // autoFetchUser: true
+      }
+    }
+  },
+
+  router: {
+    middleware: ['auth']
+  },
+
   fontawesome: {
     icons: {
-      solid: ['faCog', 'faStar', 'faTh', 'faUser', 'faLongArrowAltLeft', 'faLongArrowAltRight', 'faHeart', 'faEye'],
+      solid: ['faCog', 'faStar', 'faTh', 'faUser', 'faLongArrowAltLeft', 'faLongArrowAltRight', 'faHeart', 'faEye', 'faHome'],
     }
   }
 }

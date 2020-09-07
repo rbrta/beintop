@@ -146,11 +146,11 @@ export async function setContext (app, context) {
       isDev: true,
       isHMR: false,
       app,
-
+      store: app.store,
       payload: context.payload,
       error: context.error,
       base: '/',
-      env: {"baseUrl":"https://beintop.local","apiUrl":"https://beintop.local/api"}
+      env: {"baseUrl":"http://beintop-dev.com","apiUrl":"http://beintop-dev.com/api"}
     }
     // Only set once
     if (!process.static && context.req) {
