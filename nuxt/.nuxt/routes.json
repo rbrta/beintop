@@ -7,6 +7,13 @@
     "_name": "_301c9d0c"
   },
   {
+    "name": "manager",
+    "path": "/manager",
+    "component": "G:\\\\Projects\\\\OSPanel\\\\domains\\\\beintop-dev.com\\\\nuxt\\\\pages\\\\manager\\\\index.vue",
+    "chunkName": "pages/manager/index",
+    "_name": "_3cf5cb88"
+  },
+  {
     "name": "login-code",
     "path": "/login/:code",
     "component": "G:\\\\Projects\\\\OSPanel\\\\domains\\\\beintop-dev.com\\\\nuxt\\\\pages\\\\login\\\\_code.vue",

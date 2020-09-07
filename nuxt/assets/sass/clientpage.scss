@@ -31,15 +31,13 @@
 
 .btn{
     min-width: 187.08px;
-    height: 47px;
-    left: 1411px;
     background: linear-gradient(89.8deg, #E164BE -0.56%, #FF74D8 -0.55%, #FF985E 97.67%);
     border-radius: 50px;
 
     font-style: normal;
     font-weight: normal;
     font-size: 20px;
-    line-height: 24px;
+    line-height: 1;
     text-align: center;
     letter-spacing: 0.045em;
     padding-top: 10px;
@@ -49,6 +47,7 @@
     display: inline-block;
     text-decoration: none;
     cursor: pointer;
+    padding: 1rem;
 }
 
 .btn.btn-small {
@@ -403,6 +402,49 @@
                     margin-top: 3rem;
                 }
             }
+        }
+    }
+
+
+}
+
+
+
+.popup {
+    padding: 2rem;
+
+    .popup-title {
+        font-size: 2rem;
+        font-weight: bold;
+        text-align: center;
+        color: #616161;
+    }
+
+    .popup__content {
+
+        .row {
+            margin-top: 1rem;
+        }
+
+        .input-wrapper {
+            margin-top: 1rem;
+
+            input {
+                border: solid 1px #EB5B9C;
+                border-radius: 35px;
+                width: 100%;
+                display: block;
+                padding: 1rem;
+                font-size: 1.2rem;
+                outline: none;
+            }
+        }
+
+        .error {
+            font-size: 1.4rem;
+            color: crimson;
+            font-weight: bold;
+            text-align: center;
         }
     }
 }
