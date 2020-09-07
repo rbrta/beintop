@@ -1,5 +1,12 @@
 [
   {
+    "name": "manager",
+    "path": "/manager",
+    "component": "/var/www/beintop/nuxt/pages/manager/index.vue",
+    "chunkName": "pages/manager/index",
+    "_name": "_058079ec"
+  },
+  {
     "name": "index",
     "path": "/",
     "component": "/var/www/beintop/nuxt/pages/index.vue",

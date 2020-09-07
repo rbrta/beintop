@@ -142,11 +142,7 @@
 </template>
 
 <script>
-import {
-    Glide,
-    GlideSlide
-} from 'vue-glide-js'
-import 'vue-glide-js/dist/vue-glide.css'
+
 import ActivateServiceModal from '~/components/modals/ActivateServiceModal'
 
 export default {
@@ -174,25 +170,10 @@ export default {
     },
 
     components: {
-        [Glide.name]: Glide,
-        [GlideSlide.name]: GlideSlide
+        
     }
 }
 </script>
 
 <style scoped>
-.glide__arrow {
-    position: absolute;
-    z-index: 2;
-    color: white;
-    text-transform: uppercase;
-    font: 11px Arial, sans-serif;
-    padding: 9px 12px;
-    background-color: transparent;
-    border: 2px solid rgba(255, 255, 255, 0.5);
-    border-radius: 4px;
-    opacity: 1;
-    -webkit-transition: opacity 150ms ease, border 300ms ease-in-out;
-    transition: opacity 150ms ease, border 300ms ease-in-out;
-}
 </style>

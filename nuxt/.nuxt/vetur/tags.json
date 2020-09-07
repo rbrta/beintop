@@ -22,5 +22,11 @@
   },
   "LazyActivateServiceModal": {
     "description": "Auto imported from components/modals/ActivateServiceModal.vue"
+  },
+  "AddClientModal": {
+    "description": "Auto imported from components/modals/manager/AddClientModal.vue"
+  },
+  "LazyAddClientModal": {
+    "description": "Auto imported from components/modals/manager/AddClientModal.vue"
   }
 }

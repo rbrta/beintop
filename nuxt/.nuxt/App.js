@@ -9,8 +9,9 @@ import '../node_modules/@fortawesome/fontawesome-svg-core/styles.css'
 
 import _6f6c098b from '../layouts/default.vue'
 import _3ac005e4 from '../layouts/homepage.vue'
+import _77d887ce from '../layouts/panel.vue'
 
-const layouts = { "_default": sanitizeComponent(_6f6c098b),"_homepage": sanitizeComponent(_3ac005e4) }
+const layouts = { "_default": sanitizeComponent(_6f6c098b),"_homepage": sanitizeComponent(_3ac005e4),"_panel": sanitizeComponent(_77d887ce) }
 
 export default {
   render (h, props) {

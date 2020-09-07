@@ -19,3 +19,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('services', 'Api\PagesController@services');
+
+Route::get('manager/clients', 'Api\ManagerController@clients');
+Route::post('manager/addclient', 'Api\ManagerController@addClient');

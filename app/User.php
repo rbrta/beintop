@@ -84,8 +84,15 @@ class User extends Authenticatable
         return $this->belongsTo('App\User', 'manager');
     }
 
+    public function accounts()
+    {
+        return $this->hasMany('App\Account', 'user_id', 'id');
+    }
+
     public static function generateLoginCode()
     {
         return mb_strimwidth(mt_rand(), 0, 5) . '-' . mb_strimwidth(mt_rand(), 0, 5);
     }
+
+    
 }
