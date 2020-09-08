@@ -15,6 +15,7 @@
         "guzzlehttp/guzzle": "^6.3",
         "kenvel/laravel-tinkoff": "dev-master",
         "laravel/framework": "^7.0",
+        "laravel/passport": "^9.3",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^2.0"
     },
