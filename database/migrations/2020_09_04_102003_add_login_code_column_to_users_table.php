@@ -16,6 +16,14 @@ class AddLoginCodeColumnToUsersTable extends Migration
         Schema::table('users', function (Blueprint $table) {
             $table->string('login_code')->after('insta_account');
         });
+
+        $users = \App\User::all();
+        $users->each(static function ($user) {
+            if($user->usertype === 'user') {
+                $user->login_code = \App\User::generateLoginCode();
+                $user->save();
+            }
+        });
     }
 
     /**
