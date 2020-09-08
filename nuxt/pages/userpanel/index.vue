@@ -3,35 +3,45 @@
     <div class="content-table">
       <ClientPanelTabs></ClientPanelTabs>
       <div class="table-wrapper">
-        <table v-if="orders.length">
+        <table v-if="accounts.length">
           <thead>
           <tr>
-            <th>Услуга</th>
             <th>Аккаунт</th>
+            <th>Услуга</th>
             <th>Дата окончания</th>
             <th>Действия</th>
           </tr>
           </thead>
           <tbody>
-          <tr :key="key" v-for="(order, key) in orders">
-            <td data-label="Услуга">
-              <div class="text-big">{{ order.service.category.name }}</div>
-              <div class="text-large">{{ order.service.name }}</div>
-            </td>
+          <tr :key="key" v-for="(account, key) in accounts">
             <td data-label="Аккаунт">
-              <div class="text-default">{{ order.account.account_name }}</div>
+              <div class="text-default">{{ account.account_name }}</div>
+            </td>
+            <td data-label="Услуга">
+              <template v-if="account.latest_order">
+                <div class="text-big">{{ account.latest_order.service.category.name }}</div>
+                <div class="text-large">{{ account.latest_order.service.name }}</div>
+              </template>
             </td>
             <td data-label="Дата окончания">
-              <div class="text-big">{{ order.expiration_date_format }}</div>
-              <div class="text-small">осталось {{ order.days }} дней</div>
+              <template v-if="account.latest_order && account.latest_order.paid_status === 'active'">
+                <div class="text-big">{{ account.latest_order.expiration_date_format }}</div>
+                <div class="text-small">осталось {{ account.latest_order.days }} дней</div>
+              </template>
+              <template v-else>
+                <span>-</span>
+              </template>
             </td>
             <td data-label="Действия">
-              <nuxt-link class="btn" :to="`/userpanel/details/${order.id}`">Детали</nuxt-link>
+              <nuxt-link class="btn" v-if="account.latest_order" :to="`/userpanel/details/${account.id}`">Детали</nuxt-link>
             </td>
           </tr>
           </tbody>
         </table>
-        <div v-else class="no-orders">Заказов не найдено</div>
+        <div v-else class="no-orders">
+          <div style="margin-bottom: 10px">Нет добавленных аккаунтов</div>
+          <nuxt-link class="btn" :to="{ path: '/userpanel/new' }">Добавить</nuxt-link>
+        </div>
       </div>
     </div>
   </div>
@@ -44,36 +54,31 @@ export default {
   name: 'UserPanel',
   layout: 'userpanel',
   middleware: 'auth',
-  watchQuery: ['tab'],
 
   components: {
     ClientPanelTabs
   },
 
   async asyncData ({ params, query, error, $axios }) {
-    const tab = query.tab || 'active';
-    const data = await $axios.$get('/user/orders', {
-      params: {
-        tab: tab
-      }
-    });
+    try {
+      const data = await $axios.$get('/user/accounts');
 
-    return {
-      tab: tab,
-      orders: data
-    };
-  },
-
-  data () {
-    return {
-      tab: 'active'
+      return {
+        accounts: data
+      };
+    } catch (err) {
+      console.error(err.response.data || err);
+      error({ statusCode: err.response.status, message: err.response.statusText });
     }
-  },
 
-  head() {
-    return {
-      title: 'Личный кабинет'
-    }
-  }
+    return false;
+  },
 }
 </script>
+
+<style scoped>
+.no-orders {
+  text-align: center;
+  padding: 15px 0;
+}
+</style>

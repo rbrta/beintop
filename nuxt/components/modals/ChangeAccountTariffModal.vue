@@ -2,22 +2,16 @@
   <div class="popup">
     <div class="popup__content">
       <div class="row1">
-        {{ accountId ? 'Продление' : 'Активация' }} тарифа
+        Смена тарифа
       </div>
       <div class="row2">
         {{ description }}
       </div>
-      <div class="row3" v-if="!accountId">
-        <div class="intput-wrapper"><input v-model="account_name" placeholder="Имя профиля или ссылка" type="text"></div>
-      </div>
       <div class="row4">
-        К оплате: {{ service.price_formatted }} руб.
+        К оплате: <span class="price"><span>{{ service.price_formatted }}</span>{{ price }}</span> руб.
       </div>
-      <div v-if="accountId" class="row5">
-        Заказ будет продлен сразу после оплаты
-      </div>
-      <div v-else class="row5">
-        Мы начнём выполнение заказа сразу после оплаты
+      <div class="row5">
+        Тариф будет изменен сразу после оплаты
       </div>
       <div class="row6">
         <a href="#" @click.prevent="pay">
@@ -30,21 +24,17 @@
 
 <script>
 export default {
-  name: 'ActivateServiceModal',
+  name: 'ChangeAccountTariffModal',
   props: {
     service: {
       type: Object,
       default: null
     },
     accountId: {
-      type: Number,
-      default: null
-    }
-  },
-
-  data() {
-    return {
-      account_name: ''
+      type: String
+    },
+    price: {
+      type: String
     }
   },
 
@@ -57,10 +47,9 @@ export default {
   methods: {
     async pay() {
       try {
-        const date = await this.$axios.$post('/user/orders', {
+        const date = await this.$axios.$post('/user/accounts/change-tariff', {
           service_id: this.service.id,
           account_id: this.accountId,
-          account_name: this.account_name
         })
 
         this.$emit('close');
@@ -127,7 +116,7 @@ export default {
   }
 
   .row4 {
-    margin-top: 1rem;
+    margin-top: 2rem;
     font-style: normal;
     font-weight: bold;
     font-size: 36px;
@@ -149,7 +138,7 @@ export default {
   }
 
   .row6 {
-    margin-top: 1rem;
+    margin-top: 2rem;
     margin-bottom: 2rem;
 
     a {
@@ -213,6 +202,19 @@ export default {
       }
     }
 
+  }
+}
+
+.price {
+  position: relative;
+
+  span {
+    position: absolute;
+    left: 0;
+    top: -25px;
+    text-decoration: line-through;
+    font-size: 17px;
+    font-weight: 600;
   }
 }
 </style>

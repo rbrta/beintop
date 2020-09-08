@@ -3,23 +3,34 @@
 namespace App;
 
 use App\Payment\Tinkoff;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Validation\ValidationException;
 
 class Order extends Model
 {
+    public const STATUS_TERMINATED = 'terminated';
+    public const STATUS_ACTIVE = 'active';
+    public const STATUS_PENDING = 'pending';
+
     protected $fillable = [
         'user_id',
         'service_id',
         'expiration_date',
         'paid_status',
         'account_id',
+        'total'
     ];
 
     protected $casts = [
         'created_at' => 'date:Y-m-d',
         //'expiration_date' => 'date:Y-m-d',
+    ];
+
+    protected $appends = [
+        'days',
+        'expiration_date_format'
     ];
 
     public function user()
@@ -41,6 +52,22 @@ class Order extends Model
     }
 
     /**
+     * @return int
+     */
+    public function getDaysAttribute(): int
+    {
+        return Carbon::parse($this->expiration_date)->diffInDays(now());
+    }
+
+    /**
+     * @return string
+     */
+    public function getExpirationDateFormatAttribute(): string
+    {
+        return Carbon::parse($this->expiration_date)->translatedFormat("d F Y");
+    }
+
+    /**
      * @return mixed
      * @throws ValidationException
      */
@@ -51,10 +78,10 @@ class Order extends Model
 
         $payment = [
             'OrderId' => config('app.debug') ? "test_order_{$this->id}" : "order_{$this->id}",
-            'Amount' => $this->service->price,
+            'Amount' => $this->total,
             'Language' => 'ru',
             'Description' => $serviceDescription,
-            'Email' => '',
+            'Email' => $this->user->email,
             'Phone' => $this->user->phone,
             'Name' => $this->user->full_name,
             'Taxation' => 'usn_income',
@@ -64,7 +91,7 @@ class Order extends Model
 
         $items[] = [
             'Name' => $serviceDescription,
-            'Price' => $this->service->price,
+            'Price' => $this->total,
             'NDS' => 'vat20',
         ];
 

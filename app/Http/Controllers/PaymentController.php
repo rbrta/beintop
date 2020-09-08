@@ -69,8 +69,24 @@ class PaymentController extends Controller
         Log::channel('payments')->info(' ######## PAYMENT SUCESSFULLY VERIFIED ##########');
 
         $order = Order::where('payment_id', $request->get('PaymentId'))->first();
-        $order->update(['paid_status' => 'active']);
-        
+        $prevOrder = $order->account->latest_order;
+
+        // Account has previous active order
+        if($prevOrder && $prevOrder->paid_status === Order::STATUS_ACTIVE) {
+            $prevOrder->paid_status = Order::STATUS_TERMINATED;
+            $prevOrder->save();
+
+            // prolong by adding days to old date
+            if($order->service_id === $prevOrder->service_id) {
+                $order->expiration_date = Carbon::parse($prevOrder->expiration_date)->addDays($prevOrder->service->periodindays);
+            } else {
+                $order->expiration_date = $prevOrder->expiration_date;
+            }
+        }
+
+        $order->paid_status = Order::STATUS_ACTIVE;
+        $order->save();
+
         return response('OK', 200);
     }
 

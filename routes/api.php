@@ -26,6 +26,8 @@ Route::prefix('auth')->group(static function() {
 Route::prefix('user')->middleware('auth:api')->group(static function() {
     Route::get('orders', 'Api\OrdersController@show');
     Route::post('orders', 'Api\OrdersController@create');
+    Route::get('accounts', 'Api\AccountsController@show');
+    Route::match(['get', 'post'], 'accounts/change-tariff', 'Api\AccountsController@changeTariff');
 });
 
 Route::prefix('manager')->middleware('auth:api')->group(static function() {

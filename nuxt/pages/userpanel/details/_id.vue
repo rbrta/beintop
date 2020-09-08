@@ -3,35 +3,36 @@
     <div class="content-table">
       <ClientPanelTabs></ClientPanelTabs>
       <div class="details-panel">
-        <h1 class="tariff_name">Тариф {{ order.service.category.name }}</h1>
+        <div class="account-name"><b>Аккаунт:</b> {{ account.account_name }}</div>
+        <h1 class="tariff_name">Тариф {{ account.latest_order.service.category.name }}</h1>
 
         <div class="flex">
           <div class="left">
-            <div class="likes">{{ order.service.likes }}</div>
+            <div class="likes">{{ account.latest_order.service.likes }}</div>
             <div class="lakes_label">Лайков</div>
-            <div class="likes_posts">На <b>{{ order.service.posts }}</b> постов</div>
+            <div class="likes_posts">На <b>{{ account.latest_order.service.posts }}</b> постов</div>
 
-            <div class="views">{{ order.service.views }}</div>
+            <div class="views">{{ account.latest_order.service.views }}</div>
             <div class="views_label">Просмотров</div>
 
-            <div class="igtv_label" v-if="order.service.igtv_unlim">На видео и IGTV</div>
-            <div class="igtv_label_unlim" v-if="order.service.igtv_unlim">(<span>Безлимит</span><div class="fire"></div>)</div>
+            <div class="igtv_label" v-if="account.latest_order.service.igtv_unlim">На видео и IGTV</div>
+            <div class="igtv_label_unlim" v-if="account.latest_order.service.igtv_unlim">(<span>Безлимит</span><div class="fire"></div>)</div>
           </div>
 
           <div class="center">
-            <div class="bonus" v-if="order.service.bonus !== null">
+            <div class="bonus" v-if="account.latest_order.service.bonus !== null">
               <div class="bonus__img"></div>
               <div class="bonus__title">Бонус</div>
-              <div class="bonus__comments">{{ order.service.bonus }}</div>
+              <div class="bonus__comments">{{ account.latest_order.service.bonus }}</div>
             </div>
 
             <div class="price__label">Стоимость</div>
-            <div class="price">{{ order.service.price_formatted }}</div>
+            <div class="price">{{ account.latest_order.service.price_formatted }}</div>
             <div class="price__currency">руб./мес</div>
           </div>
 
           <div class="right">
-            <countdown :time="countdownTo" :interval="1000" v-if="order.expiration_date">
+            <countdown :time="countdownTo" :interval="1000" v-if="account.latest_order.expiration_date">
               <template slot-scope="props">
                 <div class="expires">
                   <div class="expires__label">Осталось</div>
@@ -50,11 +51,15 @@
             </countdown>
             <div v-else class="expires">
               <div class="expires__label">Период</div>
-              <div class="expires__days_count">{{ order.service.periodindays }}</div>
+              <div class="expires__days_count">{{ account.latest_order.service.periodindays }}</div>
               <div class="expires__days">Дней</div>
             </div>
-          </div>
 
+            <div v-if="account.latest_order.paid_status === 'active'" class="buttons">
+              <a class="btn" href="#" @click.prevent="prolongOrder">Продлить</a>
+              <nuxt-link class="btn" :to="{ path: '/userpanel/details/edit?account=' + account.id }">Изменить</nuxt-link>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -63,6 +68,7 @@
 
 <script>
 import ClientPanelTabs from '@/components/ClientPanelTabs'
+import ActivateServiceModal from '@/components/modals/ActivateServiceModal'
 
 export default {
   name: "ClientOrderDetails",
@@ -74,32 +80,48 @@ export default {
   },
 
   async asyncData ({ params, query, error, $axios }) {
-    if(!params.order) error(404);
+    if(!params.id) error(404);
 
-    const data = await $axios.$get('/user/orders', {
+    const data = await $axios.$get('/user/accounts', {
       params: {
-        id: params.order
+        id: params.id
       }
     });
 
     return {
-      order: data
+      account: data
     };
   },
 
   computed: {
     countdownTo() {
-      let expDate = new Date(this.order.expiration_date).getTime();
+      let expDate = new Date(this.account.latest_order.expiration_date).getTime();
       let nowDate = new Date().getTime();
 
       return Math.abs(nowDate - expDate)
     }
   },
 
+  methods: {
+    prolongOrder () {
+      this.$modal.show(ActivateServiceModal, {
+        service: this.account.latest_order.service,
+        accountId: this.account.id
+      })
+    }
+  },
+
   head() {
     return {
-      title: 'Детали заказа'
+      title: 'Детали аккаунта'
     }
   }
 }
 </script>
+
+<style scoped>
+.btn {
+  min-width: 125px;
+  font-size: 16px;
+}
+</style>

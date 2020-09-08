@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Account;
 use App\Http\Controllers\Controller;
+use App\Http\Helpers;
 use App\Order;
 use App\Service;
 use App\User;
@@ -60,6 +62,12 @@ class OrdersController extends Controller
             'service_id' => 'required',
         ]);
 
+        if(!$request->filled('account_name')) {
+            $request->validate([
+                'account_id' => 'required',
+            ]);
+        }
+
         $service = Service::find($request->get('service_id'));
 
         /**
@@ -67,19 +75,16 @@ class OrdersController extends Controller
          */
         $user = $request->user();
 
-        /**
-         * @var $order Order
-         */
-        $order = Order::create([
-            'user_id' => $user->id,
-            'service_id' => $request->get('service_id'),
-            'account_id' => $user->accounts()->first()->id,
-            'paid_status' => 'pending',
-            'expiration_date' => Carbon::now()->addDays($service->periodindays)->format('Y-m-d H:i:s')
-        ]);
+        if($request->filled('account_name')) {
+            $account = Account::create([
+                'user_id' => $user->id,
+                'account_name' => $request->get('account_name')
+            ]);
+        } else {
+            $account = $user->accounts()->findOrFail($request->get('account_id'));
+        }
 
-        $payment = $order->pay();
-
-        return response()->json(['redirect_url' => $payment]);
+        return Helpers::getPaymentLink($user, $service, $account, $service->price);
     }
+
 }

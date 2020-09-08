@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/test', 'PaymentController@test');
+/*Route::get('/test', 'PaymentController@test');
 
 Route::get('/', 'HomeController@index');
 
@@ -58,7 +58,7 @@ Route::get('/buy_{idservice?}_{idmanager?}', 'HomeController@index');
 
 
 Auth::routes();
-//Route::get('/login', 'UserController@loginUser')->name('login');
+//Route::get('/login', 'UserController@loginUser')->name('login');*/
 
 Route::post('/tinkoff/callback', 'PaymentController@callback')->name('tinkoff-callback');
 Route::get('/tinkoff/{status}', 'PaymentController@paymentStatus')->name('tinkoff-status');

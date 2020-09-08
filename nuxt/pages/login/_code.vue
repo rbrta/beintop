@@ -12,6 +12,7 @@ export default {
       await $auth.loginWith('local', { data: { code: params.code } })
       redirect('/userpanel');
     } catch (err) {
+      console.error(err.response.data || err);
       error({ statusCode: err.response.status, message: err.response.statusText });
     }
 

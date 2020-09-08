@@ -1,7 +1,7 @@
 <template>
   <section id="tariffs" class="tariffcontainer">
     <div class="tariffcontainer-title">
-      Выберите Тариф
+      {{ title }}
     </div>
     <div class="tariff-category">
       <div class="tarif-category-title" >
@@ -46,7 +46,13 @@
 <script>
 export default {
   name: "TariffsList",
-  props: ['services'],
+  props: {
+    services: Object,
+    title: {
+      type: String,
+      default: 'Выберите Тариф'
+    }
+  },
 
   data() {
     return {
