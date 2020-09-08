@@ -9,19 +9,30 @@
           <caption>Клиенты</caption>
           <thead>
           <tr class="table-title">
-            <th>Имя</th>
-            <th>Email</th>
-            <th>Услуги</th>
-            <th>Дата регистрации</th>
-            <th>Actions</th>
+            <th>Аккаунт</th>
+            <th>Тариф</th>
+            <th>Дата оплаты</th>
+            <th>Дата окончания</th>
           </tr>
           </thead>
           <tbody>
           <tr v-for="(item, index) in clients" :key="index + item.name">
-            <td data-label="Имя">{{item.full_name}}</td>
-            <td data-label="Email">{{item.email}}</td>
-            <td data-label="Услуги">{{ item.orders.length }}</td>
-            <td data-label="Дата регистрации">{{ item.created_at }}</td>
+            <td data-label="Аккаунт">{{ item.account_name }}</td>
+            <td data-label="Тариф">
+              <template v-if="item.latest_order">
+                {{ item.latest_order.service.category.name }} {{ item.latest_order.service.name }}
+              </template>
+            </td>
+            <td data-label="Дата оплаты">
+              <template v-if="item.latest_order">
+                {{ item.latest_order.created_at }}
+              </template>
+            </td>
+            <td data-label="Дата окончания">
+              <template v-if="item.latest_order">
+                {{ item.latest_order.expiration_date_format }}
+              </template>
+            </td>
             <td data-label="Actions" class="table-action">
               <a class="btn" href="#" title="Копировать ссылку в буфер обмена"><i class="far fa-chart-bar"></i> Детали</a>
             </td>
@@ -44,12 +55,23 @@ export default {
 
   async asyncData({
     env,
-    $axios
+    $axios,
+    error
   }) {
-    const data = await $axios.$get('/manager/clients');
+    try {
+      const data = await $axios.$get('/manager/clients');
+      console.log(data);
+      return {
+        clients: data,
+      };
+    } catch (err) {
+      console.error(err.response.data || err);
+      error({ statusCode: err.response.status, message: err.response.statusText });
+    }
+
     return {
-      clients: data,
-    };
+      clients: [],
+    }
   },
 
 

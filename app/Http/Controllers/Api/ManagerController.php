@@ -11,18 +11,26 @@ use App\Http\Controllers\Controller;
 
 class ManagerController extends Controller
 {
-    public function clients(Request $request)
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function clients(): JsonResponse
     {
-        return User::with('orders')->get(); //temp
-        // return auth()->user()->getClients();
-    }
+        $accounts = Account::whereHas('user', function($q) {
+            $q->where('manager', auth()->user()->id);
+        })->get();
 
+        $accounts = $accounts->sortBy('latest_order.expiration_date')->values();
+
+        return response()->json($accounts);
+    }
 
     public function addClient(Request $request)
     {
         $user = User::create([
             'phone' => $request->phone,
-            'manager' => auth()->user()->id, 
+            'manager' => auth()->user()->id,
             'login_code' => User::generateLoginCode(),
             'full_name' => $request->filled('full_name') ? $request->full_name : '',
         ]);
