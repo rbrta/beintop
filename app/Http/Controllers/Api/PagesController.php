@@ -21,4 +21,14 @@ class PagesController extends Controller
 
         return response()->json($services);
     }
+
+    /**
+     * @return JsonResponse
+     */
+    public function users(): JsonResponse
+    {
+        $users = User::where('usertype', 'user')->get();
+
+        return response()->json($users);
+    }
 }

@@ -105,6 +105,14 @@ class User extends Authenticatable
         return $this->hasMany('App\Account', 'user_id', 'id');
     }
 
+    /**
+     * @return HasMany
+     */
+    public function offers(): HasMany
+    {
+        return $this->hasMany(ManagerOffer::class, 'user_id', 'id');
+    }
+
     public static function generateLoginCode()
     {
         return mb_strimwidth(mt_rand(), 0, 5) . '-' . mb_strimwidth(mt_rand(), 0, 5);

@@ -4,7 +4,7 @@
       {{ title }}
     </div>
     <div class="tariff-category">
-      <div class="tarif-category-title" >
+      <div v-if="!hideCategories" class="tarif-category-title">
         <div :class="showCategory === tariffsCategory ? 'active' : ''" @click="showCategory = tariffsCategory" v-for="(tariffs, tariffsCategory) in services">
           Тарифы {{ tariffsCategory }}
         </div>
@@ -51,6 +51,16 @@ export default {
     title: {
       type: String,
       default: 'Выберите Тариф'
+    },
+    hideCategories: {
+      type: Boolean,
+      default: false
+    }
+  },
+
+  created() {
+    if(!this.services.hasOwnProperty('maxi')) {
+      this.showCategory = Object.keys(this.services)[0];
     }
   },
 

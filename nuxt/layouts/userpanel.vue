@@ -1,13 +1,7 @@
 <template>
   <div id="page">
     <Header :menu-items="menuItems" />
-    <div class="main-block">
-      <div class="container-top">
-        <div class="wrapper-content">
-          <div class="row1"><b>Аккаунт:</b> {{ $store.state.auth.user.full_name }}
-          </div>
-        </div>
-      </div>
+    <div class="main-block" style="margin-top: 40px">
       <Nuxt />
     </div>
   </div>

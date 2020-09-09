@@ -101,12 +101,7 @@ export default {
         // autoFetchUser: true
       }
     },
-    redirect: {
-      login: '/login',
-      logout: '/',
-      callback: '/login',
-      home: '/'
-    }
+    redirect: false
   },
 
   router: {
@@ -126,7 +121,8 @@ export default {
         'faEye',
         'faHome',
         'faList',
-        'faSignOutAlt'
+        'faSignOutAlt',
+        'faLink'
       ],
     }
   }

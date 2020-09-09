@@ -2,22 +2,26 @@
   <div class="popup">
     <div class="popup__content">
       <div class="row1">
-        {{ accountId && !isFirstOrder ? 'Продление' : 'Активация' }} тарифа
+        Активация тарифа
       </div>
       <div class="row2">
         {{ description }}
       </div>
-      <div class="row3" v-if="!accountId">
-        <div class="intput-wrapper"><input v-model="account_name" placeholder="Имя профиля или ссылка" type="text"></div>
-      </div>
       <div class="row4">
         К оплате: {{ service.price_formatted }} руб.
       </div>
-      <div v-if="accountId && !isFirstOrder" class="row5">
-        Заказ будет продлен сразу после оплаты
+      <div class="row" style="width: 100%">
+        <div class="input-wrapper">
+          <label for="account">Выберите аккаунт</label>
+          <div class="select-wrap">
+            <select id="account" v-model="account_id">
+              <option v-for="account in accounts" :value="account.id">{{ account.account_name }}</option>
+            </select>
+          </div>
+        </div>
       </div>
-      <div v-else class="row5">
-        Мы начнём выполнение заказа сразу после оплаты
+      <div class="row5">
+        Тариф будет активирован сразу после оплаты
       </div>
       <div class="row6">
         <a href="#" @click.prevent="pay">
@@ -30,25 +34,25 @@
 
 <script>
 export default {
-  name: 'ActivateServiceModal',
+  name: 'AcceptManagerOfferModal',
   props: {
     service: {
       type: Object,
       default: null
     },
-    accountId: {
-      type: String,
-      default: null
+    offer: {
+      type: Object
     },
-    isFirstOrder: {
-      type: Boolean,
-      default: false
-    }
+  },
+
+  created () {
+    this.getAccounts();
   },
 
   data() {
     return {
-      account_name: ''
+      accounts: [],
+      account_id: null
     }
   },
 
@@ -59,12 +63,17 @@ export default {
   },
 
   methods: {
+    async getAccounts() {
+      this.accounts = await this.$axios.$get('/user/accounts');
+      this.account_id = this.accounts[0].id;
+    },
+
     async pay() {
       try {
-        const date = await this.$axios.$post('/user/orders', {
+        const date = await this.$axios.$post('/user/accept-offer', {
           service_id: this.service.id,
-          account_id: this.accountId,
-          account_name: this.account_name
+          offer_id: this.offer.id,
+          account_id: this.account_id
         })
 
         this.$emit('close');
@@ -131,7 +140,7 @@ export default {
   }
 
   .row4 {
-    margin-top: 1rem;
+    margin-top: 2rem;
     font-style: normal;
     font-weight: bold;
     font-size: 36px;
@@ -153,7 +162,7 @@ export default {
   }
 
   .row6 {
-    margin-top: 1rem;
+    margin-top: 2rem;
     margin-bottom: 2rem;
 
     a {
@@ -218,5 +227,35 @@ export default {
     }
 
   }
+}
+
+.price {
+  position: relative;
+
+  span {
+    position: absolute;
+    left: 0;
+    top: -25px;
+    text-decoration: line-through;
+    font-size: 17px;
+    font-weight: 600;
+  }
+}
+.select-wrap {
+  border: solid 1px #EB5B9C;
+  border-radius: 35px;
+  width: 100%;
+  display: block;
+  padding: 0 1rem;
+  font-size: 1.2rem;
+  outline: none;
+  overflow: hidden;
+}
+
+.select-wrap select {
+  border: 0;
+  width: 100%;
+  padding: 1rem 0;
+  outline: 0;
 }
 </style>

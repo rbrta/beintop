@@ -60,7 +60,6 @@ export default {
   }) {
     try {
       const data = await $axios.$get('/manager/clients');
-      console.log(data);
       return {
         clients: data,
       };

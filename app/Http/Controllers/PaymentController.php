@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\ManagerOffer;
 use App\Order;
 use App\Payment\Tinkoff;
 use App\Service;
@@ -86,6 +87,8 @@ class PaymentController extends Controller
 
         $order->paid_status = Order::STATUS_ACTIVE;
         $order->save();
+
+        ManagerOffer::where(['user_id' => $order->user_id, 'service_id' => $order->service_id, 'price' => $order->total])->delete();
 
         return response('OK', 200);
     }

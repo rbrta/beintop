@@ -26,18 +26,22 @@ export default {
 
   methods: {
     async changeTariff (service) {
-      const data = await this.$axios.$get('/user/accounts/change-tariff', {
-        params: {
-          account_id: this.$route.query.account,
-          service_id: service.id
-        }
-      });
+      try {
+        const data = await this.$axios.$get('/user/accounts/change-tariff', {
+          params: {
+            account_id: this.$route.query.account,
+            service_id: service.id
+          }
+        });
 
-      this.$modal.show(ChangeAccountTariffModal, {
-        service: service,
-        accountId: this.$route.query.account,
-        price: data.price
-      })
+        this.$modal.show(ChangeAccountTariffModal, {
+          service: service,
+          accountId: this.$route.query.account,
+          price: data.price
+        })
+      } catch (e) {
+        console.error(e);
+      }
     }
   },
 

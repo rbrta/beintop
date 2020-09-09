@@ -1,7 +1,5 @@
 <template>
-  <div>
-    <TariffsList :services="services" @buy="buyTariff"></TariffsList>
-  </div>
+  <TariffsList :services="services" @buy="buyTariff"></TariffsList>
 </template>
 
 <script>
@@ -25,9 +23,23 @@ export default {
   },
 
   methods: {
-    buyTariff (service) {
+    async buyTariff (service) {
+      let isFirstOrder = false;
+
+      if(this.$route.query.account) {
+        const data = await this.$axios.$get('/user/accounts', {
+          params: {
+            id: this.$route.query.account
+          }
+        });
+
+        isFirstOrder = data.latest_order === null;
+      }
+
       this.$modal.show(ActivateServiceModal, {
-        service
+        service: service,
+        accountId: this.$route.query.account || null,
+        isFirstOrder
       })
     },
   },

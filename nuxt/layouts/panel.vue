@@ -30,7 +30,7 @@ export default {
         },
         {
           title: 'Услуги',
-          link: '/userpanel',
+          link: '/manager/tariffs',
           icon: 'list'
         },
       ]

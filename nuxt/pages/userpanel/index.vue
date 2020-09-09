@@ -33,7 +33,8 @@
               </template>
             </td>
             <td data-label="Действия">
-              <nuxt-link class="btn" v-if="account.latest_order" :to="`/userpanel/details/${account.id}`">Детали</nuxt-link>
+              <nuxt-link v-if="account.latest_order" class="btn" :to="`/userpanel/details/${account.id}`">Детали</nuxt-link>
+              <nuxt-link v-else class="btn" :to="{ path: '/userpanel/new?account=' + account.id }">Выбрать тариф</nuxt-link>
             </td>
           </tr>
           </tbody>
