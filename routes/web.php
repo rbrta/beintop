@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-Route::get('/testweb', function(){
+Route::get('backend/testweb', function(){
     return ['hello, web'];
 });
 
