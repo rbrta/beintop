@@ -43,7 +43,7 @@ export default {
             icon: 'star'
           },
           {
-            title: 'Выбрать тариф',
+            title: 'Выбрать тарифы',
             link: '#tariffs',
             icon: 'th'
           }
