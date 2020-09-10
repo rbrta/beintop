@@ -10,6 +10,7 @@ use App\Service;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Controller;
+use Illuminate\Validation\ValidationException;
 
 class ManagerController extends Controller
 {
@@ -28,6 +29,10 @@ class ManagerController extends Controller
         return response()->json($accounts);
     }
 
+    /**
+     * @param Request $request
+     * @return mixed
+     */
     public function addClient(Request $request)
     {
         $user = User::create([
@@ -43,10 +48,13 @@ class ManagerController extends Controller
         ]);
 
         return $user;
-
     }
 
-    public function addOffer(Request $request)
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function addOffer(Request $request): JsonResponse
     {
         $request->validate([
             'tariff_id' => 'required',
@@ -55,6 +63,7 @@ class ManagerController extends Controller
         ]);
 
         $offer = ManagerOffer::create([
+            'manager_id' => $request->user()->id,
             'service_id' => $request->get('tariff_id'),
             'user_id' => $request->get('user_id'),
             'price' => $request->get('price'),
@@ -69,6 +78,7 @@ class ManagerController extends Controller
     /**
      * @param Request $request
      * @return JsonResponse
+     * @throws ValidationException
      */
     public function acceptOffer(Request $request): JsonResponse
     {

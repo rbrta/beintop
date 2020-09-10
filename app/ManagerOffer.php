@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class ManagerOffer extends Model
 {
     protected $fillable = [
+        'manager_id',
         'service_id',
         'user_id',
         'price'
