@@ -85,8 +85,8 @@ class Order extends Model
             'Phone' => $this->user->phone,
             'Name' => $this->user->full_name,
             'Taxation' => 'usn_income',
-            'SuccessURL' => route('tinkoff-status', ['status' => 'success']),
-            'FailURL' => route('tinkoff-status', ['status' => 'fail']),
+            'SuccessURL' => url('/tinkoff/success'),
+            'FailURL' => url('/tinkoff/fail'),
         ];
 
         $items[] = [
