@@ -25,7 +25,7 @@
     </div>
     <div v-else class="popup__content">
       <div class="row">
-        <div class="input-wrapper">
+        <div class="input-wrapper offer-link">
           <label for="offer">Уникальная ссылка на предложение</label>
           <input :value="offerUrl" id="offer" readonly type="text">
         </div>
@@ -35,6 +35,8 @@
 </template>
 
 <script>
+import copy from 'copy-to-clipboard';
+
 export default {
   name: "CreateOfferModal",
   props: {
@@ -72,6 +74,9 @@ export default {
         })
 
         this.offerUrl = `${process.env.baseUrl}/login/${data.login_code}/${data.offer_id}`;
+        if(copy(this.offerUrl)) {
+          this.$toast.success('Ссылка скопирована в буфер обмена');
+        }
       } catch (e) {
         console.error(e);
       }
@@ -97,5 +102,16 @@ export default {
   width: 100%;
   padding: 1rem 0;
   outline: 0;
+  background: transparent;
+}
+
+.offer-link label {
+  margin-left: -30px!important;
+}
+
+.offer-link input {
+  width: calc(100% + 60px)!important;
+  margin: 0 -30px;
+  font-size: 1rem!important;
 }
 </style>

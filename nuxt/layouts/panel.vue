@@ -24,12 +24,12 @@ export default {
     return {
       menuItems: [
         {
-          title: 'На главную',
-          link: '/',
-          icon: 'home'
+          title: 'Клиенты',
+          link: '/manager',
+          icon: 'user'
         },
         {
-          title: 'Услуги',
+          title: 'Тарифы',
           link: '/manager/tariffs',
           icon: 'list'
         },

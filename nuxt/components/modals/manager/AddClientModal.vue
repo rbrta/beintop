@@ -40,6 +40,7 @@
 <script>
 export default {
   name: 'AddClientModal',
+  props: ['created'],
 
   data() {
     return {
@@ -66,6 +67,7 @@ export default {
     resetError() {
       this.errorMessage = '';
     },
+
     save() {
       this.resetError();
 
@@ -79,8 +81,9 @@ export default {
         return;
       }
 
-      this.$axios.post('manager/addclient', this.form).then(response => {
-        this.userCode = response.data.login_code;
+      this.$axios.post('manager/clients', this.form).then(response => {
+        this.userCode = response.data.user.login_code;
+        this.created(response.data);
       })
     }
   }

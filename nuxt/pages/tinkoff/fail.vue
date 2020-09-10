@@ -54,7 +54,7 @@ export default {
   margin-top: 50px;
   color: white;
   text-decoration: none;
-  line-height: 2.2;
-  padding: 5px 30px;
+  line-height: 1.3;
+  padding: 10px 30px;
 }
 </style>

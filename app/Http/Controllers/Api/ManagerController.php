@@ -18,36 +18,31 @@ class ManagerController extends Controller
      * @param Request $request
      * @return JsonResponse
      */
-    public function clients(): JsonResponse
+    public function clients(Request $request): JsonResponse
     {
-        $accounts = Account::whereHas('user', function($q) {
+        if($request->isMethod('post')) {
+            $user = User::create([
+                'phone' => $request->get('phone'),
+                'manager' => auth()->user()->id,
+                'login_code' => User::generateLoginCode(),
+                'full_name' => $request->filled('full_name') ? $request->get('full_name') : '',
+            ]);
+
+            $account = Account::create([
+                'account_name' => $request->get('account'),
+                'user_id' => $user->id
+            ]);
+
+            return response()->json($account->fresh('user'));
+        }
+
+        $accounts = Account::whereHas('user', static function($q) {
             $q->where('manager', auth()->user()->id);
-        })->get();
+        })->with('user')->get();
 
         $accounts = $accounts->sortBy('latest_order.expiration_date')->values();
 
         return response()->json($accounts);
-    }
-
-    /**
-     * @param Request $request
-     * @return mixed
-     */
-    public function addClient(Request $request)
-    {
-        $user = User::create([
-            'phone' => $request->phone,
-            'manager' => auth()->user()->id,
-            'login_code' => User::generateLoginCode(),
-            'full_name' => $request->filled('full_name') ? $request->full_name : '',
-        ]);
-
-        Account::create([
-            'account_name' => $request->account,
-            'user_id' => $user->id
-        ]);
-
-        return $user;
     }
 
     /**

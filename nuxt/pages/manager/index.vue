@@ -1,7 +1,7 @@
 <template>
   <div class="wrapper-content admin">
     <div class="content-table">
-      <div class="table-wrapper">
+      <div class="table-wrapper" v-if="clients.length">
         <div class="flex j-end">
           <div @click="addClient" class="btn">Добавить клиента</div>
         </div>
@@ -16,7 +16,7 @@
           </tr>
           </thead>
           <tbody>
-          <tr v-for="(item, index) in clients" :key="index + item.name">
+          <tr v-for="(item, index) in clients" :key="item.id">
             <td data-label="Аккаунт">{{ item.account_name }}</td>
             <td data-label="Тариф">
               <template v-if="item.latest_order">
@@ -34,19 +34,25 @@
               </template>
             </td>
             <td data-label="Actions" class="table-action">
-              <a class="btn" href="#" title="Копировать ссылку в буфер обмена"><i class="far fa-chart-bar"></i> Детали</a>
+              <a class="btn" @click.prevent="copyLink(item)" href="#" title="Скопировать ссылку для входа пользователя">
+                <font-awesome-icon icon="link"/> Скопировать ссылку
+              </a>
             </td>
           </tr>
           </tbody>
         </table>
+      </div>
+      <div v-else class="table-wrapper" style="text-align: center; padding: 30px 0">
+        <div>У вас пока нет клиентов</div>
+        <div @click="addClient" class="btn">Добавить</div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-
 import AddClientModal from '~/components/modals/manager/AddClientModal'
+import copy from 'copy-to-clipboard';
 
 export default {
   layout: 'panel',
@@ -73,10 +79,25 @@ export default {
     }
   },
 
+  data() {
+    return {
+      clients: []
+    }
+  },
 
   methods: {
-    addClient(service) {
-      this.$modal.show(AddClientModal)
+    addClient() {
+      this.$modal.show(AddClientModal, {
+        created: (item) => {
+          this.clients.push(item);
+        }
+      })
+    },
+
+    copyLink(account) {
+      if(copy(process.env.baseUrl + '/login/' + account.user.login_code)) {
+        this.$toast.success('Ссылка скопирована в буфер обмена');
+      }
     }
   },
 

@@ -47,6 +47,7 @@ export default {
     '~plugins/vue-js-modal.js',
     '~plugins/axios',
     { src: '~plugins/vue-countdown', mode: 'client' },
+    { src: '~plugins/vue-toast-notification', mode: 'client' },
     '~plugins/plur-strings'
   ],
   /*
