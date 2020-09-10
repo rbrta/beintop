@@ -13,6 +13,11 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware grкoup. Enjoy building your API!
 |
 */
+
+Route::get('/testapi', function(){
+    return ['hello, api'];
+});
+
 Route::get('services', 'Api\PagesController@services');
 
 Route::prefix('auth')->group(static function() {
