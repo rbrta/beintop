@@ -14,10 +14,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/testapi', function(){
-    return ['hello, api'];
-});
-
 Route::get('services', 'Api\PagesController@services');
 
 Route::prefix('auth')->group(static function() {
