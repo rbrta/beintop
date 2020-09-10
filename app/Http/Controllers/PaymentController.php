@@ -70,6 +70,11 @@ class PaymentController extends Controller
         Log::channel('payments')->info(' ######## PAYMENT SUCESSFULLY VERIFIED ##########');
 
         $order = Order::where('payment_id', $request->get('PaymentId'))->first();
+
+        if($order->status === Order::STATUS_ACTIVE) {
+            return response('OK', 200);
+        }
+
         $prevOrder = $order->account->latest_order;
 
         // Account has previous active order
