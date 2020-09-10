@@ -71,7 +71,7 @@ class PaymentController extends Controller
 
         $order = Order::where('payment_id', $request->get('PaymentId'))->first();
 
-        if($order->status === Order::STATUS_ACTIVE) {
+        if($order->paid_status === Order::STATUS_ACTIVE) {
             return response('OK', 200);
         }
 
