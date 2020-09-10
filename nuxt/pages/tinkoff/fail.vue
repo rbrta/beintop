@@ -15,6 +15,7 @@
 <script>
 export default {
   name: "TinkoffFailedPayment",
+  middleware: 'authorized',
 
   head() {
     return {

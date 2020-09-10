@@ -14,7 +14,7 @@
 <script>
 export default {
   name: "TinkoffSuccessPayment",
-  middleware: 'auth',
+  middleware: 'authorized',
 
   head() {
     return {

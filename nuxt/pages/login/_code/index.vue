@@ -1,5 +1,5 @@
 <template>
-  <div>32</div>
+  <div></div>
 </template>
 
 <script>

@@ -17,7 +17,7 @@ Route::get('services', 'Api\PagesController@services');
 
 Route::prefix('auth')->group(static function() {
     Route::post('login', 'Api\AuthController@login');
-    Route::post('logout', 'Api\AuthController@logout');
+    Route::post('logout', 'Api\AuthController@logout')->middleware('auth:api');
     Route::get('user', 'Api\AuthController@user')->middleware('auth:api');
 });
 

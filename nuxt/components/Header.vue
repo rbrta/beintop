@@ -8,7 +8,7 @@
 
       <ul class="menu">
         <li v-for="item in menuItems"><font-awesome-icon v-if="item.icon" :icon="item.icon"/> <a :href="item.link">{{ item.title }}</a></li>
-        <li v-if="$auth.loggedIn"><font-awesome-icon icon="sign-out-alt"/> <a href="#" @click.prevent="$auth.logout()">Выход</a></li>
+        <li v-if="$auth.loggedIn"><font-awesome-icon icon="sign-out-alt"/> <a href="#" @click.prevent="logout">Выход</a></li>
       </ul>
 
       <div @click="showMobileMenu = !showMobileMenu" class="mobile-menu-btn" id="menuBtn">
@@ -22,7 +22,7 @@
     <div v-if="showMobileMenu" class="wrapper-mobile" id="menuMob">
       <div class="mobile-menu">
         <div v-for="item in menuItems"><a @click="showMobileMenu=false" :href="item.link">{{ item.title }}</a></div>
-        <div><a href="#" @click.prevent="showMobileMenu=false; $auth.logout()">Выход</a></div>
+        <div><a href="#" @click.prevent="logout">Выход</a></div>
       </div>
     </div>
 
@@ -55,6 +55,14 @@ export default {
   data() {
     return {
       showMobileMenu: false,
+    }
+  },
+
+  methods: {
+    async logout() {
+      this.showMobileMenu = false;
+      await this.$auth.logout();
+      await this.$router.push('/');
     }
   }
 }

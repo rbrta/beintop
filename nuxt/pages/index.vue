@@ -105,19 +105,24 @@ import TariffsList from '@/components/TariffsList'
 export default {
   layout: 'homepage',
   name: 'HomePage',
-  auth: false,
 
   components: {
     TariffsList
   },
 
-  async asyncData({
-    env,
-    $axios
-  }) {
-    const data = await $axios.$get('/services');
+  async asyncData({ $axios, error }) {
+    try {
+      const data = await $axios.$get('/services');
+      return {
+        services: data,
+      };
+    } catch (err) {
+      console.error(err.response.data || err);
+      error({ statusCode: err.response.status, message: err.response.statusText });
+    }
+
     return {
-      services: data,
+      services: [],
     };
   },
 

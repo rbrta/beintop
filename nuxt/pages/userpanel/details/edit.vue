@@ -9,7 +9,7 @@ import ChangeAccountTariffModal from '@/components/modals/ChangeAccountTariffMod
 export default {
   name: "EditUserTariff",
   layout: 'userpanel',
-  middleware: 'auth',
+  middleware: 'authorized',
 
   components: {
     TariffsList

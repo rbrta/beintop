@@ -73,7 +73,7 @@ import ActivateServiceModal from '@/components/modals/ActivateServiceModal'
 export default {
   name: "ClientOrderDetails",
   layout: 'userpanel',
-  middleware: 'auth',
+  middleware: 'authorized',
 
   components: {
     ClientPanelTabs

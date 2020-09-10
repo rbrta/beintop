@@ -23,7 +23,7 @@
         </template>
 
         <div class="lost-password">
-          <a href="/password/reset">Забыли пароль?</a>
+          <!--<a href="/password/reset">Забыли пароль?</a>-->
         </div>
       </div>
     </div>
@@ -33,7 +33,7 @@
 <script>
 export default {
   name: 'admin',
-  auth: 'guest',
+  middleware: 'guest',
 
   data() {
     return {
@@ -50,6 +50,7 @@ export default {
       try {
         this.cleanErrors();
         await this.$auth.loginWith('local', { data: this.form })
+        window.location.href = '/manager';
       } catch (err) {
         this.errors = err.response.data.errors || {};
       }

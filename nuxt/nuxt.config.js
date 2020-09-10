@@ -104,10 +104,6 @@ export default {
     redirect: false
   },
 
-  router: {
-    middleware: ['auth']
-  },
-
   fontawesome: {
     icons: {
       solid: [

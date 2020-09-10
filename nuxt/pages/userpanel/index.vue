@@ -54,7 +54,7 @@ import ClientPanelTabs from '@/components/ClientPanelTabs'
 export default {
   name: 'UserPanel',
   layout: 'userpanel',
-  middleware: 'auth',
+  middleware: ['authorized', 'user'],
 
   components: {
     ClientPanelTabs
@@ -74,6 +74,12 @@ export default {
 
     return false;
   },
+
+  head() {
+    return {
+      title: 'Личный кабинет'
+    }
+  }
 }
 </script>
 

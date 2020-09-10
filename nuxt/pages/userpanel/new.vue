@@ -9,16 +9,25 @@ import ActivateServiceModal from '@/components/modals/ActivateServiceModal'
 export default {
   name: "ClientNewOrder",
   layout: 'userpanel',
-  middleware: 'auth',
+  middleware: 'authorized',
 
   components: {
     TariffsList
   },
 
-  async asyncData({ $axios }) {
-    const data = await $axios.$get('/services');
+  async asyncData({ $axios, error }) {
+    try {
+      const data = await $axios.$get('/services');
+      return {
+        services: data,
+      };
+    } catch (err) {
+      console.error(err.response.data || err);
+      error({ statusCode: err.response.status, message: err.response.statusText });
+    }
+
     return {
-      services: data,
+      services: [],
     };
   },
 
