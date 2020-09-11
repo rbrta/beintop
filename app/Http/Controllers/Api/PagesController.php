@@ -5,11 +5,14 @@ namespace App\Http\Controllers\Api;
 use App\Account;
 use App\Category;
 use App\Http\Controllers\Controller;
+use App\Mail\InviteManager;
 use App\Service;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
 class PagesController extends Controller
 {
@@ -87,8 +90,35 @@ class PagesController extends Controller
         return response()->json($categories);
     }
 
-    public function managers(Request $request)
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function managers(Request $request): JsonResponse
     {
+        /**
+         * Invite manager
+         */
+        if($request->isMethod('post')) {
+            $request->validate([
+                'email' => 'required|email'
+            ]);
+
+            $user = User::create([
+                'email' => $request->get('email'),
+                'full_name' => 'Invited Manager',
+                'password' => Hash::make('some string'),
+                'usertype' => User::USERTYPE_MANAGER,
+            ]);
+
+            Mail::to($user->email)->send(new InviteManager($user->id, $user->email));
+
+            return response()->json($user);
+        }
+
+        /**
+         * Delete manager
+         */
         if($request->isMethod('delete')) {
             $request->validate([
                 'id' => 'required',

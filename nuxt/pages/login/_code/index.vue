@@ -5,7 +5,7 @@
 <script>
 export default {
   name: "LoginCode",
-  auth: 'guest',
+  middleware: 'guest',
 
   async asyncData({ params, $auth, error, redirect }) {
     try {

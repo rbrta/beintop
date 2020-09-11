@@ -27,7 +27,7 @@ class InviteManager extends Mailable
 
     private function getUrl()
     {
-        return route('manager_confirmation', ['userid' => $this->userid, 'token' => $this->token]);
+        return url("/manager/confirm/?user={$this->userid}&token={$this->token}");
     }
 
     /**

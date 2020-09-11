@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('services', 'Api\PagesController@services');
 Route::get('services/categories', 'Api\PagesController@categories');
+Route::match(['get', 'post'], 'manager/confirm', 'Api\ManagerController@confirmation');
 
 Route::prefix('auth')->group(static function() {
     Route::post('login', 'Api\AuthController@login');
@@ -40,6 +41,5 @@ Route::prefix('admin')->middleware('auth:api')->group(static function() {
     Route::match(['post', 'delete'], 'services', 'Api\PagesController@services');
     Route::match(['get', 'post', 'delete'], 'managers', 'Api\PagesController@managers');
 });
-
 Route::get('users', 'Api\PagesController@users')->middleware('auth:api');
 Route::post('tinkoff/callback', 'PaymentController@callback')->name('tinkoff-callback');

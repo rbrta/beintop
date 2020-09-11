@@ -10,6 +10,7 @@ use App\Service;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 
 class ManagerController extends Controller
@@ -106,5 +107,42 @@ class ManagerController extends Controller
             'services' => $services->groupBy('category.name'),
             'offer' => $offer
         ]);
+    }
+
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function confirmation(Request $request): JsonResponse
+    {
+        $request->validate([
+            'user' => 'required',
+            'token' => 'required'
+        ]);
+
+        $user = User::where('id', $request->get('user'))->firstOrFail();
+        $token = substr(md5($user->email), 0, 8);
+
+        if($request->get('token') !== $token) {
+            return response()->json(['message' => 'Неверный токен'], 403);
+        }
+
+        if($request->isMethod('post')) {
+            $request->validate([
+                'email' => 'required',
+                'full_name' => 'required|min:3',
+                'password' => 'required|confirmed|min:6',
+            ]);
+
+            $user = User::where('email', $request->get('email'))->firstOrFail();
+            $user->full_name = $request->get('full_name');
+            $user->email_verified_at = now();
+            $user->password = bcrypt($request->get('password'));
+            $user->save();
+
+            return response()->json();
+        }
+
+        return response()->json(['email' => $user->email]);
     }
 }

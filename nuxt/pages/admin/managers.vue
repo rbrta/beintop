@@ -14,10 +14,10 @@
       <tr v-for="(item, index) in managers" :key="item.id">
         <td data-label="Имя">{{ item.full_name }}</td>
         <td data-label="Клиенты">{{ item.clients_count }}</td>
-        <td data-label="Статус">{{ item.full_name === 'Invited Manager' ? 'ожидает подтверждения' : 'активный' }} </td>
+        <td data-label="Статус">{{ item.status && item.status === 'invited' || item.full_name === 'Invited Manager' ? 'ожидает подтверждения' : 'активный' }}</td>
         <td data-label="Actions" class="table-action">
-          <a @click.prevent="showClients(item.id)" class="btn" href="#"><font-awesome-icon icon="users" /></a>
-          <a @click.prevent="deleteItem(item.id, index)" class="btn" href="#"><font-awesome-icon icon="trash-alt" /></a>
+          <a v-if="item.id" @click.prevent="showClients(item.id)" class="btn" href="#"><font-awesome-icon icon="users" /></a>
+          <a v-if="item.id" @click.prevent="deleteItem(item.id, index)" class="btn" href="#"><font-awesome-icon icon="trash-alt" /></a>
         </td>
       </tr>
       </tbody>
@@ -28,7 +28,7 @@
       </tbody>
     </table>
     <div class="add-btn">
-      <!--<a @click.prevent="inviteManagerModal" class="btn btn-small" href="#">Добавить</a>-->
+      <a @click.prevent="inviteManagerModal" class="btn" href="#">Добавить</a>
     </div>
   </div>
 </template>
@@ -36,6 +36,7 @@
 <script>
 import ManagerClientsModal from '@/components/modals/admin/ManagerClientsModal'
 import DeleteManagerModal from '@/components/modals/admin/DeleteManagerModal'
+import InviteManagerModal from '@/components/modals/admin/InviteManagerModal'
 
 export default {
   name: "AdminManagersPage",
@@ -82,6 +83,14 @@ export default {
         managers: this.managers,
         deleted: () => this.getManagers()
       })
+    },
+
+    inviteManagerModal() {
+      this.$modal.show(InviteManagerModal, {
+        created: (email) => {
+          this.managers.push({ full_name: email, clients_count: 0, status: 'invited' });
+        },
+      });
     }
   }
 }
