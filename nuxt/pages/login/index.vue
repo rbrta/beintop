@@ -50,7 +50,11 @@ export default {
       try {
         this.cleanErrors();
         await this.$auth.loginWith('local', { data: this.form })
-        window.location.href = '/manager';
+        if(this.$store.state.auth.user.usertype === 'admin') {
+          window.location.href = '/admin';
+        } else {
+          window.location.href = '/manager';
+        }
       } catch (err) {
         this.errors = err.response.data.errors || {};
       }

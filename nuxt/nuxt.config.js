@@ -112,6 +112,7 @@ export default {
         'faStar',
         'faTh',
         'faUser',
+        'faUsers',
         'faLongArrowAltLeft',
         'faLongArrowAltRight',
         'faHeart',
@@ -119,7 +120,8 @@ export default {
         'faHome',
         'faList',
         'faSignOutAlt',
-        'faLink'
+        'faLink',
+        'faTrashAlt',
       ],
     }
   }

@@ -411,7 +411,7 @@
 
 
 .popup {
-    padding: 3rem 4rem;
+    padding: 2rem;
 
     .popup-title {
         font-size: 2rem;
@@ -439,7 +439,7 @@
                 outline: none;
             }
 
-            label {
+            > label {
                 padding: 0 1rem;
                 margin: 0 0 5px;
                 display: block;
