@@ -16,7 +16,7 @@
         <tr v-for="(item, index) in items" :key="index">
           <td data-label="Аккаунт">{{ item.account_name }}</td>
           <td data-label="Тариф">
-            <template v-if="item.latest_order">
+            <template v-if="item.latest_order && item.latest_order.service">
               {{ item.latest_order.service.category.name }} {{ item.latest_order.service.name }}
             </template>
           </td>
