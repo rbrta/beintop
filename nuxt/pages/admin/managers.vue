@@ -60,9 +60,9 @@ export default {
 
   methods: {
     async showClients(manager_id) {
-      const clients = await this.$axios.$get('/admin/managers', {
+      const clients = await this.$axios.$get('/admin/manager/clients', {
         params: {
-          id: manager_id
+          manager_id
         }
       });
 

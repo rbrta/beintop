@@ -37,6 +37,33 @@ class ManagerController extends Controller
             return response()->json($account->fresh('user'));
         }
 
+        if($request->isMethod('delete')) {
+            $request->validate([
+                'id' => 'required'
+            ]);
+
+            $account = Account::find($request->get('id'));
+            $account->orders()->delete();
+            $account->delete();
+
+            return response()->json();
+        }
+
+        if($request->exists('manager_id')) {
+            $manager = User::where([
+                'id' => $request->get('manager_id'),
+                'usertype' => User::USERTYPE_MANAGER
+            ])->firstOrFail();
+
+            $accounts = Account::whereHas('user', static function($q) use ($manager) {
+                $q->where('manager', $manager->id);
+            })->with('user')->get();
+
+            $accounts = $accounts->sortBy('latest_order.expiration_date')->values();
+
+            return response()->json($accounts);
+        }
+
         $accounts = Account::whereHas('user', static function($q) {
             $q->where('manager', auth()->user()->id);
         })->with('user')->get();

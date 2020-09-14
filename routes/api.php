@@ -32,14 +32,16 @@ Route::prefix('user')->middleware('auth:api')->group(static function() {
     Route::match(['get', 'post'], 'accept-offer', 'Api\ManagerController@acceptOffer');
 });
 
-Route::prefix('manager')->middleware('auth:api')->group(static function() {
+Route::prefix('manager')->middleware(['auth:api', 'manager'])->group(static function() {
     Route::match(['get', 'post'], 'clients', 'Api\ManagerController@clients');
     Route::post('add-offer', 'Api\ManagerController@addOffer');
 });
 
-Route::prefix('admin')->middleware('auth:api')->group(static function() {
+Route::prefix('admin')->middleware(['auth:api', 'admin'])->group(static function() {
     Route::match(['post', 'delete'], 'services', 'Api\PagesController@services');
     Route::match(['get', 'post', 'delete'], 'managers', 'Api\PagesController@managers');
+    Route::match(['get', 'delete'], 'manager/clients', 'Api\ManagerController@clients');
 });
+
 Route::get('users', 'Api\PagesController@users')->middleware('auth:api');
 Route::post('tinkoff/callback', 'PaymentController@callback')->name('tinkoff-callback');

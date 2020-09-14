@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 
-class CheckAdminRole
+class CheckManager
 {
     /**
      * Handle an incoming request.
@@ -15,7 +15,7 @@ class CheckAdminRole
      */
     public function handle($request, Closure $next)
     {
-        if($request->user()->usertype !== 'admin'){
+        if($request->user()->usertype !== 'manager'){
             if($request->wantsJson()) {
                 return response()->json([], 403);
             }
