@@ -60,12 +60,13 @@ class PagesController extends Controller
                 'views' => $request->get('views'),
                 'igtv_unlim' => $request->get('igtv_unlim'),
                 'category_id' => $request->get('category_id'),
+                'bonus' => $request->filled('bonus') ? $request->get('bonus') : null,
             ]);
 
             return response()->json($tariff->fresh('category'));
         }
 
-        $services = Service::with("category")->get()->groupBy('category.name');
+        $services = Service::with("category")->orderBy('price')->get()->groupBy('category.name');
 
         return response()->json($services);
     }
