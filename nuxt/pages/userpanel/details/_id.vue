@@ -32,23 +32,26 @@
           </div>
 
           <div class="right">
-            <countdown :time="countdownTo" :interval="1000" v-if="account.latest_order.expiration_date">
-              <template slot-scope="props">
-                <div class="expires">
-                  <div class="expires__label">Осталось</div>
-                  <div class="expires__days_count">{{ props.days }}</div>
-                  <div class="expires__days">{{ $plur(props.days, $plurString.days)}}</div>
+            <client-only v-if="account.latest_order.expiration_date">
+              <countdown :time="countdownTo" :interval="1000">
+                <template slot-scope="props">
+                  <div class="expires">
+                    <div class="expires__label">Осталось</div>
+                    <div class="expires__days_count">{{ props.days }}</div>
+                    <div class="expires__days">{{ $plur(props.days, $plurString.days)}}</div>
 
-                  <div class="expires__timer">
-                    <div class="value">{{ props.hours }} <span>{{ $plur(props.hours, $plurString.hours) }} </span></div>
-                    <div class="delimeter">:</div>
-                    <div class="value">{{ props.minutes }} <span>{{ $plur(props.minutes, $plurString.minutes) }}</span></div>
-                    <div class="delimeter">:</div>
-                    <div class="value">{{ props.seconds }} <span>{{ $plur(props.seconds, $plurString.seconds) }}</span></div>
+                    <div class="expires__timer">
+                      <div class="value">{{ props.hours }} <span>{{ $plur(props.hours, $plurString.hours) }} </span></div>
+                      <div class="delimeter">:</div>
+                      <div class="value">{{ props.minutes }} <span>{{ $plur(props.minutes, $plurString.minutes) }}</span></div>
+                      <div class="delimeter">:</div>
+                      <div class="value">{{ props.seconds }} <span>{{ $plur(props.seconds, $plurString.seconds) }}</span></div>
+                    </div>
                   </div>
-                </div>
-              </template>
-            </countdown>
+                </template>
+              </countdown>
+            </client-only>
+
             <div v-else class="expires">
               <div class="expires__label">Период</div>
               <div class="expires__days_count">{{ account.latest_order.service.periodindays }}</div>
