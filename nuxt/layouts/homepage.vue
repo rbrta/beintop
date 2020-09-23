@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Header />
+    <Header :menu-items="menuItems" />
     <Nuxt />
     <Footer />
   </div>
@@ -19,5 +19,34 @@ export default {
     Header,
     Footer,
   },
+
+  computed: {
+    menuItems() {
+      const items = [
+        {
+          title: 'Наши преимущества',
+          link: '#advantage',
+          icon: 'star'
+        },
+        {
+          title: 'Выбрать тарифы',
+          link: '#tariffs',
+          icon: 'th'
+        }
+      ];
+
+      if(this.$auth.loggedIn) {
+        items.push({
+          title: 'Кабинет',
+          link: this.$auth.user.usertype === 'user'
+                ? '/userpanel'
+                : (this.$auth.user.usertype === 'manager' ? '/manager' : '/admin'),
+          icon: 'user'
+        })
+      }
+
+      return items;
+    }
+  }
 }
 </script>
