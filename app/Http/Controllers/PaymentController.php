@@ -86,7 +86,7 @@ class PaymentController extends Controller
             if($order->service_id === $prevOrder->service_id) {
                 $order->expiration_date = Carbon::parse($prevOrder->expiration_date)->addDays($prevOrder->service->periodindays);
             } else {
-                $order->expiration_date = $prevOrder->expiration_date;
+                $order->expiration_date = now()->addDays($order->service->periodindays);
             }
         }
 
