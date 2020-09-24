@@ -2,7 +2,7 @@
   <div class="login">
     <div class="wrapper">
       <client-only>
-        <countdown :time="500000" :interval="1000">
+        <countdown :time="countdownTo" :interval="1000">
           <template slot-scope="props">
 
             <div class="expires">
@@ -23,7 +23,7 @@
       </client-only>
       <hr>
       <client-only>
-        <countdown :time="500000" :interval="1000">
+        <countdown :time="countdownTo" :interval="1000">
           <template slot-scope="props">
             {{ props.days }} {{ $plur(props.days, $plurString.days)}},
             {{ props.hours }} {{ $plur(props.hours, $plurString.hours) }},
@@ -32,6 +32,9 @@
           </template>
         </countdown>
       </client-only>
+      <div id="exp-date"></div>
+      <div id="now-date"></div>
+      <div id="diff"></div>
     </div>
   </div>
 </template>
@@ -39,5 +42,21 @@
 <script>
 export default {
   name: "TestPage",
+
+  computed: {
+    countdownTo() {
+      let expDate = new Date('09-24-2020 18:00:00').getTime();
+      let nowDate = new Date().getTime();
+      const diff = Math.abs(nowDate - expDate);
+
+      if(process.client) {
+        document.getElementById('exp-date').innerText = expDate;
+        document.getElementById('now-date').innerText = nowDate;
+        document.getElementById('diff').innerText = diff;
+      }
+
+      return diff
+    }
+  }
 }
 </script>
