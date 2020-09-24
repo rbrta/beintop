@@ -31,6 +31,7 @@ class Order extends Model
     protected $appends = [
         'days',
         'expiration_date_format',
+        'expiration_ms',
         'created_at_format'
     ];
 
@@ -74,6 +75,14 @@ class Order extends Model
     public function getExpirationDateFormatAttribute(): string
     {
         return Carbon::parse($this->expiration_date)->translatedFormat("d F Y");
+    }
+
+    /**
+     * @return int
+     */
+    public function getExpirationMsAttribute(): int
+    {
+        return $this->expiration_date ? Carbon::parse($this->expiration_date)->diffInMilliseconds(now()) : 0;
     }
 
     /**

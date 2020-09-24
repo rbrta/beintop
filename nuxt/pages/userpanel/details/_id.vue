@@ -32,8 +32,8 @@
           </div>
 
           <div class="right">
-            <client-only v-if="account.latest_order.expiration_date">
-              <countdown :time="countdownTo" :interval="1000">
+            <client-only v-if="account.latest_order.expiration_ms > 0">
+              <countdown :time="account.latest_order.expiration_ms" :interval="1000">
                 <template slot-scope="props">
                   <div class="expires">
                     <div class="expires__label">Осталось</div>
@@ -94,15 +94,6 @@ export default {
     return {
       account: data
     };
-  },
-
-  computed: {
-    countdownTo() {
-      let expDate = new Date(this.account.latest_order.expiration_date).getTime();
-      let nowDate = new Date().getTime();
-
-      return Math.abs(nowDate - expDate)
-    }
   },
 
   methods: {
