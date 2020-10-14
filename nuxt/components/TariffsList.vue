@@ -77,13 +77,13 @@ export default {
 
   &-title{
     font-weight: bold;
-    font-size: 64px;
-    line-height: 78px;
+    font-size: 3.3rem;
+    line-height: 1.5;
     text-align: center;
     color: #5C4998;
 
     @media(max-width: 500px){
-      font-size: 48px;
+      font-size: 1.7rem;
     }
   }
 
