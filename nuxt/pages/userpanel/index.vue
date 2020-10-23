@@ -24,9 +24,10 @@
               </template>
             </td>
             <td data-label="Дата окончания">
-              <template v-if="account.latest_order && account.latest_order.paid_status === 'active'">
+              <template v-if="account.latest_order">
                 <div class="text-big">{{ account.latest_order.expiration_date_format }}</div>
-                <div class="text-small">осталось {{ account.latest_order.days }} дней</div>
+                <div class="text-small" v-if="account.latest_order.is_expired">закончился {{ account.latest_order.days }} {{ $plur(account.latest_order.days, $plurString.days) }} назад</div>
+                <div class="text-small" v-else>{{ $plur(account.latest_order.days, ['остался', 'осталось', 'осталось']) }} {{ account.latest_order.days }} {{ $plur(account.latest_order.days, $plurString.days) }}</div>
               </template>
               <template v-else>
                 <span>-</span>

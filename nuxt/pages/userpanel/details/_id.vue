@@ -36,7 +36,7 @@
               <countdown :time="account.latest_order.expiration_ms" :interval="1000">
                 <template slot-scope="props">
                   <div class="expires">
-                    <div class="expires__label">Осталось</div>
+                    <div class="expires__label">{{ $plur(account.latest_order.days, ['Остался', 'Осталось', 'Осталось']) }}</div>
                     <div class="expires__days_count">{{ props.days }}</div>
                     <div class="expires__days">{{ $plur(props.days, $plurString.days)}}</div>
 

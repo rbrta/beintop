@@ -59,9 +59,7 @@ class Order extends Model
      */
     public function getDaysAttribute(): int
     {
-        $diffInDays = now()->diffInDays(Carbon::parse($this->expiration_date), false);
-
-        return $diffInDays > 0 ? $diffInDays : 0;
+        return now()->diffInDays(Carbon::parse($this->expiration_date));
     }
 
     /**
