@@ -32,7 +32,8 @@ class Order extends Model
         'days',
         'expiration_date_format',
         'expiration_ms',
-        'created_at_format'
+        'created_at_format',
+        'is_expired',
     ];
 
     public function user()
@@ -58,7 +59,9 @@ class Order extends Model
      */
     public function getDaysAttribute(): int
     {
-        return Carbon::parse($this->expiration_date)->diffInDays(now());
+        $diffInDays = now()->diffInDays(Carbon::parse($this->expiration_date), false);
+
+        return $diffInDays > 0 ? $diffInDays : 0;
     }
 
     /**
@@ -82,7 +85,17 @@ class Order extends Model
      */
     public function getExpirationMsAttribute(): int
     {
-        return $this->expiration_date ? Carbon::parse($this->expiration_date)->diffInMilliseconds(now()) : 0;
+        $expirationDate = $this->expiration_date ? now()->diffInMilliseconds(Carbon::parse($this->expiration_date), false) : 0;
+
+        return $expirationDate > 0 ? $expirationDate : 0;
+    }
+
+    /**
+     * @return bool
+     */
+    public function getIsExpiredAttribute()
+    {
+        return $this->expiration_ms <= 0;
     }
 
     /**

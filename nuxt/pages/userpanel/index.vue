@@ -33,7 +33,10 @@
               </template>
             </td>
             <td data-label="Действия">
-              <nuxt-link v-if="account.latest_order" class="btn" :to="`/userpanel/details/${account.id}`">Детали</nuxt-link>
+              <template v-if="account.latest_order">
+                <a v-if="account.latest_order.is_expired" href="#" class="btn" @click.prevent="prolongOrder(account)">Продлить</a>
+                <nuxt-link v-else class="btn" :to="`/userpanel/details/${account.id}`">Детали</nuxt-link>
+              </template>
               <nuxt-link v-else class="btn" :to="{ path: '/userpanel/new?account=' + account.id }">Выбрать тариф</nuxt-link>
             </td>
           </tr>
@@ -50,6 +53,7 @@
 
 <script>
 import ClientPanelTabs from '@/components/ClientPanelTabs'
+import ActivateServiceModal from '~/components/modals/ActivateServiceModal'
 
 export default {
   name: 'UserPanel',
@@ -73,6 +77,15 @@ export default {
     }
 
     return false;
+  },
+
+  methods: {
+    prolongOrder(account) {
+      this.$modal.show(ActivateServiceModal, {
+        service: account.latest_order.service,
+        accountId: account.id
+      })
+    }
   },
 
   head() {
