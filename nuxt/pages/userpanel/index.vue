@@ -3,7 +3,7 @@
     <div class="content-table">
       <ClientPanelTabs></ClientPanelTabs>
       <div class="table-wrapper">
-        <table v-if="accounts.length">
+        <table v-if="orders.length">
           <thead>
           <tr>
             <th>Аккаунт</th>
@@ -13,32 +13,28 @@
           </tr>
           </thead>
           <tbody>
-          <tr :key="key" v-for="(account, key) in accounts">
+          <tr :key="key" v-for="(order, key) in orders">
             <td data-label="Аккаунт">
-              <div class="text-default">{{ account.account_name }}</div>
+              <div class="text-default">{{ order.account.account_name }}</div>
             </td>
             <td data-label="Услуга">
-              <template v-if="account.latest_order">
-                <div class="text-big">{{ account.latest_order.service.category.name }}</div>
-                <div class="text-large">{{ account.latest_order.service.name }}</div>
-              </template>
+              <div class="text-big">{{ order.service.category.name }}</div>
+              <div class="text-large">{{ order.service.name }}</div>
             </td>
             <td data-label="Дата окончания">
-              <template v-if="account.latest_order">
-                <div class="text-big">{{ account.latest_order.expiration_date_format }}</div>
-                <div class="text-small" v-if="account.latest_order.is_expired">закончился {{ account.latest_order.days }} {{ $plur(account.latest_order.days, $plurString.days) }} назад</div>
-                <div class="text-small" v-else>{{ $plur(account.latest_order.days, ['остался', 'осталось', 'осталось']) }} {{ account.latest_order.days }} {{ $plur(account.latest_order.days, $plurString.days) }}</div>
+              <template v-if="order.service.type !== 'subscribers'">
+                <div class="text-big">{{ order.expiration_date_format }}</div>
+                <div class="text-small" v-if="order.is_expired">закончился {{ order.days }} {{ $plur(order.days, $plurString.days) }} назад</div>
+                <div class="text-small" v-else>{{ $plur(order.days, ['остался', 'осталось', 'осталось']) }} {{ order.days }} {{ $plur(order.days, $plurString.days) }}</div>
               </template>
               <template v-else>
                 <span>-</span>
               </template>
             </td>
             <td data-label="Действия">
-              <template v-if="account.latest_order">
-                <a v-if="account.latest_order.is_expired" href="#" class="btn" @click.prevent="prolongOrder(account)">Продлить</a>
-                <nuxt-link v-else class="btn" :to="`/userpanel/details/${account.id}`">Детали</nuxt-link>
-              </template>
-              <nuxt-link v-else class="btn" :to="{ path: '/userpanel/new?account=' + account.id }">Выбрать тариф</nuxt-link>
+              <a v-if="order.service.periodindays && order.is_expired" href="#" class="btn" @click.prevent="prolongOrder(order)">Продлить</a>
+              <nuxt-link v-else class="btn" :to="`/userpanel/details/${order.id}`">Детали</nuxt-link>
+              <!--<nuxt-link v-else class="btn" :to="{ path: '/userpanel/new?account=' + account.id }">Выбрать тариф</nuxt-link>-->
             </td>
           </tr>
           </tbody>
@@ -65,27 +61,23 @@ export default {
     ClientPanelTabs
   },
 
-  async asyncData ({ params, query, error, $axios }) {
-    try {
-      const data = await $axios.$get('/user/accounts');
-
-      return {
-        accounts: data
-      };
-    } catch (err) {
-      console.error(err.response.data || err);
-      error({ statusCode: err.response.status, message: err.response.statusText });
-    }
-
-    return false;
+  async asyncData ({ store }) {
+    await store.dispatch('getOrders')
   },
 
   methods: {
-    prolongOrder(account) {
+    prolongOrder(order) {
       this.$modal.show(ActivateServiceModal, {
-        service: account.latest_order.service,
-        accountId: account.id
+        service: order.service,
+        category: order.service.category,
+        order: order
       })
+    }
+  },
+
+  computed: {
+    orders() {
+      return this.$store.state.orders;
     }
   },
 
@@ -93,7 +85,7 @@ export default {
     return {
       title: 'Личный кабинет'
     }
-  }
+  },
 }
 </script>
 

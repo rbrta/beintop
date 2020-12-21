@@ -8,10 +8,13 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Account extends Model
 {
-    protected $fillable = ['account_name', 'user_id'];
+    protected $fillable = [
+        'account_name',
+        'user_id'
+    ];
 
     protected $appends = [
-        'latest_order'
+        //'latest_order'
     ];
 
     /**
@@ -35,15 +38,6 @@ class Account extends Model
      */
     public function getLatestOrderAttribute()
     {
-        return $this->orders()->where('paid_status', '!=', Order::STATUS_PENDING)->with('service.category')->latest()->first();
-    }
-
-    /**
-     * @param Service $service
-     * @return float|int
-     */
-    public function getTariffChangePrice(Service $service)
-    {
-        return abs($service->price - (($this->latest_order->service->price / $this->latest_order->service->periodindays) * $this->latest_order->days));
+        return $this->orders()->where('paid_status', '!=', Order::STATUS_PENDING)->latest()->first();
     }
 }

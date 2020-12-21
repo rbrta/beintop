@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Helpers;
 use App\ManagerOffer;
+use App\Order;
 use App\User;
 use App\Account;
 use App\Service;
@@ -66,7 +67,10 @@ class ManagerController extends Controller
 
         $accounts = Account::whereHas('user', static function($q) {
             $q->where('manager', auth()->user()->id);
-        })->with('user')->get();
+        })->with(['user', 'orders' => function($query) {
+            $query->where('paid_status', Order::STATUS_ACTIVE);
+            $query->with('service', 'service.category');
+        }])->get();
 
         $accounts = $accounts->sortBy('latest_order.expiration_date')->values();
 
@@ -131,7 +135,7 @@ class ManagerController extends Controller
         });
 
         return response()->json([
-            'services' => $services->groupBy('category.name'),
+            'services' => $services,
             'offer' => $offer
         ]);
     }

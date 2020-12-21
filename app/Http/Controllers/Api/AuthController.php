@@ -61,8 +61,12 @@ class AuthController extends Controller
      */
     public function user(Request $request): JsonResponse
     {
+        $user = $request->user();
+        $user->accounts = $user->accounts()->get(['id', 'account_name']);
+        //$user->accounts = $user->accounts->each->setAppends([]);
+
         return response()->json([
-            'user' => $request->user()
+            'user' => $user
         ]);
     }
 

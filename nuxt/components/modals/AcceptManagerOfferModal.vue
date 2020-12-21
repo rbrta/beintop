@@ -24,9 +24,9 @@
         Тариф будет активирован сразу после оплаты
       </div>
       <div class="row6">
-        <a href="#" @click.prevent="pay">
+        <button @click.prevent="pay" :disabled="loading">
           Перейти к оплате
-        </a>
+        </button>
       </div>
     </div>
   </div>
@@ -46,29 +46,30 @@ export default {
   },
 
   created () {
-    this.getAccounts();
+    this.account_id = this.accounts[0].id;
   },
 
   data() {
     return {
-      accounts: [],
-      account_id: null
+      account_id: null,
+      loading: false
     }
   },
 
   computed: {
     description() {
       return this.service.category.name.replace('Тарифы', 'Тариф') + ' ' + this.service.name
-    }
+    },
+
+    accounts() {
+      return this.$auth.user.accounts;
+    },
   },
 
   methods: {
-    async getAccounts() {
-      this.accounts = await this.$axios.$get('/user/accounts');
-      this.account_id = this.accounts[0].id;
-    },
-
     async pay() {
+      this.loading = true;
+
       try {
         const date = await this.$axios.$post('/user/accept-offer', {
           service_id: this.service.id,
@@ -76,9 +77,11 @@ export default {
           account_id: this.account_id
         })
 
+        this.loading = false;
         this.$emit('close');
         window.location.href = date.redirect_url;
       } catch (err) {
+        this.loading = false;
         console.error(err)
       }
     }
@@ -165,7 +168,7 @@ export default {
     margin-top: 2rem;
     margin-bottom: 2rem;
 
-    a {
+    button {
       max-width: 100%;
       width: 393.98px;
       height: 79px;
@@ -180,6 +183,14 @@ export default {
       text-decoration: none;
       border-radius: 50px;
       color: white;
+      outline: none;
+      border: none;
+      cursor: pointer;
+
+      &[disabled] {
+        opacity: 0.7;
+        cursor: default;
+      }
     }
   }
 

@@ -104,7 +104,7 @@ import TariffsList from '@/components/TariffsList'
 
 export default {
   layout: 'homepage',
-  name: 'HomePage',
+  name: 'SubscribersPage',
 
   components: {
     TariffsList
@@ -112,7 +112,7 @@ export default {
 
   async asyncData({ $axios, error }) {
     try {
-      const data = await $axios.$get('/services/likes');
+      const data = await $axios.$get('/services/subscribers');
       return {
         services: data.services,
         categories: data.categories,
@@ -137,7 +137,7 @@ export default {
 
   head() {
     return {
-      title: 'Главная',
+      title: 'Подписчики',
     }
   },
 }

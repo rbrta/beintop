@@ -4,30 +4,63 @@ namespace App;
 
 use App\Category;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Service extends Model
 {
     protected $fillable = [
-        'category_id',
         'name',
-        'periodindays',
         'price',
-        'likes',
-        'posts',
-        'views',
-        'bonus',
-        'igtv_unlim',
+        'category_id',
+        'periodindays',
+        'type'
     ];
 
-    protected $appends = ['price_formatted'];
+    protected $appends = [
+        'price_formatted',
+        'parameters'
+    ];
 
-    public function category()
+    public const TYPE_LIKES = 'likes';
+    public const TYPE_SUBSCRIBERS = 'subscribers';
+
+    /**
+     * @return BelongsTo
+     */
+    public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class);
     }
 
-    public function getPriceFormattedAttribute()
+    /**
+     * @return string
+     */
+    public function getPriceFormattedAttribute(): string
     {
         return number_format($this->price, 0, ',', ' ');
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function params(): HasMany
+    {
+        return $this->hasMany(ServiceParameter::class);
+    }
+
+    /**
+     * @return array
+     */
+    public function getParametersAttribute(): array
+    {
+        $result = [];
+        $parameters = $this->params()->get();
+
+        foreach ($parameters as $parameter) {
+            $result[$parameter->key] = $parameter->value;
+        }
+
+        return $result;
     }
 }

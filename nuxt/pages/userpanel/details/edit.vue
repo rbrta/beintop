@@ -1,5 +1,5 @@
 <template>
-  <TariffsList title="Выберите новый тариф" :services="services" @buy="changeTariff"></TariffsList>
+  <TariffsList title="Выберите новый тариф" :services="services" :categories="categories" @buy="changeTariff"></TariffsList>
 </template>
 
 <script>
@@ -16,11 +16,12 @@ export default {
   },
 
   async asyncData({ $axios, query, error }) {
-    if(!query.account) error(404);
+    if(!query.order) error(404);
 
-    const data = await $axios.$get('/services');
+    const data = await $axios.$get('/services/likes');
     return {
-      services: data,
+      services: data.services,
+      categories: data.categories,
     };
   },
 
@@ -29,14 +30,17 @@ export default {
       try {
         const data = await this.$axios.$get('/user/accounts/change-tariff', {
           params: {
-            account_id: this.$route.query.account,
+            order_id: this.$route.query.order,
             service_id: service.id
           }
         });
 
+        const category = this.categories.find(category => category.id === service.category_id);
+
         this.$modal.show(ChangeAccountTariffModal, {
           service: service,
-          accountId: this.$route.query.account,
+          category: category,
+          orderId: this.$route.query.order,
           price: data.price
         })
       } catch (e) {

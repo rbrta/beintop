@@ -24,6 +24,11 @@ export default {
     menuItems() {
       const items = [
         {
+          title: 'Подписчики',
+          link: '/subscribers',
+          icon: 'users'
+        },
+        {
           title: 'Наши преимущества',
           link: '#advantage',
           icon: 'star'

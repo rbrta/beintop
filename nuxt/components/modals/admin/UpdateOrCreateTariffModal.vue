@@ -17,7 +17,7 @@
             <div class="col">
               <div class="input-wrapper">
                 <label>Период (дней)</label>
-                <input placeholder="Период (дней)" v-model="service.periodindays" type="number">
+                <input :disabled="service.type !== 'likes'" placeholder="Кол-во дней" v-model="service.periodindays" type="number">
                 <div v-for="(error, index) in getErrors('periodindays')" :key="index" class="form-error">{{ error }}</div>
               </div>
             </div>
@@ -28,53 +28,86 @@
                 <div v-for="(error, index) in getErrors('price')" :key="index" class="form-error">{{ error }}</div>
               </div>
             </div>
-          </div>
-          <div class="row">
             <div class="col">
               <div class="input-wrapper">
-                <label>Лайки</label>
-                <input placeholder="Лайки" v-model="service.likes" type="number">
-                <div v-for="(error, index) in getErrors('likes')" :key="index" class="form-error">{{ error }}</div>
-              </div>
-            </div>
-            <div class="col">
-              <div class="input-wrapper">
-                <label>Посты</label>
-                <input placeholder="Посты" v-model="service.posts" type="number">
-                <div v-for="(error, index) in getErrors('posts')" :key="index" class="form-error">{{ error }}</div>
-              </div>
-            </div>
-            <div class="col">
-              <div class="input-wrapper">
-                <label>Просмотры</label>
-                <input placeholder="Просмотры" v-model="service.views" type="number">
-                <div v-for="(error, index) in getErrors('views')" :key="index" class="form-error">{{ error }}</div>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col">
-              <div class="input-wrapper">
-                <label>Бонус</label>
-                <input placeholder="Бонус" v-model="service.bonus" type="text">
-              </div>
-            </div>
-            <div class="col">
-              <div class="input-wrapper">
-                <label>Выберите категорию</label>
+                <label>Тип</label>
                 <div class="select-wrap">
-                  <select v-model="service.category_id">
-                    <option v-for="category in categories" :value="category.id">{{ category.name }}</option>
+                  <select v-model="service.type" :disabled="service.id !== null">
+                    <option v-for="(type, index) in types" :value="index">{{ type.name }}</option>
                   </select>
                 </div>
               </div>
             </div>
           </div>
-          <div class="row">
-            <div class="col">
-              <div class="input-wrapper">
-                <div>
-                  <label><input type="checkbox" v-model="service.igtv_unlim"> IGTV unlimit</label>
+          <div v-if="service.type === 'likes'">
+            <div class="row">
+              <div class="col">
+                <div class="input-wrapper">
+                  <label>Лайки</label>
+                  <input placeholder="Лайки" v-model="service.parameters.likes" type="number">
+                  <div v-for="(error, index) in getErrors('parameters.likes')" :key="index" class="form-error">{{ error }}</div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="input-wrapper">
+                  <label>Посты</label>
+                  <input placeholder="Посты" v-model="service.parameters.posts" type="number">
+                  <div v-for="(error, index) in getErrors('parameters.posts')" :key="index" class="form-error">{{ error }}</div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="input-wrapper">
+                  <label>Просмотры</label>
+                  <input placeholder="Просмотры" v-model="service.parameters.views" type="number">
+                  <div v-for="(error, index) in getErrors('parameters.views')" :key="index" class="form-error">{{ error }}</div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <div class="input-wrapper">
+                  <label>Бонус</label>
+                  <input placeholder="Бонус" v-model="service.parameters.bonus" type="text">
+                </div>
+              </div>
+              <div class="col">
+                <div class="input-wrapper">
+                  <label>Выберите категорию</label>
+                  <div class="select-wrap">
+                    <select v-model="service.category_id">
+                      <option v-for="category in categories" :value="category.id">{{ category.name }}</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <div class="input-wrapper">
+                  <div>
+                    <label><input type="checkbox" v-model="service.parameters.igtv_unlim"> IGTV unlimit</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div v-else-if="service.type === 'subscribers'">
+            <div class="row">
+              <div class="col">
+                <div class="input-wrapper">
+                  <label>Количество подписчиков</label>
+                  <input placeholder="0" v-model="service.parameters.subscribers" type="number">
+                  <div v-for="(error, index) in getErrors('parameters.subscribers')" :key="index" class="form-error">{{ error }}</div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="input-wrapper">
+                  <label>Выберите категорию</label>
+                  <div class="select-wrap">
+                    <select v-model="service.category_id">
+                      <option v-for="category in categories" :value="category.id">{{ category.name }}</option>
+                    </select>
+                  </div>
                 </div>
               </div>
             </div>
@@ -111,14 +144,27 @@ export default {
       service: {
         id: null,
         name: '',
-        bonus: null,
         periodindays: null,
         price: null,
-        likes: null,
-        posts: null,
-        views: null,
-        igtv_unlim: false,
         category_id: 1,
+        type: 'likes',
+        parameters: {
+          likes: null,
+          posts: null,
+          views: null,
+          igtv_unlim: false,
+          bonus: null,
+        }
+      },
+      types: {
+        likes: {
+          name: 'Лайки',
+          fields: ['bonus', 'likes', 'posts', 'views', 'igtv_unlim']
+        },
+        subscribers: {
+          name: 'Подписчики',
+          fields: ['subscribers']
+        }
       },
     }
   },
@@ -134,7 +180,11 @@ export default {
   methods: {
     async submit () {
       try {
-        const data = await this.$axios.$post('/admin/services', this.service);
+        const data = await this.$axios.$post('/admin/services', {
+          ...this.service,
+          parameters: this.getAvailableParams(this.service.parameters, this.types[this.service.type].fields)
+        });
+
         this.$toast.success(this.service.id ? 'Тариф успешно обновлен' : 'Тариф успешно добавлен');
         if(this.service.id) {
           this.updated(data);
@@ -144,6 +194,18 @@ export default {
         }
       } catch (e) {
         this.errors = e.response.data.errors || {};
+      }
+    },
+
+    getAvailableParams(obj, keys) {
+      return keys.reduce((a,b)=> (a[b] = obj[b], a),{});
+    }
+  },
+
+  watch: {
+    'service.type': function(val) {
+      if(val === 'subscribers') {
+        this.service.periodindays = null;
       }
     }
   }

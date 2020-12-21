@@ -3,40 +3,50 @@
     <div class="content-table">
       <ClientPanelTabs></ClientPanelTabs>
       <div class="details-panel">
-        <div class="account-name"><b>Аккаунт:</b> {{ account.account_name }}</div>
-        <h1 class="tariff_name">Тариф {{ account.latest_order.service.category.name }}</h1>
+        <div class="account-name"><b>Аккаунт:</b> {{ order.account.account_name }}</div>
+        <h1 class="tariff_name">Тариф {{ order.service.category.name }}</h1>
 
         <div class="flex">
           <div class="left">
-            <div class="likes">{{ account.latest_order.service.likes }}</div>
-            <div class="lakes_label">Лайков</div>
-            <div class="likes_posts">На <b>{{ account.latest_order.service.posts }}</b> постов</div>
-
-            <div class="views">{{ account.latest_order.service.views }}</div>
-            <div class="views_label">Просмотров</div>
-
-            <div class="igtv_label" v-if="account.latest_order.service.igtv_unlim">На видео и IGTV</div>
-            <div class="igtv_label_unlim" v-if="account.latest_order.service.igtv_unlim">(<span>Безлимит</span><div class="fire"></div>)</div>
+            <template v-if="order.service.parameters.subscribers">
+              <div class="likes">{{ order.service.parameters.subscribers }}</div>
+              <div class="lakes_label">Подписчиков</div>
+            </template>
+            <template v-if="order.service.parameters.likes">
+              <div class="likes">{{ order.service.parameters.likes }}</div>
+              <div class="lakes_label">Лайков</div>
+            </template>
+            <template v-if="order.service.parameters.posts">
+              <div class="likes_posts">На <b>{{ order.service.parameters.posts }}</b> постов</div>
+            </template>
+            <template v-if="order.service.parameters.views">
+              <div class="views">{{ order.service.parameters.views }}</div>
+              <div class="views_label">Просмотров</div>
+            </template>
+            <template v-if="order.service.parameters.igtv_unlim">
+              <div class="igtv_label">На видео и IGTV</div>
+              <div class="igtv_label_unlim">(<span>Безлимит</span><div class="fire"></div>)</div>
+            </template>
           </div>
 
           <div class="center">
-            <div class="bonus" v-if="account.latest_order.service.bonus !== null">
+            <div class="bonus" v-if="order.service.parameters.bonus">
               <div class="bonus__img"></div>
               <div class="bonus__title">Бонус</div>
-              <div class="bonus__comments">{{ account.latest_order.service.bonus }}</div>
+              <div class="bonus__comments">{{ order.service.parameters.bonus }}</div>
             </div>
 
             <div class="price__label">Стоимость</div>
-            <div class="price">{{ account.latest_order.service.price_formatted }}</div>
-            <div class="price__currency">руб./мес</div>
+            <div class="price">{{ order.service.price_formatted }}</div>
+            <div class="price__currency">{{ order.service.periodindays ? 'руб./мес' : 'руб.' }}</div>
           </div>
 
-          <div class="right">
-            <client-only v-if="account.latest_order.expiration_ms > 0">
-              <countdown :time="account.latest_order.expiration_ms" :interval="1000">
+          <div class="right" v-if="order.expiration_date">
+            <client-only v-if="order.expiration_ms > 0">
+              <countdown :time="order.expiration_ms" :interval="1000">
                 <template slot-scope="props">
                   <div class="expires">
-                    <div class="expires__label">{{ $plur(account.latest_order.days, ['Остался', 'Осталось', 'Осталось']) }}</div>
+                    <div class="expires__label">{{ $plur(order.days, ['Остался', 'Осталось', 'Осталось']) }}</div>
                     <div class="expires__days_count">{{ props.days }}</div>
                     <div class="expires__days">{{ $plur(props.days, $plurString.days)}}</div>
 
@@ -54,13 +64,13 @@
 
             <div v-else class="expires">
               <div class="expires__label">Период</div>
-              <div class="expires__days_count">{{ account.latest_order.service.periodindays }}</div>
+              <div class="expires__days_count">{{ order.service.periodindays }}</div>
               <div class="expires__days">Дней</div>
             </div>
 
-            <div v-if="account.latest_order.paid_status === 'active'" class="buttons">
+            <div v-if="order.paid_status === 'active'" class="buttons">
               <a class="btn" href="#" @click.prevent="prolongOrder">Продлить</a>
-              <nuxt-link class="btn" :to="{ path: '/userpanel/details/edit?account=' + account.id }">Изменить</nuxt-link>
+              <nuxt-link class="btn" :to="{ path: '/userpanel/details/edit?order=' + order.id }">Изменить</nuxt-link>
             </div>
           </div>
         </div>
@@ -85,22 +95,19 @@ export default {
   async asyncData ({ params, query, error, $axios }) {
     if(!params.id) error(404);
 
-    const data = await $axios.$get('/user/accounts', {
-      params: {
-        id: params.id
-      }
-    });
+    const data = await $axios.$get(`/user/orders/${params.id}`);
 
     return {
-      account: data
+      order: data
     };
   },
 
   methods: {
     prolongOrder () {
       this.$modal.show(ActivateServiceModal, {
-        service: this.account.latest_order.service,
-        accountId: this.account.id
+        service: this.order.service,
+        category: this.order.service.category,
+        order: this.order
       })
     }
   },

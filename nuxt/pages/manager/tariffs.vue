@@ -14,11 +14,24 @@
           </thead>
           <tbody>
           <tr v-for="(item, index) in services">
-            <td data-label="Название">{{ item.category.name }} {{ item.name }} ({{ item.periodindays }} дн.)</td>
+            <td data-label="Название">
+              <template v-if="item.category_id && categories[item.category_id]">
+                {{ categories[item.category_id].name }}
+              </template>
+              {{ item.name }}
+              <template v-if="item.periodindays">
+                ({{ item.periodindays }} дн.)
+              </template>
+            </td>
             <td data-label="Условия">
-              {{ item.likes }} лайков на {{ item.posts }} постов  <br>
-              {{ item.views }} просмотров <br>
-              <span v-if="item.bonus !== null">Бонус: {{ item.bonus }}</span>
+              <template v-if="item.type === 'subscribers'">
+                <div>{{ item.parameters.subscribers }} подписчиков</div>
+              </template>
+              <template v-else>
+                {{ item.parameters.likes }} лайков на {{ item.parameters.posts }} постов  <br>
+                {{ item.parameters.views }} просмотров <br>
+                <span v-if="item.parameters.bonus">Бонус: {{ item.parameters.bonus }}</span>
+              </template>
             </td>
             <td data-label="Стоимость">{{ item.price_formatted }} руб</td>
             <td data-label="Действия" class="table-action">
@@ -34,6 +47,7 @@
 
 <script>
 import CreateOfferModal from '@/components/modals/manager/CreateOfferModal'
+import { keyBy } from 'lodash';
 
 export default {
   layout: 'panel',
@@ -43,17 +57,9 @@ export default {
   async asyncData({ $axios, error }) {
     try {
       const data = await $axios.$get('/services');
-
-      let services = [];
-
-      for (let category in data) {
-        if(data.hasOwnProperty(category)) {
-          services = [...services, ...data[category]];
-        }
-      }
-
       return {
-        services: services,
+        services: data.services,
+        categories: keyBy(data.categories, 'id'),
       };
     } catch (err) {
       console.error(err.response.data || err);
@@ -62,6 +68,14 @@ export default {
 
     return {
       services: [],
+      categories: [],
+    }
+  },
+
+  data() {
+    return {
+      services: [],
+      categories: [],
     }
   },
 
@@ -73,7 +87,7 @@ export default {
         width: 500
       })
     }
-  }
+  },
 }
 </script>
 

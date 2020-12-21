@@ -137,4 +137,22 @@ class Order extends Model
 
         return $tinkoff->payment_url;
     }
+
+    /**
+     * @return Order|null
+     */
+    public function getPrevious()
+    {
+        return self::where([
+            'user_id' => $this->user_id,
+            'account_id' => $this->account_id,
+        ])
+            ->where('id', '!=', $this->id)
+            ->where('paid_status', '!=', Order::STATUS_PENDING)
+            ->whereHas('service', function($query) {
+                $query->where('type', '=', $this->service->type);
+            })
+            ->latest()
+            ->first();
+    }
 }

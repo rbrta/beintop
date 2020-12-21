@@ -46,9 +46,10 @@ export default {
   plugins: [
     '~plugins/vue-js-modal.js',
     '~plugins/axios',
+    '~plugins/plur-strings',
     { src: '~plugins/vue-countdown', mode: 'client' },
     { src: '~plugins/vue-toast-notification', mode: 'client' },
-    '~plugins/plur-strings'
+    { src: '~plugins/vue-tawk', mode: 'client' },
   ],
   /*
   ** Auto import components

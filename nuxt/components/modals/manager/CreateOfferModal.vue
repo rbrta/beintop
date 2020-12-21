@@ -9,13 +9,20 @@
           <label for="client">Предложение для пользователя</label>
           <div class="select-wrap">
             <select id="client" v-model="form.user_id">
-              <option :value="null">Выберите пользователя</option>
+              <option :value="null">Выберите аккаунт</option>
               <option v-for="client in clients" :value="client.user_id">{{ client.account_name }}</option>
             </select>
           </div>
         </div>
         <div class="input-wrapper">
-          <label for="price">Стоимость тарифа (руб./{{ tariff.periodindays }} дн.)</label>
+          <label for="price">Стоимость тарифа
+            <template v-if="tariff.periodindays">
+              (руб./{{ tariff.periodindays }} дн.)
+            </template>
+            <template v-else>
+              (руб.)
+            </template>
+          </label>
           <input v-model="form.price" id="price" placeholder="Стоимость тарифа" type="text">
         </div>
       </div>
@@ -63,7 +70,6 @@ export default {
   methods: {
     async getClients() {
       this.clients = await this.$axios.$get('/manager/clients');
-      console.log(process.env.baseUrl);
     },
 
     async createOffer() {

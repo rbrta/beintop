@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\ProcessPayment;
 use App\ManagerOffer;
 use App\Order;
 use App\Payment\Tinkoff;
@@ -75,27 +76,7 @@ class PaymentController extends Controller
             return response('OK', 200);
         }
 
-        $prevOrder = $order->account->latest_order;
-
-        // Account has previous active order
-        if($prevOrder && $prevOrder->paid_status === Order::STATUS_ACTIVE) {
-            $prevOrder->paid_status = Order::STATUS_TERMINATED;
-            $prevOrder->save();
-
-            // prolong by adding days to old date
-            if($order->service_id === $prevOrder->service_id) {
-                $order->expiration_date = $prevOrder->is_expired
-                    ? now()->addDays($prevOrder->service->periodindays)
-                    : Carbon::parse($prevOrder->expiration_date)->addDays($prevOrder->service->periodindays);
-            } else {
-                $order->expiration_date = now()->addDays($order->service->periodindays);
-            }
-        }
-
-        $order->paid_status = Order::STATUS_ACTIVE;
-        $order->save();
-
-        ManagerOffer::where(['user_id' => $order->user_id, 'service_id' => $order->service_id, 'price' => $order->total])->delete();
+        ProcessPayment::dispatch($order);
 
         return response('OK', 200);
     }

@@ -30,7 +30,11 @@ export default {
       type: Object,
       default: null
     },
-    accountId: {
+    category: {
+      type: Object,
+      default: null
+    },
+    orderId: {
       type: String
     },
     price: {
@@ -40,7 +44,7 @@ export default {
 
   computed: {
     description() {
-      return this.service.category.name.replace('Тарифы', 'Тариф') + ' ' + this.service.name
+      return this.category.name.replace('Тарифы', 'Тариф') + ' ' + this.service.name
     }
   },
 
@@ -49,7 +53,7 @@ export default {
       try {
         const date = await this.$axios.$post('/user/accounts/change-tariff', {
           service_id: this.service.id,
-          account_id: this.accountId,
+          order_id: this.orderId,
         })
 
         this.$emit('close');

@@ -19,19 +19,19 @@
           <tr v-for="(item, index) in clients" :key="item.id">
             <td data-label="Аккаунт">{{ item.account_name }}</td>
             <td data-label="Тариф">
-              <template v-if="item.latest_order && item.latest_order.service">
-                {{ item.latest_order.service.category.name }} {{ item.latest_order.service.name }}
-              </template>
+              <div v-for="order in item.orders">
+                {{ order.service.category.name }} {{ order.service.name }}
+              </div>
             </td>
             <td data-label="Дата оплаты">
-              <template v-if="item.latest_order">
-                {{ item.latest_order.created_at }}
-              </template>
+              <div v-for="order in item.orders">
+                {{ order.created_at_format }}
+              </div>
             </td>
             <td data-label="Дата окончания">
-              <template v-if="item.latest_order">
-                {{ item.latest_order.expiration_date_format }}
-              </template>
+              <div v-for="order in item.orders">
+                {{ order.expiration_date_format }}
+              </div>
             </td>
             <td data-label="Actions" class="table-action">
               <a class="btn" @click.prevent="copyLink(item)" href="#" title="Скопировать ссылку для входа пользователя">

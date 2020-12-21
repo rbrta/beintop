@@ -13,8 +13,15 @@
         </thead>
         <tbody>
         <tr v-for="(item, index) in services" :key="item.id">
-          <td data-label="Название">{{ item.category.name }} {{ item.name }}</td>
-          <td data-label="Период">{{ item.periodindays }} дней</td>
+          <td data-label="Название">{{ item.category ? item.category.name : '' }} {{ item.name }}</td>
+          <td data-label="Период">
+            <template v-if="item.periodindays !== null">
+              {{ item.periodindays }} дней
+            </template>
+            <template v-else>
+              -
+            </template>
+          </td>
           <td data-label="Стоимость">{{ item.price }} руб</td>
           <td data-label="Действия" class="table-action">
             <a @click.prevent="updateOrCreate(item)" class="btn" href="#">Изменить</a>
@@ -42,16 +49,9 @@ export default {
     try {
       const data = await $axios.$get('/services');
 
-      let services = [];
-
-      for (let category in data) {
-        if(data.hasOwnProperty(category)) {
-          services = [...services, ...data[category]];
-        }
-      }
-
       return {
-        services: services,
+        services: data.services,
+        categories: data.categories
       };
     } catch (err) {
       console.error(err.response.data || err);
@@ -60,6 +60,7 @@ export default {
 
     return {
       services: [],
+      categories: [],
     }
   },
 
@@ -70,34 +71,17 @@ export default {
     }
   },
 
-  created () {
-    this.getCategories();
-  },
-
   methods: {
-    async getCategories () {
-      this.categories = await this.$axios.$get('/services/categories');
+    async getServices() {
+      const data = await this.$axios.$get('/services');
+      this.services = data.services;
     },
 
     updateOrCreate(service = null) {
       this.$modal.show(UpdateOrCreateTariffModal, {
         data: service,
         categories: this.categories,
-        updated: (item) => {
-          const index = this.services.indexOf(service);
-          if(index !== -1) {
-            this.services[index].name = item.name;
-            this.services[index].bonus = item.bonus;
-            this.services[index].periodindays = item.periodindays;
-            this.services[index].price = item.price;
-            this.services[index].likes = item.likes;
-            this.services[index].posts = item.posts;
-            this.services[index].views = item.views;
-            this.services[index].igtv_unlim = item.igtv_unlim;
-            this.services[index].category_id = item.category_id;
-            this.services[index].category = item.category;
-          }
-        },
+        updated: (item) => this.getServices(),
         created: (item) => this.services.push(item)
       }, {
         width: 880

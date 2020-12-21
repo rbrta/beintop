@@ -7,6 +7,7 @@ use App\Category;
 use App\Http\Controllers\Controller;
 use App\Mail\InviteManager;
 use App\Service;
+use App\ServiceParameter;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
@@ -18,15 +19,17 @@ class PagesController extends Controller
 {
     /**
      * @param Request $request
+     * @param string $type
      * @return JsonResponse
      */
-    public function services(Request $request): JsonResponse
+    public function services(Request $request, $type = null): JsonResponse
     {
         if($request->isMethod('delete')) {
             $request->validate([
                 'id' => 'required'
             ]);
 
+            ServiceParameter::where('service_id', $request->get('id'))->delete();
             Service::destroy($request->get('id'));
 
             return response()->json([
@@ -38,37 +41,71 @@ class PagesController extends Controller
          *
          */
         if($request->isMethod('post')) {
-            $request->validate([
-                'name' => 'required',
-                'periodindays' => 'required',
-                'price' => 'required',
-                'likes' => 'required',
-                'posts' => 'required',
-                'views' => 'required',
-                'igtv_unlim' => 'required',
-                'category_id' => 'required',
-            ]);
+            $validationParameters = $this->getValidationParametersByType($request->get('type', Service::TYPE_LIKES));
 
-            $tariff = Service::updateOrCreate([
+            $request->validate(array_merge([
+                'name' => 'required',
+                'price' => 'required',
+                'type' => 'required',
+            ], $validationParameters));
+
+            $service = Service::updateOrCreate([
                 'id' => $request->get('id'),
             ], [
                 'name' => $request->get('name'),
-                'periodindays' => $request->get('periodindays'),
                 'price' => $request->get('price'),
-                'likes' => $request->get('likes'),
-                'posts' => $request->get('posts'),
-                'views' => $request->get('views'),
-                'igtv_unlim' => $request->get('igtv_unlim'),
-                'category_id' => $request->get('category_id'),
-                'bonus' => $request->filled('bonus') ? $request->get('bonus') : null,
+                'periodindays' => $request->get('periodindays', null),
+                'category_id' => $request->get('category_id', null),
+                'type' => $request->get('type', Service::TYPE_LIKES),
             ]);
 
-            return response()->json($tariff->fresh('category'));
+            // Delete previous parameters
+            if($request->filled('id')) {
+                ServiceParameter::where('service_id', $request->get('id'))->delete();
+            }
+
+            $parameters = $request->get('parameters', []);
+
+            foreach ($parameters as $paramKey => $paramValue) {
+                ServiceParameter::create([
+                    'service_id' => $service->id,
+                    'key' => $paramKey,
+                    'value' => $paramValue
+                ]);
+            }
+
+            return response()->json($service->fresh('category'));
         }
 
-        $services = Service::with("category")->orderBy('price')->get()->groupBy('category.name');
+        $services = Service::query();
+        if($type) {
+            $services = $services->where('type', $type);
+        }
+        $services = $services->orderBy('price')->get();
 
-        return response()->json($services);
+        return response()->json([
+            'services' => $services,
+            'categories' => Category::all(['id', 'name'])
+        ]);
+    }
+
+    public function getValidationParametersByType($type): array
+    {
+        $parameters = [
+            Service::TYPE_LIKES => [
+                'periodindays' => 'required',
+                'category_id' => 'required',
+                'parameters.likes' => 'required',
+                'parameters.posts' => 'required',
+                'parameters.views' => 'required',
+                'parameters.igtv_unlim' => 'required',
+            ],
+            Service::TYPE_SUBSCRIBERS => [
+                'parameters.subscribers' => 'required',
+            ]
+        ];
+
+        return $parameters[$type];
     }
 
     /**

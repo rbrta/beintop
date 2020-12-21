@@ -16,23 +16,23 @@ use Illuminate\Validation\ValidationException;
 class OrdersController extends Controller
 {
     /**
+     * @param $id
      * @param Request $request
      * @return JsonResponse
      */
-    public function show(Request $request): JsonResponse
+    public function show($id = null, Request $request): JsonResponse
     {
         /**
          * @var $user User
          */
         $user = $request->user();
         $relations = ['user', 'service.category', 'account'];
-        $now = Carbon::now();
 
-        if($request->exists('id')) {
-            $order = $user->orders()->with($relations)->findOrFail($request->get('id'));
-            $order->expiration_date = Carbon::parse($order->expiration_date);
-            $order->days = $order->expiration_date->diffInDays($now);
-            $order->expiration_date_format = $order->expiration_date->translatedFormat("d F Y");
+        if($id) {
+            $order = $user->orders()->with($relations)
+                ->where('paid_status', Order::STATUS_ACTIVE)
+                ->where('id', $id)->firstOrFail();
+
             return response()->json($order);
         }
 
@@ -42,11 +42,11 @@ class OrdersController extends Controller
             $orders = $user->activeOrders()->with($relations)->get();
         }
 
-        $orders->each(static function ($item) use ($now) {
+        /*$orders->each(static function ($item) use ($now) {
             $item->expiration_date = Carbon::parse($item->expiration_date);
             $item->days = $item->expiration_date->diffInDays($now);
             $item->expiration_date_format = $item->expiration_date->translatedFormat("d F Y");
-        });
+        });*/
 
         return response()->json($orders);
     }

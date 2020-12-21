@@ -1,10 +1,19 @@
 <template>
-  <TariffsList title="Рекомендованный тариф" :services="services" :hide-categories="true" @buy="acceptOrder"></TariffsList>
+  <section id="tariffs" class="tariffcontainer">
+    <div class="tariffcontainer-title">
+      Рекомендованный тариф
+    </div>
+    <div class="tariff-category">
+      <div class="tarif-category-body">
+        <TariffsListItem v-for="service in services" :key="service.id" :service="service" @buy="acceptOrder"></TariffsListItem>
+      </div>
+    </div>
+  </section>
 </template>
 
 <script>
-import TariffsList from '@/components/TariffsList'
 import AcceptManagerOfferModal from '@/components/modals/AcceptManagerOfferModal'
+import TariffsListItem from "~/components/TariffsListItem";
 
 export default {
   name: "LoginCode",
@@ -12,7 +21,7 @@ export default {
   auth: 'guest',
 
   components: {
-    TariffsList
+    TariffsListItem
   },
 
   async asyncData({ params, $auth, error, redirect, $axios }) {
@@ -35,9 +44,9 @@ export default {
   },
 
   methods: {
-    acceptOrder(tariff) {
+    acceptOrder(service) {
       this.$modal.show(AcceptManagerOfferModal, {
-        service: tariff,
+        service: service,
         offer: this.offer
       })
     }
@@ -51,7 +60,6 @@ export default {
 }
 </script>
 
-
-<style scoped>
-
+<style lang="scss">
+@import "assets/sass/tariffs";
 </style>

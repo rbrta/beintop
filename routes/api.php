@@ -14,8 +14,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('services', 'Api\PagesController@services');
 Route::get('services/categories', 'Api\PagesController@categories');
+Route::get('services/{type?}', 'Api\PagesController@services');
 Route::match(['get', 'post'], 'manager/confirm', 'Api\ManagerController@confirmation');
 
 Route::prefix('auth')->group(static function() {
@@ -25,9 +25,10 @@ Route::prefix('auth')->group(static function() {
 });
 
 Route::prefix('user')->middleware('auth:api')->group(static function() {
-    Route::get('orders', 'Api\OrdersController@show');
+    Route::get('orders/{id?}', 'Api\OrdersController@show');
     Route::post('orders', 'Api\OrdersController@create');
     Route::get('accounts', 'Api\AccountsController@show');
+    Route::post('accounts', 'Api\AccountsController@store');
     Route::match(['get', 'post'], 'accounts/change-tariff', 'Api\AccountsController@changeTariff');
     Route::match(['get', 'post'], 'accept-offer', 'Api\ManagerController@acceptOffer');
 });

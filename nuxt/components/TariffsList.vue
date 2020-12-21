@@ -5,49 +5,35 @@
     </div>
     <div class="tariff-category">
       <div v-if="!hideCategories" class="tarif-category-title">
-        <div :class="showCategory === tariffsCategory ? 'active' : ''" @click="showCategory = tariffsCategory" v-for="(tariffs, tariffsCategory) in services">
-          Тарифы {{ tariffsCategory }}
+        <div v-for="category in visibleCategories"
+             :key="category.id"
+             :class="{ active : currentCategory === category.id }"
+             @click="currentCategory = category.id
+        ">
+          Тарифы {{ category.name }}
         </div>
       </div>
-      <div class="tarif-category-body" v-if="showCategory === tariffsCategory" v-for="(tariffs, tariffsCategory) in services">
-        <div class="tariff" v-for="service in tariffs" :key="service.id" @click="$emit('buy', service)">
-          <div class="module-border-wrap">
-            <div class="tariff__body">
-              <div class="likes">
-                {{ service.likes }} <font-awesome-icon icon="heart"/>
-              </div>
-
-              <div class="description">
-                на {{ service.posts }} постов + статистика (охват и сохранения) <br>
-
-                <div><b>{{ service.views }}</b> <font-awesome-icon icon="eye"/></div>
-
-                <template v-if="service.igtv_unlim">
-                  <div> <span class="unlimited">Безлимит </span> на Видео и IGTV </div>
-                </template>
-
-                <template v-if="service.bonus">
-                  + Бонус: {{ service.bonus }}
-                </template>
-              </div>
-
-              <div class="price">
-                <b class="period">{{ service.periodindays }} дней</b>
-                <div class="value">{{ service.price_formatted }} руб.</div>
-              </div>
-            </div>
-          </div>
-        </div>
+      <div class="tarif-category-body">
+        <TariffsListItem v-for="service in visibleServices" :key="service.id" :service="service" @buy="handleBuyClick"></TariffsListItem>
       </div>
     </div>
   </section>
 </template>
 
 <script>
+import TariffsListItem from "~/components/TariffsListItem";
+
 export default {
   name: "TariffsList",
   props: {
-    services: Object,
+    services: {
+      type: Array,
+      default: () => []
+    },
+    categories: {
+      type: Array,
+      default: () => []
+    },
     title: {
       type: String,
       default: 'Выберите Тариф'
@@ -58,297 +44,47 @@ export default {
     }
   },
 
+  components: {
+    TariffsListItem
+  },
+
   created() {
-    if(!this.services.hasOwnProperty('maxi')) {
-      this.showCategory = Object.keys(this.services)[0];
+    // first show services from the maxi category
+    // if the category "maxi" does not exist, then the current category will be the first category
+    const maxiCategory = this.visibleCategories.find(category => category.name === 'maxi');
+    this.currentCategory = maxiCategory !== -1 ? maxiCategory.id : this.visibleCategories[0].id;
+  },
+
+  computed: {
+    /**
+     * Show categories that have some services
+     * @returns {*[]}
+     */
+    visibleCategories() {
+      return this.categories.filter(category => this.services.some(service => service.category_id === category.id));
+    },
+
+    visibleServices() {
+      return this.currentCategory
+          ? this.services.filter(service => service.category_id === this.currentCategory)
+          : [];
     }
   },
 
   data() {
     return {
-      showCategory: 'maxi'
+      currentCategory: null
+    }
+  },
+
+  methods: {
+    handleBuyClick(service) {
+      this.$emit('buy', service)
     }
   }
 }
 </script>
 
 <style lang="scss">
-.tariffcontainer{
-
-  &-title{
-    font-weight: bold;
-    font-size: 3.3rem;
-    line-height: 1.5;
-    text-align: center;
-    color: #5C4998;
-
-    @media(max-width: 500px){
-      font-size: 1.7rem;
-    }
-  }
-
-  .tarif-category {
-    margin-top: 57px;
-    margin-bottom: 10rem;
-
-    &-title {
-      margin-top: 2rem;
-      margin-bottom: 40px;
-      display: flex;
-      justify-content: center;
-      font-weight: 800;
-      color: #fb378f;
-      font-size: 1.4rem;
-      text-transform: uppercase;
-      line-height: 1;
-
-
-
-      div {
-        border: 5px solid #bb56a1;
-        padding: 13px 95px;
-        cursor: pointer;
-        background: #fff;
-
-        @media(max-width: 700px){
-          padding: 15px;
-          text-align: center;
-        }
-
-        &.active {
-          background: linear-gradient(180deg, #B04E98 18.23%, #873E90 90.1%, #73307B 100%);
-          color: #fff;
-        }
-
-        &:first-child {
-          border-radius: 37px 0 0 37px;
-          border-right-width: 2px;
-        }
-        &:last-child {
-          border-radius: 0 37px 37px 0;
-          border-left-width: 2px;
-        }
-      }
-    }
-
-
-  }
-
-  .tariff {
-    margin-right: auto;
-    margin-left: auto;
-    margin-top: 17px;
-    font-size: 18px;
-    line-height: 27px;
-    letter-spacing: -0.03em;
-    font-weight: normal;
-    width: 1200px;
-    max-width: 100%;
-
-    &:hover {
-      transform: scale(1.01);
-      transition: transform 0.5s;
-    }
-
-    .tariff__body{
-      font-size: 17px;
-      width: 100%;
-      height: auto;
-      color: white;
-      background: linear-gradient(180deg, #B04E98 18.23%, #873E90 90.1%, #73307B 100%);
-      border-radius: 33px;
-      padding: 1rem;
-      text-transform: none;
-      display: flex;
-      justify-content: space-between;
-      cursor: pointer;
-
-      @media(max-width: 560px) {
-        flex-wrap: wrap;
-        justify-content: center;
-        padding: 2rem 1rem;
-      }
-
-
-      .flex {
-        display: flex;
-        justify-content: space-between;
-      }
-
-      .likes {
-        font-size: 2rem;
-        font-weight: bold;
-        padding: 0 1rem;
-        white-space: nowrap;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-
-        @media(max-width: 560px) {
-          margin-bottom: 1rem;
-        }
-
-
-        svg {
-          margin-left: 0.5rem;
-        }
-      }
-
-
-
-      .description {
-        width: 100%;
-
-        @media(max-width: 560px) {
-          margin-bottom: 1rem;
-        }
-
-        .unlimited {
-          text-transform: none;
-        }
-      }
-
-      .price {
-        align-self: center;
-        font-weight: bold;
-        padding: 0 1rem;
-        width: 400px;
-        text-align: center;
-
-        .value {
-          font-size: 2rem;
-        }
-        .period {
-          font-size: 1.2rem;
-        }
-
-      }
-
-
-    }
-
-    .module-border-wrap{
-      padding: 1rem;
-      position: relative;
-      background: linear-gradient(180deg, #FD92E3 18.23%, #873E90 90.1%, #7D3786 100%);
-      padding: 6px 5px;
-      border-radius: 39px;
-      padding-right: 6px;
-      margin: 0 auto;
-    }
-
-    .row1{
-      font-style: normal;
-      font-weight: bold;
-      font-size: 24px;
-      line-height: 29px;
-      text-align: center;
-      letter-spacing: -0.03em;
-      text-transform: capitalize;
-      margin-top: 30px;
-      padding-top: 28px;
-    }
-
-    .row2{
-      font-style: normal;
-      font-weight: 900;
-      font-size: 48px;
-      line-height: 59px;
-      text-align: center;
-      letter-spacing: 0.045em;
-      text-transform: uppercase;
-      margin-top: 2px;
-    }
-
-    .row3{
-      font-style: normal;
-      font-weight: normal;
-      font-size: 24px;
-      line-height: 29px;
-      text-align: center;
-      letter-spacing: -0.03em;
-      text-transform: capitalize;
-      margin-top: 4px;
-    }
-
-    .hr{
-      width: 250px;
-      height: 4px;
-      background-color: white;
-      margin: 0 auto;
-      margin-top: 11px;
-    }
-
-    .row8{
-      font-style: normal;
-      font-weight: bold;
-      font-size: 24px;
-      line-height: 29px;
-      text-align: center;
-      letter-spacing: 0.03em;
-      text-transform: capitalize;
-      margin-top: 30px;
-      margin-bottom: 30px;
-    }
-
-    .row9{
-      a{
-        width: 238px;
-        height: 53px;
-        background: #FFFFFF;
-        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.23);
-        border-radius: 39px;
-        margin: 0 auto;
-        color: #EB5B9C;
-        text-decoration: none;
-        display: block;
-        font-size: 20px;
-        line-height: 24px;
-        text-align: center;
-        font-style: normal;
-        font-weight: bold;
-        font-size: 20px;
-        line-height: 24px;
-        text-transform: uppercase;
-        padding-top: 13px;
-      }
-    }
-
-    .row4, .row5, .row6, .row7{
-      span{
-        font-weight: bold;
-      }
-    }
-
-    .unlimited{
-      color: rgb(255, 208, 57);
-    }
-
-    .row4{
-      margin-top: 10px;
-    }
-
-    .row6{
-      text-transform: none;
-      margin-top: 20px;
-      img{
-        display: inline-block;
-        margin: 0px;
-        padding: 0px;
-        width: 25px;
-      }
-      .ml{
-        font-weight: normal;
-      }
-    }
-
-    .row7{
-      text-transform: none;
-      img{
-        display: inline-block;
-        width: 25px;
-      }
-    }
-  }
-}
+@import "assets/sass/tariffs";
 </style>
