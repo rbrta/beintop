@@ -47,6 +47,13 @@
                 </td>
               </tr>
               </tbody>
+              <tfoot class="text-center" v-if="!services.length > 0">
+              <tr>
+                <td colspan="4">
+                  <p class="no-items">Тарифов не найдено</p>
+                </td>
+              </tr>
+              </tfoot>
             </table>
           </div>
         </div>
@@ -152,5 +159,9 @@ export default {
 
 .tabs-header ul > li:last-child {
   border-radius: 0 25px 0 0;
+}
+
+.no-items {
+  padding: 20px 0;
 }
 </style>
