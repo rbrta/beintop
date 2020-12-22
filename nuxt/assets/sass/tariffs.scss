@@ -127,6 +127,9 @@
 
       .description {
         width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
 
         @media(max-width: 560px) {
           margin-bottom: 1rem;

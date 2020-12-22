@@ -28,16 +28,6 @@
                 <div v-for="(error, index) in getErrors('price')" :key="index" class="form-error">{{ error }}</div>
               </div>
             </div>
-            <div class="col">
-              <div class="input-wrapper">
-                <label>Тип</label>
-                <div class="select-wrap">
-                  <select v-model="service.type" :disabled="service.id !== null">
-                    <option v-for="(type, index) in types" :value="index">{{ type.name }}</option>
-                  </select>
-                </div>
-              </div>
-            </div>
           </div>
           <div v-if="service.type === 'likes'">
             <div class="row">
@@ -134,7 +124,11 @@ export default {
     data: Object,
     categories: Array,
     updated: Function,
-    created: Function
+    created: Function,
+    serviceType: {
+      type: String,
+      default: 'likes'
+    }
   },
 
   mixins: [FormValidation],
@@ -174,6 +168,8 @@ export default {
       Object.keys(this.service).forEach(field => {
         this.service[field] = this.data[field];
       })
+    } else {
+      this.service.type = this.serviceType;
     }
   },
 
