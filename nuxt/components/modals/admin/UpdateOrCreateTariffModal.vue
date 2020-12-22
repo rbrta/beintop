@@ -14,10 +14,10 @@
                 <div v-for="(error, index) in getErrors('name')" :key="index" class="form-error">{{ error }}</div>
               </div>
             </div>
-            <div class="col">
+            <div class="col" v-if="service.type === 'likes'">
               <div class="input-wrapper">
                 <label>Период (дней)</label>
-                <input :disabled="service.type !== 'likes'" placeholder="Кол-во дней" v-model="service.periodindays" type="number">
+                <input placeholder="Кол-во дней" v-model="service.periodindays" type="number">
                 <div v-for="(error, index) in getErrors('periodindays')" :key="index" class="form-error">{{ error }}</div>
               </div>
             </div>

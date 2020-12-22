@@ -59,20 +59,16 @@ export default {
 
   methods: {
     openChat(service) {
-      if(window.Tawk_API) {
+      if(!window.Tawk_API) {
         return false;
       }
-      
-      let data = {};
 
-      if(this.$auth.loggedIn) {
-        data.name = this.$auth.user.full_name;
-        data.email = this.$auth.user.email;
-      }
+      Tawk_API.addEvent('tariff-get-help', {
+        'type' : service.type,
+        'name' : service.name,
+        'price' : `${service.price} руб.`
+      }, function(error){});
 
-      data.tariff = `${service.name} (${service.price} руб.) - ${service.type}`;
-
-      Tawk_API.setAttributes(data, function(error){});
       this.$nextTick(() => Tawk_API.maximize())
     }
   }

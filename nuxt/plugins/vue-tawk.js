@@ -1,12 +1,15 @@
 import Vue from 'vue'
 
-function initTawkChat() {
+
+function initTawkChat(visitor = {}, onLoad) {
     if (window.Tawk_API) {
         return true
     }
 
-    let Tawk_API = {}
-    let Tawk_LoadStart = new Date()
+    let Tawk_API = Tawk_API || {};
+    Tawk_API.onLoad = onLoad;
+    Tawk_API.visitor = visitor;
+
     let s1 = document.createElement("script")
     let s0 = document.getElementsByTagName("script")[0]
     s1.async = true
@@ -20,8 +23,15 @@ function initTawkChat() {
 Vue.mixin({
     beforeRouteEnter (to, from, next) {
         next(vm => {
-            if(process.client && (!vm.$auth.$state.loggedIn || vm.$auth.$state.user.usertype === 'user')) {
-                initTawkChat();
+            if(process.client && !window.Tawk_API && (!vm.$auth.$state.loggedIn || vm.$auth.$state.user.usertype === 'user')) {
+                const visitor = vm.$auth.$state.loggedIn ? {
+                        name: vm.$auth.$state.user.full_name,
+                        email : vm.$auth.$state.user.email
+                    } : null;
+
+                initTawkChat(visitor, function () {
+
+                });
             }
         })
     }
