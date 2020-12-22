@@ -4,7 +4,7 @@
       <div class="tabs-wrapper">
         <div class="tabs-header">
           <ul>
-            <li @click="servicesType = 'likes'" :class="{ active : servicesType === 'likes' }">Лайки</li>
+            <li @click="servicesType = 'likes'" :class="{ active : servicesType === 'likes' }">Активность</li>
             <li @click="servicesType = 'subscribers'" :class="{ active : servicesType === 'subscribers' }">Подписчики</li>
           </ul>
         </div>

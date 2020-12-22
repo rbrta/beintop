@@ -2,7 +2,7 @@
   <div>
     <h1 class="title">Выберите Услугу</h1>
     <div class="text-center services-type">
-      <button :class="{ active : servicesType === 'likes' }" @click="servicesType = 'likes'">Лайки</button>
+      <button :class="{ active : servicesType === 'likes' }" @click="servicesType = 'likes'">Активность</button>
       <button :class="{ active : servicesType === 'subscribers' }" @click="servicesType = 'subscribers'">Подписчики</button>
     </div>
     <TariffsList :services="services" :categories="categories" @buy="buyTariff"></TariffsList>
