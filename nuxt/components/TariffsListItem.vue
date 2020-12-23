@@ -44,7 +44,7 @@
             <div class="value">
               {{ service.price_formatted }} руб.
             </div>
-            <a href="#" class="help" @click.stop.prevent="openChat(service)">Задать вопрос</a>
+            <a href="#" class="help" @click.stop.prevent="openChat(service)">Заказать</a>
           </div>
         </template>
       </div>
