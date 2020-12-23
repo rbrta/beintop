@@ -167,6 +167,9 @@ export default {
     if(this.data) {
       Object.keys(this.service).forEach(field => {
         this.service[field] = this.data[field];
+        if(this.data.parameters.igtv_unlim) {
+          this.service.parameters.igtv_unlim = this.data.parameters.igtv_unlim === '1';
+        }
       })
     } else {
       this.service.type = this.serviceType;

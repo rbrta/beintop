@@ -70,7 +70,7 @@ class PagesController extends Controller
                 ServiceParameter::create([
                     'service_id' => $service->id,
                     'key' => $paramKey,
-                    'value' => $paramValue
+                    'value' => is_bool($paramValue) ? ($paramValue ? '1' : '0') : $paramValue
                 ]);
             }
 

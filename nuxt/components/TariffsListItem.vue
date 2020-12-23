@@ -16,7 +16,7 @@
             <div class="value">
               {{ service.price_formatted }} руб.
             </div>
-            <a href="#" class="help" @click.stop.prevent="openChat(service)">Задать вопрос</a>
+            <a href="#" class="help" @click.stop.prevent="openChat(service)">Заказать</a>
           </div>
         </template>
         <template v-else>
@@ -28,7 +28,7 @@
             <div>
               <b>{{ service.parameters.views }}</b> <font-awesome-icon icon="eye"/>
             </div>
-            <template v-if="service.parameters.igtv_unlim">
+            <template v-if="service.parameters.igtv_unlim && service.parameters.igtv_unlim === '1'">
               <div>
                 <span class="unlimited">Безлимит </span> на Видео и IGTV
               </div>

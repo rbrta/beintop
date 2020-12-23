@@ -23,7 +23,7 @@
               <div class="views">{{ order.service.parameters.views }}</div>
               <div class="views_label">Просмотров</div>
             </template>
-            <template v-if="order.service.parameters.igtv_unlim">
+            <template v-if="order.service.parameters.igtv_unlim && order.service.parameters.igtv_unlim === '1'">
               <div class="igtv_label">На видео и IGTV</div>
               <div class="igtv_label_unlim">(<span>Безлимит</span><div class="fire"></div>)</div>
             </template>

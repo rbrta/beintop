@@ -76,7 +76,7 @@
           <div class="col col3">
             <div class="col__title"><img src="/images/pay-card.svg" alt=""></div>
             <div class="col__desc">
-              Нажмите “Заказать” и перейдите к оплате
+              Нажмите «Заказать», чтобы узнать подробную информацию
             </div>
           </div>
           <div class="col arrow col4">

@@ -22,23 +22,33 @@ export default {
 
   computed: {
     menuItems() {
-      const items = [
-        {
-          title: 'Подписчики',
-          link: '/subscribers',
-          icon: 'users'
-        },
-        {
-          title: 'Наши преимущества',
-          link: '#advantage',
-          icon: 'star'
-        },
-        {
-          title: 'Выбрать тарифы',
-          link: '#tariffs',
-          icon: 'th'
-        }
-      ];
+      const items = [];
+
+      if(this.$route.name === 'subscribers') {
+        items.push({
+          title: 'Активность',
+          link: '/',
+          icon: 'heart'
+        });
+      } else {
+        items.push(
+            {
+              title: 'Подписчики',
+              link: '/subscribers',
+              icon: 'users'
+            }, {
+              title: 'Наши преимущества',
+              link: '#advantage',
+              icon: 'star'
+            }
+        );
+      }
+
+      items.push({
+            title: 'Выбрать тарифы',
+            link: '#tariffs',
+            icon: 'th'
+      });
 
       if(this.$auth.loggedIn) {
         items.push({
