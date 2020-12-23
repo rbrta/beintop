@@ -27,7 +27,14 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'full_name', 'email', 'password', 'usertype', 'manager', 'insta_account', 'phone', 'login_code'
+        'full_name',
+        'email',
+        'password',
+        'usertype',
+        'manager',
+        'insta_account',
+        'phone',
+        'login_code'
     ];
 
     /**
@@ -48,13 +55,10 @@ class User extends Authenticatable
         'created_at' => 'date:Y-m-d'
     ];
 
-
-
     public function sendPasswordResetNotification($token)
     {
         $this->notify(new ResetPasswordNotification($token));
     }
-
 
     public static function randManager()
     {
@@ -118,5 +122,8 @@ class User extends Authenticatable
         return mb_strimwidth(mt_rand(), 0, 5) . '-' . mb_strimwidth(mt_rand(), 0, 5);
     }
 
-
+    public function getAccountsListAttribute()
+    {
+        return $this->accounts->implode('account_name', ', ');
+    }
 }

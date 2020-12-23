@@ -16,7 +16,7 @@
         <td data-label="Клиенты">{{ item.clients_count }}</td>
         <td data-label="Статус">{{ item.status && item.status === 'invited' || item.full_name === 'Invited Manager' ? 'ожидает подтверждения' : 'активный' }}</td>
         <td data-label="Actions" class="table-action">
-          <a v-if="item.id" @click.prevent="showClients(item.id)" class="btn" href="#"><font-awesome-icon icon="users" /></a>
+          <nuxt-link class="btn" tag="a" :to="`/admin/managers/${item.id}`"><font-awesome-icon icon="users" /></nuxt-link>
           <a v-if="item.id" @click.prevent="deleteItem(item.id, index)" class="btn" href="#"><font-awesome-icon icon="trash-alt" /></a>
         </td>
       </tr>
@@ -34,7 +34,6 @@
 </template>
 
 <script>
-import ManagerClientsModal from '@/components/modals/admin/ManagerClientsModal'
 import DeleteManagerModal from '@/components/modals/admin/DeleteManagerModal'
 import InviteManagerModal from '@/components/modals/admin/InviteManagerModal'
 
@@ -59,20 +58,6 @@ export default {
   },
 
   methods: {
-    async showClients(manager_id) {
-      const clients = await this.$axios.$get('/admin/manager/clients', {
-        params: {
-          manager_id
-        }
-      });
-
-      this.$modal.show(ManagerClientsModal, {
-        clients
-      }, {
-        width: 860
-      })
-    },
-
     async getManagers() {
       this.managers = await this.$axios.$get('/admin/managers');
     },

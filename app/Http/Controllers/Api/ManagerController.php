@@ -20,7 +20,7 @@ class ManagerController extends Controller
      * @param Request $request
      * @return JsonResponse
      */
-    public function clients(Request $request): JsonResponse
+    public function clients($id = null, Request $request): JsonResponse
     {
         if($request->isMethod('post')) {
             $user = User::create([
@@ -43,26 +43,30 @@ class ManagerController extends Controller
                 'id' => 'required'
             ]);
 
-            $account = Account::find($request->get('id'));
-            $account->orders()->delete();
-            $account->delete();
+            $user = User::find($request->get('id'));
+            $user->accounts()->delete();
+            $user->orders()->delete();
+            $user->offers()->delete();
+            $user->delete();
 
             return response()->json();
         }
 
-        if($request->exists('manager_id')) {
+        if($id) {
             $manager = User::where([
-                'id' => $request->get('manager_id'),
                 'usertype' => User::USERTYPE_MANAGER
-            ])->firstOrFail();
+            ])->findOrFail($id);
 
-            $accounts = Account::whereHas('user', static function($q) use ($manager) {
-                $q->where('manager', $manager->id);
-            })->with('user')->get();
+            $managerClients = User::where('manager', $manager->id)->with('accounts')->get([
+                'id',
+                'full_name',
+                'phone',
+            ]);
 
-            $accounts = $accounts->sortBy('latest_order.expiration_date')->values();
-
-            return response()->json($accounts);
+            return response()->json([
+                'manager' => $manager,
+                'clients' => $managerClients->each->append('accounts_list')
+            ]);
         }
 
         $accounts = Account::whereHas('user', static function($q) {

@@ -41,7 +41,7 @@ Route::prefix('manager')->middleware(['auth:api', 'manager'])->group(static func
 Route::prefix('admin')->middleware(['auth:api', 'admin'])->group(static function() {
     Route::match(['post', 'delete'], 'services', 'Api\PagesController@services');
     Route::match(['get', 'post', 'delete'], 'managers', 'Api\PagesController@managers');
-    Route::match(['get', 'delete'], 'manager/clients', 'Api\ManagerController@clients');
+    Route::match(['get', 'delete'], 'manager/{id?}/clients', 'Api\ManagerController@clients');
 });
 
 Route::get('users', 'Api\PagesController@users')->middleware('auth:api');
