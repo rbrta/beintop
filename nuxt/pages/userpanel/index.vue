@@ -18,11 +18,13 @@
               <div class="text-default">{{ order.account.account_name }}</div>
             </td>
             <td data-label="Услуга">
-              <div class="text-big">{{ order.service.category.name }}</div>
-              <div class="text-large">{{ order.service.name }}</div>
+              <template v-if="order.service">
+                <div class="text-big">{{ order.service.category.name }}</div>
+                <div class="text-large">{{ order.service.name }}</div>
+              </template>
             </td>
             <td data-label="Дата окончания">
-              <template v-if="order.service.type !== 'subscribers'">
+              <template v-if="order.service && order.service.type !== 'subscribers'">
                 <div class="text-big">{{ order.expiration_date_format }}</div>
                 <div class="text-small" v-if="order.is_expired">закончился {{ order.days }} {{ $plur(order.days, $plurString.days) }} назад</div>
                 <div class="text-small" v-else>{{ $plur(order.days, ['остался', 'осталось', 'осталось']) }} {{ order.days }} {{ $plur(order.days, $plurString.days) }}</div>
@@ -32,8 +34,10 @@
               </template>
             </td>
             <td data-label="Действия">
-              <a v-if="order.service.periodindays && order.is_expired" href="#" class="btn" @click.prevent="prolongOrder(order)">Продлить</a>
-              <nuxt-link v-else class="btn" :to="`/userpanel/details/${order.id}`">Детали</nuxt-link>
+              <template v-if="order.service">
+                <a v-if="order.service.periodindays && order.is_expired" href="#" class="btn" @click.prevent="prolongOrder(order)">Продлить</a>
+                <nuxt-link v-else class="btn" :to="`/userpanel/details/${order.id}`">Детали</nuxt-link>
+              </template>
               <!--<nuxt-link v-else class="btn" :to="{ path: '/userpanel/new?account=' + account.id }">Выбрать тариф</nuxt-link>-->
             </td>
           </tr>

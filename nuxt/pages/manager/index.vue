@@ -20,7 +20,12 @@
             <td data-label="Аккаунт">{{ item.account_name }}</td>
             <td data-label="Тариф">
               <div v-for="order in item.orders">
-                {{ order.service.category.name }} {{ order.service.name }}
+                <template v-if="order.service">
+                  {{ order.service.category.name }} {{ order.service.name }}
+                </template>
+                <template v-else>
+                  удаленный
+                </template>
               </div>
             </td>
             <td data-label="Дата оплаты">

@@ -59,17 +59,18 @@ export default {
 
   methods: {
     openChat(service) {
-      if(!window.Tawk_API) {
+      if(!window.jivo_api) {
         return false;
       }
 
-      Tawk_API.addEvent('tariff-get-help', {
-        'type' : service.type,
-        'name' : service.name,
-        'price' : `${service.price} руб.`
-      }, function(error){});
+      jivo_api.setCustomData([
+        {
+          title: "Выбранный тариф",
+          content: `${service.name} (${service.type}) — ${service.price} руб.`,
+        }
+      ]);
 
-      this.$nextTick(() => Tawk_API.maximize())
+      jivo_api.open();
     }
   }
 }

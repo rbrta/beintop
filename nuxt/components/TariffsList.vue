@@ -49,12 +49,7 @@ export default {
   },
 
   created() {
-    // first show services from the maxi category
-    // if the category "maxi" does not exist, then the current category will be the first category
-    if(this.visibleCategories.length > 0) {
-      const maxiCategory = this.visibleCategories.find(category => category.name === 'maxi');
-      this.currentCategory = maxiCategory ? maxiCategory.id : this.visibleCategories[0].id;
-    }
+    this.setCurrentCategory();
   },
 
   computed: {
@@ -82,8 +77,17 @@ export default {
   methods: {
     handleBuyClick(service) {
       this.$emit('buy', service)
+    },
+
+    // first show services from the maxi category
+    // if the category "maxi" does not exist, then the current category will be the first category
+    setCurrentCategory() {
+      if(this.visibleCategories.length > 0) {
+        const maxiCategory = this.visibleCategories.find(category => category.name === 'maxi');
+        this.currentCategory = maxiCategory ? maxiCategory.id : this.visibleCategories[0].id;
+      }
     }
-  }
+  },
 }
 </script>
 

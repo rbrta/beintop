@@ -32,6 +32,7 @@ export default {
   env: {
     baseUrl: process.env.BASE_URL || 'http://localhost:8001',
     apiUrl: process.env.API_URL || 'http://localhost:8001/api',
+    jivoSiteUrl: process.env.JIVOSITE_URL || 'http://localhost:8001',
   },
 
   /*
@@ -49,7 +50,7 @@ export default {
     '~plugins/plur-strings',
     { src: '~plugins/vue-countdown', mode: 'client' },
     { src: '~plugins/vue-toast-notification', mode: 'client' },
-    { src: '~plugins/vue-tawk', mode: 'client' },
+    { src: '~plugins/vue-jivosite', mode: 'client' },
   ],
   /*
   ** Auto import components

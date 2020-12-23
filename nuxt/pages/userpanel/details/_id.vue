@@ -104,6 +104,11 @@ export default {
 
   methods: {
     prolongOrder () {
+      if(this.order.service.deleted_at) {
+        this.$toast.error('Данный пакет услуг является архивным — его нельзя продлить. Нажмите «Изменить», чтобы выбрать новый пакет услуг.');
+        return false;
+      }
+
       this.$modal.show(ActivateServiceModal, {
         service: this.order.service,
         category: this.order.service.category,

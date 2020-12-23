@@ -5,7 +5,7 @@
       <button :class="{ active : servicesType === 'likes' }" @click="servicesType = 'likes'">Активность</button>
       <button :class="{ active : servicesType === 'subscribers' }" @click="servicesType = 'subscribers'">Подписчики</button>
     </div>
-    <TariffsList :services="services" :categories="categories" @buy="buyTariff"></TariffsList>
+    <TariffsList ref="tariffs" :services="services" :categories="categories" @buy="buyTariff"></TariffsList>
   </div>
 </template>
 
@@ -75,6 +75,7 @@ export default {
       try {
         const data = await this.$axios.$get(`/services/${this.servicesType}`);
         this.services = data.services;
+        this.$nextTick(() => this.$refs.tariffs.setCurrentCategory());
       } catch (err) {
         console.error(err);
       }
