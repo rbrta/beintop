@@ -43,7 +43,12 @@ class ManagerController extends Controller
                 'id' => 'required'
             ]);
 
-            $user = User::find($request->get('id'));
+            if($request->user()->usertype === User::USERTYPE_MANAGER) {
+                $user = $request->user()->clients()->findOrFail($request->get('id'));
+            } else {
+                $user = User::find($request->get('id'));
+            }
+
             $user->accounts()->delete();
             $user->orders()->delete();
             $user->offers()->delete();
@@ -69,16 +74,14 @@ class ManagerController extends Controller
             ]);
         }
 
-        $accounts = Account::whereHas('user', static function($q) {
-            $q->where('manager', auth()->user()->id);
-        })->with(['user', 'orders' => function($query) {
+        $clients = User::where('manager', auth()->user()->id)->with(['orders' => function($query) {
             $query->where('paid_status', Order::STATUS_ACTIVE);
-            $query->with('service', 'service.category');
+            $query->with('service', 'account', 'service.category');
         }])->get();
 
-        $accounts = $accounts->sortBy('latest_order.expiration_date')->values();
+        $clients = $clients->each->append('accounts_list');
 
-        return response()->json($accounts);
+        return response()->json($clients);
     }
 
     /**

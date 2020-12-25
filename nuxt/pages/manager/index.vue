@@ -9,38 +9,28 @@
           <caption>Клиенты</caption>
           <thead>
           <tr class="table-title">
-            <th>Аккаунт</th>
-            <th>Тариф</th>
-            <th>Дата оплаты</th>
-            <th>Дата окончания</th>
+            <th>Имя</th>
+            <th>Email</th>
+            <th>Телефон</th>
+            <th>Аккаунты</th>
+            <th>Действия</th>
           </tr>
           </thead>
           <tbody>
-          <tr v-for="(item, index) in clients" :key="item.id">
-            <td data-label="Аккаунт">{{ item.account_name }}</td>
-            <td data-label="Тариф">
-              <div v-for="order in item.orders">
-                <template v-if="order.service">
-                  {{ order.service.category.name }} {{ order.service.name }}
-                </template>
-                <template v-else>
-                  удаленный
-                </template>
-              </div>
-            </td>
-            <td data-label="Дата оплаты">
-              <div v-for="order in item.orders">
-                {{ order.created_at_format }}
-              </div>
-            </td>
-            <td data-label="Дата окончания">
-              <div v-for="order in item.orders">
-                {{ order.expiration_date_format }}
-              </div>
-            </td>
-            <td data-label="Actions" class="table-action">
-              <a class="btn" @click.prevent="copyLink(item)" href="#" title="Скопировать ссылку для входа пользователя">
+          <tr v-for="(client, index) in clients" :key="client.id">
+            <td data-label="Имя">{{ client.full_name || '-' }}</td>
+            <td data-label="Email">{{ client.email || '-' }}</td>
+            <td data-label="Телефон">{{ client.phone || '-' }}</td>
+            <td data-label="Аккаунты">{{ client.accounts_list }}</td>
+            <td data-label="Действия" class="table-action">
+              <a class="btn" @click.prevent="copyLink(client)" href="#" title="Скопировать ссылку для входа пользователя">
                 <font-awesome-icon icon="link"/> Скопировать ссылку
+              </a>
+              <a class="btn" @click.prevent="showClientOrders(client)" href="#">
+                Заказы
+              </a>
+              <a class="btn" @click.prevent="deleteClient(client)" href="#">
+                <font-awesome-icon icon="trash-alt" /> Удалить
               </a>
             </td>
           </tr>
@@ -57,6 +47,7 @@
 
 <script>
 import AddClientModal from '~/components/modals/manager/AddClientModal'
+import ClientOrders from "~/components/managers/ClientOrders";
 import copy from 'copy-to-clipboard';
 
 export default {
@@ -94,14 +85,47 @@ export default {
     addClient() {
       this.$modal.show(AddClientModal, {
         created: (item) => {
-          this.clients.push(item);
+          this.getClients();
         }
       })
     },
 
-    copyLink(account) {
-      if(copy(process.env.baseUrl + '/login/' + account.user.login_code)) {
+    showClientOrders(client) {
+      this.$modal.show(ClientOrders, {
+        client: client
+      })
+    },
+
+    async getClients() {
+      try {
+        this.clients = await this.$axios.$get('/manager/clients');
+      } catch (e) {
+        console.error(e);
+      }
+    },
+
+    copyLink(client) {
+      if(copy(process.env.baseUrl + '/login/' + client.login_code)) {
         this.$toast.success('Ссылка скопирована в буфер обмена');
+      }
+    },
+
+    async deleteClient(client) {
+      if(confirm('Вы уверены, что хотите удалить клиента? Все его заказы и аккаунты будут так же удалены.')) {
+        try {
+          await this.$axios.$delete(`/manager/clients`, {
+            params: {
+              id: client.id
+            }
+          });
+
+          const index = this.clients.indexOf(client);
+          if(index !== -1) {
+            this.clients.splice(index, 1);
+          }
+        } catch (e) {
+          console.error(e);
+        }
       }
     }
   },

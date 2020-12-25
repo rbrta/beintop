@@ -34,7 +34,7 @@ Route::prefix('user')->middleware('auth:api')->group(static function() {
 });
 
 Route::prefix('manager')->middleware(['auth:api', 'manager'])->group(static function() {
-    Route::match(['get', 'post'], 'clients', 'Api\ManagerController@clients');
+    Route::match(['get', 'post', 'delete'], 'clients', 'Api\ManagerController@clients');
     Route::post('add-offer', 'Api\ManagerController@addOffer');
 });
 
