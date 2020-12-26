@@ -144,13 +144,14 @@ export default {
   margin: 0 0 -1px 0;
   padding: 0;
   list-style: none;
-  display: inline-flex;
+  display: flex;
 }
 
 .tabs-header ul > li {
-  display: inline-flex;
   border: 1px solid #e9e9e9;
-  padding: 10px 60px;
+  padding: 10px;
+  width: 200px;
+  text-align: center;
   margin-right: -1px;
   border-radius: 25px 0 0 0;
   cursor: pointer;

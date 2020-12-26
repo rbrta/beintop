@@ -9,8 +9,8 @@
           <label for="client">Предложение для пользователя</label>
           <div class="select-wrap">
             <select id="client" v-model="form.user_id">
-              <option :value="null">Выберите аккаунт</option>
-              <option v-for="client in clients" :value="client.user_id">{{ client.account_name }}</option>
+              <option :value="null">Выберите клиента</option>
+              <option v-for="client in clients" :value="client.id">{{ client|username }}</option>
             </select>
           </div>
         </div>
@@ -25,6 +25,9 @@
           </label>
           <input v-model="form.price" id="price" placeholder="Стоимость тарифа" type="text">
         </div>
+      </div>
+      <div class="row" v-if="error">
+        <p class="error-message" v-if="error == 'user'">Ошибка! Сначала выберите клиента</p>
       </div>
       <div class="row" style="text-align: center">
         <span class="btn" @click.prevent="createOffer">Получить ссылку</span>
@@ -58,6 +61,7 @@ export default {
 
   data() {
     return {
+      error: null,
       clients: [],
       form: {
         user_id: null,
@@ -67,12 +71,28 @@ export default {
     }
   },
 
+  filters: {
+    username: function (user) {
+      return user.full_name.length > 0 ? user.full_name : user.phone;
+    }
+  },
+
   methods: {
     async getClients() {
       this.clients = await this.$axios.$get('/manager/clients');
     },
 
     async createOffer() {
+      if(this.form.user_id == null) {
+        this.error = 'user';
+
+        setTimeout(()=>{
+          this.error = null
+        }, 5000);
+        
+        return false;
+      }
+
       try {
         const data = await this.$axios.$post('/manager/add-offer', {
           ...this.form,
@@ -119,5 +139,13 @@ export default {
   width: calc(100% + 60px)!important;
   margin: 0 -30px;
   font-size: 1rem!important;
+}
+
+.error-message {
+  font-weight: bold;
+  color: red;
+  text-transform: uppercase;
+  text-align: center;
+  font-size: 15px;
 }
 </style>
