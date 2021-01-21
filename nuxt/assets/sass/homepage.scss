@@ -32,54 +32,42 @@
         background-position: -540px -62px, 140px -80px, 393px 126px;
         padding-bottom: 930px;
     }
-    @media(max-width:1011px) {
-        background-size: 330% auto, auto, 75%;
-        background-position: -540px 12px, 140px -80px, 393px 126px;
-    }
-    @media(max-width:990px) {
-        background-size: 350% auto, auto, 75%;
-    }
-    @media(max-width:927px) {
-        background-size: 390% auto, auto, 75%;
-    }
-    @media(max-width:875px) {
-        background-size: 410% auto, auto, 75%;
-    }
-    @media(max-width:830px) {
-        background-size: 430% auto, auto, 75%;
-    }
-    @media(max-width:790px) {
-        background-size: 460% auto, auto, 75%;
-    }
-    @media(max-width:720px) {
-        background-size: 500% auto, auto, 75%;
-    }
-    @media(max-width:700px) {
-        background-size: 520% auto, auto, 75%;
-    }
 
 
-    @media(max-width:675px) {
-        background-image: url(/images/homepage/beintop_mobile_middle_pattern.png);
-        background-repeat: repeat-y;
+    @media(max-width:1200px) {
         position: relative;
-        background-position: left bottom;
         background-size: 100%;
         padding-bottom: 0;
+      background: linear-gradient(-90deg, rgba(174, 77, 152, 1) 5%, rgba(139, 64, 145, 1)) 95% center;
     }
 
-    &:before {
-        @media(max-width:675px) {
+  @media(max-width:720px) {
+    background-size: 180%;
+    background-position: center;
+  }
 
-            content: " ";
-            width: 100%;
-            height: 610px;
-            position: absolute;
-            top: 0;
-            left: 0;
-            background: url(/images/homepage/beintop_mobile_waves_top.png) no-repeat center 101%/100%;
-            background-color: #fff;
-        }
+    &:before {
+      @media(max-width:1200px) {
+        content: " ";
+        width: 100%;
+        height: 610px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background: url(/images/homepage/beintop_mobile_waves_top.png) no-repeat center 100%/100%;
+        background-color: #fff;
+      }
+
+      @media(max-width:720px) {
+        content: " ";
+        width: 100%;
+        height: 610px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background: url(/images/homepage/beintop_mobile_waves_top.png) no-repeat center 100%/180%;
+        background-color: #fff;
+      }
 
     }
 
@@ -314,15 +302,23 @@
 }
 
 .mobile-bottom-waves {
-    @media(max-width:675px) {
+  @media(max-width:1200px) {
+    content: " ";
+    width: 100%;
+    height: 61vw;
+    position: relative;
+    background: url(/images/homepage/beintop_mobile_waves_bottom.png) no-repeat top center/100%;
+    background-color: #fff;
+  }
 
-        content: " ";
-        width: 100%;
-        height: 61vw;
-        position: relative;
-        background: url(/images/homepage/beintop_mobile_waves_bottom.png) no-repeat top center/100%;
-        background-color: #fff;
-    }
+  @media(max-width:720px) {
+    content: " ";
+    width: 100%;
+    height: 61vw;
+    position: relative;
+    background: url(/images/homepage/beintop_mobile_waves_bottom.png) no-repeat top center/180%;
+    background-color: #fff;
+  }
 }
 
 .container-middle{
