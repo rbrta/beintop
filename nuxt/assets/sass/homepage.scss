@@ -74,14 +74,13 @@
 }
 
 .wrapper-content.promotion-wrapper {
+
+  @media(max-width:1200px) {
+    display: flex;
+    flex-direction: column-reverse;
+    max-width: 100%;
     position: relative;
-
-    @media(max-width:1011px) {
-        display: flex;
-        flex-direction: column-reverse;
-        max-width: 100%;
-
-    }
+  }
 
     .rocket{
         position: absolute;
