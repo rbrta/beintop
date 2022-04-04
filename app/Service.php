@@ -66,4 +66,9 @@ class Service extends Model
 
         return $result;
     }
+
+    public function social(): BelongsTo
+    {
+        return $this->belongsTo(Social::class);
+    }
 }
