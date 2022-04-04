@@ -21,10 +21,10 @@ export default {
 
   async asyncData({ $axios, error }) {
     try {
-      const data = await $axios.$get('/services/likes');
+      const data = await $axios.$get('/services/');
+      с
       return {
-        services: data.services,
-        categories: data.categories,
+        ...data
       };
     } catch (err) {
       console.error(err.response.data || err);
