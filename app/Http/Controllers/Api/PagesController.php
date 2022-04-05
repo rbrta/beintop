@@ -144,7 +144,8 @@ class PagesController extends Controller
 
         return response()->json([
             'services' => $services,
-            'categories' => Category::all(['id', 'name'])
+            'categories' => Category::all(['id', 'name']),
+            'socials' => Social::all()
         ]);
     }
 
