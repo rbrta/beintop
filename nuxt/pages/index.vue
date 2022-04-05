@@ -22,7 +22,6 @@ export default {
   async asyncData({ $axios, error }) {
     try {
       const data = await $axios.$get('/services/');
-      с
       return {
         ...data
       };
