@@ -7,8 +7,8 @@
             <li
               v-for="social in socials"
               :key="social.id"
-              @click="socialType = social.code"
-              :class="{ active: socialType === social.code }"
+              @click="socialId = social.id"
+              :class="{ active: socialId === social.id }"
             >{{ social.name }}</li>
           </ul>
         </div>
@@ -100,13 +100,13 @@ export default {
       services: [],
       categories: [],
       servicesType: 'likes',
-      socialType: 'instagram'
+      socialId: 1
     }
   },
 
   computed: {
     currentServices() {
-      return this.services.filter(service => service.type === this.servicesType && service.social?.code === this.socialType)
+      return this.services.filter(service => service.type === this.servicesType && service.social_id === this.socialId)
     }
   },
 
@@ -116,9 +116,9 @@ export default {
         data: service,
         categories: this.categories,
         serviceType: this.servicesType,
-        updated: (item) => this.getServices(),
-        created: (item) => this.services.push(item),
-        social_id: this.socials.find(social => social.code === this.socialType).id
+        updated: (item) => this.services = [...this.services.filter(el => el.id !== item.id), item],
+        created: (item) => this.services = [...this.services, item],
+        social_id: this.socialId
       }, {
         width: 880
       })
@@ -126,6 +126,7 @@ export default {
 
     async deleteItem(service) {
       if (confirm('Вы уверены, что хотите удалить данный тариф?')) {
+        let loader = this.$loading.show();
         await this.$axios.$delete('/admin/services', {
           params: {
             id: service.id
@@ -136,6 +137,7 @@ export default {
         if (index !== -1) {
           this.services.splice(index, 1);
         }
+        loader.hide();
 
         this.$toast.success('Тариф успешно удален');
       }
