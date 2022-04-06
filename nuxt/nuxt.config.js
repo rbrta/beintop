@@ -57,7 +57,8 @@ export default {
     "~plugins/plur-strings",
     { src: "~plugins/vue-countdown", mode: "client" },
     { src: "~plugins/vue-toast-notification", mode: "client" },
-    { src: "~plugins/vue-jivosite", mode: "client" }
+    { src: "~plugins/vue-jivosite", mode: "client" },
+    { src: "~plugins/vue-loader-overlay", mode: "client" }
   ],
   /*
    ** Auto import components

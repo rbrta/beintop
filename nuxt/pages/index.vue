@@ -2,7 +2,7 @@
   <main>
     <div id="app" class="container-middle">
       <div class="wrapper-content">
-        <TariffsList :services="services" :categories="categories"></TariffsList>
+        <TariffsList :services="services" :categories="categories" :socials="socials"></TariffsList>
       </div>
     </div>
   </main>
@@ -40,6 +40,7 @@ export default {
     return {
       services: [],
       categories: [],
+      socials: []
     }
   },
 

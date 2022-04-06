@@ -217,6 +217,7 @@ export default {
 
   methods: {
     async submit() {
+      let loader = this.$loading.show();
       try {
         const data = await this.$axios.$post('/admin/services', {
           ...this.service,
@@ -228,10 +229,13 @@ export default {
           this.updated(data);
         } else {
           this.created(data);
-          this.$emit('close');
         }
       } catch (e) {
-        this.errors = e.response.data.errors || {};
+        console.log(e);
+        this.errors = e.response && e.response.data.errors || {};
+      } finally {
+        loader.hide()
+        this.$emit('close');
       }
     },
 
