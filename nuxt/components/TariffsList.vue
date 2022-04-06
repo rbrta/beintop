@@ -1,6 +1,6 @@
 <template>
   <section id="tariffs" class="tariffcontainer">
-    <h1 class="title" v-if="socials && socials.length > 0">Выберите сеть</h1>
+    <h1 class="title" v-if="socials && socials.length > 0">Выберите Сеть</h1>
     <div class="text-center services-type">
       <button
         v-for="social in socials"
@@ -9,7 +9,7 @@
         @click="changeSocialId(social.id)"
       >{{ social.name }}</button>
     </div>
-    <h2 class="title title--secondary" v-if="socials && socials.length > 0">Выберите услугу</h2>
+    <h2 class="title title--secondary" v-if="socials && socials.length > 0">Выберите Услугу</h2>
     <div class="text-center services-type">
       <button
         :class="{ active: currentServiceType === 'likes' }"
