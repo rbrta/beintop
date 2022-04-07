@@ -1,5 +1,6 @@
 <?php
 
+use App\Social;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -19,9 +20,22 @@ class CreateSocialsTable extends Migration
             $table->string('code');
         });
 
+        $socials = [
+            ['name' => 'Instagram', 'code' => 'instagram'],
+            ['name' => 'ВКонтакте', 'code' => 'vk'],
+            ['name' => 'Telegram', 'code' => 'tg']
+        ];
+
+
+        foreach($socials as $social) {
+            Social::create($social);
+        }
+
         Schema::table('services', function (Blueprint $table) {
            $table->integer('social_id')->nullable()->after('id');
         });
+
+        \App\Service::query()->update(['social_id' => 1]);
     }
 
     /**
