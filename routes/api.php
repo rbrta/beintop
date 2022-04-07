@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('services/categories', 'Api\PagesController@categories');
+Route::get('socials', 'Api\PagesController@socials');
 Route::get('services/{type?}', 'Api\PagesController@services');
 Route::match(['get', 'post'], 'manager/confirm', 'Api\ManagerController@confirmation');
 
@@ -42,6 +42,8 @@ Route::prefix('admin')->middleware(['auth:api', 'admin'])->group(static function
     Route::match(['post', 'delete'], 'services', 'Api\PagesController@services');
     Route::match(['get', 'post', 'delete'], 'managers', 'Api\PagesController@managers');
     Route::match(['get', 'delete'], 'manager/{id?}/clients', 'Api\ManagerController@clients');
+    Route::match(['post', 'delete'], 'socials', 'Api\PagesController@socials');
+    Route::get('socials', 'Api\PagesController@socialsOnly');
 });
 
 Route::get('users', 'Api\PagesController@users')->middleware('auth:api');

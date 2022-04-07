@@ -2,21 +2,78 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Account;
 use App\Category;
 use App\Http\Controllers\Controller;
 use App\Mail\InviteManager;
 use App\Service;
 use App\ServiceParameter;
+use App\Social;
 use App\User;
-use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Validation\ValidationException;
 
 class PagesController extends Controller
 {
+    /**
+     * @throws ValidationException
+     * @throws \Exception
+     */
+    public function socials(Request $request): JsonResponse
+    {
+        if( $request->isMethod('delete')) {
+            $request->validate([
+                'id' => 'required'
+            ]);
+
+            $social = Social::with(['services'])->findOrFail((int) $request->get('id'));
+
+            if ($social->services->isNotEmpty()) {
+                throw ValidationException::withMessages([
+                    'message' => 'Сначала нужно удалить все услуги с этой соц. сетью!'
+                ]);
+            }
+
+            $social->delete();
+
+            return response()->json([
+                'success' => true
+            ]);
+        }
+
+        if ($request->isMethod('post')) {
+            $request->validate([
+                'name' => 'required',
+                'code' => 'required'
+            ]);
+
+            $social = Social::updateOrCreate([
+                'id' => $request->get('id'),
+            ], [
+                'name' => $request->get('name'),
+                'code' => $request->get('code')
+            ]);
+
+            return response()->json($social->toArray());
+        }
+
+        $query = Social::query()->with(['services']);
+
+        $code = $request->get('code');
+
+        if ($code) {
+            $query->where('code', '=',  $code);
+        }
+
+        return response()->json($query->get());
+    }
+
+    public function socialsOnly(): JsonResponse
+    {
+        return response()->json(Social::all());
+    }
     /**
      * @param Request $request
      * @param string $type
@@ -47,6 +104,7 @@ class PagesController extends Controller
                 'name' => 'required',
                 'price' => 'required',
                 'type' => 'required',
+                'social_id' => 'required'
             ], $validationParameters));
 
             $service = Service::updateOrCreate([
@@ -57,6 +115,7 @@ class PagesController extends Controller
                 'periodindays' => $request->get('periodindays', null),
                 'category_id' => $request->get('category_id', null),
                 'type' => $request->get('type', Service::TYPE_LIKES),
+                'social_id' => (int) $request->get('social_id')
             ]);
 
             // Delete previous parameters
@@ -77,7 +136,7 @@ class PagesController extends Controller
             return response()->json($service->fresh('category'));
         }
 
-        $services = Service::query();
+        $services = Service::query()->with(['social']);
         if($type) {
             $services = $services->where('type', $type);
         }
@@ -85,7 +144,8 @@ class PagesController extends Controller
 
         return response()->json([
             'services' => $services,
-            'categories' => Category::all(['id', 'name'])
+            'categories' => Category::all(['id', 'name']),
+            'socials' => Social::all()
         ]);
     }
 

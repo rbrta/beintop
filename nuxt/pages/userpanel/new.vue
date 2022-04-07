@@ -1,11 +1,12 @@
 <template>
   <div>
-    <h1 class="title">Выберите Услугу</h1>
-    <div class="text-center services-type">
-      <button :class="{ active : servicesType === 'likes' }" @click="servicesType = 'likes'">Активность</button>
-      <button :class="{ active : servicesType === 'subscribers' }" @click="servicesType = 'subscribers'">Подписчики</button>
-    </div>
-    <TariffsList ref="tariffs" :services="services" :categories="categories" @buy="buyTariff"></TariffsList>
+    <TariffsList
+      ref="tariffs"
+      :services="services"
+      :categories="categories"
+      :socials="socials"
+      @buy="buyTariff"
+    ></TariffsList>
   </div>
 </template>
 
@@ -24,10 +25,9 @@ export default {
 
   async asyncData({ $axios, error }) {
     try {
-      const data = await $axios.$get('/services/likes');
+      const data = await $axios.$get('/services/');
       return {
-        services: data.services,
-        categories: data.categories,
+        ...data
       };
     } catch (err) {
       console.error(err.response.data || err);
@@ -37,6 +37,7 @@ export default {
     return {
       services: [],
       categories: [],
+      socials: []
     };
   },
 
@@ -53,9 +54,9 @@ export default {
   },
 
   methods: {
-    async buyTariff (service) {
+    async buyTariff(service) {
 
-      if(this.$route.query.account) {
+      if (this.$route.query.account) {
         const data = await this.$axios.$get('/user/accounts', {
           params: {
             id: this.$route.query.account
@@ -102,7 +103,7 @@ export default {
   font-size: 3.3rem;
   line-height: 1.5;
   text-align: center;
-  color: #5C4998;
+  color: #5c4998;
 }
 
 .services-type {
@@ -124,7 +125,12 @@ export default {
     cursor: pointer;
 
     &.active {
-      background: linear-gradient(180deg, #B04E98 18.23%, #873E90 90.1%, #73307B 100%);
+      background: linear-gradient(
+        180deg,
+        #b04e98 18.23%,
+        #873e90 90.1%,
+        #73307b 100%
+      );
       color: white;
     }
   }

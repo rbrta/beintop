@@ -4,47 +4,60 @@
       <div class="tariff__body">
         <template v-if="service.type === 'subscribers'">
           <div class="likes">
-            {{ service.parameters.subscribers }} <font-awesome-icon icon="users"/><br>
-          </div>
-          <div class="description">
-            подписчиков
-          </div>
-          <div class="price">
-            <b class="period">
-              единоразово
-            </b>
-            <div class="value">
-              {{ service.price_formatted }} руб.
+            <div>
+              {{ service.parameters.subscribers }}
+              <font-awesome-icon icon="users" />
             </div>
-            <a href="#" class="help" @click.stop.prevent="openChat(service)">Заказать</a>
+          </div>
+          <div class="description-wrapper">
+            <div class="description">
+              <span class="description__text description__text--mobile">подписчиков - единоразово</span>
+              <span class="description__text description__text--desktop">подписчиков</span>
+            </div>
+            <div class="price">
+              <b class="period">единоразово</b>
+              <div class="value">{{ service.price_formatted }} руб.</div>
+              <!-- <a href="#" class="help" @click.stop.prevent="openChat(service)">Заказать</a> -->
+            </div>
           </div>
         </template>
         <template v-else>
           <div class="likes">
-            {{ service.parameters.likes }} <font-awesome-icon icon="heart"/>
-          </div>
-          <div class="description">
-            на {{ service.parameters.posts }} постов + статистика (охват и сохранения) <br>
             <div>
-              <b>{{ service.parameters.views }}</b> <font-awesome-icon icon="eye"/>
+              {{ service.parameters.likes }}
+              <font-awesome-icon icon="heart" />
             </div>
-            <template v-if="service.parameters.igtv_unlim && service.parameters.igtv_unlim === '1'">
-              <div>
-                <span class="unlimited">Безлимит </span> на Видео и IGTV
-              </div>
-            </template>
-            <template v-if="service.parameters.bonus">
-              + Бонус: {{ service.parameters.bonus }}
-            </template>
+            <div class="views views--mobile">
+              <b>{{ service.parameters.views }}</b>
+              <font-awesome-icon icon="eye" />
+            </div>
           </div>
-          <div class="price">
-            <b class="period">
-              {{ service.periodindays }} дней
-            </b>
-            <div class="value">
-              {{ service.price_formatted }} руб.
+          <div class="description-wrapper">
+            <div class="description">
+              <span
+                class="description__text description__text--mobile"
+              >на {{ service.parameters.posts }} постов - {{ service.periodindays }} дней</span>
+              <span
+                class="description__text description__text--desktop"
+              >на {{ service.parameters.posts }} постов + статистика (охват и сохранения)</span>
+              <div class="views views--desktop">
+                <b>{{ service.parameters.views }}</b>
+                <font-awesome-icon icon="eye" />
+              </div>
+              <template
+                v-if="service.parameters.igtv_unlim && service.parameters.igtv_unlim === '1'"
+              >
+                <div>
+                  <span class="unlimited">Безлимит</span> на Видео и IGTV
+                </div>
+              </template>
+              <template v-if="service.parameters.bonus">+ Бонус: {{ service.parameters.bonus }}</template>
             </div>
-            <a href="#" class="help" @click.stop.prevent="openChat(service)">Заказать</a>
+            <div class="price">
+              <b class="period">{{ service.periodindays }} дней</b>
+              <div class="value">{{ service.price_formatted }} руб.</div>
+              <!-- <a href="#" class="help" @click.stop.prevent="openChat(service)">Заказать</a> -->
+            </div>
           </div>
         </template>
       </div>
@@ -59,7 +72,7 @@ export default {
 
   methods: {
     openChat(service) {
-      if(!window.jivo_api) {
+      if (!window.jivo_api) {
         return false;
       }
 
@@ -94,7 +107,7 @@ export default {
 }
 
 .help:before {
-  content: '';
+  content: "";
   background: url("data:image/svg+xml,%3Csvg version='1.1' xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 32 32'%3E%3Cpath fill='%23FFF' d='M14 22h4v4h-4zM22 8c1.105 0 2 0.895 2 2v6l-6 4h-4v-2l6-4v-2h-10v-4h12zM16 3c-3.472 0-6.737 1.352-9.192 3.808s-3.808 5.72-3.808 9.192c0 3.472 1.352 6.737 3.808 9.192s5.72 3.808 9.192 3.808c3.472 0 6.737-1.352 9.192-3.808s3.808-5.72 3.808-9.192c0-3.472-1.352-6.737-3.808-9.192s-5.72-3.808-9.192-3.808zM16 0v0c8.837 0 16 7.163 16 16s-7.163 16-16 16c-8.837 0-16-7.163-16-16s7.163-16 16-16z'%3E%3C/path%3E%3C/svg%3E%0A");
   width: 16px;
   height: 16px;

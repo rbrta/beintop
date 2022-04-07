@@ -13,6 +13,7 @@ class Service extends Model
     use SoftDeletes;
 
     protected $fillable = [
+        'social_id',
         'name',
         'price',
         'category_id',
@@ -65,5 +66,10 @@ class Service extends Model
         }
 
         return $result;
+    }
+
+    public function social(): BelongsTo
+    {
+        return $this->belongsTo(Social::class);
     }
 }
