@@ -324,8 +324,9 @@
   background-repeat: no-repeat, no-repeat;
   background-position: -20px -80px, 190px 120px;
 
-  @media (max-width: 675px) {
+  @media (max-width: 768px) {
     margin-top: 0;
+    padding-top: 10px;
   }
 
   @media (max-width: 450px) {

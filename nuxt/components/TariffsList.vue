@@ -141,11 +141,19 @@ export default {
   &--secondary {
     font-size: 2.8rem;
   }
+
+  @media (max-width: 768px) {
+    font-size: 1.8rem;
+  }
 }
 
 .services-type {
   margin-top: 2rem;
   margin-bottom: 40px;
+
+  @media (max-width: 768px) {
+    margin: 1rem 0;
+  }
 
   button {
     background: white;
@@ -169,6 +177,16 @@ export default {
         #73307b 100%
       );
       color: white;
+    }
+
+    @media (max-width: 768px) {
+      font-size: 1rem;
+      width: 100%;
+      height: 3rem;
+    }
+
+    @media (max-width: 1350px) {
+      margin-bottom: 1rem;
     }
   }
 }
