@@ -1,31 +1,41 @@
 <template>
   <div>
     <div class="popup">
-      <div class="popup-title">
-        {{ service.id ? 'Изменить' : 'Добавить'}} тариф
-      </div>
+      <div class="popup-title">{{ service.id ? 'Изменить' : 'Добавить' }} тариф</div>
       <div class="popup__content">
         <form @submit.prevent="submit">
           <div class="row">
             <div class="col">
               <div class="input-wrapper">
                 <label>Название</label>
-                <input placeholder="Название" v-model="service.name" type="text">
-                <div v-for="(error, index) in getErrors('name')" :key="index" class="form-error">{{ error }}</div>
+                <input placeholder="Название" v-model="service.name" type="text" />
+                <div
+                  v-for="(error, index) in getErrors('name')"
+                  :key="index"
+                  class="form-error"
+                >{{ error }}</div>
               </div>
             </div>
             <div class="col" v-if="service.type === 'likes'">
               <div class="input-wrapper">
                 <label>Период (дней)</label>
-                <input placeholder="Кол-во дней" v-model="service.periodindays" type="number">
-                <div v-for="(error, index) in getErrors('periodindays')" :key="index" class="form-error">{{ error }}</div>
+                <input placeholder="Кол-во дней" v-model="service.periodindays" type="number" />
+                <div
+                  v-for="(error, index) in getErrors('periodindays')"
+                  :key="index"
+                  class="form-error"
+                >{{ error }}</div>
               </div>
             </div>
             <div class="col">
               <div class="input-wrapper">
                 <label>Стоимость</label>
-                <input placeholder="Стоимость" v-model="service.price" type="number">
-                <div v-for="(error, index) in getErrors('price')" :key="index" class="form-error">{{ error }}</div>
+                <input placeholder="Стоимость" v-model="service.price" type="number" />
+                <div
+                  v-for="(error, index) in getErrors('price')"
+                  :key="index"
+                  class="form-error"
+                >{{ error }}</div>
               </div>
             </div>
           </div>
@@ -34,22 +44,34 @@
               <div class="col">
                 <div class="input-wrapper">
                   <label>Лайки</label>
-                  <input placeholder="Лайки" v-model="service.parameters.likes" type="number">
-                  <div v-for="(error, index) in getErrors('parameters.likes')" :key="index" class="form-error">{{ error }}</div>
+                  <input placeholder="Лайки" v-model="service.parameters.likes" type="number" />
+                  <div
+                    v-for="(error, index) in getErrors('parameters.likes')"
+                    :key="index"
+                    class="form-error"
+                  >{{ error }}</div>
                 </div>
               </div>
               <div class="col">
                 <div class="input-wrapper">
                   <label>Посты</label>
-                  <input placeholder="Посты" v-model="service.parameters.posts" type="number">
-                  <div v-for="(error, index) in getErrors('parameters.posts')" :key="index" class="form-error">{{ error }}</div>
+                  <input placeholder="Посты" v-model="service.parameters.posts" type="number" />
+                  <div
+                    v-for="(error, index) in getErrors('parameters.posts')"
+                    :key="index"
+                    class="form-error"
+                  >{{ error }}</div>
                 </div>
               </div>
               <div class="col">
                 <div class="input-wrapper">
                   <label>Просмотры</label>
-                  <input placeholder="Просмотры" v-model="service.parameters.views" type="number">
-                  <div v-for="(error, index) in getErrors('parameters.views')" :key="index" class="form-error">{{ error }}</div>
+                  <input placeholder="Просмотры" v-model="service.parameters.views" type="number" />
+                  <div
+                    v-for="(error, index) in getErrors('parameters.views')"
+                    :key="index"
+                    class="form-error"
+                  >{{ error }}</div>
                 </div>
               </div>
             </div>
@@ -57,7 +79,7 @@
               <div class="col">
                 <div class="input-wrapper">
                   <label>Бонус</label>
-                  <input placeholder="Бонус" v-model="service.parameters.bonus" type="text">
+                  <input placeholder="Бонус" v-model="service.parameters.bonus" type="text" />
                 </div>
               </div>
               <div class="col">
@@ -65,7 +87,10 @@
                   <label>Выберите категорию</label>
                   <div class="select-wrap">
                     <select v-model="service.category_id">
-                      <option v-for="category in categories" :value="category.id">{{ category.name }}</option>
+                      <option
+                        v-for="category in categories"
+                        :value="category.id"
+                      >{{ category.name }}</option>
                     </select>
                   </div>
                 </div>
@@ -75,7 +100,9 @@
               <div class="col">
                 <div class="input-wrapper">
                   <div>
-                    <label><input type="checkbox" v-model="service.parameters.igtv_unlim"> IGTV unlimit</label>
+                    <label>
+                      <input type="checkbox" v-model="service.parameters.igtv_unlim" /> IGTV unlimit
+                    </label>
                   </div>
                 </div>
               </div>
@@ -86,8 +113,12 @@
               <div class="col">
                 <div class="input-wrapper">
                   <label>Количество подписчиков</label>
-                  <input placeholder="0" v-model="service.parameters.subscribers" type="number">
-                  <div v-for="(error, index) in getErrors('parameters.subscribers')" :key="index" class="form-error">{{ error }}</div>
+                  <input placeholder="0" v-model="service.parameters.subscribers" type="number" />
+                  <div
+                    v-for="(error, index) in getErrors('parameters.subscribers')"
+                    :key="index"
+                    class="form-error"
+                  >{{ error }}</div>
                 </div>
               </div>
               <div class="col">
@@ -95,7 +126,10 @@
                   <label>Выберите категорию</label>
                   <div class="select-wrap">
                     <select v-model="service.category_id">
-                      <option v-for="category in categories" :value="category.id">{{ category.name }}</option>
+                      <option
+                        v-for="category in categories"
+                        :value="category.id"
+                      >{{ category.name }}</option>
                     </select>
                   </div>
                 </div>
@@ -105,7 +139,7 @@
           <div class="row" style="margin-bottom: 0!important">
             <div class="col">
               <div class="input-wrapper">
-                <button class="btn">{{ service.id ? 'Сохранить' : 'Добавить'}}</button>
+                <button class="btn">{{ service.id ? 'Сохранить' : 'Добавить' }}</button>
               </div>
             </div>
           </div>
@@ -116,7 +150,7 @@
 </template>
 
 <script>
-import { FormValidation} from '@/components/mixins/formValidate'
+import { FormValidation } from '@/components/mixins/formValidate'
 
 export default {
   name: "UpdateOrCreateTariffModal",
@@ -128,6 +162,10 @@ export default {
     serviceType: {
       type: String,
       default: 'likes'
+    },
+    social_id: {
+      type: Number,
+      default: 1
     }
   },
 
@@ -142,6 +180,7 @@ export default {
         price: null,
         category_id: 1,
         type: 'likes',
+        social_id: this.social_id,
         parameters: {
           likes: null,
           posts: null,
@@ -163,11 +202,11 @@ export default {
     }
   },
 
-  created () {
-    if(this.data) {
+  created() {
+    if (this.data) {
       Object.keys(this.service).forEach(field => {
         this.service[field] = this.data[field];
-        if(this.data.parameters.igtv_unlim) {
+        if (this.data.parameters.igtv_unlim) {
           this.service.parameters.igtv_unlim = this.data.parameters.igtv_unlim === '1';
         }
       })
@@ -177,7 +216,8 @@ export default {
   },
 
   methods: {
-    async submit () {
+    async submit() {
+      let loader = this.$loading.show();
       try {
         const data = await this.$axios.$post('/admin/services', {
           ...this.service,
@@ -185,25 +225,28 @@ export default {
         });
 
         this.$toast.success(this.service.id ? 'Тариф успешно обновлен' : 'Тариф успешно добавлен');
-        if(this.service.id) {
+        if (this.service.id) {
           this.updated(data);
         } else {
           this.created(data);
-          this.$emit('close');
         }
       } catch (e) {
-        this.errors = e.response.data.errors || {};
+        console.log(e);
+        this.errors = e.response && e.response.data.errors || {};
+      } finally {
+        loader.hide()
+        this.$emit('close');
       }
     },
 
     getAvailableParams(obj, keys) {
-      return keys.reduce((a,b)=> (a[b] = obj[b], a),{});
+      return keys.reduce((a, b) => (a[b] = obj[b], a), {});
     }
   },
 
   watch: {
-    'service.type': function(val) {
-      if(val === 'subscribers') {
+    'service.type': function (val) {
+      if (val === 'subscribers') {
         this.service.periodindays = null;
       }
     }
@@ -214,7 +257,7 @@ export default {
 <style scoped>
 .row {
   display: flex;
-  margin: 0 -10px 1rem!important;
+  margin: 0 -10px 1rem !important;
 }
 
 .input-wrapper {
@@ -222,7 +265,7 @@ export default {
 }
 
 .input-wrapper input {
-  border-radius: 15px!important;
+  border-radius: 15px !important;
 }
 
 .popup {
@@ -238,7 +281,7 @@ export default {
 }
 
 .select-wrap {
-  border: solid 1px #EB5B9C;
+  border: solid 1px #eb5b9c;
   border-radius: 15px;
   width: 100%;
   display: block;
@@ -257,8 +300,8 @@ export default {
 }
 
 .popup .popup__content .input-wrapper input[type="checkbox"] {
-   width: auto;
-   display: inline-block;
+  width: auto;
+  display: inline-block;
 }
 
 .btn {

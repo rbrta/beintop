@@ -1,5 +1,11 @@
 <template>
-  <TariffsList title="Выберите новый тариф" :services="services" :categories="categories" @buy="changeTariff"></TariffsList>
+  <TariffsList
+    title="Выберите новый тариф"
+    :services="services"
+    :categories="categories"
+    :socials="socials"
+    @buy="changeTariff"
+  ></TariffsList>
 </template>
 
 <script>
@@ -16,17 +22,16 @@ export default {
   },
 
   async asyncData({ $axios, query, error }) {
-    if(!query.order) error(404);
+    if (!query.order) error(404);
 
-    const data = await $axios.$get('/services/likes');
+    const data = await $axios.$get('/services/');
     return {
-      services: data.services,
-      categories: data.categories,
+      ...data
     };
   },
 
   methods: {
-    async changeTariff (service) {
+    async changeTariff(service) {
       try {
         const data = await this.$axios.$get('/user/accounts/change-tariff', {
           params: {
@@ -58,5 +63,4 @@ export default {
 </script>
 
 <style scoped>
-
 </style>

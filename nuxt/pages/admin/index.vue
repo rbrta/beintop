@@ -2,47 +2,62 @@
   <div>
     <div class="table-wrapper">
       <div class="tabs-wrapper">
+        <div class="tabs-header tabs-header--socials">
+          <ul>
+            <li
+              v-for="social in socials"
+              :key="social.id"
+              @click="socialId = social.id"
+              :class="{ active: socialId === social.id }"
+            >{{ social.name }}</li>
+          </ul>
+        </div>
+
         <div class="tabs-header">
           <ul>
-            <li @click="servicesType = 'likes'" :class="{ active : servicesType === 'likes' }">Активность</li>
-            <li @click="servicesType = 'subscribers'" :class="{ active : servicesType === 'subscribers' }">Подписчики</li>
+            <li
+              @click="servicesType = 'likes'"
+              :class="{ active: servicesType === 'likes' }"
+            >Активность</li>
+            <li
+              @click="servicesType = 'subscribers'"
+              :class="{ active: servicesType === 'subscribers' }"
+            >Подписчики</li>
           </ul>
         </div>
         <div class="tabs-body">
           <table>
             <caption>Тарифы</caption>
             <thead>
-            <tr class="table-title">
-              <th>Название</th>
-              <th>Период</th>
-              <th>Стоимость</th>
-              <th>Действия</th>
-            </tr>
+              <tr class="table-title">
+                <th>Название</th>
+                <th>Период</th>
+                <th>Стоимость</th>
+                <th>Действия</th>
+              </tr>
             </thead>
             <tbody>
-            <tr v-for="(item, index) in services" :key="item.id">
-              <td data-label="Название">{{ item.category ? item.category.name : '' }} {{ item.name }}</td>
-              <td data-label="Период">
-                <template v-if="item.periodindays !== null">
-                  {{ item.periodindays }} дней
-                </template>
-                <template v-else>
-                  -
-                </template>
-              </td>
-              <td data-label="Стоимость">{{ item.price }} руб</td>
-              <td data-label="Действия" class="table-action">
-                <a @click.prevent="updateOrCreate(item)" class="btn" href="#">Изменить</a>
-                <a @click.prevent="deleteItem(item)" class="btn" href="#">Удалить</a>
-              </td>
-            </tr>
+              <tr v-for="item in currentServices" :key="item.id">
+                <td
+                  data-label="Название"
+                >{{ item.category ? item.category.name : '' }} {{ item.name }}</td>
+                <td data-label="Период">
+                  <template v-if="item.periodindays !== null">{{ item.periodindays }} дней</template>
+                  <template v-else>-</template>
+                </td>
+                <td data-label="Стоимость">{{ item.price }} руб</td>
+                <td data-label="Действия" class="table-action">
+                  <a @click.prevent="updateOrCreate(item)" class="btn" href="#">Изменить</a>
+                  <a @click.prevent="deleteItem(item)" class="btn" href="#">Удалить</a>
+                </td>
+              </tr>
             </tbody>
             <tfoot class="text-center" v-if="!services.length > 0">
-            <tr>
-              <td colspan="4">
-                <p class="no-items">Тарифов не найдено</p>
-              </td>
-            </tr>
+              <tr>
+                <td colspan="4">
+                  <p class="no-items">Тарифов не найдено</p>
+                </td>
+              </tr>
             </tfoot>
           </table>
         </div>
@@ -64,11 +79,10 @@ export default {
 
   async asyncData({ $axios, error }) {
     try {
-      const data = await $axios.$get('/services/likes');
+      const data = await $axios.$get('/services/');
 
       return {
-        services: data.services,
-        categories: data.categories
+        ...data
       };
     } catch (err) {
       console.error(err.response.data || err);
@@ -86,35 +100,33 @@ export default {
       services: [],
       categories: [],
       servicesType: 'likes',
+      socialId: 1
     }
   },
 
-  watch: {
-    servicesType() {
-      this.getServices();
+  computed: {
+    currentServices() {
+      return this.services.filter(service => service.type === this.servicesType && service.social_id === this.socialId)
     }
   },
 
   methods: {
-    async getServices() {
-      const data = await this.$axios.$get(`/services/${this.servicesType}`);
-      this.services = data.services;
-    },
-
     updateOrCreate(service = null) {
       this.$modal.show(UpdateOrCreateTariffModal, {
         data: service,
         categories: this.categories,
         serviceType: this.servicesType,
-        updated: (item) => this.getServices(),
-        created: (item) => this.services.push(item)
+        updated: (item) => this.services = [...this.services.filter(el => el.id !== item.id), item],
+        created: (item) => this.services = [...this.services, item],
+        social_id: this.socialId
       }, {
         width: 880
       })
     },
 
     async deleteItem(service) {
-      if(confirm('Вы уверены, что хотите удалить данный тариф?')) {
+      if (confirm('Вы уверены, что хотите удалить данный тариф?')) {
+        let loader = this.$loading.show();
         await this.$axios.$delete('/admin/services', {
           params: {
             id: service.id
@@ -122,9 +134,10 @@ export default {
         });
 
         const index = this.services.indexOf(service);
-        if(index !== -1) {
+        if (index !== -1) {
           this.services.splice(index, 1);
         }
+        loader.hide();
 
         this.$toast.success('Тариф успешно удален');
       }
@@ -133,44 +146,64 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .tabs-body {
   border: 1px solid #e9e9e9;
   border-radius: 0 0 30px 30px;
   padding: 20px 0 0;
 }
 
-.tabs-header ul {
-  margin: 0 0 -1px 0;
-  padding: 0;
-  list-style: none;
-  display: flex;
-}
+.tabs-header {
+  ul {
+    margin: 0 0 -1px 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+  }
 
-.tabs-header ul > li {
-  border: 1px solid #e9e9e9;
-  padding: 10px;
-  width: 200px;
-  text-align: center;
-  margin-right: -1px;
-  border-radius: 25px 0 0 0;
-  cursor: pointer;
-}
+  ul > li {
+    border: 1px solid #e9e9e9;
+    padding: 10px;
+    width: 200px;
+    text-align: center;
+    margin-right: -1px;
+    border-radius: 25px 0 0 0;
+    cursor: pointer;
+  }
 
-.tabs-header ul > li.active {
-  background: #b858c3;
-  border-color: #b858c3;
-  color: white;
-}
+  ul > li.active {
+    background: #b858c3;
+    border-color: #b858c3;
+    color: white;
+  }
 
-.tabs-header ul > li + li {
-  border-radius: 0;
-}
+  ul > li + li {
+    border-radius: 0;
+  }
 
-.tabs-header ul > li:last-child {
-  border-radius: 0 25px 0 0;
-}
+  ul > li:last-child {
+    border-radius: 0 25px 0 0;
+  }
 
+  &--socials {
+    margin-bottom: 24px;
+
+    ul {
+      justify-content: center;
+      & > li {
+        border-radius: 25px 0 0 25px;
+      }
+
+      & > li + li {
+        border-radius: 0;
+      }
+
+      & > li:last-child {
+        border-radius: 0 25px 25px 0;
+      }
+    }
+  }
+}
 .no-items {
   padding: 20px 0;
 }

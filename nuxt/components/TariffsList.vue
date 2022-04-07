@@ -1,20 +1,43 @@
 <template>
   <section id="tariffs" class="tariffcontainer">
-    <div class="tariffcontainer-title">
-      {{ title }}
+    <h1 class="title" v-if="socials && socials.length > 0">Выберите Сеть</h1>
+    <div class="text-center services-type">
+      <button
+        v-for="social in socials"
+        :key="social.id"
+        :class="{ active: currentSocialId === social.id }"
+        @click="changeSocialId(social.id)"
+      >{{ social.name }}</button>
     </div>
+    <h2 class="title title--secondary" v-if="socials && socials.length > 0">Выберите Услугу</h2>
+    <div class="text-center services-type">
+      <button
+        :class="{ active: currentServiceType === 'likes' }"
+        @click="changeServiceType('likes')"
+      >Активность</button>
+      <button
+        :class="{ active: currentServiceType === 'subscribers' }"
+        @click="changeServiceType('subscribers')"
+      >Подписчики</button>
+    </div>
+    <div class="title title--secondary">{{ title }}</div>
     <div class="tariff-category">
       <div v-if="!hideCategories" class="tarif-category-title">
-        <div v-for="category in visibleCategories"
-             :key="category.id"
-             :class="{ active : currentCategory === category.id }"
-             @click="currentCategory = category.id
-        ">
-          Тарифы {{ category.name }}
-        </div>
+        <div
+          v-for="category in visibleCategories"
+          :key="category.id"
+          :class="{ active: currentCategory === category.id }"
+          @click="currentCategory = category.id
+          "
+        >Тарифы {{ category.name }}</div>
       </div>
       <div class="tarif-category-body">
-        <TariffsListItem v-for="service in visibleServices" :key="service.id" :service="service" @buy="handleBuyClick"></TariffsListItem>
+        <TariffsListItem
+          v-for="service in visibleServices"
+          :key="service.id"
+          :service="service"
+          @buy="handleBuyClick"
+        ></TariffsListItem>
       </div>
     </div>
   </section>
@@ -31,6 +54,10 @@ export default {
       default: () => []
     },
     categories: {
+      type: Array,
+      default: () => []
+    },
+    socials: {
       type: Array,
       default: () => []
     },
@@ -53,24 +80,24 @@ export default {
   },
 
   computed: {
-    /**
-     * Show categories that have some services
-     * @returns {*[]}
-     */
     visibleCategories() {
-      return this.categories.filter(category => this.services.some(service => service.category_id === category.id));
+      return this.categories.filter(category => this.currentServices.some(service => service.category_id === category.id));
     },
 
     visibleServices() {
-      return this.currentCategory
-          ? this.services.filter(service => service.category_id === this.currentCategory)
-          : [];
+      return this.currentServices.filter(tarrif => tarrif.category_id === this.currentCategory)
+    },
+
+    currentServices() {
+      return this.services.filter(tarrif => tarrif.social_id === this.currentSocialId && tarrif.type === this.currentServiceType);
     }
   },
 
   data() {
     return {
-      currentCategory: null
+      currentCategory: null,
+      currentSocialId: 1,
+      currentServiceType: 'likes'
     }
   },
 
@@ -79,10 +106,20 @@ export default {
       this.$emit('buy', service)
     },
 
+    changeSocialId(id) {
+      this.currentSocialId = id;
+      this.setCurrentCategory();
+    },
+
+    changeServiceType(type) {
+      this.currentServiceType = type;
+      this.setCurrentCategory();
+    },
+
     // first show services from the maxi category
     // if the category "maxi" does not exist, then the current category will be the first category
     setCurrentCategory() {
-      if(this.visibleCategories.length > 0) {
+      if (this.visibleCategories.length > 0) {
         const maxiCategory = this.visibleCategories.find(category => category.name === 'maxi');
         this.currentCategory = maxiCategory ? maxiCategory.id : this.visibleCategories[0].id;
       }
@@ -93,4 +130,64 @@ export default {
 
 <style lang="scss">
 @import "assets/sass/tariffs";
+
+.title {
+  font-weight: bold;
+  font-size: 3.3rem;
+  line-height: 1.5;
+  text-align: center;
+  color: #5c4998;
+
+  &--secondary {
+    font-size: 2.8rem;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 1.8rem;
+  }
+}
+
+.services-type {
+  margin-top: 2rem;
+  margin-bottom: 40px;
+
+  @media (max-width: 768px) {
+    margin: 1rem 0;
+  }
+
+  button {
+    background: white;
+    color: #bb56a1;
+    width: 400px;
+    height: 70px;
+    border-radius: 40px;
+    font-weight: 800;
+    font-size: 1.4rem;
+    text-transform: uppercase;
+    margin: 0 10px;
+    border: 5px solid #bb56a1;
+    outline: none;
+    cursor: pointer;
+
+    &.active {
+      background: linear-gradient(
+        180deg,
+        #b04e98 18.23%,
+        #873e90 90.1%,
+        #73307b 100%
+      );
+      color: white;
+    }
+
+    @media (max-width: 768px) {
+      font-size: 1rem;
+      width: 100%;
+      height: 3rem;
+    }
+
+    @media (max-width: 1350px) {
+      margin-bottom: 1rem;
+    }
+  }
+}
 </style>
