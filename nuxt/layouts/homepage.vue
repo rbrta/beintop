@@ -8,6 +8,12 @@
 
 <style lang="scss">
 @import "~/assets/sass/homepage.scss";
+body {
+  background-image: url(/images/background-backend.svg);
+  background-position: bottom;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 </style>
 
 <script>

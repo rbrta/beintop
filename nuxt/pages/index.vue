@@ -1,6 +1,9 @@
 <template>
   <main>
     <div id="app" class="container-middle">
+      <rocket-svg />
+      <clock-svg />
+      <phone-svg />
       <div class="wrapper-content">
         <TariffsList :services="services" :categories="categories" :socials="socials"></TariffsList>
       </div>
@@ -10,13 +13,19 @@
 
 <script>
 import TariffsList from '@/components/TariffsList'
+import RocketSvg from '~/components/design/RocketSvg.vue';
+import ClockSvg from '../components/design/ClockSvg.vue';
+import PhoneSvg from '../components/design/PhoneSvg.vue';
 
 export default {
   layout: 'homepage',
   name: 'HomePage',
 
   components: {
-    TariffsList
+    TariffsList,
+    RocketSvg,
+    ClockSvg,
+    PhoneSvg
   },
 
   async asyncData({ $axios, error }) {

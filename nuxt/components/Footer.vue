@@ -1,11 +1,11 @@
 <template>
-  <footer>
+  <footer class="footer">
     <a href="#" style="display:  none;">
-      <img src="/images/contacts1.svg" alt="">
+      <img src="/images/contacts1.svg" alt />
       <span>be_in_top</span>
     </a>
     <a href="mailto:beintop888@gmail.com">
-      <img src="/images/contacts2.svg" alt="">
+      <img src="/images/contacts2.svg" alt />
       <span>beintop888@gmail.com</span>
     </a>
 
@@ -22,6 +22,7 @@
 
 <script>
 export default {
-name: "Footer"
+  name: "Footer"
 }
 </script>
+

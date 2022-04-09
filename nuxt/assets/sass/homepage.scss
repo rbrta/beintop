@@ -322,7 +322,7 @@
   position: relative;
   background-image: url("/images/points.svg"), url("/images/likes.svg");
   background-repeat: no-repeat, no-repeat;
-  background-position: -20px -80px, 190px 120px;
+  background-position: -20px -80px, 290px 110px;
 
   @media (max-width: 768px) {
     margin-top: 0;
@@ -524,11 +524,12 @@
 
 footer {
   text-align: center;
-  margin-top: 60px;
-  margin-bottom: 70px;
+  margin-top: 30px;
+  padding: 60px 0 70px;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+  background: white;
 
   @media (max-width: 750px) {
     flex-direction: column;
