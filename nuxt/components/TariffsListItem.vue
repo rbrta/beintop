@@ -39,7 +39,7 @@
               >на {{ service.parameters.posts }} постов - {{ service.periodindays }} дней</span>
               <span
                 class="description__text description__text--desktop"
-              >на {{ service.parameters.posts }} постов + статистика (охват и сохранения)</span>
+              >на {{ service.parameters.posts }} постов</span>
               <div class="views views--desktop">
                 <b>{{ service.parameters.views }}</b>
                 <font-awesome-icon icon="eye" />
